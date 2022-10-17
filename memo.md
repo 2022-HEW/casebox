@@ -1,6 +1,16 @@
 # 必須ルール
 
-## htmlタグについて
+## htmlタグについて(JSX記法)
+関数に対してreturnの中にhtmlタグを書く
+
+例 const a = () =>{
+    console.log("");
+
+    return(
+        <div>a</div>
+    )
+}
+
 return()直下には一つのエレメントしか入らない
 例
 ✕ return(
@@ -36,22 +46,51 @@ fromのあとに持ってくる場所を書く
 <div className={styles.a}></div>
 でクラス名をつける
 
-
-<div>
-
-
-# components
+# component（コンポーネント）
 componentは部品を指していて、nextはcomponentを組み合わせてページを作る。
 部品で作ることによって処理やCSSを使い回せる。
 拡張子は.tsx
 
-例 nav
+例 nav.tsx
 
+## export
+export defaultをつけることで他のファイルからインポートできる。
+コンポーネントの名前は頭文字が大文字
+
+例 export default function Sample(){
+
+    } 
+## import
+import コンポーネントの名前 from "ファイルの位置"
+
+例 import Sample from "./sample"
+
+使うときはHTMLタグのように使う
+
+例　const a =()=>{
+
+        return(
+            <Sample/>
+        )
+    }
 # pages 
 ここにページごとのファイルを入れる。
 拡張子は.tsx
 例　index.tsx,service_select.tsx
 
+# ページ遷移
+Linkタグをインポート
+pagesの相対パスはカレントディレクトリの直下になるため気をつける！
+
+例 
+<Link href="">
+    <a>a</a>
+</Link>
+
 # エラーが出るとき確認すること
+
+importを忘れている
+
+特殊なパスを確認する
 
 ファイル名を指定する際、.tsxと拡張子がついている
