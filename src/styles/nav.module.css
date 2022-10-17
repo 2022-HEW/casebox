@@ -1,0 +1,113 @@
+#wrapper {
+    width: 100vw;
+    background: #FFFAF0;
+  }
+  
+  #back {
+    font-weight: 700;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 22px;
+    bottom: 115px;
+    background: #666666;
+    border-radius: 60px;
+    box-shadow: -4px 9px 16px -5px rgba(0, 0, 0, 0.25);
+  }
+  
+  #back p {
+    font-weight: 700;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-size: 23px;
+    line-height: 77px;
+    text-align: center;
+    color: #FFFFFF;
+  }
+  
+  #display_box {
+    box-sizing: border-box;
+    position: absolute;
+    width: 90%;
+    height: 98%;
+    right: 30px;
+  }
+  
+  #display_box #disp {
+    position: absolute;
+    width: 94%;
+    height: 80%;
+    left: 65px;
+    bottom: 115px;
+    background: #FFFFFF;
+    border: 6px solid #666666;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+    z-index: 99;
+  }
+  
+  #service_select {
+    box-sizing: border-box;
+    position: absolute;
+    width: 90%;
+    height: 75px;
+    right: 110px;
+    bottom: 43px;
+    text-align: center;
+    font-weight: bold;
+  }
+  #service_select a {
+    text-decoration: none;
+    color: inherit;
+    width: 125px;
+    height: 47px;
+    padding: 15px 0 0 0;
+    display: inline-block;
+  }
+  
+  #display_box #select {
+    position: absolute;
+    width: 12%;
+    height: 56px;
+    left: 10%;
+    background: #666666;
+    border: solid 5px #666;
+    border-radius: 0px 0px 15px 15px;
+    z-index: 999;
+    color: #fff;
+  }
+  
+  #display_box #btn1,
+  #display_box #btn2,
+  #display_box #btn3,
+  #display_box #btn4,
+  #display_box #btn5,
+  #display_box #btn6 {
+    position: absolute;
+    width: 12%;
+    height: 57px;
+    left: 24%;
+    background: #fff;
+    border: solid 5px #666;
+    border-radius: 0px 0px 15px 15px;
+    z-index: 1;
+  }
+  
+  #display_box #btn2 {
+    left: 38%;
+  }
+  
+  #display_box #btn3 {
+    left: 52%;
+  }
+  
+  #display_box #btn4 {
+    left: 66%;
+  }
+  
+  #display_box #btn5 {
+    left: 80%;
+  }
+  
+  #display_box #btn6 {
+    left: 94%;
+  }

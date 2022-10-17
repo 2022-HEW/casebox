@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import mysql from "serverless-mysql"
 import { log } from 'console'
+import Nav from '../components/nav'
 
 
 // const a = async() =>{
@@ -25,7 +26,7 @@ const Home: NextPage = () => {
         console.log(c);
         return c.odh_No
       })} */}
-      うおおおおおおおおおおおおお
+      <Nav/>
     </div>
   )
 }
