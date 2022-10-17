@@ -6,17 +6,17 @@ import mysql from "serverless-mysql"
 import { log } from 'console'
 
 
-const a = async() =>{
-   const d:Object  = await(await fetch("api/test")).json() 
+// const a = async() =>{
+//    const d:Object  = await(await fetch("api/test")).json() 
   //  console.log(d);
-   return d
-} 
+//    return d
+// } 
 
 
 const Home: NextPage = () => {
   
- const b:any = a()
- console.log(b);
+//  const b:any = a()
+//  console.log(b);
  
   return (
 
@@ -25,6 +25,7 @@ const Home: NextPage = () => {
         console.log(c);
         return c.odh_No
       })} */}
+      うおおおおおおおおおおおおお
     </div>
   )
 }
