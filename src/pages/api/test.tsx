@@ -33,7 +33,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ){
-    const result = await db.query(`SELECT * FROM t_d_morder_handy`);
+    const result = await db.query(`SELECT * FROM customers`);
 
     console.log(typeof result);
 

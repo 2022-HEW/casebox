@@ -7,17 +7,17 @@ import { log } from 'console'
 import Nav from '../components/nav'
 
 
-// const a = async() =>{
-//    const d:Object  = await(await fetch("api/test")).json() 
-  //  console.log(d);
-//    return d
-// } 
+const a = async() =>{
+   const d:Object  = await(await fetch("api/test")).json() 
+   console.log(d);
+   return d
+} 
 
 
 const Home: NextPage = () => {
   
-//  const b:any = a()
-//  console.log(b);
+ const b:any = a()
+ console.log(b);
  
   return (
 
