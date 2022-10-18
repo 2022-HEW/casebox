@@ -7,18 +7,24 @@ import { log } from 'console'
 import Nav from '../components/nav'
 
 
-// const a = async() =>{
-//    const d:Object  = await(await fetch("api/test")).json() 
-  //  console.log(d);
-//    return d
-// } 
+const a = async() =>{
+   const d:Object  = await(await fetch("api/test")).json() 
+   console.log(d);
+   return d
+} 
 
 
 const Home: NextPage = () => {
   
+<<<<<<< HEAD
 //  const b:any = a()
 //  console.log(b);
 
+=======
+ const b:any = a()
+ console.log(b);
+ 
+>>>>>>> 10279d78b841a2ba5de84c232146961b94d76140
   return (
 
     <div className={styles.container}>
@@ -27,6 +33,7 @@ const Home: NextPage = () => {
         return c.odh_No
       })} */}
       <Nav/>
+      
     </div>
   )
 }

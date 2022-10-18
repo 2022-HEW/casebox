@@ -10,7 +10,7 @@ module.exports = nextConfig
 module.exports = {
   env: {
     MYSQL_HOST: "127.0.0.1",
-    MYSQL_DATABASE: "dnpk_dnpk_oes",
+    MYSQL_DATABASE: "practicedb",
     MYSQL_USER: "root",
     MYSQL_PASSWORD: "",
   },
