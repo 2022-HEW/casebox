@@ -4,7 +4,10 @@
 import styles from '../styles/service_select.module.css'
 import Link from 'next/link'
 
-export default function Service() {
+
+
+const Service = () => {
+
     return(
         <div id={styles.wrap}>
             <div id={styles.cardbox}>
@@ -74,3 +77,5 @@ export default function Service() {
         </div>
     )
 }
+
+export default Service;
