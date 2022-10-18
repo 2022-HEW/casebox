@@ -1,5 +1,12 @@
 # 必須ルール
 
+## 起動
+ターミナルに npm run dev
+ http://localhost:3000/
+ にアクセス
+ 
+停止 Ctrl + C
+
 ## htmlタグについて(JSX記法)
 関数に対してreturnの中にhtmlタグを書く
 
