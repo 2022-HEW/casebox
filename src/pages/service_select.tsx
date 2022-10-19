@@ -12,10 +12,12 @@ const Service = () => {
             <div id={styles.cardbox}>
                 <div className={styles.card}>
                     <Link href="./template_select.php">
-                        <div className={styles.images}></div>
-                        <div className={styles.content}>
-                            <h3>テンプレートケース</h3>
-                            <p>もう既にデザインが仕上がっているケース</p>
+                        <div>
+                            <div className={styles.images}></div>
+                            <div className={styles.content}>
+                                <h3>テンプレートケース</h3>
+                                <p>もう既にデザインが仕上がっているケース</p>
+                            </div>
                         </div>
                     </Link>
 
@@ -25,14 +27,16 @@ const Service = () => {
                             <h3>テンプレートケース</h3>
                             <p>もう既にデザインが仕上がっているケース</p>
                         </div>
-                    </a> */}
+                        </a> */}
                 </div>
                 <div className={styles.card}>
                     <Link href="./product_edit.html">
-                        <div className={styles.images}></div>
-                        <div className={styles.content}>
-                            <h3>オリジナルケース</h3>
-                            <p>写真を自由に入れることができるオリジナルのケース</p>
+                        <div>
+                            <div className={styles.images}></div>
+                            <div className={styles.content}>
+                                <h3>オリジナルケース</h3>
+                                <p>写真を自由に入れることができるオリジナルのケース</p>
+                            </div>
                         </div>
                     </Link>
 
@@ -47,10 +51,12 @@ const Service = () => {
 
                 <div className={styles.card}>
                     <Link href="./draw_edit.html">
-                        <div className={styles.images}></div>
-                        <div className={styles.content}>
-                            <h3>手書きケース</h3>
-                            <p>自販機で自分で書いたイラストをケースできる</p>
+                        <div>
+                            <div className={styles.images}></div>
+                            <div className={styles.content}>
+                                <h3>手書きケース</h3>
+                                <p>自販機で自分で書いたイラストをケースできる</p>
+                            </div>
                         </div>
                     </Link>
 

@@ -60,10 +60,6 @@
   word-break: break-word;
 }
 
-a {
-  text-decoration: none;
-  color: #333;
-}
 
 body {
   font-family: "Noto Sans JP", sans-serif;
