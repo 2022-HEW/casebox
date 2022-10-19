@@ -16,15 +16,9 @@ const a = async() =>{
 
 const Home: NextPage = () => {
   
-<<<<<<< HEAD
-//  const b:any = a()
-//  console.log(b);
-
-=======
  const b:any = a()
  console.log(b);
- 
->>>>>>> 10279d78b841a2ba5de84c232146961b94d76140
+
   return (
 
     <div className={styles.container}>
