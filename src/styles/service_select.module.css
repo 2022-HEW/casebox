@@ -4,6 +4,8 @@
   padding: 0px;
 } */
 
+/* 1280 × 720 */
+
 #wrap {
   width: 1000px;
   height: 90vh;
@@ -61,6 +63,6 @@
 }
 
 
-body {
+/* body {
   font-family: "Noto Sans JP", sans-serif;
-}
+} */
