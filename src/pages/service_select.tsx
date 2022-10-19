@@ -63,16 +63,6 @@ const Service = () => {
                     </a> */}
                 </div>
             </div>
-            <div id={styles.slideshow}>
-                <ul className={styles.slider}>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                </ul>
-            </div>
         </div>
     )
 }
