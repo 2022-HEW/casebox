@@ -4,7 +4,8 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import mysql from "serverless-mysql"
 import { log } from 'console'
-import Nav from '../components/nav'
+import Nav from '../components/Nav'
+import Box from '../components/Box'
 
 
 const a = async() =>{
@@ -16,15 +17,10 @@ const a = async() =>{
 
 const Home: NextPage = () => {
   
-<<<<<<< HEAD
+
 //  const b:any = a()
 //  console.log(b);
 
-=======
- const b:any = a()
- console.log(b);
- 
->>>>>>> 10279d78b841a2ba5de84c232146961b94d76140
   return (
 
     <div className={styles.container}>
@@ -32,7 +28,8 @@ const Home: NextPage = () => {
         console.log(c);
         return c.odh_No
       })} */}
-      <Nav/>
+      <Box/>
+      <Nav />
       
     </div>
   )
