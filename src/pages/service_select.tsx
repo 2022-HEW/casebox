@@ -4,7 +4,7 @@
 import styles from '../styles/service_select.module.css'
 import Link from 'next/link'
 
-import SlideShow from '../components/SlideShow';
+// import SlideShow from '../components/SlideShow';
 
 const Service = () => {
 
@@ -68,8 +68,6 @@ const Service = () => {
                             <p>自販機で自分で書いたイラストをケースできる</p>
                         </div>
                     </a> */}
-
-                    <SlideShow />
                 </div>
             </div>
         </div>

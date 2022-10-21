@@ -28,9 +28,9 @@ const Home: NextPage = () => {
         console.log(c);
         return c.odh_No
       })} */}
+
       <Box/>
       <Nav />
-      
     </div>
   )
 }
