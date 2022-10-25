@@ -1,13 +1,14 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import styles from "../styles/wait.module.css"
-const Wait=()=>{
-    return(
-    <Link href={"./service_select"}>
-        <div className={styles.movie}>
+import { useRef } from 'react'
 
-        </div>
-        
-    </Link>)
+const Wait=()=>{
+    
+    return(
+        <>
+            {/* aaaa */}
+        </>
+    )
 }
 export default Wait 
