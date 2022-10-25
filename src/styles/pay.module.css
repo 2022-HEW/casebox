@@ -1,30 +1,47 @@
 #wrap{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
     position: relative;
     z-index: 1000;
-    top: 150px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    /* top: 150px; */
+}
+.block1{
+    display: flex;
+    align-items: center;
+    /* position: absolute; */
+    /* top: 50%;
+    left: 35%; */
+}
+.block2{
+    display: flex;
+    align-items: center;
+    /* position: absolute; */
+    /* top: 50%;
+    left: 35%; */
 }
 .block{
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: blue;
+    display: flex;
+    align-items: center;
+    /* position: absolute; */
+    /* top: 50%;
+    left: 35%; */
 }
 .write{
-    display: block;
-    float: left;
+    /* display: block;
+    float: left; */
     background-color: aqua;
 }
 .money{
-    display: block;
-    float: left;
+    /* display: block;
+    float: left; */
     background-color: violet;
     font-size: 100px;
 }
 .en{
-    display: block;
-    float: left;
+    /* display: block;
+    float: left; */
     background-color: aquamarine;
 }
