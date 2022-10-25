@@ -1,4 +1,4 @@
-// import Nav from "../components/nav";
+import Nav from "../components/nav";
 import Box from "../components/Box";
 import styles from "../styles/pay.module.css";
 
