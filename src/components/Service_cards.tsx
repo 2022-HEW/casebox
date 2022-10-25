@@ -1,8 +1,7 @@
 import styles from '../styles/service_select.module.css'
 import { ReactNode } from 'react';
 
-
-const Original = ({children }:{ children?: ReactNode;})=> {
+const Service_cards = ()=> {
     return(
         <>
             
@@ -10,4 +9,4 @@ const Original = ({children }:{ children?: ReactNode;})=> {
     )
 }
 
-export default Original;
+export default Service_cards;

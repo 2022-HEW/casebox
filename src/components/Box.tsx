@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import Link from "next/link";
 
 const Box = (props: { index: boolean;children?: ReactNode}) =>{
+    
     return (
         <>
         {/* indexのみ画面タップで遷移する */}

@@ -9,11 +9,14 @@ type Tab_type ={
 
 
 const Nav =()=>{
+
     const router = useRouter()    
 
+    // 戻るボタン
     const back =()=>{
         router.back()
     }
+    
     return(
         <div id={styles.container}>
         <div id={styles.wrapper}>
