@@ -3,12 +3,16 @@
 
 import styles from '../styles/service_select.module.css'
 import Link from 'next/link'
-
+import Nav from '../components/Nav'
+import Box from '../components/Box'
 
 const Service = () => {
 
     return(
+        <>
         <div id={styles.wrap}>
+        <Nav/>
+        <Box/>
             <div id={styles.cardbox}>
                 <div className={styles.card}>
                     <Link href="./template_select.php">
@@ -80,6 +84,7 @@ const Service = () => {
                 </ul>
             </div>
         </div>
+    </>
     )
 }
 

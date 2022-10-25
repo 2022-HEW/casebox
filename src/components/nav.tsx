@@ -21,15 +21,17 @@ const Nav =()=>{
             <p onClick={back}>戻る</p>
         </div> */}
         <div id={styles.display_box}>
+            {/* <img src="./Nav/disp.svg"/> */}
             <div id={styles.disp}></div>
             <div id={styles.service_select}>
                 <Tab site_link={"./service_select"} site_name={"トップ"} />
-                <Tab site_link={"./service_select"} site_name={"トップ"} />
-                <Tab site_link={"./service_select"} site_name={"トップ"} />
-                <Tab site_link={"./service_select"} site_name={"トップ"} />
-                <Tab site_link={"./service_select"} site_name={"トップ"} />
-                <Tab site_link={"./service_select"} site_name={"トップ"} />
+                <Tab site_link={"./template_select"} site_name={"テンプレ"} />
+                <Tab site_link={"./scan"} site_name={"オリジナル"} />
+                <Tab site_link={"./type_select"} site_name={"手書き"} />
+                <Tab site_link={"./site_qr"} site_name={"公式サイト"} />
+                <Tab site_link={"./help"} site_name={"ヘルプ"} />
             </div>
+            <div id={styles.back}>もどる</div>
         </div>
     </div>
     </div>

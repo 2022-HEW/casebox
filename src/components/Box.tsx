@@ -1,11 +1,16 @@
-import style from "../styles/box.module.css"
+import styles from "../styles/box.module.css"
+import { ReactNode } from 'react';
 
-const Box = () =>{
+
+
+const Box = ({children }:{ children?: ReactNode;}) =>{
     return(
-        <>
-            <img src="./Box/box.svg" className={style.box} />
-            <img src="./Box/screen.svg" className={style.screen} />
-        </>
+        <div id={styles.box}>
+            <img src="./Box/screen.svg" id={styles.screen} />
+            <div id={styles.screen_on}>
+                {children}
+            </div>
+        </div>
     )
 }
 

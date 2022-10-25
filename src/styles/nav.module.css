@@ -83,28 +83,23 @@
     height: 57px;
     left: 24%;
     background: #fff;
-    border: solid 5px #666;
+    border: solid 5px #858585;
     border-radius: 0px 0px 15px 15px;
     z-index: 1;
     margin: 0px 15px 0px 0;
   }
-  
-  #display_box #btn2 {
-    left: 38%;
-  }
-  
-  #display_box #btn3 {
-    left: 52%;
-  }
-  
-  #display_box #btn4 {
-    left: 66%;
-  }
-  
-  #display_box #btn5 {
+  #back{
+    /* Rectangle 143 */
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 166px;
+    height: 84px;
     left: 80%;
-  }
-  
-  #display_box #btn6 {
-    left: 94%;
+    top: 90%;
+
+    background: #FFA262;
+    border: 2px solid #666666;
+    box-shadow: inset 2px 5px 2px rgba(255, 255, 255, 0.65), inset -2px -5px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 58px;
   }

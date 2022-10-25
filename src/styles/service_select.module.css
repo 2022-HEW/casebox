@@ -18,6 +18,11 @@
 #cardbox {
   width: 1000px;
   margin: 20px auto 0 auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 99;
+
 }
 
 .card {
@@ -67,6 +72,10 @@
 ===================================*/
 #slideshow {
   width: 1000px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
 
 .slider { /*横幅94%で左右に余白を持たせて中央寄せ*/

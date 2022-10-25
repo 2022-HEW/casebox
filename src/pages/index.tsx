@@ -6,6 +6,7 @@ import mysql from "serverless-mysql"
 import { log } from 'console'
 import Nav from '../components/Nav'
 import Box from '../components/Box'
+import Wait from '../components/Wait'
 
 
 const a = async() =>{
@@ -28,8 +29,9 @@ const Home: NextPage = () => {
         console.log(c);
         return c.odh_No
       })} */}
-      <Box/>
-      <Nav />
+      <Box>
+        <Wait/>
+      </Box>          
       
     </div>
   )

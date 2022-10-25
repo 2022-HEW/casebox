@@ -1,14 +1,19 @@
-.box{
-    height: 100vh;
+#box{
     width: 100vw;
+    height: 100vh;
+    background: #000;
     position: absolute;
     top: 0;
     left: 0;
 }
-.screen{
-    height: 90vh;
-    width: 85vw;
+#screen{
+    width: 77vw;
     position: absolute;
-    top: 5vh;
-    left: 3vw;
+    top: 0.8vh;
+    left: 2vw;
+}
+#screen_on{
+    background-color: beige;
+    width: 100px;
+    position: relative;
 }
