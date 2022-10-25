@@ -12,11 +12,6 @@ const Nav =()=>{
 
     const router = useRouter()    
 
-    // 戻るボタン
-    const back =()=>{
-        router.back()
-    }
-    
     return(
         <div id={styles.container}>
         <div id={styles.wrapper}>
@@ -34,7 +29,7 @@ const Nav =()=>{
                 <Tab site_link={"./site_qr"} site_name={"公式サイト"} />
                 <Tab site_link={"./help"} site_name={"ヘルプ"} />
             </div>
-            <div id={styles.back}>もどる</div>
+            <div id={styles.back} onClick={()=>router.back()}>もどる</div>
         </div>
     </div>
     </div>

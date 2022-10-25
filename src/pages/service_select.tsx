@@ -14,8 +14,9 @@ const Service = () => {
 
     return(
         <>
-        <Box index={false}/>
-        <Nav/>
+        <Box index={false}>
+            <Nav/>
+        </Box>
                     
         </>
     )

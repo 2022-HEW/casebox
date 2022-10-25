@@ -31,29 +31,30 @@
     height: 85%;
     left: 0%;
     top: 7.3%;
+    z-index: 0;
   }
   
   #display_box #disp {
-    position: absolute;
+    position: relative;
+    margin: 0 0 0 65px;
     width: 94%;
     height: 80%;
-    left: 65px;
-    bottom: 115px;
     background: #FFFFFF;
     border: 6px solid #666666;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 28px;
-    z-index: 99;
+    z-index: 2;
   }
   
   #service_select {
+    display: inline-block;
     box-sizing: border-box;
-    position: absolute;
     width: 114%;
     right: 5%;
     height: 75px;
     bottom: 43px;
     font-weight: bold;
+    margin: -5px 0 0 85px;
   }
   #service_select a {
     text-decoration: none;
@@ -77,16 +78,15 @@
   }
   
   #display_box #btn{
-    position: relative;
     display: inline-grid;
     width: 12%;
     height: 57px;
-    left: 24%;
     background: #fff;
     border: solid 5px #858585;
     border-radius: 0px 0px 15px 15px;
-    z-index: 1;
-    margin: 0px 15px 0px 0;
+    justify-content: center;
+    align-content: center;
+    margin: 0 15px 0 0;
   }
   #back{
     /* Rectangle 143 */
