@@ -2,7 +2,10 @@
 // slick入れる
 
 import styles from '../styles/service_select.module.css'
-import Link from 'next/link'
+
+import CardsTemplate from '../components/CardsTemplate'
+import CardsOriginal from '../components/CardsOriginal'
+import CardsCreated from '../components/CardsCreated'
 
 // import SlideShow from '../components/SlideShow';
 
@@ -15,62 +18,15 @@ const Service = () => {
         {/* <Box/> */}
             <div id={styles.cardbox}>
                 <div className={styles.card}>
-                    <Link href="./template_select.php">
-                        <div>
-                            <div className={styles.images}></div>
-                            <div className={styles.content}>
-                                <h3>テンプレートケース</h3>
-                                <p>もう既にデザインが仕上がっているケース</p>
-                            </div>
-                        </div>
-                    </Link>
-
-                    {/* <a href="./template_select.php" >
-                        <div className={styles.images}></div>
-                        <div className={styles.content}>
-                            <h3>テンプレートケース</h3>
-                            <p>もう既にデザインが仕上がっているケース</p>
-                        </div>
-                        </a> */}
-                </div>
-                <div className={styles.card}>
-                    <Link href="./product_edit.html">
-                        <div>
-                            <div className={styles.images}></div>
-                            <div className={styles.content}>
-                                <h3>オリジナルケース</h3>
-                                <p>写真を自由に入れることができるオリジナルのケース</p>
-                            </div>
-                        </div>
-                    </Link>
-
-                    {/* <a href="./product_edit.html" >
-                        <div className={styles.images}></div>
-                        <div className={styles.content}>
-                            <h3>オリジナルケース</h3>
-                            <p>写真を自由に入れることができるオリジナルのケース</p>
-                        </div>
-                    </a> */}
+                    <CardsTemplate />
                 </div>
 
                 <div className={styles.card}>
-                    <Link href="./draw_edit.html">
-                        <div>
-                            <div className={styles.images}></div>
-                            <div className={styles.content}>
-                                <h3>手書きケース</h3>
-                                <p>自販機で自分で書いたイラストをケースできる</p>
-                            </div>
-                        </div>
-                    </Link>
+                    <CardsOriginal/>
+                </div>
 
-                    {/* <a href="./draw_edit.html">
-                        <div className={styles.images}></div>
-                        <div className={styles.content}>
-                            <h3>手書きケース</h3>
-                            <p>自販機で自分で書いたイラストをケースできる</p>
-                        </div>
-                    </a> */}
+                <div className={styles.card}>
+                    <CardsCreated/>
                 </div>
             </div>
         </div>
