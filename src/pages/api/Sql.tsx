@@ -1,13 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
+import { useRouter } from "next/router";
+import { useEffect } from 'react';
+import { GetServerSideProps } from 'next';
 
 
 import mysql from "serverless-mysql"
 import { log } from 'console';
 
+// DB接続
 const db = mysql({
   config: {
     host: process.env.MYSQL_HOST,
@@ -33,12 +36,15 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ){
-    const result = await db.query(`SELECT * FROM customers`);
 
+  // const router = useRouter()
+  // let sql = router.query   
+  // //   console.log(sql);
+  //   const a = context.query.sql
+  //   console.log(a);
+    
+    const result = await db.query(`SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.userID = u.userID JOIN t_m_products mp ON p.m_product_ID = mp.m_produt_ID`);
     console.log(typeof result);
-
-
-  
     return res.status(200).json(result)
 }
 
