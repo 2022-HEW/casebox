@@ -5,7 +5,7 @@ import styles from "../styles/pay.module.css";
 const pay =()=>{
     return(
         <div>     
-            <div id={styles.wrap}>
+            <div id={styles.wrapper}>
                 <div className={styles.block}>
                     <p className={styles.write}>支払額</p>
                     <p className={styles.money}>1500</p>

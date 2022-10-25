@@ -1,4 +1,5 @@
-#wrap{
+#wrapper{
+    background-color: none;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -6,7 +7,8 @@
     z-index: 1000;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    /* top: 150px; */
+    top: 130px;
+    right: 200px;
 }
 .block1{
     display: flex;
@@ -37,8 +39,10 @@
 .money{
     /* display: block;
     float: left; */
+    width: 100px;
+    text-align: right;
     background-color: violet;
-    font-size: 100px;
+    /* font-size: ; */
 }
 .en{
     /* display: block;
