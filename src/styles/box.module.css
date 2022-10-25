@@ -13,7 +13,9 @@
     left: 2vw;
 }
 #screen_on{
-    background-color: beige;
-    width: 100px;
-    position: relative;
+    background-color: #fff;
+    width: 986px;
+    height: 708px;
+    margin: 6px 0px 0 25px;
+    border-radius: 12px;
 }
