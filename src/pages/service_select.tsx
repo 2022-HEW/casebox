@@ -3,16 +3,16 @@
 
 import styles from '../styles/service_select.module.css'
 import Link from 'next/link'
-import Nav from '../components/Nav'
-import Box from '../components/Box'
+
+// import SlideShow from '../components/SlideShow';
 
 const Service = () => {
 
     return(
-        <>
+        
         <div id={styles.wrap}>
-        <Nav/>
-        <Box/>
+        {/* <Nav/> */}
+        {/* <Box/> */}
             <div id={styles.cardbox}>
                 <div className={styles.card}>
                     <Link href="./template_select.php">
@@ -73,18 +73,7 @@ const Service = () => {
                     </a> */}
                 </div>
             </div>
-            <div id={styles.slideshow}>
-                <ul className={styles.slider}>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                    <li><img src="img/service/service_strap.png" alt=""/></li>
-                </ul>
-            </div>
         </div>
-    </>
     )
 }
 

@@ -1,0 +1,10 @@
+#wrapper{
+    width: 100%;
+    background: #333;
+
+    display: flex;
+}
+
+#wrapper > *{
+    background-color: aquamarine;
+}

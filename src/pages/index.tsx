@@ -18,9 +18,9 @@ const a = async() =>{
 
 const Home: NextPage = () => {
   
-
 //  const b:any = a()
 //  console.log(b);
+
 
   return (
 
