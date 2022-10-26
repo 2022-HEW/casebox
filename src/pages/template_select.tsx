@@ -4,6 +4,7 @@ import Box from "../components/Box";
 import Image from "next/image";
 import { useEffect,useState } from "react";
 import { useRouter } from "next/router";
+import Modal from "../components/Modal";
 
 const Template = () => {
     const router = useRouter();    
@@ -33,18 +34,24 @@ const Template = () => {
 
     return(
         <>
-        {product.map((product:Product) => (
-            // <li key={product.product_ID}>{product.product_name}</li>
-            <Product_box image_path={product.product_place}
-                         case_name={product.product_name}
-                         case_category={product.m_product_category}
-                         case_price={product.m_product_price}
-                         key={product.product_ID}
-            />
-          ))}
         <Box index={false}>
-          <Nav/>
+            <Nav>
+              <Modal>
+
+              </Modal>
+              {product.map((product:Product) => (
+              // <li key={product.product_ID}>{product.product_name}</li>
+              <Product_box image_path={product.product_place}
+                          case_name={product.product_name}
+                          case_category={product.m_product_category}
+                          case_price={product.m_product_price}
+                          key={product.product_ID}
+              />
+              ))}
+                
+            </Nav>
         </Box>
+        
         </>
     )
 }

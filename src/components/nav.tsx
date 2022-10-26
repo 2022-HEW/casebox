@@ -1,6 +1,8 @@
 import styles from "../styles/nav.module.css"
 import { useRouter } from'next/router'
 import Link from "next/link"
+import { ReactNode } from 'react';
+
 
 type Tab_type ={
     site_link:string,
@@ -8,7 +10,7 @@ type Tab_type ={
 }
 
 
-const Nav =()=>{
+const Nav =(props:{children?:ReactNode})=>{
 
     const router = useRouter()    
 
@@ -20,7 +22,7 @@ const Nav =()=>{
         </div> */}
         <div id={styles.display_box}>
             {/* <img src="./Nav/disp.svg"/> */}
-            <div id={styles.disp}></div>
+            <div id={styles.disp}>{props.children}</div>
             <div id={styles.service_select}>
                 <Tab site_link={"./service_select"} site_name={"トップ"} />
                 <Tab site_link={"./template_select"} site_name={"テンプレ"} />
