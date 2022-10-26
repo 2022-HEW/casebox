@@ -1,14 +1,27 @@
 import styles from "../styles/modal.module.css"
-import { ReactNode } from "react"
+import { ReactNode,useState } from "react"
+import { log } from "console"
 
-const Modal =(props:{children?:ReactNode})=>{
+type Props ={
+    children?:ReactNode,
+    modal_flg:boolean,
+    setModal:React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Modal =(props:Props)=>{
+    
     return(
-        <>
-        <div className={styles.overlay}></div>
-        <div className={styles.modal_box}>
-            {props.children}
-        </div>
-        </>
+        props.modal_flg ?(
+            <>
+                <div className={styles.overlay} onClick={()=>props.setModal(!props.modal_flg)}></div>
+                <div className={styles.modal_box}>
+                    {props.children}
+                </div>
+            </>)
+        :(
+            <></>
+        )
+        
     )
 }
 export default Modal

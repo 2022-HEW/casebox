@@ -2,23 +2,33 @@ import styles from "../styles/template_select.module.css"
 import Nav from "../components/Nav";
 import Box from "../components/Box";
 import Image from "next/image";
-import { useEffect,useState } from "react";
+import { useEffect,useState,useRef } from "react";
 import { useRouter } from "next/router";
 import Modal from "../components/Modal";
+import { forwardRef } from "react";
+import { log } from "console";
 
 const Template = () => {
+  type Product ={
+    product_ID:number,
+    product_name:string,
+    product_liked:number,
+    product_place:string,
+    m_product_category:string,
+    m_product_price:number
+  }
+      
     const router = useRouter();    
-    type Product ={
-        product_ID:number,
-        product_name:string,
-        product_liked:number,
-        product_place:string,
-        m_product_category:string,
-        m_product_price:number
-      }
-
     const [product, setProduct] = useState([])
     const [sql, setSql]= useState("SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.userID = u.userID JOIN t_m_products mp ON p.m_product_ID = mp.m_produt_ID");
+    const [modal_flg,setModal] = useState(false)
+    // const modalEl = useRef<HTMLDivElement>(null);
+    
+    // DOM取得
+    // useEffect(()=>{
+    //   let modal_dom = modalEl.current      
+    // },[product])
+
 
     // DBから取得
     useEffect(() => {
@@ -36,7 +46,7 @@ const Template = () => {
         <>
         <Box index={false}>
             <Nav>
-              <Modal>
+              <Modal modal_flg={modal_flg} setModal={setModal}>
 
               </Modal>
               {product.map((product:Product) => (
@@ -46,6 +56,9 @@ const Template = () => {
                           case_category={product.m_product_category}
                           case_price={product.m_product_price}
                           key={product.product_ID}
+                          modal_flg={modal_flg} 
+                          setModal={setModal}
+                          // ref={modalEl}
               />
               ))}
                 
@@ -64,18 +77,25 @@ type Product = {
     image_path:string,
     case_name:string,
     case_category:string,
-    case_price:number
+    case_price:number,
+    modal_flg:boolean,
+    setModal:React.Dispatch<React.SetStateAction<boolean>>
 }
-const Product_box =({image_path,case_name,case_category,case_price}:Product)=> {
+
+// const Product_box = forwardRef<HTMLDivElement, Product>(
+//   (props,ref)=> {    
+const Product_box =(props:Product)=> {
     return(
-        <div className={styles.product_box}>
-            <Image src={image_path} alt="商品の画像" width={100} height={100}/>
-            <p className="case_name">{case_name}</p>
-            <p className="case_category">{case_category}</p>
-            <p className="case_price">{case_price}</p>
+        // <div className={styles.product_box} ref={ref} >
+        <div className={styles.product_box} onClick={()=>props.setModal(!props.modal_flg)}>
+            <Image src={props.image_path} alt="商品の画像" width={100} height={100}/>
+            <p className="case_name">{props.case_name}</p>
+            <p className="case_category">{props.case_category}</p>
+            <p className="case_price">{props.case_price}</p>
         </div>
     )
 }
+// });
 
 
 export default Template;
