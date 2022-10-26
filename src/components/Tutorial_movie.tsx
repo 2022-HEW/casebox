@@ -1,7 +1,8 @@
-import styles from "../styles/";
+// CSSファイルのインポート
+import styles from "../styles/Tutorial_movie.module.css";
 
 
-// 動画の型定義
+// 型定義
 type movie = {
     movieUrl: string
 }
@@ -10,6 +11,7 @@ type movie = {
 const Tutorial_movie = () =>{
     return(
         <>
+            {/* 動画のパスを入れる */}
             <Movies movieUrl={""}/>
         </>
     )
@@ -18,11 +20,11 @@ const Tutorial_movie = () =>{
 // ベースの形
 const Movies = ({ movieUrl }:movie)=>{
     return(
-    <>
-        <div>
-            {/* 動画の埋め込み */}
-        </div>
-    </>
+        <>
+            <div id={styles.videoContainer}>
+                <video src={movieUrl} autoPlay/>
+            </div>
+        </>
     )
 }
 
