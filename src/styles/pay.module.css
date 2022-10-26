@@ -6,7 +6,7 @@
     z-index: 1000;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    top: 100px;
+    top: 70px;
     right: 130px;
 }
 .block{
@@ -33,4 +33,22 @@
 .en{
     width: 50px;
     text-align: right;
+}
+.buttons{
+    width: 900px;
+    height: 200px;
+    display: flex;
+    justify-content:space-around;
+    gap: 1px;
+}
+.cash{
+    width: 180px;
+    height: 180px;
+    border: solid 1px;
+    border-radius: 20px;
+}
+#btnname{
+    width: 100%;
+    text-align: center;
+
 }

@@ -1,12 +1,13 @@
 import Nav from "../components/nav";
 import Box from "../components/Box";
 import styles from "../styles/pay.module.css";
-import Icon from "../../public/image/money.svg";
+import Image from "next/image";
+import Cash from "../../public/image/money.svg";
 
 
-const pay =()=>{
-    return(
-        <div>     
+const pay = () => {
+    return (
+        <div>
             <div id={styles.wrap}>
                 <div className={styles.block}>
                     <p className={styles.write}>支払額</p>
@@ -23,14 +24,27 @@ const pay =()=>{
                     <p className={styles.money}>0</p>
                     <p className={styles.en}>円</p>
                 </div>
-                <div className={styles.select}>
-                    <img src={Icon}  alt="アイコン" />
-                </div>
+                <div className={styles.buttons}>
+                    <div className={styles.cash}>
+                        <Image src={Cash} alt="現金の画像"/>
+                        <p id={styles.btnname}>現金</p>
+                    </div>
+                    <div className={styles.cash}>
+                        <Image src={Cash} alt="現金の画像"/>
+                    </div>
+                    <div className={styles.cash}>
+                        <Image src={Cash} alt="現金の画像"/>
+                    </div>
+                    <div className={styles.cash}>
+                        <Image src={Cash} alt="現金の画像"/>
+                    </div>
+                </div> 
             </div>
-            <Box/>
-            <Nav/>
+            <Box />
+            <Nav />
         </div>
     )
 }
+
 
 export default pay
