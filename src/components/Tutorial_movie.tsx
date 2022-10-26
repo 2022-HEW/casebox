@@ -1,6 +1,9 @@
 // CSSファイルのインポート
 import styles from "../styles/Tutorial_movie.module.css";
 
+import Box from "./Box";
+import Nav from "./nav";
+
 
 // 型定義
 type movie = {
@@ -11,8 +14,11 @@ type movie = {
 const Tutorial_movie = () =>{
     return(
         <>
-            {/* 動画のパスを入れる */}
-            <Movies movieUrl={""}/>
+            <Box index={false}>
+                <Nav/>
+                {/* 動画のパスを入れる */}
+                <Movies movieUrl={""}/>
+            </Box>
         </>
     )
 }
