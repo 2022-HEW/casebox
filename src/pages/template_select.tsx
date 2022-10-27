@@ -2,11 +2,11 @@ import styles from "../styles/template_select.module.css"
 import Nav from "../components/Nav";
 import Box from "../components/Box";
 import Image from "next/image";
-import { useEffect,useState,useRef } from "react";
+import React, { useEffect,useState,useRef } from "react";
 import { useRouter } from "next/router";
 import Modal from "../components/Modal";
-import { forwardRef } from "react";
-import { log } from "console";
+// import { forwardRef } from "react";
+import Product_check from "../components/Product_check";
 
 const Template = () => {
   type Product ={
@@ -20,7 +20,7 @@ const Template = () => {
       
     const router = useRouter();    
     const [product, setProduct] = useState([])
-    const [sql, setSql]= useState("SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.userID = u.userID JOIN t_m_products mp ON p.m_product_ID = mp.m_produt_ID");
+    const [sql_flg, setSql]= useState("template");
     const [modal_flg,setModal] = useState(false)
     // const modalEl = useRef<HTMLDivElement>(null);
     
@@ -33,7 +33,7 @@ const Template = () => {
     // DBから取得
     useEffect(() => {
       const fetchProduct = async () => {
-        const response = await fetch(`/api/Sql?sql=${sql}`)
+        const response = await fetch(`/api/Sql?sql=${sql_flg}`)
         const data = await response.json()
         setProduct(data)
           console.log(product);
@@ -47,7 +47,7 @@ const Template = () => {
         <Box index={false}>
             <Nav>
               <Modal modal_flg={modal_flg} setModal={setModal}>
-
+                {/* <Product_check/> */}
               </Modal>
               {product.map((product:Product) => (
               // <li key={product.product_ID}>{product.product_name}</li>
@@ -85,9 +85,14 @@ type Product = {
 // const Product_box = forwardRef<HTMLDivElement, Product>(
 //   (props,ref)=> {    
 const Product_box =(props:Product)=> {
-    return(
+  
+function Modal_toggle(e:React.MouseEvent<HTMLDivElement>){
+  props.setModal(!props.modal_flg)
+};
+  return(
         // <div className={styles.product_box} ref={ref} >
-        <div className={styles.product_box} onClick={()=>props.setModal(!props.modal_flg)}>
+        <div className={styles.product_box} onClick={Modal_toggle}>
+        {/* <div className={styles.product_box} onClick={()=>props.setModal(!props.modal_flg)}> */}
             <Image src={props.image_path} alt="商品の画像" width={100} height={100}/>
             <p className="case_name">{props.case_name}</p>
             <p className="case_category">{props.case_category}</p>
