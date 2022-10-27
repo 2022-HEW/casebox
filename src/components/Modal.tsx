@@ -8,15 +8,15 @@ type Props ={
     setModal:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Modal =(props:Props)=>{
+const Modal =({modal_flg,setModal,children}:Props)=>{
     
     return(
-        props.modal_flg ?
+        modal_flg ?
         (
             <>
-                <div className={styles.overlay} onClick={()=>props.setModal(!props.modal_flg)}></div>
+                <div className={styles.overlay} onClick={()=>setModal(!modal_flg)}></div>
                 <div className={styles.modal_box}>
-                    {props.children}
+                    {children}
                 </div>
             </>
             )

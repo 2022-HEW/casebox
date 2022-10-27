@@ -84,6 +84,21 @@ import コンポーネントの名前 from "ファイルの位置"
 ここにページごとのファイルを入れる。
 拡張子は.tsx
 例　index.tsx,service_select.tsx
+# props
+## propsの分割代入
+const { name, age } = props
+
+を
+
+const name = props.name
+const age = props.age
+
+さらに
+
+const a = ({ name, age }:型)=> {}
+
+でかける
+
 
 # ページ遷移
 Linkタグをインポート

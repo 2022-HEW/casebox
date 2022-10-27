@@ -3,20 +3,24 @@ import Image from "next/image";
 
 
 type Props = {
-    image_path:string,
-    product_name:string,
-    product_category:string,
-    product_price:number,
+    // product:[],
+    product:{
+        product_place:string,
+        product_name:string,
+        m_product_category:string,
+        m_product_price:string,
+    },    
+    css:string
 }
 
 const Product_check = (props:Props) => {
-    
+    console.log(props.product);
     return(
         <>
-            <Image src={props.image_path} width={100} height={100}/>
-            <p className={}>{props.product_name}</p>
-            <p>{props.product_category}</p>
-            <p>{props.product_price}</p>
+            <Image src={props.product.product_place} width={100} height={100}/>
+            <p >{props.product.product_name}</p>
+            <p>{props.product.m_product_category}</p>
+            <p>{props.product.m_product_price}</p>
 
         </>
     )
