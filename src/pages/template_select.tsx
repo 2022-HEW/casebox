@@ -45,7 +45,7 @@ const Template = () => {
 
     return(
         <>
-        <Box index={false}>
+        <Box>
             <Nav>
               <Modal modal_flg={modal_flg} setModal={setModal}>
                 <Product_check product={product[product_ID-1]} css={"a"}/>

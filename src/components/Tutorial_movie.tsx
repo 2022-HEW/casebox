@@ -2,7 +2,7 @@
 import styles from "../styles/Tutorial_movie.module.css";
 
 import Box from "./Box";
-import Nav from "./nav";
+import Nav from "./Nav";
 
 
 // 型定義
@@ -13,13 +13,12 @@ type movie = {
 // 出力
 const Tutorial_movie = () =>{
     return(
-        <>
-            <Box index={false}>
-                <Nav/>
+            <Box>
+                <Nav>
                 {/* 動画のパスを入れる */}
                 <Movies movieUrl={""}/>
+                </Nav>
             </Box>
-        </>
     )
 }
 

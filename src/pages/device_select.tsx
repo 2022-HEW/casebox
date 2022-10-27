@@ -1,11 +1,13 @@
 import styles from '../styles/device_select.module.css';
 
-import Box from '.';
-import Nav from '../components/nav';
+import Box from '../components/Box';
+import Nav from '../components/Nav';
 
 const deviceSelect = () => {
     return(
-        <>
+        <Box>
+            <Nav>
+
             <div id={styles.wrapper}>
                 {/* ケース表示のエリア */}
                 <div id={styles.case_area}>
@@ -26,9 +28,8 @@ const deviceSelect = () => {
                     <p>次へ</p>
                 </div>
             </div>
-            <Box/>
-            <Nav/>
-        </>
+            </Nav>
+        </Box>
     )
 }
 

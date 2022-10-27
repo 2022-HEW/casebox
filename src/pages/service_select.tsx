@@ -15,7 +15,7 @@ const Service = () => {
 
     return(
         <>
-            <Box index={false}>
+            <Box>
                 <Nav/>
                 <Service_cards/>
             </Box>

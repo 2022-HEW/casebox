@@ -1,4 +1,4 @@
-import Nav from "../components/nav";
+import Nav from "../components/Nav";
 import Box from "../components/Box";
 import styles from "../styles/pay.module.css";
 import Image from "next/image";
@@ -7,6 +7,9 @@ import Cash from "../../public/image/money.svg";
 
 const pay = () => {
     return (
+        <Box>
+            <Nav>
+
         <div>
             <div id={styles.wrap}>
                 <div className={styles.block}>
@@ -40,9 +43,9 @@ const pay = () => {
                     </div>
                 </div> 
             </div>
-            <Box />
-            <Nav />
         </div>
+            </Nav>
+        </Box>
     )
 }
 
