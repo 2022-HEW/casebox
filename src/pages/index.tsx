@@ -23,17 +23,9 @@ const Home: NextPage = () => {
 
 
   return (
-
-    <div className={styles.container}>
-      {/* {Object.keys(b).map((c:any)=>{
-        console.log(c);
-        return c.odh_No
-      })} */}
-      <Box index={true}>
+      <Box >
         <Wait/>
       </Box>          
-      
-    </div>
   )
 }
 

@@ -6,9 +6,11 @@ import { useRef } from 'react'
 const Wait=()=>{
     
     return(
-        <>
-            {/* aaaa */}
-        </>
+        <Link href={"/service_select"}>
+            <div className={styles.movie_area}>
+            </div>
+        </Link>
+
     )
 }
 export default Wait 
