@@ -1,6 +1,7 @@
 import styles from "../styles/product_check.module.css";
 import Image from "next/image";
-
+import { Button } from "../components/Button";
+import { useRouter } from'next/router'
 
 type Props = {
     // product:[],
@@ -14,16 +15,26 @@ type Props = {
 }
 
 const Product_check = (props:Props) => {
-    console.log(props.product);
+    const router = useRouter();
+    // console.log(props.product);
+    // 画面遷移
+        const go_type_select=()=>{
+            router.push({
+                pathname:"/type_select",
+                query:{product_info:`${props}`}
+            })
+        }
     return(
         <>
             <Image src={props.product.product_place} width={100} height={100}/>
             <p >{props.product.product_name}</p>
             <p>{props.product.m_product_category}</p>
             <p>{props.product.m_product_price}</p>
+            <Button situ_name="screen" label="機種選択へ"onClick={go_type_select}/>
 
         </>
     )
 }
+
 
 export default Product_check
