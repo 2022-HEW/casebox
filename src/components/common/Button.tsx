@@ -1,10 +1,15 @@
-import styles from "../styles/button.module.css";
+import { ComponentProps } from "react";
+import styles from "../../styles/button.module.css";
 
+// type Props = {
+//   label: string;
+//   onClick: () => void;
+//   situ_name: 'nav' | 'screen';
+// };
 type Props = {
   label: string;
-  onClick: () => void;
-  situ_name: 'nav' | 'screen';
-};
+  situ_name:string;
+}&ComponentProps<"button">;
 
 export const Button= ({ label, onClick, situ_name }:Props) => {
   return (

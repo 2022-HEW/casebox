@@ -1,4 +1,4 @@
-import styles from "../styles/box.module.css"
+import styles from "../../styles/box.module.css"
 import { ReactNode } from 'react';
 
 const Box = ({ children}:{children:ReactNode}) =>{

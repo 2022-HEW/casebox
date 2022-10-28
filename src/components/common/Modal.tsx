@@ -1,4 +1,4 @@
-import styles from "../styles/modal.module.css"
+import styles from "../../styles/modal.module.css"
 import { ReactNode,useState } from "react"
 import { log } from "console"
 
