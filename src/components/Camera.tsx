@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import jsQR from 'jsqr';
 
-const videoWidth: number = 1280;
-const videoHeight: number = 720;
+const videoWidth: number = 1200;
+const videoHeight: number = 750;
 const videoFrameRate: number = 5;
 
 const constraints: MediaStreamConstraints = {
@@ -14,7 +14,7 @@ const constraints: MediaStreamConstraints = {
       max: videoFrameRate,
     },
     facingMode: {
-      exact: 'environment',
+      exact: 'user',
     },
   },
 };

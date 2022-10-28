@@ -6,13 +6,13 @@ import Camera from '../components/Camera'
  
 const Scan = () => {
   return (
-    <Box>
-        <Nav>
-            <Tutorial_movie/>
+    // <Box>
+    //     <Nav>
+    //         <Tutorial_movie/>
             <Camera/>
-            <div>scan</div>
-        </Nav>
-    </Box>
+    //         <div>scan</div>
+    //     </Nav>
+    // </Box>
   )
 }
 export default Scan
