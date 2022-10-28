@@ -6,8 +6,8 @@ export const tabState = atom({
     default: "トップ"
 });
 
-export const typepathState = atom({
-    key: "typepath",
+export const historyState = atom({
+    key: "history",
     default: ""
 });
 

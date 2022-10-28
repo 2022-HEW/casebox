@@ -2,6 +2,7 @@ import styles from "../styles/product_check.module.css";
 import Image from "next/image";
 import { Button } from "./common/Button";
 import { useRouter } from'next/router'
+import { useRecoilState} from "recoil";
 
 type Props = {
     // product:[],
@@ -29,7 +30,7 @@ const Product_check = (props:Props) => {
             <p >{props.product.product_name}</p>
             <p>{props.product.m_product_category}</p>
             <p>{props.product.m_product_price}</p>
-            <Button situ_name="screen" label="機種選択へ"onClick={go_type_select}/>
+            <Button situ_name="screen" label="機種選択へ" onClick={go_type_select}/>
 
         </>
     )
