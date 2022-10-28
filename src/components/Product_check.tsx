@@ -2,7 +2,6 @@ import styles from "../styles/product_check.module.css";
 import Image from "next/image";
 import { Button } from "./common/Button";
 import { useRouter } from'next/router'
-import { useRecoilState} from "recoil";
 
 type Props = {
     // product:[],

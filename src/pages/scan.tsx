@@ -9,7 +9,7 @@ const Scan = () => {
     <Box>
         <Nav>
             <Tutorial_movie/>
-            {/* <Camera/> */}
+            <Camera/>
             <div>scan</div>
         </Nav>
     </Box>
