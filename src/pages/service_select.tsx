@@ -5,6 +5,8 @@ import Box from '../components/common/Box';
 import Nav from '../components/common/Nav';
 import Service_cards from '../components/Service_cards';
 import SlideShow from '../components/common/SlideShow';
+import { useRecoilState } from "recoil";
+import { tabState } from './atoms';
 
 // import CardsTemplate from '../components/CardsTemplate'
 // import CardsOriginal from '../components/CardsOriginal'
@@ -17,7 +19,7 @@ const Service = () => {
     return(
         <>
             <Box>
-                <Nav tab={"トップ"}>
+                <Nav >
                     <SlideShow/>
                     {/* <Service_cards/> */}
                 </Nav>

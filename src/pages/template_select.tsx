@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import Modal from "../components/common/Modal";
 // import { forwardRef } from "react";
 import Product_check from "../components/Product_check";
+import { useRecoilState } from "recoil";
+import { tabState } from './atoms';
 
 const Template = () => {
   type Product ={
@@ -17,7 +19,6 @@ const Template = () => {
     m_product_category:string,
     m_product_price:number
   }
-      
     const router = useRouter();    
     const [product, setProduct] = useState([])
     const [sql_flg, setSql]= useState("template");
@@ -46,7 +47,7 @@ const Template = () => {
     return(
         <>
         <Box>
-            <Nav tab={"テンプレ"}>
+            <Nav>
               <Modal modal_flg={modal_flg} setModal={setModal}>
                 <Product_check product={product[product_ID-1]} />
               </Modal>

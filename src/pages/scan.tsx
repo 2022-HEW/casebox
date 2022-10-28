@@ -4,8 +4,8 @@ import Nav from '../components/common/Nav'
 import Tutorial_movie from '../components/Tutorial_movie'
  const Scan = () => {
   return (
-    <Box >
-        <Nav tab={"オリジナル"}>
+    <Box>
+        <Nav>
             
             <div>scan</div>
         </Nav>

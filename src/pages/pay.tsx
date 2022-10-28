@@ -8,7 +8,7 @@ import Cash from "../../public/image/money.svg";
 const pay = () => {
     return (
         <Box>
-            <Nav tab={""}>
+            <Nav >
 
         <div>
             <div id={styles.wrap}>
