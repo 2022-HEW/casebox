@@ -19,7 +19,7 @@ const Product_check = (props:Props) => {
     // 画面遷移
         const go_type_select=()=>{
             router.push({
-                pathname:"/type_select",
+                pathname:"/device_select",
                 query:{product_info:`${props}`}
             })
         }

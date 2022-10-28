@@ -32,7 +32,7 @@ const Nav =({children,tab}:Props)=>{
                 <Tab site_link={"./service_select"} site_name={"トップ"} tab={tab}/>
                 <Tab site_link={"./template_select"} site_name={"テンプレ"} tab={tab}/>
                 <Tab site_link={"./scan"} site_name={"オリジナル"} tab={tab}/>
-                <Tab site_link={"./type_select"} site_name={"手書き"} tab={tab}/>
+                <Tab site_link={"./device_select"} site_name={"手書き"} tab={tab}/>
                 <Tab site_link={"./site_qr"} site_name={"公式サイト"} tab={tab}/>
                 <Tab site_link={"./help"} site_name={"ヘルプ"} tab={tab}/>
             </div>
