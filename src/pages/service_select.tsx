@@ -2,8 +2,8 @@
 // slick入れる
 
 import styles from '../styles/service_select.module.css'
-import Box from '../components/Box';
-import Nav from '../components/Nav';
+import Box from '../components/common/Box';
+import Nav from '../components/common/Nav';
 import Service_cards from '../components/Service_cards';
 // import CardsTemplate from '../components/CardsTemplate'
 // import CardsOriginal from '../components/CardsOriginal'
@@ -16,8 +16,9 @@ const Service = () => {
     return(
         <>
             <Box>
-                <Nav/>
-                <Service_cards/>
+                <Nav tab={""}>
+                    <Service_cards/>
+                </Nav>
             </Box>
         </>
     )

@@ -1,12 +1,13 @@
 import styles from '../styles/device_select.module.css';
+import SetTab from './common/context';
+import Box from '../components/common/Box';
+import Nav from '../components/common/Nav';
 
-import Box from '../components/Box';
-import Nav from '../components/Nav';
-
-const deviceSelect = () => {
+const DeviceSelect = () => {
+    
     return(
         <Box>
-            <Nav>
+            <Nav tab={"テンプレ"}>
 
             <div id={styles.wrapper}>
                 {/* ケース表示のエリア */}
@@ -33,4 +34,4 @@ const deviceSelect = () => {
     )
 }
 
-export default deviceSelect;
+export default DeviceSelect;

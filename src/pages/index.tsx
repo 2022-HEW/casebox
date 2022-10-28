@@ -4,8 +4,8 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import mysql from "serverless-mysql"
 import { log } from 'console'
-import Nav from '../components/Nav'
-import Box from '../components/Box'
+import Nav from '../components/common/Nav'
+import Box from '../components/common/Box'
 import Wait from '../components/Wait'
 
 

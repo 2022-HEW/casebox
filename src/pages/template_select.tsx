@@ -1,10 +1,10 @@
 import styles from "../styles/template_select.module.css"
-import Nav from "../components/Nav";
-import Box from "../components/Box";
+import Nav from "../components/common/Nav";
+import Box from "../components/common/Box";
 import Image from "next/image";
 import React, { useEffect,useState,useRef } from "react";
 import { useRouter } from "next/router";
-import Modal from "../components/Modal";
+import Modal from "../components/common/Modal";
 // import { forwardRef } from "react";
 import Product_check from "../components/Product_check";
 
@@ -46,9 +46,9 @@ const Template = () => {
     return(
         <>
         <Box>
-            <Nav>
+            <Nav tab={"テンプレ"}>
               <Modal modal_flg={modal_flg} setModal={setModal}>
-                <Product_check product={product[product_ID-1]} css={"a"}/>
+                <Product_check product={product[product_ID-1]} />
               </Modal>
               {product.map((product:Product) => (
               <Product_box image_path={product.product_place}

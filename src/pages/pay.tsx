@@ -1,5 +1,5 @@
-import Nav from "../components/Nav";
-import Box from "../components/Box";
+import Nav from "../components/common/Nav";
+import Box from "../components/common/Box";
 import styles from "../styles/pay.module.css";
 import Image from "next/image";
 import Cash from "../../public/image/money.svg";
@@ -8,7 +8,7 @@ import Cash from "../../public/image/money.svg";
 const pay = () => {
     return (
         <Box>
-            <Nav>
+            <Nav tab={""}>
 
         <div>
             <div id={styles.wrap}>

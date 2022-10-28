@@ -1,6 +1,6 @@
 import styles from "../styles/product_check.module.css";
 import Image from "next/image";
-import { Button } from "../components/Button";
+import { Button } from "./common/Button";
 import { useRouter } from'next/router'
 
 type Props = {
@@ -11,7 +11,6 @@ type Props = {
         m_product_category:string,
         m_product_price:string,
     },    
-    css:string
 }
 
 const Product_check = (props:Props) => {

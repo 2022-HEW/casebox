@@ -1,10 +1,10 @@
 import React from 'react'
-import Box from '../components/Box'
-import Nav from '../components/Nav'
+import Box from '../components/common/Box'
+import Nav from '../components/common/Nav'
  const Scan = () => {
   return (
     <Box >
-        <Nav>
+        <Nav tab={"オリジナル"}>
             <div>scan</div>
         </Nav>
     </Box>
