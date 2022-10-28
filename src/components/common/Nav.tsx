@@ -20,8 +20,38 @@ type Tab_type ={
 }
 
 const Nav =({children}:Props)=>{
+    const[tab,setTab] = useRecoilState(tabState);
 
     const router = useRouter()    
+    useEffect(() => {
+      switch(router.pathname){
+            case "/service_select":
+                setTab("トップ")
+                break;
+            case "/template_select":
+                    setTab("テンプレ")
+                    break;
+            case "/scan":
+                    setTab("オリジナル")
+                    break;
+            case "/device_select":
+                    setTab("手書き")
+                    break;
+            case "/service_select":
+                    setTab("公式サイト")
+                    break;
+            case "/service_select":
+                setTab("ヘルプ")
+                break;
+            default:
+                console.log("error");
+        }
+    
+    }, [])
+    
+        // const back = ()=>{
+        
+    // }
     // const [tab,setTab] = useState("トップ");
 
     
@@ -53,11 +83,10 @@ const Nav =({children}:Props)=>{
 const Tab = ({site_link,site_name}:Tab_type) =>{
     
     const[tab,setTab] = useRecoilState(tabState);
-    // setTab("トップ");
     
     return( 
         <Link href={site_link} as={site_link} passHref>
-            <div id={styles.btn} className={`${tab === site_name && styles.select}`} onClick={()=>{setTab(site_name);console.log("a");}}>
+            <div id={styles.btn} className={`${tab === site_name && styles.select}`} >
                 {site_name}
             </div>
         </Link>

@@ -133,3 +133,10 @@ Atomは状態の単位を表すAtomが更新されるとコンポーネントは
 
 keyはユニークである必要がある
 
+
+npm install recoil
+npm install react-slick
+npm install @types/react-slick
+npm install slick-carousel
+npm install jsqr --save
+
