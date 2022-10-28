@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import jsQR from 'jsqr';
 
-const videoWidth: number = 1200;
-const videoHeight: number = 750;
+const videoWidth: number = 750;
+const videoHeight: number = 1200;
 const videoFrameRate: number = 5;
 
 const constraints: MediaStreamConstraints = {
