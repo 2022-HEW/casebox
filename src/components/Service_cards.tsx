@@ -12,9 +12,9 @@ type CardType ={
 const Service_cards = ()=> {
     return(
         <>
-            <Service_card Card_link={"./template_select.php"} Card_name={"テンプレートケース"} Card_desc={"もう既にデザインが仕上がっているケース"}/>
-            <Service_card Card_link={"./product_edit.html"} Card_name={"オリジナルケース"} Card_desc={"写真を自由に入れることができるオリジナルのケース"}/>
-            <Service_card Card_link={"./draw_edit.html"} Card_name={"手書きケース"} Card_desc={"自販機で自分で書いたイラストをケースできる"}/>
+            <Service_card Card_link={"/template_select"} Card_name={"テンプレートケース"} Card_desc={"もう既にデザインが仕上がっているケース"}/>
+            <Service_card Card_link={"/scan"} Card_name={"オリジナルケース"} Card_desc={"写真を自由に入れることができるオリジナルのケース"}/>
+            <Service_card Card_link={"/device_select"} Card_name={"手書きケース"} Card_desc={"自販機で自分で書いたイラストをケースできる"}/>
         </>
     )
 }
