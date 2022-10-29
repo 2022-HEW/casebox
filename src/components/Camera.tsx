@@ -4,6 +4,8 @@ import { Stream } from 'stream';
 import { log } from 'console';
 import { useRouter } from 'next/router';
 import Modal from './common/Modal';
+import { useRecoilState } from "recoil";
+import { modalState } from '../pages/atoms';
 
 const videoWidth: number = 750;
 const videoHeight: number = 750;
@@ -31,6 +33,8 @@ const Camera = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isContinue, setIsContinue] = useState(true);
   const [qrCodeData, setQrCodeData] = useState<string[]>([]);
+  const[modal,setModal] = useRecoilState(modalState) 
+  
 
   useEffect(() => {
     const openCamera = async () => {
@@ -139,6 +143,7 @@ useEffect(()=>{
     if(qrCodeData[0]){
         console.log(qrCodeData);
         setIsContinue(false);
+        setModal(true);
         // router.push({
         //     pathname:"/device_select"
         // }
@@ -172,10 +177,7 @@ useEffect(()=>{
         <div>
           <p>{qrCodeData.join('\n')}</p>
         </div>
-        <div>
-          {/* <button onClick={handleStart}>Start Scan</button>
-          <button onClick={handleStop}>Stop Scan</button> */}
-        </div>
+        <Modal></Modal>
       </div>
     </div>
   );

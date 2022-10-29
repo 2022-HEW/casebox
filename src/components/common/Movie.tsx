@@ -1,5 +1,5 @@
 // CSSファイルのインポート
-import styles from "../styles/Tutorial_movie.module.css";
+import styles from "../../styles/Tutorial_movie.module.css";
 
 import Box from "./Box";
 import Nav from "./Nav";

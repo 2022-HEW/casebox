@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { modalState } from '../../pages/atoms';
 
 const Box = ({ children}:{children:ReactNode}) =>{
+    // 開きっぱなしのモーダルを閉じる
     const[modal,setModal] = useRecoilState(modalState) 
     useEffect(() => {
         if(modal){
