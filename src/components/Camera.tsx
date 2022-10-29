@@ -3,6 +3,7 @@ import jsQR from 'jsqr';
 import { Stream } from 'stream';
 import { log } from 'console';
 import { useRouter } from 'next/router';
+import Modal from './common/Modal';
 
 const videoWidth: number = 750;
 const videoHeight: number = 750;
@@ -46,40 +47,56 @@ const Camera = () => {
     
   }, []);
 
-  useEffect(()=>{
-    const openCamera = async () => {
-        // <video>
-        // video起動、リアルタイムで
-      const video = videoRef.current;
-      if (video) {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        if(!isContinue){
-            stream.getTracks().forEach(function(track:any) {
-                track.stop();
-            });        
-            // option を削除しなければカメラは消えない
-            
-            router.push({
-                pathname:"/device_select"
-            })
-            video.srcObject = null;
-            // console.log(video.srcObject);
-        }
-    };
+  
+
+useEffect(()=>{ 
+
+    if(!isContinue){
+
+      const video:any = videoRef.current;
+        if(video){
+            const tracks = video.srcObject.getTracks();
+            tracks.forEach((track:any) => {
+                track.stop()
+            });
+                video.srcObject = null;
+            }
     }
-    console.log(isContinue);
-    
-    openCamera();
-  },[isContinue])
 
+//     const stopCamera = async () => {
+//         // <video>
+//         // video起動、リアルタイムで
+//       const video = videoRef.current;
+//       if (video) {
+//         const stream = await navigator.mediaDevices.getUserMedia({video:true,audio:false});
+//         if(!isContinue){
+//             stream.getTracks().forEach(function(track) {
+//                 track.stop();
+//             });        
+//                 // option を削除しなければカメラは消えない
+                
+//                 video.srcObject = null;
+//                 // console.log(video.srcObject);
+//                 return()=>{
+//                     // router.push({
+//                     //     pathname:"/device_select"
+//                     // })    
+//                     // console.log("aaaa");
+//                     // <Modal>
 
+//                     // </Modal>
+                        
+//                 }
+//         }
+//     };
+// }
+},[isContinue])
 
 // 止める
   useEffect(() => {
-    if (!isContinue) {
-      return;
+    if(!isContinue){
+        return;
     }
-
     // 2Dグラフィックを描画
     const decodeQRCode = () => {
       const context = canvasRef?.current?.getContext('2d');
@@ -116,6 +133,8 @@ const Camera = () => {
     //         return
     //     });
     // }
+    
+
     // 見つけたら
     if(qrCodeData[0]){
         console.log(qrCodeData);
@@ -124,11 +143,10 @@ const Camera = () => {
         //     pathname:"/device_select"
         // }
         // )
-       
+        
         // stopCamera();
-                // return;
+        // return;
     }
-
     return () => {
       clearInterval(intervalRef.current);
     };

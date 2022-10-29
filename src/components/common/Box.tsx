@@ -1,7 +1,10 @@
 import styles from "../../styles/box.module.css"
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
+import { useRouter } from "next/router";
 
 const Box = ({ children}:{children:ReactNode}) =>{
+    const router = useRouter()
+    
     return (
         <>
         <div id={styles.box} >
