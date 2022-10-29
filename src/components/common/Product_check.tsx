@@ -1,6 +1,6 @@
 import styles from "../styles/product_check.module.css";
 import Image from "next/image";
-import { Button } from "./common/Button";
+import { Button } from "./Button";
 import { useRouter } from'next/router'
 
 type Props = {

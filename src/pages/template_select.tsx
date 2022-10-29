@@ -6,7 +6,7 @@ import React, { useEffect,useState,useRef } from "react";
 import { useRouter } from "next/router";
 import Modal from "../components/common/Modal";
 // import { forwardRef } from "react";
-import Product_check from "../components/Product_check";
+import Product_check from "../components/common/Product_check";
 import { useRecoilState } from "recoil";
 import { modalState } from './atoms';
 

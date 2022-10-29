@@ -1,8 +1,8 @@
 // CSSファイルのインポート
 import styles from "../styles/Tutorial_movie.module.css";
 
-import Box from "./common/Box";
-import Nav from "./common/Nav";
+import Box from "./Box";
+import Nav from "./Nav";
 
 
 // 型定義
@@ -10,15 +10,9 @@ type movie = {
     movieUrl: string
 }
 
-// 出力
-const Tutorial_movie = () =>{
-    return(
-        <Movies movieUrl={""}/>    
-    )
-}
 
 // ベースの形
-const Movies = ({ movieUrl }:movie)=>{
+const Movie = ({ movieUrl }:movie)=>{
     return(
         <>
             <div id={styles.videoContainer}>
@@ -28,4 +22,4 @@ const Movies = ({ movieUrl }:movie)=>{
     )
 }
 
-export default Tutorial_movie;
+export default Movie;

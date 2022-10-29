@@ -6,8 +6,7 @@ import mysql from "serverless-mysql"
 import { log } from 'console'
 import Nav from '../components/common/Nav'
 import Box from '../components/common/Box'
-import Wait from '../components/Wait'
-
+import Link from 'next/link'
 
 const a = async() =>{
    const d:Object  = await(await fetch("api/test")).json() 
@@ -29,4 +28,14 @@ const Home: NextPage = () => {
   )
 }
 
+const Wait=()=>{
+    
+  return(
+      <Link href={"/service_select"}>
+          <div className={styles.movie_area}>
+          </div>
+      </Link>
+
+  )
+}
 export default Home
