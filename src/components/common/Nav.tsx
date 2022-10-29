@@ -6,7 +6,6 @@ import { useRecoilState,useRecoilValue } from "recoil";
 import { tabState } from '../../pages/atoms';
 import { useEffect } from "react";
 import { log } from "console";
-import { historyState } from '../../pages/atoms';
 import React from "react";
 
 

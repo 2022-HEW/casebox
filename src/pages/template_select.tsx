@@ -8,7 +8,8 @@ import Modal from "../components/common/Modal";
 // import { forwardRef } from "react";
 import Product_check from "../components/Product_check";
 import { useRecoilState } from "recoil";
-import { tabState } from './atoms';
+import { modalState } from './atoms';
+
 
 const Template = () => {
   type Product ={
@@ -22,7 +23,7 @@ const Template = () => {
     const router = useRouter();    
     const [product, setProduct] = useState([])
     const [sql_flg, setSql]= useState("template");
-    const [modal_flg,setModal] = useState(false)
+    // const [modal_flg,setModal] = useState(false)
     const [product_ID, setProduct_ID] = useState(-1)
     // const modalEl = useRef<HTMLDivElement>(null);
     
@@ -48,7 +49,8 @@ const Template = () => {
         <>
         <Box>
             <Nav>
-              <Modal modal_flg={modal_flg} setModal={setModal}>
+              <Modal>
+              {/* <Modal modal_flg={modal_flg} setModal={setModal}> */}
                 <Product_check product={product[product_ID-1]} />
               </Modal>
               {product.map((product:Product) => (
@@ -58,8 +60,8 @@ const Template = () => {
                           case_price={product.m_product_price}
                           key={product.product_ID}
                           id={product.product_ID}
-                          modal_flg={modal_flg} 
-                          setModal={setModal}
+                          // modal_flg={modal_flg} 
+                          // setModal={setModal}
                           setProduct_ID={setProduct_ID}
                           // ref={modalEl}
               />
@@ -82,18 +84,19 @@ type Product = {
     case_name:string,
     case_category:string,
     case_price:number,
-    modal_flg:boolean,
-    setModal:React.Dispatch<React.SetStateAction<boolean>>
+    // modal_flg:boolean,
+    // setModal:React.Dispatch<React.SetStateAction<boolean>>
     setProduct_ID:React.Dispatch<React.SetStateAction<number>>
 }
 
 // const Product_box = forwardRef<HTMLDivElement, Product>(
 //   (props,ref)=> {    
-const Product_box =({id,image_path,case_name,case_category,case_price,modal_flg,setModal,setProduct_ID}:Product)=> {
-  
+// const Product_box =({id,image_path,case_name,case_category,case_price,modal_flg,setModal,setProduct_ID}:Product)=> {
+  const Product_box =({id,image_path,case_name,case_category,case_price,setProduct_ID}:Product)=> {
+    const[modal,setModal] = useRecoilState(modalState) 
   // モーダルを動かして、商品IDを送る
   function Modal_toggle(e:React.MouseEvent<HTMLDivElement>){
-    setModal(!modal_flg)    
+    setModal(!modal)    
     setProduct_ID(id)
   };
 

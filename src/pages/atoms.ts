@@ -6,9 +6,9 @@ export const tabState = atom({
     default: "トップ"
 });
 
-export const historyState = atom({
-    key: "history",
-    default: ""
+export const modalState = atom({
+    key: "modal",
+    default: false
 });
 
 
