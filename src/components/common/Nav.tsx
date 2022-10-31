@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ReactNode, useState,useMemo,} from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
 import { tabState } from '../../pages/atoms';
+import { productState } from '../../pages/atoms';
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
@@ -26,6 +27,7 @@ const Nav =({children}:Props)=>{
 
     const router = useRouter()    
     const[tab,setTab] = useRecoilState(tabState);
+    const [product,setProduct] = useRecoilState(productState);
     
     console.log("a");
     const back =()=>{
@@ -34,7 +36,7 @@ const Nav =({children}:Props)=>{
         console.log("error");
         setTab("テンプレ")
     }
-    
+    //     
     useEffect(() => {
 
       switch(router.pathname){
@@ -48,10 +50,9 @@ const Nav =({children}:Props)=>{
                     setTab("オリジナル")
                     break;
             case "/device_select":
-                // objectが空のとき
-                if( Object.keys(router.query).length === 0 && router.query.constructor === Object){
+                // designが空のとき
+                if( product.product_name === ""){
                     setTab("手書き")
-                    
                 }
                     break;
             case "/service_select":

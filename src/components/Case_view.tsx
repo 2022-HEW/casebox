@@ -17,7 +17,8 @@ const iPhons ={
 }
 
 const Androids = {
-    Xperia:""
+    Galaxy_S22:"/Galaxy_S22.png",
+    Galaxy_M23:"/Galaxy_M23.png"
 }
 
 
@@ -29,14 +30,12 @@ const Case_view = ({device}:Props) =>{
     return(
         //  ケース表示のエリア 
         <div id={styles.case_view}>
-            {/* デザインが選ばれていないとき */}
-            {product_info.product_place === "" ?
-                <Image src={device == "iPhone" ? "/iPhone" + iPhons.iPhonX : Androids.Xperia} alt="スマホ" width={500} height={579}/>
-                :
-                <Image src={  
-                            device === "iPhone" ?  product_info.product_place + iPhons.iPhonX :  product_info.product_place + Androids.Xperia
-                        } alt="スマホ" width={500} height={579}
-                />
+            <Image src={device == "iPhone" ? "/iPhone" + iPhons.iPhonX : "/Android" + Androids.Galaxy_M23} alt="スマホ" width={500} height={579} objectFit='contain'/>
+            {/* デザインが選ばれているとき */}
+            {product_info.product_place !== "" &&
+                <div className={styles.design}>
+                    <Image src={`/design/${product_info.product_place}`} alt="スマホ" layout='fill' objectFit='contain'/>
+                </div>
             }
         </div>        
     )

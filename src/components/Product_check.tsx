@@ -31,7 +31,7 @@ const Product_check = ({product}:Props) => {
         }
     return(
         <>
-            <Image src={product.product_place} width={100} height={100}/>
+            <Image src={"/product_image/" + product.product_place} width={100} height={100}/>
             <p >{product.product_name}</p>
             <p>{product.m_product_category}</p>
             <p>{product.m_product_price}</p>

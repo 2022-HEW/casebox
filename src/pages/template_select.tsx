@@ -103,7 +103,7 @@ type Product = {
   return(
         // <div className={styles.product_box} ref={ref} >
         <div className={styles.product_box} onClick={Modal_toggle} >
-            <Image src={image_path} alt="商品の画像" width={100} height={100}/>
+            <Image src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100}/>
             <p className="case_name">{case_name}</p>
             <p className="case_category">{case_category}</p>
             <p className="case_price">{case_price}</p>
