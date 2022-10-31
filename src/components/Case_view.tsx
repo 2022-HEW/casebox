@@ -1,27 +1,43 @@
 import styles from '../styles/device_select.module.css';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from'next/router'
+import { useRecoilValue } from "recoil";
+import { productState } from '../pages/atoms';
+
+
 type Props = {
     device:string
 }
 
 
+
 const iPhons ={
-    iPhonX:"/iPhone/iPhoneX.svg"
+    iPhonX:"/iPhoneX.svg"
 }
 
-const Android = {
+const Androids = {
     Xperia:""
 }
 
 
+
 const Case_view = ({device}:Props) =>{
-    console.log("afjvfink");
-    
+    const router = useRouter()
+    const product_info = useRecoilValue(productState)
+        
     return(
         //  ケース表示のエリア 
         <div id={styles.case_view}>
-            <Image src={device == "iPhone" ? iPhons.iPhonX : Android.Xperia} alt="スマホ" width={500} height={579}/>
+            {/* デザインが選ばれていないとき */}
+            {product_info.product_place === "" ?
+                <Image src={device == "iPhone" ? "/iPhone" + iPhons.iPhonX : Androids.Xperia} alt="スマホ" width={500} height={579}/>
+                :
+                <Image src={  
+                            device === "iPhone" ?  product_info.product_place + iPhons.iPhonX :  product_info.product_place + Androids.Xperia
+                        } alt="スマホ" width={500} height={579}
+                />
+            }
         </div>        
     )
 }

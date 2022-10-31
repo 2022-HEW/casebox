@@ -1,5 +1,5 @@
 import styles from "../../styles/nav.module.css"
-import Router, { useRouter } from'next/router'
+import { useRouter } from'next/router'
 import Link from "next/link"
 import { ReactNode, useState,useMemo,} from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
