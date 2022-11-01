@@ -12,7 +12,7 @@ type Props = {
 
 const Case_edit =({setDevice}:Props) =>{
     // const router = useRouter()
-    const [step,setStep]  = useState(1)
+    const [step,setStep]  = useState("デバイス")
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const reset = {
@@ -24,12 +24,12 @@ const Case_edit =({setDevice}:Props) =>{
         product_place:"",
         user_name:"",
     }
+    const iPhones = {}
+    const Androids = {}
 
+// 商品情報をリセット
     useEffect(()=>{
-        console.log(tab);
-        
-        
-        if(tab === "手書き" && step === 1){
+        if(tab === "手書き" && step === "デバイス"){
             setProduct(reset)
         }
     },[tab])
@@ -40,15 +40,29 @@ const Case_edit =({setDevice}:Props) =>{
             <h1>商品</h1>
             
             <p>デバイスをお選びください</p>
-            
-            <div>
-                <label htmlFor="iPhone">iPhone</label>
-                <input type="radio" value="iPhone" name='device' id='iPhone' onChange={(e)=>setDevice(e.target.value)}/>
-                <label htmlFor="Android">Android</label>
-                <input type="radio" value="Android" name='device' id='Android' onChange={(e)=>setDevice(e.target.value)}/>
-            </div>
+            {step === "デバイス" ?
+                <div>
+                    <label htmlFor="iPhone">iPhone</label>
+                    <input type="radio" value="iPhone" name='device' id='iPhone' onChange={(e)=>setDevice(e.target.value)}/>
+                    <label htmlFor="Android">Android</label>
+                    <input type="radio" value="Android" name='device' id='Android' onChange={(e)=>setDevice(e.target.value)}/>
+                    <p onClick={()=>setStep("機種")}>次へ</p>
+                </div>
+            : step === "機種" ?
+                <div>
+                    <label htmlFor="iPhone">iPhone</label>
+                    <input type="radio" value="iPhone" name='device' id='iPhone' onChange={(e)=>setDevice(e.target.value)}/>
+                    <label htmlFor="Android">Android</label>
+                    <input type="radio" value="Android" name='device' id='Android' onChange={(e)=>setDevice(e.target.value)}/>
+                    <p onClick={()=>setStep("色")}>次へ</p>
+                </div>
+                // 色
+            : 
+                <div>
 
-            <p>次へ</p>
+                </div>
+            }
+                    
         </div>
     )
 }

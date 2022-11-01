@@ -29,7 +29,6 @@ const Nav =({children}:Props)=>{
     const[tab,setTab] = useRecoilState(tabState);
     const [product,setProduct] = useRecoilState(productState);
     
-    console.log("a");
     const back =()=>{
         router.back();
         
@@ -101,7 +100,6 @@ const Nav =({children}:Props)=>{
     const Tab = React.memo(({site_link,site_name}:Tab_type) =>{
     
     const[tab,setTab] = useRecoilState(tabState);
-    console.log("b");
     
     return( 
         <Link href={site_link} as={site_link} passHref>

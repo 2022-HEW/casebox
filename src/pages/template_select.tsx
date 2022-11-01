@@ -39,7 +39,7 @@ const Template = () => {
         const response = await fetch(`/api/Sql?sql=${sql_flg}`)
         const data = await response.json()
         setProduct(data)
-          console.log(product);
+          // console.log(product);
         //   console.log(data[0].product_ID);
       }
       fetchProduct()
