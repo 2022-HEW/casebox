@@ -1,35 +1,27 @@
 import styles from '../styles/device_select.module.css';
+import Box from '../components/common/Box';
+import Nav from '../components/common/Nav';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useRecoilState,useRecoilValue } from "recoil";
+import { tabState } from './atoms';
+import { log } from 'console';
+import Case_view from '../components/Case_view';
+import Case_edit from '../components/Case_edit';
 
-import Box from '.';
-import Nav from '../components/nav';
 
-const deviceSelect = () => {
+const DeviceSelect = () => {
+    const [device, setDevice] = useState("iPhone")    
     return(
-        <>
-            <div id={styles.wrapper}>
-                {/* ケース表示のエリア */}
-                <div id={styles.case_area}>
-                    <img src="" alt="" />
+        <Box>
+            <Nav>
+                <div id={styles.wrap}>
+                    <Case_view device={device}/>
+                    <Case_edit setDevice={setDevice}/>
                 </div>
-
-                {/* デバイスを選択するエリア(コンポーネントに分ける) */}
-                <div id={styles.device_area}>
-
-                    <h1>商品</h1>
-                    <p>デバイスをお選びください</p>
-
-                    <div>
-                        <div>iPhone</div>
-                        <div>android</div>
-                    </div>
-
-                    <p>次へ</p>
-                </div>
-            </div>
-            <Box/>
-            <Nav/>
-        </>
+            </Nav>
+        </Box>
     )
 }
 
-export default deviceSelect;
+export default DeviceSelect;

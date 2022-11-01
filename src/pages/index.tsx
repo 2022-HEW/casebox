@@ -1,13 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/wait.module.css'
 import mysql from "serverless-mysql"
 import { log } from 'console'
-import Nav from '../components/Nav'
-import Box from '../components/Box'
-import Wait from '../components/Wait'
-
+import Nav from '../components/common/Nav'
+import Box from '../components/common/Box'
+import Link from 'next/link'
 
 const a = async() =>{
    const d:Object  = await(await fetch("api/test")).json() 
@@ -23,18 +22,20 @@ const Home: NextPage = () => {
 
 
   return (
-
-    <div className={styles.container}>
-      {/* {Object.keys(b).map((c:any)=>{
-        console.log(c);
-        return c.odh_No
-      })} */}
-      <Box index={true}>
+      <Box >
         <Wait/>
       </Box>          
-      
-    </div>
   )
 }
 
+const Wait=()=>{
+    
+  return(
+      <Link href={"/service_select"}>
+          <div className={styles.movie_area}>
+          </div>
+      </Link>
+
+  )
+}
 export default Home

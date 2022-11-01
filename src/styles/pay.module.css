@@ -27,14 +27,17 @@
 .block{
     display: flex;
     align-items: center;
-    /* position: absolute; */
-    /* top: 50%;
-    left: 35%; */
+}
+.block1{
+    display: flex;
+    align-items: center;
+}
+.block2{
+    display: flex;
+    align-items: center;
 }
 .write{
-    /* display: block;
-    float: left; */
-    background-color: aqua;
+    width: auto;
 }
 .money{
     /* display: block;
@@ -45,7 +48,24 @@
     /* font-size: ; */
 }
 .en{
-    /* display: block;
-    float: left; */
-    background-color: aquamarine;
+    width: 50px;
+    text-align: right;
+}
+.buttons{
+    width: 900px;
+    height: 200px;
+    display: flex;
+    justify-content:space-around;
+    gap: 1px;
+}
+.cash{
+    width: 180px;
+    height: 180px;
+    border: solid 1px;
+    border-radius: 20px;
+}
+#btnname{
+    width: 100%;
+    text-align: center;
+
 }

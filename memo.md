@@ -84,6 +84,21 @@ import コンポーネントの名前 from "ファイルの位置"
 ここにページごとのファイルを入れる。
 拡張子は.tsx
 例　index.tsx,service_select.tsx
+# props
+## propsの分割代入
+const { name, age } = props
+
+を
+
+const name = props.name
+const age = props.age
+
+さらに
+
+const a = ({ name, age }:型)=> {}
+
+でかける
+
 
 # ページ遷移
 Linkタグをインポート
@@ -106,4 +121,22 @@ importを忘れている
 特殊なパスを確認する
 
 ファイル名を指定する際、.tsxと拡張子がついている
+
+rafc:雛形生成
+
+# Recoil
+Reactの状態管理のライブラリ
+
+## Atom
+Atomは状態の単位を表すAtomが更新されるとコンポーネントは再レンダリングされる。
+同じAtomが複数のコンポーネントで使われるとき、すべてのコンポーネントがそのAtomを共有します。
+
+keyはユニークである必要がある
+
+
+npm install recoil
+npm install react-slick
+npm install @types/react-slick
+npm install slick-carousel
+npm install jsqr --save
 

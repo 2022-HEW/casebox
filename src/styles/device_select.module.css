@@ -1,10 +1,25 @@
-#wrapper{
+#wrap{
     width: 100%;
-    background: #333;
-
+    height: 100%;
     display: flex;
 }
+#case_view{
+    width: 50%;
+    height: 100%;
+    display: inline-block;
+    margin: 0;
+}
 
-#wrapper > *{
-    background-color: aquamarine;
+#case_edit{
+    width: 50%;
+    height: 100%;
+    background-color: #eee;
+}
+
+.design{
+    width:400px; 
+    height:541px;
+    position: absolute;
+    top: 0px;
+    left: 30px;
 }
