@@ -8,11 +8,6 @@ import SlideShow from '../components/common/SlideShow';
 import { useRecoilState } from "recoil";
 import { tabState } from './atoms';
 
-// import CardsTemplate from '../components/CardsTemplate'
-// import CardsOriginal from '../components/CardsOriginal'
-// import CardsCreated from '../components/CardsCreated'
-
-// import SlideShow from '../components/SlideShow';
 
 const Service = () => {
 
