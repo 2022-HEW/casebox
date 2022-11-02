@@ -1,36 +1,29 @@
 import styles from '../styles/device_select.module.css';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { useRouter } from'next/router'
 import { useRecoilValue } from "recoil";
 import { productState } from '../pages/atoms';
 
 
 type Props = {
-    device:string
-}
+    select_device:string
+    iPhones:never[]
+    Androids:never[]
+    type_index:number
+};
 
-
-
-const iPhons ={
-    iPhonX:"/iPhoneX.svg"
-}
-
-const Androids = {
-    Galaxy_S22:"/Galaxy_S22.png",
-    Galaxy_M23:"/Galaxy_M23.png"
-}
-
-
-
-const Case_view = ({device}:Props) =>{
+const Case_view = ({select_device,iPhones,Androids,type_index}:Props) =>{
     const router = useRouter()
     const product_info = useRecoilValue(productState)
+   
+
+        console.log(product_info);
         
     return(
         //  ケース表示のエリア 
         <div id={styles.case_view}>
-            <Image src={device == "iPhone" ? "/iPhone" + iPhons.iPhonX : "/Android" + Androids.Galaxy_M23} alt="スマホ" width={500} height={579} objectFit='contain'/>
+            <Image src={select_device == "iPhone" ? `/iPhone/${iPhones[type_index]}.svg`  : `/Android/${Androids[0]}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/>
             {/* デザインが選ばれているとき */}
             {product_info.product_place !== "" &&
                 <div className={styles.design}>

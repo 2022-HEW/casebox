@@ -5,18 +5,19 @@ import Image from "next/image";
 import Cash from "../../public/image/money.svg";
 
 
+
 const pay = () => {
     return (
         <Box>
             <Nav >
 
-        <div>
             <div id={styles.wrap}>
-                <div className={styles.block}>
+                {/* <div className={styles.block}>
                     <p className={styles.write}>支払額</p>
                     <p className={styles.money}>1500</p>
                     <p className={styles.en}>円</p>
-                </div>
+                </div> */}
+                {/* <Price_result/> */}
                 <div className={styles.block1}>
                     <p className={styles.write}>投入額</p>
                     <p className={styles.money}>0</p>
@@ -43,11 +44,23 @@ const pay = () => {
                     </div>
                 </div> 
             </div>
-        </div>
             </Nav>
         </Box>
     )
+
 }
+
+const Price_result =  () =>{
+
+    return(
+         <div className={styles.block}>
+            <p className={styles.write}>支払額</p>
+            <p className={styles.money}>1500</p>
+            <p className={styles.en}>円</p>
+        </div>
+    )
+}
+
 
 
 export default pay
