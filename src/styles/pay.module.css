@@ -1,4 +1,4 @@
-#wrapper{
+#wrap{
     background-color: none;
     display: flex;
     flex-flow: column;
@@ -7,8 +7,8 @@
     z-index: 1000;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    top: 130px;
-    right: 200px;
+    top: 10%;
+    right: 0%;
 }
 .block1{
     display: flex;
@@ -38,6 +38,7 @@
 }
 .write{
     width: auto;
+    font-weight: 28px;
 }
 .money{
     /* display: block;
@@ -56,13 +57,15 @@
     height: 200px;
     display: flex;
     justify-content:space-around;
+    margin-top: 4%;
     gap: 1px;
 }
 .cash{
     width: 180px;
     height: 180px;
-    border: solid 1px;
+    border: #000 solid 1px;
     border-radius: 20px;
+    background-color: white;
 }
 #btnname{
     width: 100%;
