@@ -45,14 +45,14 @@ const SlideShow = () => {
 
     return(
             <div id={styles.slideshow}>
-        <Slider {...settings}>
-                    <Image src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-                    <Image src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-                    <Image src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-                    <Image src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-                    <Image src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-                    <Image src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-        </Slider>
+				<Slider {...settings}>
+					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+				</Slider>
             </div>
     )
 }

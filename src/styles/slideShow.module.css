@@ -69,7 +69,8 @@
         height: 8px; /*ドットボタンのサイズ*/
         display: block;
         border-radius: 50%;
-        background: #ccc; /*ドットボタンの色*/
+        /* background: #ccc; ドットボタンの色 */
+        background: #333;
     }
     
     .slick-dots .slick-active button {
