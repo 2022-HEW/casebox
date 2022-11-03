@@ -6,7 +6,7 @@ import Nav from '../components/common/Nav';
 import Service_cards from '../components/Service_cards';
 import SlideShow from '../components/common/SlideShow';
 import { useRecoilState } from "recoil";
-import { tabState } from './atoms';
+import { tabState } from '../atomes/atoms';
 
 
 const Service = () => {

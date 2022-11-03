@@ -1,9 +1,8 @@
 import styles from "../styles/product_check.module.css";
-import Image from "next/image";
 import { Button } from "./common/Button";
 import { useRouter } from'next/router'
 import { useRecoilState } from "recoil";
-import { productState } from '../pages/atoms';
+import { productState } from '../atomes/atoms';
 type Props = {
     // product:[],
     product:{
@@ -31,7 +30,7 @@ const Product_check = ({product}:Props) => {
         }
     return(
         <>
-            <Image src={"/product_image/" + product.product_place} width={100} height={100}/>
+            <img src={"/product_image/" + product.product_place} width={100} height={100}/>
             <p >{product.product_name}</p>
             <p>{product.m_product_category}</p>
             <p>{product.m_product_price}</p>

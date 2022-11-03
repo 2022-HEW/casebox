@@ -1,7 +1,6 @@
 import Nav from "../components/common/Nav";
 import Box from "../components/common/Box";
 import styles from "../styles/pay.module.css";
-import Image from "next/image";
 import Cash from "../../public/image/money.svg";
 
 
@@ -35,13 +34,13 @@ const pay = () => {
                         </div> */}
                         <Buttons />
                         <a className={styles.cash}>
-                            <Image src={Cash} alt="現金の画像" />
+                            <img src={Cash} alt="現金の画像" />
                         </a>
                         <a className={styles.cash}>
-                            <Image src={Cash} alt="現金の画像" />
+                            <img src={Cash} alt="現金の画像" />
                         </a>
                         <a className={styles.cash}>
-                            <Image src={Cash} alt="現金の画像" />
+                            <img src={Cash} alt="現金の画像" />
                         </a>
                     </div>
                 </div>
@@ -66,7 +65,7 @@ const Buttons = () => {
 
     return (
         <a className={styles.cash}>
-            <Image src={Cash} alt="現金の画像" />
+            <img src={Cash} alt="現金の画像" />
             <p id={styles.btnname}>現金</p>
         </a>
     )

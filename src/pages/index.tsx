@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/wait.module.css'
 import mysql from "serverless-mysql"
 import { log } from 'console'

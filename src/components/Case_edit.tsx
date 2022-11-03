@@ -1,8 +1,8 @@
 import styles from '../styles/device_select.module.css';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { tabState } from '../pages/atoms';
+import { tabState } from '../atomes/atoms';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { productState } from '../pages/atoms';
+import { productState } from '../atomes/atoms';
 // import { useRouter } from'next/router'
 
 
@@ -59,7 +59,7 @@ const Case_edit =({setDevice,setType,iPhones,Androids,select_device}:Props) =>{
                 
                     iPhones.map((value,index)=>{
                         return(
-                            <div>    
+                            <div key={index}>    
                                 <label htmlFor="iPhone_type">{value}</label>
                                 <input type="radio" value={index} name='iPhone_type' id='iPhone_type' onChange={(e)=>setType(Number(e.target.value))} />  
                             </div>
@@ -68,7 +68,7 @@ const Case_edit =({setDevice,setType,iPhones,Androids,select_device}:Props) =>{
                 :
                     Androids.map((value,index)=>{
                         return(
-                            <div>
+                            <div key={index}>
                                 <label htmlFor="Android_type">{value}</label>
                                 <input type="radio" value={index} name='Android_type' id='Android_type' onChange={(e)=>setType(Number(e.target.value))} />  
                             </div>

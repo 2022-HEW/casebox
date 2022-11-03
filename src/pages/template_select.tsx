@@ -1,14 +1,13 @@
 import styles from "../styles/template_select.module.css"
 import Nav from "../components/common/Nav";
 import Box from "../components/common/Box";
-import Image from "next/image";
 import React, { useEffect,useState,useRef } from "react";
 import { useRouter } from "next/router";
 import Modal from "../components/common/Modal";
 // import { forwardRef } from "react";
 import Product_check from "../components/Product_check";
 import { useRecoilState } from "recoil";
-import { modalState } from './atoms';
+import { modalState } from '../atomes/atoms';
 
 
 const Template = () => {
@@ -43,7 +42,7 @@ const Template = () => {
         //   console.log(data[0].product_ID);
       }
       fetchProduct()
-    },[])
+    },[sql_flg])
 
     return(
         <>
@@ -103,7 +102,7 @@ type Product = {
   return(
         // <div className={styles.product_box} ref={ref} >
         <div className={styles.product_box} onClick={Modal_toggle} >
-            <Image src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100}/>
+            <img src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100}/>
             <p className="case_name">{case_name}</p>
             <p className="case_category">{case_category}</p>
             <p className="case_price">{case_price}</p>

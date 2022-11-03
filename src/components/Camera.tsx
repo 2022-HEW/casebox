@@ -5,7 +5,7 @@ import { log } from 'console';
 import { useRouter } from 'next/router';
 import Modal from './common/Modal';
 import { useRecoilState } from "recoil";
-import { modalState } from '../pages/atoms';
+import { modalState } from '../atomes/atoms';
 
 const videoWidth: number = 750;
 const videoHeight: number = 750;
