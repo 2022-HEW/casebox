@@ -1,22 +1,33 @@
 import styles from '../styles/device_select.module.css';
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useRouter } from'next/router'
 import { useRecoilValue } from "recoil";
 import { productState } from '../atomes/atoms';
+import Image from "next/image"
 
 
 type Props = {
-    select_device:string
     model_names:string[]
-    model_colors:string[]
+    model_colors:{
+        [props:string]:any
+    }
     type_index:number
-    color_index:number
-    types:never[]
+    select_device:string
+   
 };
 
-const Case_view = ({select_device,model_names,type_index,model_colors,color_index,types}:Props) =>{
+const Case_view = ({model_names,select_device,type_index,model_colors}:Props) =>{
     const router = useRouter()
     const product_info = useRecoilValue(productState)
+    const [color_index,setColor] = useState(model_colors[model_names[type_index] + "(1)"])
+    console.log(model_colors);
+    
+
+
+    useEffect(()=>{
+        setColor(model_colors[model_names[type_index] + "(1)"])
+        console.log(model_names);
+    },[])
    
 
         // console.log(product_info);
@@ -28,7 +39,7 @@ const Case_view = ({select_device,model_names,type_index,model_colors,color_inde
         //  ケース表示のエリア 
         <div id={styles.case_view}>
             {/* <Image src={select_device == "iPhone" ? `/iPhone/${iPhones[type_index]}/${iPhone_colors[color_index]}.png`  : `/Android/${Androids[0]}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/> */}
-            <img src={`/${select_device}/${types[type_index]}/${iPhone_colors[color_index]}.png`} alt="スマホ" width={500} height={579} />
+            <Image src={`/${select_device}/${model_names[type_index]}/${color_index}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/>
             {/* デザインが選ばれているとき */}
             {product_info.product_place !== "" &&
                 <div className={styles.design}>

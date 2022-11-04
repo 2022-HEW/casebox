@@ -11,6 +11,7 @@ import { type } from 'os';
 import { GetStaticProps, NextApiRequest, NextApiResponse } from 'next';
 import mysql from "serverless-mysql"
 import useSWR from 'swr';
+import { off } from 'process';
 
 
 
@@ -25,68 +26,70 @@ const DeviceSelect = () => {
         const response = await fetch(url);
         return response.json();
     }
+    const [select_device, setDevice] = useState("iPhone")  
+    // console.log(product_types);
+    const [type_index,setType] = useState(0)
 
+    
     /**
      * DBから取得
-     * @returns model_names,model_colors
+     * @returns iPhone_model_names,Android_model_names,
+     * iPhone_model_colors,Android_model_colors
      */
+    const { data } = useSWR<any>(`/api/Sql?sql=color`,fetcher) 
+    if(!data) return "aa"
     const getProduct =()=>{
-        const { data } = useSWR<any>(`/api/Sql?sql=color`,fetcher) 
-        const model_names:Array<string> = []
-        const model_colors:Color = new Object 
-        let i:number = 2 
-
+        const iPhone_model_names:Array<string> = []
+        const Android_model_names:Array<string> = []
+        const iPhone_model_colors:Color = new Object 
+        const Android_model_colors:Color = new Object 
+        let i:number = 1 
         if(data){
             for(let value of data){
-                // 機種が重複しているとき
-                if(!model_names.includes(value.model_name)){
-                    model_names.push(value.model_name)
-                    model_colors[value.model_name] = value.color_name
+                // 重複の判定
+                // していないとき
+                if(!iPhone_model_names.includes(value.model_name) && !Android_model_names.includes(value.model_name) ){
+                    i=1;
+                    if(value.model_name.includes("iPhone")){
+                        iPhone_model_names.push(value.model_name)
+                        iPhone_model_colors[value.model_name+ `(${i})`] = value.color_name
+                    }else{
+                        Android_model_names.push(value.model_name)
+                        Android_model_colors[value.model_name+ `(${i})`] = value.color_name
+                    }
                 }else{
-                    model_colors[value.model_name + `.${i}`] = value.color_name
                     i++;
+                    if(value.model_name.includes("iPhone")){
+                        iPhone_model_colors[value.model_name + `(${i})`] = value.color_name
+                    }else{
+                        Android_model_colors[value.model_name + `(${i})`] = value.color_name
+                    }
                 }
             }
         }
-        
         return{
-            model_names:model_names,
-            model_colors:model_colors
-        }
-        
+            iPhone_model_names:iPhone_model_names,
+            Android_model_names:Android_model_names,
+            iPhone_model_colors:iPhone_model_colors,
+            Android_model_colors:Android_model_colors,
+        }        
     }
-
-    const {model_names,model_colors}= getProduct()   
-    console.log(model_names);
-    console.log(model_colors);
-      
-    const [select_device, setDevice] = useState("iPhone")  
-    // console.log(product_types);
-
-    const [sql_flg, setSql]= useState("device");
-    const [iPhones,setiPhones] = useState([]);
-    const [Androids,setAndroids] = useState([]);
-    const [types,setTypes] = useState([]) 
-    const [type_index,setType]  =useState(0)
-    const[iPhone_colors,setiPhoneColors] = useState([]);
-    const[Android_colors,setAndroidColors] = useState([]);
-    const [color_index,setColor]  =useState(0)
-    const iPhones_get:any=[]
-    const Androids_get:any = []
-    const iPhone_colors_get:any=[]
-    const Android_colors_get:any = []
-    
+    const {iPhone_model_names,Android_model_names,iPhone_model_colors,Android_model_colors}= getProduct()   
+    // console.log(iPhone_model_names);
+    // console.log(Android_model_names);
+    // console.log(iPhone_model_colors);
+    // console.log(Android_model_colors);
     return(
         <Box>
             <Nav>
                 <div id={styles.wrap}>
-                    <Case_view select_device={select_device} model_names={model_names} model_colors={model_colors} />
+                     <Case_view  model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
+                    model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
+                    select_device={select_device} type_index={type_index} />
 
-                    <Case_edit select_device={select_device} setDevice={setDevice} 
-                                iPhones={iPhones} Androids={Androids} setType={setType}
-                                 iPhone_colors={iPhone_colors} Android_colors={Android_colors}
-                                 setiPhoneColors={setiPhoneColors}setAndroidColors={setAndroidColors}
-                    />
+                    {/* <Case_edit model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
+                    model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
+                    select_device={select_device} type_index={type_index} setDevice={setDevice} setType={setType} /> */}
                 </div>
             </Nav>
         </Box>
