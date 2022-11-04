@@ -7,11 +7,6 @@ import Nav from '../components/common/Nav'
 import Box from '../components/common/Box'
 import Link from 'next/link'
 
-const a = async() =>{
-   const d:Object  = await(await fetch("api/test")).json() 
-   console.log(d);
-   return d
-} 
 
 
 const Home: NextPage = () => {

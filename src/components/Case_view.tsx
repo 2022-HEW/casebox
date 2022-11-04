@@ -7,16 +7,14 @@ import { productState } from '../atomes/atoms';
 
 type Props = {
     select_device:string
-    iPhones:never[]
-    iPhone_colors:never[]
-    Android_colors:never[]
-    Androids:never[]
+    model_names:string[]
+    model_colors:string[]
     type_index:number
     color_index:number
     types:never[]
 };
 
-const Case_view = ({select_device,iPhones,Androids,type_index,iPhone_colors,Android_colors,color_index,types}:Props) =>{
+const Case_view = ({select_device,model_names,type_index,model_colors,color_index,types}:Props) =>{
     const router = useRouter()
     const product_info = useRecoilValue(productState)
    
