@@ -27,7 +27,7 @@ const DeviceSelect = () => {
         return response.json();
     }
     const [select_device, setDevice] = useState("iPhone")  
-    // console.log(product_types);
+    const [color_index,setColor] = useState("");
     const [type_index,setType] = useState(0)
 
     
@@ -37,13 +37,15 @@ const DeviceSelect = () => {
      * iPhone_model_colors,Android_model_colors
      */
     const { data } = useSWR<any>(`/api/Sql?sql=color`,fetcher) 
-    if(!data) return "aa"
+    if(!data) return (<Box><Nav><></></Nav></Box>)
+
     const getProduct =()=>{
         const iPhone_model_names:Array<string> = []
         const Android_model_names:Array<string> = []
         const iPhone_model_colors:Color = new Object 
         const Android_model_colors:Color = new Object 
         let i:number = 1 
+
         if(data){
             for(let value of data){
                 // 重複の判定
@@ -85,11 +87,12 @@ const DeviceSelect = () => {
                 <div id={styles.wrap}>
                      <Case_view  model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
-                    select_device={select_device} type_index={type_index} />
+                    select_device={select_device} type_index={type_index} color_index={color_index} setColor={setColor}/>
 
-                    {/* <Case_edit model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
+                    <Case_edit model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
-                    select_device={select_device} type_index={type_index} setDevice={setDevice} setType={setType} /> */}
+                    select_device={select_device} type_index={type_index} setDevice={setDevice} setType={setType} 
+                    setColor={setColor}/>
                 </div>
             </Nav>
         </Box>

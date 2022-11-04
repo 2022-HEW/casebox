@@ -13,23 +13,18 @@ type Props = {
     }
     type_index:number
     select_device:string
-   
+    color_index:string
+    setColor:Dispatch<SetStateAction<string>>
 };
 
-const Case_view = ({model_names,select_device,type_index,model_colors}:Props) =>{
+const Case_view = ({model_names,select_device,type_index,model_colors,color_index,setColor}:Props) =>{
     const router = useRouter()
     const product_info = useRecoilValue(productState)
-    const [color_index,setColor] = useState(model_colors[model_names[type_index] + "(1)"])
-    console.log(model_colors);
-    
-
-
     useEffect(()=>{
         setColor(model_colors[model_names[type_index] + "(1)"])
+        console.log(model_colors);
         console.log(model_names);
-    },[])
-   
-
+    },[type_index ,select_device])
         // console.log(product_info);
         // console.log(iPhone_colors);
         // console.log(types);
