@@ -1,0 +1,21 @@
+#box{
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#screen{
+    width: 77vw;
+    position: absolute;
+    top: 0.8vh;
+    left: 2vw;
+}
+#screen_on{
+    background-color: #fff;
+    width: 986px;
+    height: 708px;
+    margin: 6px 0px 0 25px;
+    border-radius: 12px;
+}
