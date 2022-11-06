@@ -13,9 +13,6 @@ module.exports = {
     MYSQL_DATABASE: "casebox",
     MYSQL_USER: "root",
     MYSQL_PASSWORD: "",
-
-
-    
   },
   // webpack: {
   //   target: "node"
