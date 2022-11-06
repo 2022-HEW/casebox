@@ -9,6 +9,15 @@ import Link from 'next/link'
 
 
 
+
+
+
+
+
+
+
+
+
 const Home: NextPage = () => {
   
 //  const b:any = a()
@@ -16,9 +25,11 @@ const Home: NextPage = () => {
 
 
   return (
-      <Box >
-        <Wait/>
-      </Box>          
+      // <Box >
+      //   <Wait/>
+      // </Box>          
+      <>
+      </>
   )
 }
 
