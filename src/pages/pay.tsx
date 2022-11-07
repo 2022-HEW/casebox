@@ -2,10 +2,14 @@ import Nav from "../components/common/Nav";
 import Box from "../components/common/Box";
 import styles from "../styles/pay.module.css";
 import Cash from "../../public/image/money.svg";
+import { useRecoilValue } from "recoil";
+import { productState } from '../atoms/atoms';
 
 
 
-const pay = () => {
+const Pay = () => {
+    // console.log(m_product_price);
+    
     return (
         <Box>
             <Nav >
@@ -51,11 +55,11 @@ const pay = () => {
 }
 
 const Price_result = () => {
-
+    const {m_product_price} =useRecoilValue(productState)
     return (
         <div className={styles.block}>
             <p className={styles.write}>支払額</p>
-            <p className={styles.money}>1500</p>
+            <p className={styles.money}>{m_product_price}</p>
             <p className={styles.en}>円</p>
         </div>
     )
@@ -71,4 +75,4 @@ const Buttons = () => {
     )
 }
 
-export default pay
+export default Pay
