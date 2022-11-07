@@ -139,6 +139,7 @@ npm install react-slick
 npm install @types/react-slick
 npm install slick-carousel
 npm install jsqr --save
- npm install @azure/cognitiveservices-computervision
- npm install async
-
+npm install @azure/cognitiveservices-computervision
+npm install async
+npm install react-konva konva --save
+npm install react-color --save
