@@ -11,7 +11,7 @@ type Product=  {
 //tab色
 export const tabState = atom({
     key: "tab",
-    default: "トップ"
+    default: ""
 });
 // モーダル
 export const modalState = atom({
@@ -23,7 +23,7 @@ export const productState= atom<Product>({
     key: "product_info",
     default:{ 
         m_product_category:"",
-        m_product_price:0,
+        m_product_price:1500,
         product_ID:0,
         product_liked:0,
         product_name:"",
