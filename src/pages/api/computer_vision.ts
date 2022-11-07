@@ -2,11 +2,6 @@ export default function main(){
     'use strict';
 
     const async = require('async');
-    const fs = require('fs');
-    const https = require('https');
-    const path = require("path");
-    const createReadStream = require('fs').createReadStream
-    const sleep = require('util').promisify(setTimeout);
     const ComputerVisionClient = require('@azure/cognitiveservices-computervision').ComputerVisionClient;
     const ApiKeyCredentials = require('@azure/ms-rest-js').ApiKeyCredentials;
     
@@ -37,34 +32,74 @@ export default function main(){
           console.log('DETECT TAGS');
           console.log();
     
-          // Image of different kind of dog.
-          const tagsURL = 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png';
-        // const describeURL = 'https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/celebrities.jpg';
-        // const describeImagePath = __dirname + '\\celebrities.jpg';
-        // try {
-        //   await downloadFilesToLocal(describeURL, describeImagePath);
-        // } catch {
-        //   console.log('>>> Download sample file failed. Sample cannot continue');
-        //   process.exit(1);
-        // }
-          // Analyze URL image
-          console.log('Analyzing tags in image...', tagsURL.split('/').pop());
-          const tags = (await computerVisionClient.analyzeImage(tagsURL, { visualFeatures: ['Tags','Categories','Brands'],language:"ja" })).tags;
-    // const result = (await computerVisionClient.analyzeImage(imageURL,{visualFeatures: 何を持ってくるか, language: 'en'}));
+        //   const facesImageURL = 'https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/celebrities.jpg';
+          const facesImageURL = 'https://www.linemo.jp/guide/article021/img/img_02.png';
+     // Detect Objects
+     const features = ['Categories','Brands','Adult','Color','Description','Faces','ImageType','Objects','Tags']
+     const domainDetails = ['Celebrities','Landmarks'];
+     const result = (await computerVisionClient.analyzeImage(facesImageURL,{visualFeatures: features,language:"ja"},{details: domainDetails,language:"ja"}));
 
-          console.log(`Tags: ${formatTags(tags)}`);
-    
-          // Format tags for display
-          function formatTags(tags:any) {
-            return tags.map((tag:any) => (`${tag.name} (${tag.confidence.toFixed(2)})`)).join(', ');
-          }
-          /**
-           * END - Detect Tags
-           */
-          console.log();
-          console.log('-------------------------------------------------');
-          console.log('End of quickstart.');
-    
+     // Detect Objects
+     const objects = result.objects;
+     console.log();
+     // Print objects bounding box and confidence
+     if (objects.length) {
+       console.log(`${objects.length} object${objects.length == 1 ? '' : 's'} found:`);
+       for (const obj of objects) { console.log(`    ${obj.object} (${obj.confidence.toFixed(2)}) at ${formatRectObjects(obj.rectangle)}`); }
+     } else { console.log('No objects found.'); }
+
+     // Formats the bounding box
+     function formatRectObjects(rect: { y: any; x: any; h: any; w: any; }) {
+       return `top=${rect.y}`.padEnd(10) + `left=${rect.x}`.padEnd(10) + `bottom=${rect.y + rect.h}`.padEnd(12)
+         + `right=${rect.x + rect.w}`.padEnd(10) + `(${rect.w}x${rect.h})`;
+     }
+     console.log();
+
+     // Detect tags
+     const tags = result.tags;
+     console.log(`Tags: ${formatTags(tags)}`);
+
+     // Format tags for display
+     function formatTags(tags: any[]) {
+       return tags.map((tag: { name: any; confidence: number; }) => (`${tag.name} (${tag.confidence.toFixed(2)})`)).join(', ');
+     }
+     console.log();
+
+     // Detect image type
+     const types = result.imageType;
+     console.log(`Image appears to be ${describeType(types)}`);
+
+     function describeType(imageType: { clipArtType: number; lineDrawingType: number; }) {
+       if (imageType.clipArtType && imageType.clipArtType > imageType.lineDrawingType) return 'clip art';
+       if (imageType.lineDrawingType && imageType.clipArtType < imageType.lineDrawingType) return 'a line drawing';
+       return 'a photograph';
+     }
+     console.log();
+
+     // Detect Category
+     const categories = result.categories;
+     console.log(`Categories: ${formatCategories(categories)}`);
+
+     // Formats the image categories
+     function formatCategories(categories: any[]) {
+       categories.sort((a: { score: number; }, b: { score: number; }) => b.score - a.score);
+       return categories.map((cat: { name: any; score: number; }) => `${cat.name} (${cat.score.toFixed(2)})`).join(', ');
+     }
+     console.log();
+
+     console.log();
+
+     // Detect landmarks
+     console.log();
+
+     // Detect Adult content
+     // Function to confirm racy or not
+     const isIt = (flag: any) => flag ? 'is' : "isn't";
+
+     const adult = result.adult;
+     console.log(`This probably ${isIt(adult.isAdultContent)} adult content (${adult.adultScore.toFixed(4)} score)`);
+     console.log(`This probably ${isIt(adult.isRacyContent)} racy content (${adult.racyScore.toFixed(4)} score)`);
+     console.log();
         },
         function () {
           return new Promise<void>((resolve) => {
@@ -78,4 +113,3 @@ export default function main(){
     
     computerVision();
 }
-
