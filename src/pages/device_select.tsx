@@ -3,16 +3,13 @@ import Box from '../components/common/Box';
 import Nav from '../components/common/Nav';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { tabState } from '../atomes/atoms';
+import { tabState } from '../atoms/atoms';
 import { log } from 'console';
 import Case_view from '../components/Case_view';
 import Case_edit from '../components/Case_edit';
-import { type } from 'os';
-import { GetStaticProps, NextApiRequest, NextApiResponse } from 'next';
-import mysql from "serverless-mysql"
 import useSWR from 'swr';
-import { off } from 'process';
-
+import Modal from '../components/common/Modal';
+import Image from 'next/image';
 
 
 

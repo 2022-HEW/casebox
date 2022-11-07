@@ -1,10 +1,11 @@
 import styles from '../styles/device_select.module.css';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { tabState } from '../atomes/atoms';
+import { tabState } from '../atoms/atoms';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { productState } from '../atomes/atoms';
+import { productState,modalState } from '../atoms/atoms';
 import { Color } from 'textalive-app-api';
 import React from 'react';
+import Modal from './common/Modal';
 // import { useRouter } from'next/router'
 
 
@@ -26,9 +27,10 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
     const [step,setStep]  = useState("デバイス")
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
+    const [modal,setModal] = useRecoilState(modalState);
     const reset = {
         m_product_category:"",
-        m_product_price:0,
+        m_product_price:1500,
         product_ID:0,
         product_liked:0,
         product_name:"",
@@ -93,7 +95,7 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                     }
                 
                     
-                    <p onClick={()=>setStep("色")}>次へ</p>
+                    <p onClick={()=>setModal(true)}>次へ</p>
                 </>
                 )}
     

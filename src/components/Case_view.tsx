@@ -2,8 +2,10 @@ import styles from '../styles/device_select.module.css';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useRouter } from'next/router'
 import { useRecoilValue } from "recoil";
-import { productState } from '../atomes/atoms';
+import { productState } from '../atoms/atoms';
 import Image from "next/image"
+import Modal from './common/Modal';
+import Product_buy_check from './Product_buy_check';
 
 
 type Props = {
@@ -19,13 +21,15 @@ type Props = {
 
 const Case_view = ({model_names,select_device,type_index,model_colors,color_index,setColor}:Props) =>{
     const router = useRouter()
+    //値段だけでいいかも
     const product_info = useRecoilValue(productState)
+    const [product,setProduct] = useState([])
     useEffect(()=>{
         setColor(model_colors[model_names[type_index] + "(1)"])
         console.log(model_colors);
         console.log(model_names);
     },[type_index ,select_device])
-        // console.log(product_info);
+        console.log(product_info);
         // console.log(iPhone_colors);
         // console.log(types);
         
@@ -36,11 +40,18 @@ const Case_view = ({model_names,select_device,type_index,model_colors,color_inde
             {/* <Image src={select_device == "iPhone" ? `/iPhone/${iPhones[type_index]}/${iPhone_colors[color_index]}.png`  : `/Android/${Androids[0]}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/> */}
             <Image src={`/${select_device}/${model_names[type_index]}/${color_index}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/>
             {/* デザインが選ばれているとき */}
-            {product_info.product_place !== "" &&
+            {product_info.product_place &&
                 <div className={styles.design}>
-                    <img src={`/design/${product_info.product_place}`} alt="スマホ"  />
+                    <Image src={`/design/${product_info.product_place}`} alt="スマホ" width={500} height={579}/>
                 </div>
             }
+            
+            <Modal>
+                    <Product_buy_check image_path={`/${select_device}/${model_names[type_index]}/${color_index}.png`} 
+                    design_path={`/design/${product_info.product_place}`} 
+                    type_name={model_names[type_index]} color_name={color_index} 
+                    product_price={product_info.m_product_price} />
+            </Modal>
         </div>        
     )
 }
