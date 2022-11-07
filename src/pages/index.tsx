@@ -11,22 +11,12 @@ import Link from 'next/link'
 
 const Home: NextPage = () => {
   
-  const main= async()=>{
-
-    const describeURL = 'https://raw.githubusercontent.com/Azure-Samples/cognitive-services-sample-data-files/master/ComputerVision/Images/celebrities.jpg';
-    const features = ['Categories','Brands','Adult','Color','Description','Faces','Image_type','Objects','Tags'];
-    const domainDetails = ['Celebrities','Landmarks'];
-  }
-//  const b:any = a()
-//  console.log(b);
-
+  
 
   return (
-      // <Box >
-      //   <Wait/>
-      // </Box>          
-      <>
-      </>
+      <Box >
+        <Wait/>
+      </Box>          
   )
 }
 

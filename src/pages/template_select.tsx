@@ -7,7 +7,7 @@ import Modal from "../components/common/Modal";
 // import { forwardRef } from "react";
 import Product_check from "../components/Product_check";
 import { useRecoilState } from "recoil";
-import { modalState } from '../atomes/atoms';
+import { modalState } from '../atoms/atoms';
 
 
 const Template = () => {

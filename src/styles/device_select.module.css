@@ -23,3 +23,7 @@
     top: 0px;
     left: 30px;
 }
+
+.product_info{
+    display: inline-block;
+}

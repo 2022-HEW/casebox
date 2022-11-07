@@ -3,8 +3,8 @@ import { useRouter } from'next/router'
 import Link from "next/link"
 import { ReactNode, useState,useMemo,} from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { tabState } from '../../atomes/atoms';
-import { productState } from '../../atomes/atoms';
+import { tabState } from '../../atoms/atoms';
+import { productState } from '../../atoms/atoms';
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
@@ -59,6 +59,8 @@ const Nav =({children}:Props)=>{
                     break;
             case "/service_select":
                 setTab("ヘルプ")
+                break;
+            case "/pay":
                 break;
             default:
                 console.log("error");
