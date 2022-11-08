@@ -54,10 +54,10 @@ const Nav =({children}:Props)=>{
                     setTab("手書き")
                 }
                     break;
-            case "/service_select":
+            case "/site":
                     setTab("公式サイト")
                     break;
-            case "/service_select":
+            case "/help":
                 setTab("ヘルプ")
                 break;
             case "/pay":
@@ -89,7 +89,7 @@ const Nav =({children}:Props)=>{
                 <Tab site_link={"./template_select"} site_name={"テンプレ"}  />
                 <Tab site_link={"./scan"} site_name={"オリジナル"}  />
                 <Tab site_link={"./device_select"} site_name={"手書き"} />
-                <Tab site_link={"./site_qr"} site_name={"公式サイト"}  />
+                <Tab site_link={"./site"} site_name={"公式サイト"}  />
                 <Tab site_link={"./help"} site_name={"ヘルプ"}  />
             </div>
             <div id={styles.back} onClick={back}>もどる</div>
