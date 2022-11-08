@@ -32,6 +32,13 @@ export const productState= atom<Product>({
     }
 });
 
+//機種選択のstep
+export const stepState = atom({
+    key: "step",
+    default: 1
+});
+
+
 //user
 export const userState = atom({
     key: "user",

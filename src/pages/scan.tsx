@@ -13,47 +13,47 @@ const Scan = () => {
             <div id={styles.wrap}>
               <div id={styles.number}>
               <form name="dentaku">
-                <table>
+                {/* <table> */}
                   {/* <!-- 液晶画面部分 --> */}
-                  <tr>
+                  {/* <tr>
                     <td colSpan={4}>
                       <input type="text" className="display" name="display" value="" disabled/>
                     </td>
-                  </tr>
+                  </tr> */}
             
                   {/* <!-- 上から1段目（7~9＋÷） --> */}
-                  <tr>
+                  {/* <tr> */}
                     {/* <td><input type="button" value="7" onClick={get_calc(this)}/></td>
                     <td><input type="button" value="8" onClick={get_calc(this)}/></td>
                     <td><input type="button" value="9" onClick={get_calc(this)}/></td>
                     <td><input type="button" value="÷" className="operator" name="div_btn" onClick={get_calc(this)}/></td> */}
-                  </tr>
+                  {/* </tr> */}
                     
                   {/* <!-- 上から2段目（4~6＋×） --> */}
-                  <tr>
+                  {/* <tr> */}
                     {/* <td><input type="button" value="4" onClick={get_calc(this)}/></td>
                     <td><input type="button" value="5" onClick={get_calc(this)}/></td>
                     <td><input type="button" value="6" onClick={get_calc(this)}/></td>
                     <td><input type="button" value="×" className="operator" name="multi_btn" onClick={get_calc(this)}/></td> */}
-                  </tr>
+                  {/* </tr> */}
             
                   {/* <!-- 上から3段目（1~3＋-） --> */}
-                  <tr>
+                  {/* <tr> */}
                     {/* <td><input type="button" value="1" onclick="get_calc(this)"></td>
                     <td><input type="button" value="2" onclick="get_calc(this)"></td>
                     <td><input type="button" value="3" onclick="get_calc(this)"></td>
                     <td><input type="button" value="-" class="operator" onclick="get_calc(this)"></td> */}
-                  </tr>
+                  {/* </tr> */}
             
                   {/* <!-- 上から4段目（0/C/=/+) --> */}
-                  <tr>
+                  {/* <tr> */}
                     {/* <td><input type="button" value="0" onclick="get_calc(this)"></td>
                     <td><input type="button" value="C" onclick="get_calc(this)"></td>
                     <td><input type="button" value="=" class="equal" onclick="get_calc(this)"></td>
                     <td><input type="button" value="+" class="operator" onclick="get_calc(this)"></td> */}
-                  </tr>
+                  {/* </tr> */}
             
-                </table>
+                {/* </table> */}
                 </form>
               </div>
             </div>

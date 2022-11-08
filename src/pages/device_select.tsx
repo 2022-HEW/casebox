@@ -88,7 +88,7 @@ const DeviceSelect = () => {
 
                     <Case_edit model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
-                    select_device={select_device} type_index={type_index} setDevice={setDevice} setType={setType} 
+                    select_device={select_device} type_index={type_index} color_index={color_index}setDevice={setDevice} setType={setType} 
                     setColor={setColor}/>
                 </div>
             </Nav>
