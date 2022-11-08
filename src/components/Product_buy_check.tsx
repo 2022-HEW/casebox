@@ -4,6 +4,9 @@ import  Image from "next/image"
 import styles from '../styles/device_select.module.css';
 import { Button } from './common/Button';
 import { useRouter } from 'next/router';
+import { log } from 'console';
+import { useRecoilState,useRecoilValue } from "recoil";
+import { productState,modalState,stepState } from '../atoms/atoms';
 
 type Props=  {
     image_path:string
@@ -16,12 +19,18 @@ type Props=  {
 
  const Product_buy_check = ({image_path,design_path,type_name,color_name,product_price}:Props) => {
     const router = useRouter()
+    const [step,setStep] = useRecoilState(stepState)
+    
 
     const go_pay_select=()=>{
-
-        router.push({
-            pathname:"pay"
-        })
+        // designがあるとき
+        if(design_path !=="/design/"){
+            router.push({
+                pathname:"pay"
+            })
+        }else{  
+            setStep(4)
+        }
     }
 
   return (

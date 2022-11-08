@@ -2,10 +2,13 @@ import styles from '../styles/device_select.module.css';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useRouter } from'next/router'
 import { useRecoilValue } from "recoil";
-import { productState } from '../atoms/atoms';
+import { productState,stepState } from '../atoms/atoms';
 import Image from "next/image"
 import Modal from './common/Modal';
 import Product_buy_check from './Product_buy_check';
+import dynamic from 'next/dynamic'
+// CSRに変更
+const Draw = dynamic(() => import('./Draw'), { ssr: false })
 
 
 type Props = {
@@ -23,7 +26,9 @@ const Case_view = ({model_names,select_device,type_index,model_colors,color_inde
     const router = useRouter()
     //値段だけでいいかも
     const product_info = useRecoilValue(productState)
-    const [product,setProduct] = useState([])
+    const step  = useRecoilValue(stepState)
+
+
     useEffect(()=>{
         setColor(model_colors[model_names[type_index] + "(1)"])
         console.log(model_colors);
@@ -37,8 +42,12 @@ const Case_view = ({model_names,select_device,type_index,model_colors,color_inde
     return(
         //  ケース表示のエリア 
         <div id={styles.case_view}>
-            {/* <Image src={select_device == "iPhone" ? `/iPhone/${iPhones[type_index]}/${iPhone_colors[color_index]}.png`  : `/Android/${Androids[0]}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/> */}
-            <Image src={`/${select_device}/${model_names[type_index]}/${color_index}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/>
+            {/* 手書きかどうか */}
+            {step === 4 ?
+                <Draw/> 
+            :
+                <Image src={`/${select_device}/${model_names[type_index]}/${color_index}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/>
+            }
             {/* デザインが選ばれているとき */}
             {product_info.product_place &&
                 <div className={styles.design}>

@@ -3,7 +3,7 @@ import { Stage, Layer, Line } from "react-konva";
 import { SketchPicker } from "react-color";
 import useImage from 'use-image'
 import { Image } from 'react-konva';
-const App = () => {
+const Draw = () => {
 
   const [tool, setTool] = useState("pen");
   const [size, setSize] = useState(5);
@@ -157,4 +157,4 @@ function downloadURI(uri:any, name:any) {
     return format;
   }
 
-  export default App
+  export default Draw

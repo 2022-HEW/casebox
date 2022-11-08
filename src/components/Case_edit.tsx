@@ -91,7 +91,11 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
             </>
         )
     }
-    
+
+    /**
+     * step3
+     * @returns 
+     */
     const Color =()=>{
             console.log(model_names[type_index]);
             
@@ -115,6 +119,30 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                     <p onClick={()=>setModal(true)}>次へ</p>
                 </>
                 )}
+        /**
+         * step4
+         */
+        const Draw =()=>{
+            setModal(false)
+            return(
+                <>
+                    <div>
+                        <p>カラー</p>
+                    </div>
+                    <div>
+                        <p>太さ</p>
+                    </div>
+                    <div>
+                        <p>えんぴつ</p>
+                    </div>
+                    <div>
+                        <p>消しゴム</p>
+                    </div>
+                    <p onClick={()=>setModal(true)}>次へ</p>
+
+                </>
+            )
+        }
     
     
     return(
@@ -126,8 +154,10 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                <Device />
             : step === 2 ?
                 <Type/>
-            : 
+            : step === 3 ?
                 <Color/>
+            :
+                <Draw/>
             }
                     
         </div>
