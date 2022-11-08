@@ -143,3 +143,4 @@ npm install @azure/cognitiveservices-computervision
 npm install async
 npm install react-konva konva --save
 npm install react-color --save
+npm install use-image
