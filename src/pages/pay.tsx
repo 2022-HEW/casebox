@@ -5,7 +5,8 @@ import Image from "next/image";
 import Cash from "../../public/image/money.svg";
 import trafic from "../../public/image/t_money.svg";
 import electric from "../../public/image/e_money.svg";
-
+import { useRecoilValue } from "recoil";
+import { productState } from '../atoms/atoms';
 
 
 const pay = () => {
@@ -15,18 +16,18 @@ const pay = () => {
 
                 <div id={styles.wrap}>
 
-                    <Price_result write="支払額" money="1800" />
-                    <Price_result write="投入額" money="0" />
-                    <Price_result write="おつり" money="0" />
+                    <Price_result write="支払額" />
+                    <Price_result write="投入額" />
+                    <Price_result write="おつり" />
 
 
                     <div className={styles.buttons}>
 
-                        <Buttons imgPath={Cash} name="現金"/>
-                        <Buttons imgPath={electric} name="電子マネー"/>
-                        <Buttons imgPath={trafic} name="交通系"/>
-                        <Buttons imgPath={Cash} name="現金"/>\
-                        
+                        <Buttons imgPath={Cash} name="現金" />
+                        <Buttons imgPath={electric} name="電子マネー" />
+                        <Buttons imgPath={trafic} name="交通系" />
+                        <Buttons imgPath={Cash} name="現金" />
+
                     </div>
                 </div>
             </Nav>
@@ -37,13 +38,13 @@ const pay = () => {
 
 interface pay_props {
     write: string;
-    money: string;
 }
-const Price_result = ({ write, money }: pay_props) => {
+const Price_result = ({ write,  }: pay_props) => {
+    const {m_product_price} =useRecoilValue(productState)
     return (
         <div className={styles.block2}>
             <p className={styles.write}>{write}</p>
-            <p className={styles.money}>{money}</p>
+            <p className={styles.money}>{m_product_price}</p>
             <p className={styles.en}>円</p>
         </div>
     )
