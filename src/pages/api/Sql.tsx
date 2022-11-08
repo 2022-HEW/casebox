@@ -1,14 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import { useRouter } from "next/router";
 import { useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 
 
-import mysql from "serverless-mysql"
 import { log } from 'console';
+import mysql from "serverless-mysql"
 
 // DB接続
 const db = mysql({
@@ -50,7 +49,12 @@ export default async function handler(
       break;
     
     case "device":
-      sql = `SELECT model_name from t_stocks WHERE model_delete_flg = 0`
+      sql = `SELECT model_name from t_stocks`
+      // sql = `SELECT s.model_name,c.color_name from t_color_relation r JOIN t_stocks s ON s.model_ID = r.model_ID JOIN t_product_colors c ON c.color_ID = r.color_ID WHERE s.model_delete_flg = 0;`
+      break;
+
+    case "color":
+      sql = `SELECT s.model_name,c.color_name from t_color_relation r JOIN t_stocks s ON s.model_ID = r.model_ID JOIN t_product_colors c ON c.color_ID = r.color_ID WHERE s.model_delete_flg = 0;`
       break;
 
 

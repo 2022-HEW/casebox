@@ -3,8 +3,8 @@ import { useRouter } from'next/router'
 import Link from "next/link"
 import { ReactNode, useState,useMemo,} from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { tabState } from '../../pages/atoms';
-import { productState } from '../../pages/atoms';
+import { tabState } from '../../atoms/atoms';
+import { productState } from '../../atoms/atoms';
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
@@ -60,6 +60,8 @@ const Nav =({children}:Props)=>{
             case "/service_select":
                 setTab("ヘルプ")
                 break;
+            case "/pay":
+                break;
             default:
                 console.log("error");
         }
@@ -97,17 +99,17 @@ const Nav =({children}:Props)=>{
     )
 } 
 
-    const Tab = React.memo(({site_link,site_name}:Tab_type) =>{
+    const Tab = React.memo(function Memotab({site_link,site_name}:Tab_type){
     
-    const[tab,setTab] = useRecoilState(tabState);
-    
-    return( 
-        <Link href={site_link} as={site_link} passHref>
-            <div id={styles.btn} className={`${tab === site_name && styles.select}`} onClick={()=>{setTab(site_name);}}>
-                {site_name}
-            </div>
-        </Link>
-    )
-})
+        const[tab,setTab] = useRecoilState(tabState);
+        
+        return( 
+            <Link href={site_link} as={site_link} passHref>
+                <div id={styles.btn} className={`${tab === site_name && styles.select}`} onClick={()=>{setTab(site_name);}}>
+                    {site_name}
+                </div>
+            </Link>
+        )
+    })
 
 export default Nav;

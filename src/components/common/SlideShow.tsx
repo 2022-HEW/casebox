@@ -1,9 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
 import styles from "../../styles/SlideShow.module.css";
-import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 // type Props={
 	
 // }
@@ -44,17 +44,47 @@ const SlideShow = () => {
     };
 
     return(
-            <div id={styles.slideshow}>
+            <div id={styles.slider}>
 				<Slider {...settings}>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+					<div>
+						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
+					</div>
+
+					<div>
+						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
+					</div>
+
+					<div>
+						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
+					</div>
+
+					<div>
+						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
+					</div>
+
+					<div>
+						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
+					</div>
+
+					<div>
+						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
+					</div>
 				</Slider>
             </div>
     )
+
+	type imageType={
+		imgPath: string,
+		imgAlt: string,
+	}
+
+	const imageDesc = ({ imgPath,imgAlt }: imageType) => {
+		<>
+			<div>
+				<img className={styles.slideImg} />
+			</div>
+		</>
+	}
 }
 
 export default SlideShow;
