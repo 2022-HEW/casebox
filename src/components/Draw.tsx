@@ -3,6 +3,8 @@ import { Stage, Layer, Line } from "react-konva";
 import { SketchPicker } from "react-color";
 import useImage from 'use-image'
 import { Image } from 'react-konva';
+import { TouchEvent } from "react";
+import styles from "../styles/draw.module.css"
 const Draw = () => {
 
   const [tool, setTool] = useState("pen");
@@ -11,11 +13,14 @@ const Draw = () => {
   const [lines, setLines] = useState<Array<any>>([]);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef<any>();
+  
   const [image] = useImage("./iPhone/iPhone7/シルバー.png")
 
-  const handleMouseDown = (e:any) => {
+  const handleTouchStart = (e:any) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
+    console.log(typeof pos);
+    
     setLines([
       ...lines,
       {
@@ -27,7 +32,7 @@ const Draw = () => {
     ]);
   };
 
-  const handleMouseMove = (e:any) => {
+  const handleTouchMove = (e:any) => {
     // no drawing - skipping
     if (!isDrawing.current) {
       return;
@@ -40,7 +45,7 @@ const Draw = () => {
     setLines(lines.concat());
   };
 
-  const handleMouseUp = () => {
+  const handleTouchEnd = () => {
     isDrawing.current = false;
   };
 
@@ -51,7 +56,7 @@ const Draw = () => {
   return (
     <>
       <div>
-        <select
+        {/* <select
           value={tool}
           onChange={(e) => {
             setTool(e.target.value);
@@ -71,8 +76,8 @@ const Draw = () => {
           <option value="10">10</option>
           <option value="15">15</option>
           <option value="20">20</option>
-        </select>
-        <button
+        </select> */}
+        {/* <button
           id="save"
           onClick={() => {
             downloadURI(
@@ -94,24 +99,20 @@ const Draw = () => {
                 }}
         >
           reset
-        </button>
+        </button> */}
       </div>
-        <div style={{display:"flex"}}>
-        <div style={{width:"500px"}}>
+        <div >
+        <div className={styles.view_box}>
           <Stage
-            width={300}
-            height={300}
-            onTouchStart={handleMouseDown}
-            onTouchMove={handleMouseMove}
-            onTouchEnd={handleMouseUp}
-            style={{
-              border: "solid",
-              marginTop: "10px"
-            }}
+            width={268}
+            height={539}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             ref={stageRef}
           >
             <Layer>
-                <Image image={image}/>
+                <Image image={image}  width={269} height={540} />
               {lines.map((line, i) => (
                 <Line
                   key={i}
@@ -128,10 +129,10 @@ const Draw = () => {
             </Layer>
           </Stage>
         </div>
-            <SketchPicker
+            {/* <SketchPicker
             color={color}
             onChangeComplete={handleChangeComplete}
-            />
+            /> */}
       </div>
     </>
   );
