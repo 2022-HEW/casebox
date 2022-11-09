@@ -14,20 +14,16 @@ type imageType={
 
 const SlideShow = () => {
 
-	// slick
+	// slick option
     const settings = {
-        // autoplay: true, //自動的に動き出すか。初期値はfalse。
-        // infinite: true, //スライドをループさせるかどうか。初期値はtrue。
-        // slidesToShow: 1,
-		// slidesToScroll: 1,
-		// arrow:true,
+        // autoplay: true,  	// 自動的に動き出すか。
+		dots: false,		// 下部ドットナビゲーションの表示
+		infinite: true, 	// スライドをループさせるかどうか。
+		speed: 500,			// スライド、フェードアニメーションの速度
+		slidesToShow: 1, 	// スライドを画面に見せる枚数
+		slidesToScroll: 1,  // 1回のスクロールで1枚の写真を移動して見せる
+		arrow: true, 		// 前・次の矢印表示
 
-		dots: true, //下部ドットナビゲーションの表示
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1, //画面表示刺せるスライドの数
-		slidesToScroll: 1, //1回のスクロールで3枚の写真を移動して見せる
-		arrow: true, //
 	// 	responsive: [
 	// 		{
 	// 		breakpoint: 769,//モニターの横幅が769px以下の見せ方
@@ -39,8 +35,8 @@ const SlideShow = () => {
 	// 	{
 	// 		breakpoint: 426,//モニターの横幅が426px以下の見せ方
 	// 		settings: {
-	// 			slidesToShow: 1,//スライドを画面に1枚見せる
-	// 			slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
+	// 			slidesToShow: 1,
+	// 			slidesToScroll: 1,
 	// 		}
 	// 	}
 	// ]
@@ -64,6 +60,7 @@ const SlideShow = () => {
 
     )
 }
+
 
 const ImgDesc = ({ imgPath, imgAlt }:imageType) => {
 	return(
