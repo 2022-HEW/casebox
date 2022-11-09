@@ -94,8 +94,8 @@
 }
 
 .payType {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border: #666666 solid 2px;
     border-radius: 20px;
     background-color: white;
@@ -106,8 +106,8 @@
 }
 
 .payType:active {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border: #666666 solid 2px;
     border-radius: 20px;
     background-color: white;
