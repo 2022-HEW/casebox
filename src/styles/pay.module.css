@@ -1,4 +1,4 @@
-#wrap{
+#wrap {
     background-color: none;
     display: flex;
     flex-flow: column;
@@ -7,68 +7,122 @@
     z-index: 1000;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    top: 10%;
+    top: 7%;
     right: 0%;
 }
-.block1{
+
+.block1 {
     display: flex;
     align-items: center;
     /* position: absolute; */
     /* top: 50%;
     left: 35%; */
 }
-.block2{
+
+.block2 {
     display: flex;
     align-items: center;
     /* position: absolute; */
     /* top: 50%;
     left: 35%; */
 }
-.block{
+
+.block {
     display: flex;
     align-items: center;
 }
-.block1{
+
+.block1 {
     display: flex;
     align-items: center;
 }
-.block2{
+
+.block2 {
     display: flex;
     align-items: center;
+    margin-top: 1%;
 }
-.write{
+
+.write {
     width: auto;
-    font-weight: 28px;
+    font-size: 20px;
+    font-weight: 500;
 }
-.money{
-    /* display: block;
-    float: left; */
-    width: 100px;
+
+.money {
+
+    width: 220px;
+    height: 10px;
     text-align: right;
-    background-color: violet;
-    /* font-size: ; */
+    margin-top: -5%;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    font-size: 40px;
+    font-weight: 600;
+    position: relative;
+
 }
-.en{
-    width: 50px;
+
+#back .money {
+    color: #3C67FF;
+}
+
+.en {
+    width: 60px;
+    font-size: 20px;
+    font-weight: 500;
     text-align: right;
 }
-.buttons{
+
+.buttons {
     width: 900px;
     height: 200px;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     margin-top: 4%;
     gap: 1px;
 }
-.cash{
+
+.buttons {
+    width: 900px;
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4%;
+    gap: 1px;
+
+}
+
+.payType {
     width: 180px;
     height: 180px;
-    border: #000 solid 1px;
+    border: #666666 solid 2px;
     border-radius: 20px;
     background-color: white;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: -3px -3px 4px 1px #ccc inset;
 }
-#btnname{
+
+.payType:active {
+    width: 180px;
+    height: 180px;
+    border: #666666 solid 2px;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: 3px 3px 4px 1px #ccc inset;
+}
+
+.btnContent {
+    margin-top: 4%;
+}
+
+#btnname {
     width: 100%;
     text-align: center;
-
+    font-weight: 700;
 }
