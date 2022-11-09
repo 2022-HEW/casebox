@@ -6,6 +6,7 @@ import { productState,modalState,stepState } from '../atoms/atoms';
 import { Color } from 'textalive-app-api';
 import React from 'react';
 import Modal from './common/Modal';
+import { useRouter } from 'next/router';
 // import { useRouter } from'next/router'
 
 
@@ -38,6 +39,7 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
         product_place:"",
         user_name:"",
     }
+    const router = useRouter()
 // タブを移動した際商品情報をリセット
     useEffect(()=>{
         if(tab === "手書き"){
@@ -117,7 +119,12 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                     }
                 
                     
-                    <p onClick={()=>setModal(true)}>次へ</p>
+                    <p onClick={()=>{
+                        product.product_place === "" ?
+                        setStep(4)
+                        :
+                        setModal(true)
+                    }}>次へ</p>
                 </>
                 )}
         /**
