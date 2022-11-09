@@ -25,6 +25,8 @@ type Props=  {
     const go_pay_select=()=>{
         // designがあるとき
         if(design_path !=="/design/"){
+            console.log(design_path);
+            
             router.push({
                 pathname:"pay"
             })

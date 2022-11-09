@@ -40,8 +40,9 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
     }
 // タブを移動した際商品情報をリセット
     useEffect(()=>{
-        if(tab === "手書き" && step === 1){
+        if(tab === "手書き"){
             setProduct(reset)
+            setStep(1)
         }
     },[tab])
 

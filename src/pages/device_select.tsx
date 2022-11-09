@@ -2,16 +2,9 @@ import styles from '../styles/device_select.module.css';
 import Box from '../components/common/Box';
 import Nav from '../components/common/Nav';
 import { SetStateAction, useEffect, useState } from 'react';
-import { useRecoilState,useRecoilValue } from "recoil";
-import { tabState } from '../atoms/atoms';
-import { log } from 'console';
 import Case_view from '../components/Case_view';
 import Case_edit from '../components/Case_edit';
 import useSWR from 'swr';
-import Modal from '../components/common/Modal';
-import Image from 'next/image';
-
-
 
 
 const DeviceSelect = () => {
@@ -73,6 +66,7 @@ const DeviceSelect = () => {
             Android_model_colors:Android_model_colors,
         }        
     }
+
     const {iPhone_model_names,Android_model_names,iPhone_model_colors,Android_model_colors}= getProduct()   
     // console.log(iPhone_model_names);
     // console.log(Android_model_names);
@@ -82,7 +76,7 @@ const DeviceSelect = () => {
         <Box>
             <Nav>
                 <div id={styles.wrap}>
-                     <Case_view  model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
+                    <Case_view  model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
                     select_device={select_device} type_index={type_index} color_index={color_index} setColor={setColor}/>
 
