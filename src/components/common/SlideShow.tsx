@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import styles from "../../styles/SlideShow.module.css";
 import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick-theme.css";
 
 import Image from "next/image";
 
@@ -24,8 +24,7 @@ const SlideShow = () => {
 
 		// dotsのカスタム
 		dots: true,		// 下部ドットナビゲーションの表示
-		
-
+		// dotsClass: "dots", // ドットにクラス付与
 
 		// arrowのカスタム
 		arrow: true, 		// 前・次の矢印表示
@@ -53,14 +52,16 @@ const SlideShow = () => {
 // SlideShow表示
     return(
 		<>
-			<Slider {...settings}>
-				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-			</Slider>
+			<div id={styles.SliderContainer}>
+				<Slider {...settings}>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				</Slider>
+			</div>
 		</>
     )
 }
