@@ -2,10 +2,11 @@ import styles from '../styles/device_select.module.css';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { tabState } from '../atoms/atoms';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { productState,modalState } from '../atoms/atoms';
+import { productState,modalState,stepState } from '../atoms/atoms';
 import { Color } from 'textalive-app-api';
 import React from 'react';
 import Modal from './common/Modal';
+import { useRouter } from 'next/router';
 // import { useRouter } from'next/router'
 
 
@@ -18,13 +19,14 @@ type Props = {
     }
     type_index:number
     select_device:string
+    color_index:string
     setColor:Dispatch<SetStateAction<string>>
 }
 
 
-const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_device,setColor}:Props) =>{
+const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_device,setColor,color_index}:Props) =>{
     // const router = useRouter()
-    const [step,setStep]  = useState("デバイス")
+    const [step,setStep]  = useRecoilState(stepState)
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const [modal,setModal] = useRecoilState(modalState);
@@ -37,28 +39,46 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
         product_place:"",
         user_name:"",
     }
-// 商品情報をリセット
+    const router = useRouter()
+// タブを移動した際商品情報をリセット
     useEffect(()=>{
-        if(tab === "手書き" && step === "デバイス"){
+        if(tab === "手書き"){
             setProduct(reset)
+            setStep(1)
         }
     },[tab])
 
+    /**
+     * step1
+     * @returns 
+     */
     const Device = () =>{
+        //戻るボタンの耐対策 
+        if(type_index){
+            setType(0)
+            console.log("type_index" +  type_index);   
+        }
         return(
                 <div>
-                    <p>デバイスをお選びください</p>
+                    <p >デバイスをお選びください</p>
                     <label htmlFor="iPhone">iPhone</label>
                     <input type="radio" value="iPhone" name='device' id='iPhone' onChange={(e)=>setDevice(e.target.value)} />
                     <label htmlFor="Android">Android</label>
                     <input type="radio" value="Android" name='device' id='Android' onChange={(e)=>setDevice(e.target.value)}/>
-                    <p onClick={()=>setStep("機種")}>次へ</p>
+                    <p onClick={()=>setStep(2)}>次へ</p>
                 </div>
         )
     }
 
+    /**
+     * step2
+     * @returns 
+     */
     const Type = () =>{
         // console.log(select_device);
+        if(color_index){
+            console.log("color_index:" + color_index);
+        }
         return(
             <>
                 <p>機種をお選びください</p>
@@ -70,11 +90,15 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                             </div>
                         )
                     })}
-                    <p onClick={()=>setStep("色")}>次へ</p>
+                    <p onClick={()=>setStep(3)}>次へ</p>
             </>
         )
     }
-    
+
+    /**
+     * step3
+     * @returns 
+     */
     const Color =()=>{
             console.log(model_names[type_index]);
             
@@ -95,9 +119,38 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                     }
                 
                     
-                    <p onClick={()=>setModal(true)}>次へ</p>
+                    <p onClick={()=>{
+                        product.product_place === "" ?
+                        setStep(4)
+                        :
+                        setModal(true)
+                    }}>次へ</p>
                 </>
                 )}
+        /**
+         * step4
+         */
+        const Draw =()=>{
+            setModal(false)
+            return(
+                <>
+                    <div>
+                        <p>カラー</p>
+                    </div>
+                    <div>
+                        <p>太さ</p>
+                    </div>
+                    <div>
+                        <p>えんぴつ</p>
+                    </div>
+                    <div>
+                        <p>消しゴム</p>
+                    </div>
+                    <p onClick={()=>setModal(true)}>次へ</p>
+
+                </>
+            )
+        }
     
     
     return(
@@ -105,12 +158,14 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
         <div id={styles.case_edit}>
             <h1>商品</h1>
             
-            {step === "デバイス" ?
+            {step === 1 ?
                <Device />
-            : step === "機種" ?
+            : step === 2 ?
                 <Type/>
-            : 
+            : step === 3 ?
                 <Color/>
+            :
+                <Draw/>
             }
                     
         </div>

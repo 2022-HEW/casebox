@@ -1,14 +1,13 @@
 import styles from "../../styles/nav.module.css"
 import { useRouter } from'next/router'
 import Link from "next/link"
-import { ReactNode, useState,useMemo,} from 'react';
+import { ReactNode, useState,useMemo, useRef,} from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { tabState } from '../../atoms/atoms';
-import { productState } from '../../atoms/atoms';
+import { productState,tabState,stepState } from '../../atoms/atoms';
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
-
+import { Button } from "./Button";
 
 
 
@@ -28,12 +27,18 @@ const Nav =({children}:Props)=>{
     const router = useRouter()    
     const[tab,setTab] = useRecoilState(tabState);
     const [product,setProduct] = useRecoilState(productState);
-    
+    const [step,setStep] = useRecoilState(stepState)
+
+    /**
+     * 色は反映されたまま
+     */
     const back =()=>{
-        router.back();
-        
-        console.log("error");
-        setTab("テンプレ")
+        // typeの戻る
+        if(router.pathname == "/device_select" && step>1){
+            setStep(step - 1);
+        } else{
+            router.back();        
+        }
     }
     //     
     useEffect(() => {
@@ -54,10 +59,10 @@ const Nav =({children}:Props)=>{
                     setTab("手書き")
                 }
                     break;
-            case "/service_select":
+            case "/site":
                     setTab("公式サイト")
                     break;
-            case "/service_select":
+            case "/help":
                 setTab("ヘルプ")
                 break;
             case "/pay":
@@ -89,10 +94,11 @@ const Nav =({children}:Props)=>{
                 <Tab site_link={"./template_select"} site_name={"テンプレ"}  />
                 <Tab site_link={"./scan"} site_name={"オリジナル"}  />
                 <Tab site_link={"./device_select"} site_name={"手書き"} />
-                <Tab site_link={"./site_qr"} site_name={"公式サイト"}  />
+                <Tab site_link={"./site"} site_name={"公式サイト"}  />
                 <Tab site_link={"./help"} site_name={"ヘルプ"}  />
             </div>
-            <div id={styles.back} onClick={back}>もどる</div>
+            {/* <div id={styles.back} onClick={back}>もどる</div> */}
+            <Button label="もどる" situ_name={"nav"} onClick={back}/>
         </div>
     </div>
     </div>

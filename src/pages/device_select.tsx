@@ -2,16 +2,9 @@ import styles from '../styles/device_select.module.css';
 import Box from '../components/common/Box';
 import Nav from '../components/common/Nav';
 import { SetStateAction, useEffect, useState } from 'react';
-import { useRecoilState,useRecoilValue } from "recoil";
-import { tabState } from '../atoms/atoms';
-import { log } from 'console';
 import Case_view from '../components/Case_view';
 import Case_edit from '../components/Case_edit';
 import useSWR from 'swr';
-import Modal from '../components/common/Modal';
-import Image from 'next/image';
-
-
 
 
 const DeviceSelect = () => {
@@ -73,6 +66,7 @@ const DeviceSelect = () => {
             Android_model_colors:Android_model_colors,
         }        
     }
+
     const {iPhone_model_names,Android_model_names,iPhone_model_colors,Android_model_colors}= getProduct()   
     // console.log(iPhone_model_names);
     // console.log(Android_model_names);
@@ -82,69 +76,18 @@ const DeviceSelect = () => {
         <Box>
             <Nav>
                 <div id={styles.wrap}>
-                     <Case_view  model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
+                    <Case_view  model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
                     select_device={select_device} type_index={type_index} color_index={color_index} setColor={setColor}/>
 
                     <Case_edit model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
-                    select_device={select_device} type_index={type_index} setDevice={setDevice} setType={setType} 
+                    select_device={select_device} type_index={type_index} color_index={color_index}setDevice={setDevice} setType={setType} 
                     setColor={setColor}/>
                 </div>
             </Nav>
         </Box>
     )
 }
-
-// export const getStaticProps: GetStaticProps = async() => {
-//     let device = await getDB()    
-
-//     return{
-//         props:{
-//             device,
-//         }
-//     }
-// }
-
-
-// const getDB = ()=>{
-//     // DB接続
-//     const db = mysql({
-//         config: {
-//           host: process.env.MYSQL_HOST,
-//           database: process.env.MYSQL_DATABASE,
-//           user: process.env.MYSQL_USER,
-//           password: process.env.MYSQL_PASSWORD,
-      
-//         }
-//       })
-      
-//       exports.query = async (query: any) => {
-//         try {
-//           const results = await db.query(query)
-//           await db.end()
-//           return results
-//         } catch (error) {
-//           return error
-//         }
-      
-//       }
-      
-       
-      
-//         // const router = useRouter()
-//         // let sql = router.query   
-//         // //   console.log(sql);
-//         //   const a = context.query.sql
-//         //   console.log(a);
-//         let sql = "";
-//           sql = `SELECT model_name from t_stocks`     
-//           const result = db.query(sql);
-//           console.log(typeof result);
-//           if(result){
-//               return JSON.stringify(result)
-//           }
-//       }
-    
 
 export default DeviceSelect;

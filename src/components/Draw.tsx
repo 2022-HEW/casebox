@@ -1,8 +1,11 @@
-import React, { useState,TouchEvent } from "react";
+import React, { useState } from "react";
 import { Stage, Layer, Line } from "react-konva";
 import { SketchPicker } from "react-color";
-
-const App = () => {
+import useImage from 'use-image'
+import { Image } from 'react-konva';
+import { TouchEvent } from "react";
+import styles from "../styles/draw.module.css"
+const Draw = () => {
 
   const [tool, setTool] = useState("pen");
   const [size, setSize] = useState(5);
@@ -10,51 +13,40 @@ const App = () => {
   const [lines, setLines] = useState<Array<any>>([]);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef<any>();
+  
+  const [image] = useImage("./iPhone/iPhone7/シルバー.png")
 
-  const handleMouseDown = (e:any) => {
+  const handleTouchStart = (e:any) => {
     isDrawing.current = true;
-    e.target.on("touchstart",()=>{
-        // console.log("success");
     const pos = e.target.getStage().getPointerPosition();
-
+    console.log(typeof pos);
+    
     setLines([
-        ...lines,
-        {
-          tool,
-          points: [pos.x, pos.y],
-          color,
-          size
-        }
-      ]);
-    })
-
+      ...lines,
+      {
+        tool,
+        points: [pos.x, pos.y],
+        color,
+        size
+      }
+    ]);
   };
 
-  const handleMouseMove = (e:any) => {
+  const handleTouchMove = (e:any) => {
     // no drawing - skipping
     if (!isDrawing.current) {
       return;
     }
-    e.target.on("touchmove",()=>{
-        const stage = e.target.getStage();
+    const stage = e.target.getStage();
     const point = stage.getPointerPosition();
     let lastLine = lines[lines.length - 1];
     lastLine.points = lastLine.points.concat([point.x, point.y]);
     lines.splice(lines.length - 1, 1, lastLine);
     setLines(lines.concat());
-        // console.log("x:" + point.x);
-        // console.log("y:" + point.y);
-
-        
-    })
-    
-    
   };
 
-  const handleMouseUp = (e:any) => {
-      e.target.on("touchend",()=>{
-          isDrawing.current = false;        
-    })
+  const handleTouchEnd = () => {
+    isDrawing.current = false;
   };
 
   const handleChangeComplete = (color:any) => {
@@ -64,7 +56,7 @@ const App = () => {
   return (
     <>
       <div>
-        <select
+        {/* <select
           value={tool}
           onChange={(e) => {
             setTool(e.target.value);
@@ -84,8 +76,8 @@ const App = () => {
           <option value="10">10</option>
           <option value="15">15</option>
           <option value="20">20</option>
-        </select>
-        <button
+        </select> */}
+        {/* <button
           id="save"
           onClick={() => {
             downloadURI(
@@ -98,22 +90,29 @@ const App = () => {
         >
           Save as PNG
         </button>
+        <button
+          onClick={() => {
+            let lastLine = lines[lines.length - 1];
+            setLines([
+                {position:lastLine}
+            ]);
+                }}
+        >
+          reset
+        </button> */}
       </div>
-        <div style={{display:"flex"}}>
-        <div style={{width:"500px"}}>
+        <div >
+        <div className={styles.view_box}>
           <Stage
-            width={300}
-            height={300}
-            onTouchStart={handleMouseDown}
-            onTouchMove={handleMouseMove}
-            onTouchEnd={handleMouseUp}
-            style={{
-              border: "solid",
-              marginTop: "10px"
-            }}
+            width={268}
+            height={539}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             ref={stageRef}
           >
             <Layer>
+                <Image image={image}  width={269} height={540} />
               {lines.map((line, i) => (
                 <Line
                   key={i}
@@ -130,10 +129,10 @@ const App = () => {
             </Layer>
           </Stage>
         </div>
-            <SketchPicker
+            {/* <SketchPicker
             color={color}
             onChangeComplete={handleChangeComplete}
-            />
+            /> */}
       </div>
     </>
   );
@@ -159,4 +158,4 @@ function downloadURI(uri:any, name:any) {
     return format;
   }
 
-  export default App
+  export default Draw
