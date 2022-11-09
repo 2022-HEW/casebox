@@ -17,13 +17,20 @@ const SlideShow = () => {
 	// slick option
     const settings = {
         // autoplay: true,  	// 自動的に動き出すか。
-		dots: true,		// 下部ドットナビゲーションの表示
 		infinite: true, 	// スライドをループさせるかどうか。
 		speed: 500,			// スライド、フェードアニメーションの速度
 		slidesToShow: 1, 	// スライドを画面に見せる枚数
 		slidesToScroll: 1,  // 1回のスクロールで1枚の写真を移動して見せる
-		arrow: true, 		// 前・次の矢印表示
 
+		// dotsのカスタム
+		dots: true,		// 下部ドットナビゲーションの表示
+		
+
+
+		// arrowのカスタム
+		arrow: true, 		// 前・次の矢印表示
+		prevArrow: <button type="button" className={styles.nextArrow}>前の画像</button>,
+		nextArrow: <button type="button" className={styles.nextArrow}>次の画像</button>,
 	// 	responsive: [
 	// 		{
 	// 		breakpoint: 769,//モニターの横幅が769px以下の見せ方
@@ -46,16 +53,14 @@ const SlideShow = () => {
 // SlideShow表示
     return(
 		<>
-			<div id={styles.slider}>
-				<Slider {...settings}>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				</Slider>
-            </div>
+			<Slider {...settings}>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+			</Slider>
 		</>
     )
 }
