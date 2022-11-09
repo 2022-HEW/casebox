@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import styles from "../../styles/SlideShow.module.css";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 import Image from "next/image";
 
@@ -17,7 +17,7 @@ const SlideShow = () => {
 	// slick option
     const settings = {
         // autoplay: true,  	// 自動的に動き出すか。
-		dots: false,		// 下部ドットナビゲーションの表示
+		dots: true,		// 下部ドットナビゲーションの表示
 		infinite: true, 	// スライドをループさせるかどうか。
 		speed: 500,			// スライド、フェードアニメーションの速度
 		slidesToShow: 1, 	// スライドを画面に見せる枚数
@@ -57,7 +57,6 @@ const SlideShow = () => {
 				</Slider>
             </div>
 		</>
-
     )
 }
 
