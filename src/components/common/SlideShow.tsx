@@ -4,9 +4,14 @@ import styles from "../../styles/SlideShow.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// type Props={
-	
-// }
+import Image from "next/image";
+
+// Imageの型定義
+type imageType={
+	imgPath: string,
+	imgAlt: string,
+}
+
 const SlideShow = () => {
     const settings = {
         // autoplay: true, //自動的に動き出すか。初期値はfalse。
@@ -44,47 +49,30 @@ const SlideShow = () => {
     };
 
     return(
-            <div id={styles.slider}>
+		<>
+			<div id={styles.slider}>
 				<Slider {...settings}>
-					<div>
-						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
-					</div>
-
-					<div>
-						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
-					</div>
-
-					<div>
-						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
-					</div>
-
-					<div>
-						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
-					</div>
-
-					<div>
-						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
-					</div>
-
-					<div>
-						<img className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" />
-					</div>
+					<ImageDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImageDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImageDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImageDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImageDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImageDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
 				</Slider>
             </div>
+		</>
+
     )
+}
 
-	type imageType={
-		imgPath: string,
-		imgAlt: string,
-	}
-
-	const imageDesc = ({ imgPath,imgAlt }: imageType) => {
+const ImageDesc = ({ imgPath,imgAlt }:imageType) => {
+	return(
 		<>
-			<div>
-				<img className={styles.slideImg} />
+			<div className={styles.imgContainer}>
+				<Image className={styles.slideImg} src={imgPath} alt={imgAlt}/>
 			</div>
 		</>
-	}
+	)
 }
 
 export default SlideShow;
