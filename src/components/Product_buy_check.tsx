@@ -17,6 +17,7 @@ type Props=  {
  const Product_buy_check = ({image_path,design_path,type_name,color_name,product_price}:Props) => {
     const router = useRouter()
     
+    
 
     const go_pay_select=()=>{
             router.push({

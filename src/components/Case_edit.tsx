@@ -1,10 +1,10 @@
 import styles from '../styles/device_select.module.css';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { tabState } from '../atoms/atoms';
 import { useRecoilState,useRecoilValue } from "recoil";
 import { 
         productState,modalState,stepState, 
-        toolState,sizeState,colorState
+        toolState,sizeState,colorState,downloadState
     } from '../atoms/atoms';
 import { Color } from 'textalive-app-api';
 import React from 'react';
@@ -41,6 +41,7 @@ const Case_edit =({
     const [tool,setTool] = useRecoilState(toolState)
     const [size,setSize] = useRecoilState(sizeState)
     const [drawcolor,setDrawcolor] = useRecoilState(colorState)
+    const [download,setDownload] = useRecoilState(downloadState)
     const reset = {
         m_product_category:"",
         m_product_price:1500,
@@ -146,6 +147,7 @@ const Case_edit =({
          */
         const Draw_edit =()=>{
             
+            
             return(
             <div className={styles.draw_edit_box}>    
                 <div className={styles.tool_box}>
@@ -194,11 +196,10 @@ const Case_edit =({
                     </div>
 
                 </div>
-                    <Button onClick={()=>setModal(true)} label="次へ" situ_name="screen"/>
+                    <Button onClick={()=>setDownload(true)} label="次へ" situ_name="screen"/>
                 </div>
             )
         }
-
             
     return(
         //  デバイスを選択するエリア(コンポーネントに分ける) 

@@ -55,3 +55,32 @@ export const colorState = atom({
     key: "color",
     default: "#000"
 });
+
+// 手書きデザイン保存
+export const downloadState = atom({
+    key: "download",
+    default: false
+    // default: {
+        // current:[],
+        // _id:
+        // eventListeners:
+        // attrs:
+        // index:
+        // _allEventListeners: 
+        // parent: 
+        // _cache: 
+        // _attachedDepsListeners:
+        // _batchingTransformChange: 
+        // needClearTransformCache: 
+        // _filterUpToDate: 
+        // _isUnderCache: 
+        // _dragEventId: 
+        // _shouldFireChangeEvents: 
+        // children: 
+        // _pointerPositions: 
+        // _changedPointerPositions: 
+        // bufferCanvas: 
+        // bufferHitCanvas:
+        // content:
+    // }
+});

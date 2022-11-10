@@ -1,8 +1,8 @@
 import styles from '../styles/device_select.module.css';
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { useRouter } from'next/router'
 import { useRecoilValue } from "recoil";
-import { productState,stepState } from '../atoms/atoms';
+import { productState,stepState,downloadState } from '../atoms/atoms';
 import Image from "next/image"
 import Modal from './common/Modal';
 import Product_buy_check from './Product_buy_check';
@@ -27,14 +27,15 @@ const Case_view = ({model_names,select_device,type_index,model_colors,color_inde
     //値段だけでいいかも
     const product_info = useRecoilValue(productState)
     const step  = useRecoilValue(stepState)
-
+    const download = useRecoilValue(downloadState)
+    const [downloadPath,setDownloadPath]=useState("") 
 
     useEffect(()=>{
         setColor(model_colors[model_names[type_index] + "(1)"])
-        console.log(model_colors);
-        console.log(model_names);
+        // console.log(model_colors);
+        // console.log(model_names);
     },[type_index ,select_device])
-        console.log(product_info);
+        // console.log(product_info);
         // console.log(iPhone_colors);
         // console.log(types);
         
@@ -44,7 +45,7 @@ const Case_view = ({model_names,select_device,type_index,model_colors,color_inde
         <div id={styles.case_view}>
             {/* 手書きかどうか */}
             {step === 4 ?
-                <Draw/> 
+                <Draw setDownloadPath={setDownloadPath}/> 
             :
                 <Image src={`/${select_device}/${model_names[type_index]}/${color_index}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/>
             }
@@ -56,7 +57,7 @@ const Case_view = ({model_names,select_device,type_index,model_colors,color_inde
             }
             
             <Modal>
-                    <Product_buy_check image_path={`/${select_device}/${model_names[type_index]}/${color_index}.png`} 
+                    <Product_buy_check image_path={download ? downloadPath :`/${select_device}/${model_names[type_index]}/${color_index}.png`} 
                     design_path={`/design/${product_info.product_place}`} 
                     type_name={model_names[type_index]} color_name={color_index} 
                     product_price={product_info.m_product_price} />

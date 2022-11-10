@@ -1,7 +1,7 @@
 import styles from '../styles/device_select.module.css';
 import Box from '../components/common/Box';
 import Nav from '../components/common/Nav';
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Case_view from '../components/Case_view';
 import Case_edit from '../components/Case_edit';
 import useSWR from 'swr';
@@ -18,9 +18,11 @@ const DeviceSelect = () => {
     }
     const [select_device, setDevice] = useState("iPhone")  
     const [color_index,setColor] = useState("");
-    const [type_index,setType] = useState(0)
-    const [tool, setTool] = useState("pen");
-    const [size, setSize] = useState(5);
+    const [type_index,setType] = useState(0);
+    const stageRef = useRef()
+        useEffect(()=>{
+            console.log(stageRef.current);
+        },[stageRef])
 
 
     
@@ -81,7 +83,8 @@ const DeviceSelect = () => {
                 <div id={styles.wrap}>
                     <Case_view  model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
-                    select_device={select_device} type_index={type_index} color_index={color_index} setColor={setColor}/>
+                    select_device={select_device} type_index={type_index} color_index={color_index} setColor={setColor}
+                    />
 
                     <Case_edit model_names={select_device === "iPhone" ? iPhone_model_names:Android_model_names} 
                     model_colors={select_device === "iPhone" ? iPhone_model_colors:Android_model_colors} 
