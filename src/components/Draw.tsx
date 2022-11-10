@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { Stage, Layer, Line } from "react-konva";
 import { SketchPicker } from "react-color";
 import useImage from 'use-image'
 import { Image } from 'react-konva';
 import { TouchEvent } from "react";
 import styles from "../styles/draw.module.css"
+import { useRecoilState,useRecoilValue } from "recoil";
+import { toolState,sizeState,colorState } from '../atoms/atoms';
+
 const Draw = () => {
 
-  const [tool, setTool] = useState("pen");
-  const [size, setSize] = useState(5);
-  const [color, setColor] = useState("#000000");
+  const tool = useRecoilValue(toolState);
+  const size = useRecoilValue(sizeState);
+  const [color, setColor] = useRecoilState(colorState);
   const [lines, setLines] = useState<Array<any>>([]);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef<any>();
@@ -53,53 +56,19 @@ const Draw = () => {
     setColor(color.hex);
   };
 
+  const Download= ()=>{
+    downloadURI(
+                    stageRef.current
+                      .getStage()
+                      .toDataURL({ mimeType: "image/png", quality: 1.0 }),
+                    "export_" + formatDate(new Date(), "yyyyMMddHHmmssSSS") + ".png"
+                  );
+  }
+
   return (
     <>
       <div>
-        {/* <select
-          value={tool}
-          onChange={(e) => {
-            setTool(e.target.value);
-          }}
-        >
-          <option value="pen">ペン</option>
-          <option value="eraser">消しゴム</option>
-        </select>
-        <select
-          value={size}
-          onChange={(e) => {
-            setSize(Number(e.target.value));
-          }}
-        >
-          <option value="3">3</option>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select> */}
-        {/* <button
-          id="save"
-          onClick={() => {
-            downloadURI(
-              stageRef.current
-                .getStage()
-                .toDataURL({ mimeType: "image/png", quality: 1.0 }),
-              "export_" + formatDate(new Date(), "yyyyMMddHHmmssSSS") + ".png"
-            );
-          }}
-        >
-          Save as PNG
-        </button>
-        <button
-          onClick={() => {
-            let lastLine = lines[lines.length - 1];
-            setLines([
-                {position:lastLine}
-            ]);
-                }}
-        >
-          reset
-        </button> */}
+        
       </div>
         <div >
         <div className={styles.view_box}>
@@ -113,6 +82,8 @@ const Draw = () => {
           >
             <Layer>
                 <Image image={image}  width={269} height={540} />
+            </Layer>
+            <Layer>
               {lines.map((line, i) => (
                 <Line
                   key={i}
@@ -139,23 +110,23 @@ const Draw = () => {
 };
 
 function downloadURI(uri:any, name:any) {
-    var link = document.createElement("a");
-    link.download = name;
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-  
-  function formatDate(date:any, format:any) {
-    format = format.replace(/yyyy/g, date.getFullYear());
-    format = format.replace(/MM/g, ("0" + (date.getMonth() + 1)).slice(-2));
-    format = format.replace(/dd/g, ("0" + date.getDate()).slice(-2));
-    format = format.replace(/HH/g, ("0" + date.getHours()).slice(-2));
-    format = format.replace(/mm/g, ("0" + date.getMinutes()).slice(-2));
-    format = format.replace(/ss/g, ("0" + date.getSeconds()).slice(-2));
-    format = format.replace(/SSS/g, ("00" + date.getMilliseconds()).slice(-3));
-    return format;
-  }
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+function formatDate(date:any, format:any) {
+  format = format.replace(/yyyy/g, date.getFullYear());
+  format = format.replace(/MM/g, ("0" + (date.getMonth() + 1)).slice(-2));
+  format = format.replace(/dd/g, ("0" + date.getDate()).slice(-2));
+  format = format.replace(/HH/g, ("0" + date.getHours()).slice(-2));
+  format = format.replace(/mm/g, ("0" + date.getMinutes()).slice(-2));
+  format = format.replace(/ss/g, ("0" + date.getSeconds()).slice(-2));
+  format = format.replace(/SSS/g, ("00" + date.getMilliseconds()).slice(-3));
+  return format;
+}
 
   export default Draw

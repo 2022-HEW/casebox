@@ -38,12 +38,20 @@ export const stepState = atom({
     default: 1
 });
 
+// 手書きツール
+export const toolState = atom({
+    key: "tool",
+    default: "pen"
+});
 
-//user
-export const userState = atom({
-    key: "user",
-    default: {
-        name: "hoge",
-        age: 11
-    }
+// 手書きサイズ
+export const sizeState = atom({
+    key: "size",
+    default: 5
+});
+
+// 手書き色
+export const colorState = atom({
+    key: "color",
+    default: "#000"
 });
