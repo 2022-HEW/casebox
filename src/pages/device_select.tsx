@@ -5,6 +5,10 @@ import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Case_view from '../components/Case_view';
 import Case_edit from '../components/Case_edit';
 import useSWR from 'swr';
+import { useRecoilState,useRecoilValue } from "recoil";
+import { productState,stepState,tabState} from '../atoms/atoms';
+
+
 
 
 const DeviceSelect = () => {
@@ -19,10 +23,29 @@ const DeviceSelect = () => {
     const [select_device, setDevice] = useState("iPhone")  
     const [color_index,setColor] = useState("");
     const [type_index,setType] = useState(0);
-    const stageRef = useRef()
-        useEffect(()=>{
-            console.log(stageRef.current);
-        },[stageRef])
+    const [step,setStep]  = useRecoilState(stepState)
+    const tab = useRecoilValue(tabState);
+    const [product,setProduct] = useRecoilState(productState);
+    const reset = {
+        m_product_category:"",
+        m_product_price:1500,
+        product_ID:0,
+        product_liked:0,
+        product_name:"",
+        product_place:"",
+        user_name:"",
+    }
+
+    // タブを移動した際リセット
+useEffect(()=>{
+    if(tab === "手書き"){
+        setProduct(reset)
+        setDevice("iPhone")
+        setColor("")
+        setType(0)
+    }
+        setStep(1)
+},[tab])
 
 
     

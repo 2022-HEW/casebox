@@ -8,7 +8,6 @@ import {
     } from '../atoms/atoms';
 import { Color } from 'textalive-app-api';
 import React from 'react';
-import Modal from './common/Modal';
 import { useRouter } from 'next/router';
 import  {Button}  from "./common/Button"
 
@@ -52,13 +51,7 @@ const Case_edit =({
         user_name:"",
     }
     const router = useRouter()
-// タブを移動した際商品情報をリセット
-    useEffect(()=>{
-        if(tab === "手書き"){
-            setProduct(reset)
-        }
-            setStep(1)
-    },[tab])
+
 
     /**
      * step1
