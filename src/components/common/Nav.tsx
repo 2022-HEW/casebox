@@ -3,7 +3,7 @@ import { useRouter } from'next/router'
 import Link from "next/link"
 import { ReactNode, useState,useMemo, useRef,} from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { productState,tabState,stepState } from '../../atoms/atoms';
+import { productState,tabState,stepState,modalState } from '../../atoms/atoms';
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
@@ -28,17 +28,25 @@ const Nav =({children}:Props)=>{
     const[tab,setTab] = useRecoilState(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const [step,setStep] = useRecoilState(stepState)
+    const[modal,setModal] = useRecoilState(modalState)
 
     /**
      * 色は反映されたまま
      */
     const back =()=>{
+        // modalの戻る
+        if(modal){
+            setModal(false)
+            return;
+        }
+        
         // typeの戻る
         if(router.pathname == "/device_select" && step>1){
             setStep(step - 1);
         } else{
             router.back();        
         }
+
     }
     //     
     useEffect(() => {
