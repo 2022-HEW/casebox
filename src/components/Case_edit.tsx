@@ -2,11 +2,16 @@ import styles from '../styles/device_select.module.css';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { tabState } from '../atoms/atoms';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { productState,modalState,stepState } from '../atoms/atoms';
+import { 
+        productState,modalState,stepState, 
+        toolState,sizeState,colorState
+    } from '../atoms/atoms';
 import { Color } from 'textalive-app-api';
 import React from 'react';
 import Modal from './common/Modal';
 import { useRouter } from 'next/router';
+import  {Button}  from "./common/Button"
+
 // import { useRouter } from'next/router'
 
 
@@ -24,12 +29,18 @@ type Props = {
 }
 
 
-const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_device,setColor,color_index}:Props) =>{
+const Case_edit =({
+    setDevice,setType,model_names,model_colors,
+    type_index,select_device,setColor,color_index,
+}:Props) =>{
     // const router = useRouter()
     const [step,setStep]  = useRecoilState(stepState)
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const [modal,setModal] = useRecoilState(modalState);
+    const [tool,setTool] = useRecoilState(toolState)
+    const [size,setSize] = useRecoilState(sizeState)
+    const [drawcolor,setDrawcolor] = useRecoilState(colorState)
     const reset = {
         m_product_category:"",
         m_product_price:1500,
@@ -65,7 +76,7 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                     <input type="radio" value="iPhone" name='device' id='iPhone' onChange={(e)=>setDevice(e.target.value)} />
                     <label htmlFor="Android">Android</label>
                     <input type="radio" value="Android" name='device' id='Android' onChange={(e)=>setDevice(e.target.value)}/>
-                    <p onClick={()=>setStep(2)}>次へ</p>
+                    <Button onClick={()=>setStep(2)} label="次へ" situ_name="screen"/>
                 </div>
         )
     }
@@ -90,7 +101,7 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                             </div>
                         )
                     })}
-                    <p onClick={()=>setStep(3)}>次へ</p>
+                    <Button onClick={()=>setStep(3)} label="次へ" situ_name="screen"/>
             </>
         )
     }
@@ -119,40 +130,76 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
                     }
                 
                     
-                    <p onClick={()=>{
+                    <Button onClick={()=>{
                         product.product_place === "" ?
                         setStep(4)
                         :
                         setModal(true)
-                    }}>次へ</p>
+                    }}
+                    label="次へ"
+                    situ_name='screen'
+                    />
                 </>
                 )}
         /**
          * step4
          */
-        const Draw =()=>{
-            setModal(false)
+        const Draw_edit =()=>{
+            
             return(
-                <>
+            <div className={styles.draw_edit_box}>    
+                <div className={styles.tool_box}>
+                <select
+                    value={size}
+                    onChange={(e) => {
+                    setSize(Number(e.target.value));
+                    }}
+                >
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select> 
+               <button
+                id="save"
+                onClick={()=>{}}>
+                Save as PNG
+              </button>
+              {/* <button
+                onClick={() => {
+                  let lastLine = lines[lines.length - 1];
+                  setLines([
+                      {position:lastLine}
+                  ]);
+                      }}
+              >
+                reset
+              </button> */}
                     <div>
                         <p>カラー</p>
                     </div>
                     <div>
                         <p>太さ</p>
                     </div>
-                    <div>
+                    <div onClick={()=>{
+                        setTool("pen");
+                    }}>
                         <p>えんぴつ</p>
                     </div>
-                    <div>
+                    <div onClick={()=>{
+                        setTool("eraser");
+                    }}>
                         <p>消しゴム</p>
                     </div>
-                    <p onClick={()=>setModal(true)}>次へ</p>
 
-                </>
+                </div>
+                    <Button onClick={()=>setModal(true)} label="次へ" situ_name="screen"/>
+                </div>
             )
         }
-    
-    
+
+            
     return(
         //  デバイスを選択するエリア(コンポーネントに分ける) 
         <div id={styles.case_edit}>
@@ -165,7 +212,7 @@ const Case_edit =({setDevice,setType,model_names,model_colors,type_index,select_
             : step === 3 ?
                 <Color/>
             :
-                <Draw/>
+                <Draw_edit/>
             }
                     
         </div>
