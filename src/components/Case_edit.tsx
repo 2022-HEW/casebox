@@ -56,8 +56,8 @@ const Case_edit =({
     useEffect(()=>{
         if(tab === "手書き"){
             setProduct(reset)
-            setStep(1)
         }
+            setStep(1)
     },[tab])
 
     /**

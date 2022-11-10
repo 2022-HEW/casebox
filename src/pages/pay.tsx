@@ -11,6 +11,7 @@ import { productState } from '../atoms/atoms';
 
 
 const pay = () => {
+    // 今までの情報をリセット
     return (
         <Box>
             <Nav >
