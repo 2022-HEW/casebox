@@ -41,7 +41,6 @@ useEffect(()=>{
     if(tab === "手書き"){
         setProduct(reset)
         setDevice("iPhone")
-        setColor("")
         setType(0)
     }
         setStep(1)
