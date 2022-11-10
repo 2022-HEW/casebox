@@ -45,7 +45,7 @@ const Case_view = ({model_names,select_device,type_index,model_colors,color_inde
         <div id={styles.case_view}>
             {/* 手書きかどうか */}
             {step === 4 ?
-                <Draw setDownloadPath={setDownloadPath}/> 
+                <Draw setDownloadPath={setDownloadPath} image_path={`/${select_device}/${model_names[type_index]}/${color_index}.png`}/> 
             :
                 <Image src={`/${select_device}/${model_names[type_index]}/${color_index}.png`} alt="スマホ" width={500} height={579} objectFit='contain'/>
             }

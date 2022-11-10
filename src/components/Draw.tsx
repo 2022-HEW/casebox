@@ -9,7 +9,12 @@ import { useRecoilState,useRecoilValue } from "recoil";
 import { toolState,sizeState,colorState,downloadState,modalState } from '../atoms/atoms';
 import { forwardRef } from "react";
 
-const Draw = ({setDownloadPath}:{setDownloadPath:Dispatch<SetStateAction<string>>}) => {
+type Props={
+  setDownloadPath:Dispatch<SetStateAction<string>>
+  image_path:string
+}
+
+const Draw = ({setDownloadPath,image_path}:Props) => {
 
  
   const tool = useRecoilValue(toolState);
@@ -21,7 +26,7 @@ const Draw = ({setDownloadPath}:{setDownloadPath:Dispatch<SetStateAction<string>
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef<any>();
   
-  const [image] = useImage("./iPhone/iPhone7/シルバー.png")
+  const [image] = useImage(image_path)
 
   const handleTouchStart = (e:any) => {
     isDrawing.current = true;
