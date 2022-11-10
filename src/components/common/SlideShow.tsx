@@ -28,8 +28,6 @@ const SlideShow = () => {
 
 		// arrowのカスタム
 		arrow: true, 		// 前・次の矢印表示
-		prevArrow: <button type="button" className={styles.nextArrow}>前の画像</button>,
-		nextArrow: <button type="button" className={styles.nextArrow}>次の画像</button>,
 	// 	responsive: [
 	// 		{
 	// 		breakpoint: 769,//モニターの横幅が769px以下の見せ方
@@ -70,7 +68,7 @@ const SlideShow = () => {
 const ImgDesc = ({ imgPath, imgAlt }:imageType) => {
 	return(
 		<div className={styles.imgContainer}>
-			<Image className={styles.slideImg} src={imgPath} alt={imgAlt} width={525} height={270} />
+			<Image className={styles.slideImg} src={imgPath} alt={imgAlt} width={525} height={270}/>
 		</div>
 	)
 }
