@@ -3,7 +3,8 @@
     ===================================*/
 
     #SliderContainer > *{
-        max-width: 600px;
+        max-width: 525px;
+        margin: 0 auto;
     }
 
     .slider { /*横幅94%で左右に余白を持たせて中央寄せ*/
@@ -64,7 +65,6 @@
     }
     
     .slick-dots button {
-        color: transparent;
         outline: none;
         width: 8px; /*ドットボタンのサイズ*/
         height: 8px; /*ドットボタンのサイズ*/
@@ -76,4 +76,9 @@
     
     .slick-dots .slick-active button {
         background: #333; /*ドットボタンの現在地表示の色*/
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: yellow;
     }
