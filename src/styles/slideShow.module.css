@@ -1,7 +1,11 @@
     /*==================================================
     スライダーのためのcss
     ===================================*/
-    
+
+    #SliderContainer > *{
+        max-width: 600px;
+    }
+
     .slider { /*横幅94%で左右に余白を持たせて中央寄せ*/
         width: 94%;
         margin: 20px auto 0 auto;
@@ -23,19 +27,19 @@
     /*戻る、次へ矢印の位置*/
     .slick-prev,
     .slick-next {
-        /* position: absolute; 絶対配置にする */
-        /* top: 42%; */
-        /* cursor: pointer; マウスカーソルを指マークに */
-        /* outline: none; クリックをしたら出てくる枠線を消す */
-        /* border-top: 5px solid #000; 矢印の色 */
-        /* border-right: 5px solid #000; 矢印の色 */
-        /* border-bottom-right-radius: 2px;
+        position: absolute; /* 絶対配置にする */
+        top: 42%;
+        cursor: pointer; /*マウスカーソルを指マークに */
+        outline: none; /* クリックをしたら出てくる枠線を消す*/
+        border-top: 5px solid #000; /* 矢印の色 */
+        border-right: 5px solid #000; /* 矢印の色 */
+        border-bottom-right-radius: 2px;
         border-bottom-left-radius: 2px;
         border-top-left-radius: 2px;
         border-top-right-radius: 2px;
         transform: rotate(45deg);
         height: 15px;
-        width: 15px; */
+        width: 15px;
     }
 
     .slick-prev { /*戻る矢印の位置と形状*/
