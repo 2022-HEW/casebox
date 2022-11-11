@@ -8,7 +8,44 @@ import Modal from "../components/common/Modal";
 import Product_check from "../components/Product_check";
 import { useRecoilState } from "recoil";
 import { modalState } from '../atoms/atoms';
+import useSWR from "swr";
 
+/**
+ * 商品情報を表示する
+ * @returns 
+ */
+ type Product = {
+  id:number,
+  image_path:string,
+  case_name:string,
+  case_category:string,
+  case_price:number,
+  // modal_flg:boolean,
+  // setModal:React.Dispatch<React.SetStateAction<boolean>>
+  setProduct_ID:React.Dispatch<React.SetStateAction<number>>
+}
+
+// const Product_box = forwardRef<HTMLDivElement, Product>(
+//   (props,ref)=> {    
+// const Product_box =({id,image_path,case_name,case_category,case_price,modal_flg,setModal,setProduct_ID}:Product)=> {
+const Product_box =({id,image_path,case_name,case_category,case_price,setProduct_ID}:Product)=> {
+  const[modal,setModal] = useRecoilState(modalState) 
+// モーダルを動かして、商品IDを送る
+function Modal_toggle(e:React.MouseEvent<HTMLDivElement>){
+  setModal(!modal)    
+  setProduct_ID(id)
+};
+
+return(
+      // <div className={styles.product_box} ref={ref} >
+      <div className={styles.product_box} onClick={Modal_toggle} >
+          <img src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100}/>
+          <p className="case_name">{case_name}</p>
+          <p className="case_category">{case_category}</p>
+          <p className="case_price">{case_price}</p>
+      </div>
+  )
+}
 
 const Template = () => {
   type Product ={
@@ -21,28 +58,24 @@ const Template = () => {
   }
     const router = useRouter();    
     const [product, setProduct] = useState([])
-    const [sql_flg, setSql]= useState("template");
-    // const [modal_flg,setModal] = useState(false)
     const [product_ID, setProduct_ID] = useState(-1)
-    // const modalEl = useRef<HTMLDivElement>(null);
-    
-    // DOM取得
-    // useEffect(()=>{
-    //   let modal_dom = modalEl.current      
-    // },[product])
-
-
+    async function fetcher(url: string): Promise<boolean | null > {
+      const response = await fetch(url);
+      return response.json();
+  }
+  const { data } = useSWR<any>(`/api/Sql?sql=template`,fetcher) 
+  
     // DBから取得
-    useEffect(() => {
-      const fetchProduct = async () => {
-        const response = await fetch(`/api/Sql?sql=${sql_flg}`)
-        const data = await response.json()
+    useEffect(()=>{
+      if(data){
         setProduct(data)
+      }
+    },[data])
+      // 取得するまで
+    if(!data) return (<Box><Nav><></></Nav></Box>)
+
           // console.log(product);
         //   console.log(data[0].product_ID);
-      }
-      fetchProduct()
-    },[sql_flg])
 
     return(
         <>
@@ -73,42 +106,7 @@ const Template = () => {
     )
 }
 
-/**
- * 商品情報を表示する
- * @returns 
- */
-type Product = {
-    id:number,
-    image_path:string,
-    case_name:string,
-    case_category:string,
-    case_price:number,
-    // modal_flg:boolean,
-    // setModal:React.Dispatch<React.SetStateAction<boolean>>
-    setProduct_ID:React.Dispatch<React.SetStateAction<number>>
-}
 
-// const Product_box = forwardRef<HTMLDivElement, Product>(
-//   (props,ref)=> {    
-// const Product_box =({id,image_path,case_name,case_category,case_price,modal_flg,setModal,setProduct_ID}:Product)=> {
-  const Product_box =({id,image_path,case_name,case_category,case_price,setProduct_ID}:Product)=> {
-    const[modal,setModal] = useRecoilState(modalState) 
-  // モーダルを動かして、商品IDを送る
-  function Modal_toggle(e:React.MouseEvent<HTMLDivElement>){
-    setModal(!modal)    
-    setProduct_ID(id)
-  };
-
-  return(
-        // <div className={styles.product_box} ref={ref} >
-        <div className={styles.product_box} onClick={Modal_toggle} >
-            <img src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100}/>
-            <p className="case_name">{case_name}</p>
-            <p className="case_category">{case_category}</p>
-            <p className="case_price">{case_price}</p>
-        </div>
-    )
-}
 // });
 
 
