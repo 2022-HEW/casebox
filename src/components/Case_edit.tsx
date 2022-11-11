@@ -41,6 +41,7 @@ const Case_edit =({
     const [size,setSize] = useRecoilState(sizeState)
     const [drawcolor,setDrawcolor] = useRecoilState(colorState)
     const [download,setDownload] = useRecoilState(downloadState)
+    const [colorPallet,setColorPallet] = useState(false); 
     const reset = {
         m_product_category:"",
         m_product_price:1500,
@@ -105,7 +106,6 @@ const Case_edit =({
      * @returns 
      */
     const Color =()=>{
-            console.log(model_names[type_index]);
             
         return(
                 <>
@@ -139,28 +139,18 @@ const Case_edit =({
          * step4
          */
         const Draw_edit =()=>{
+
+            const ToolDetail = ()=>{
+
+                return(
+                <>
+                </>)
+            }
             
             
             return(
             <div className={styles.draw_edit_box}>    
                 <div className={styles.tool_box}>
-                <select
-                    value={size}
-                    onChange={(e) => {
-                    setSize(Number(e.target.value));
-                    }}
-                >
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select> 
-               <button
-                id="save"
-                onClick={()=>{}}>
-                Save as PNG
-              </button>
               {/* <button
                 onClick={() => {
                   let lastLine = lines[lines.length - 1];
@@ -171,12 +161,20 @@ const Case_edit =({
               >
                 reset
               </button> */}
-                    <div>
+                    <div style={{display:"flex"}} onClick={()=>{setColorPallet(!colorPallet)}}>
+                        <div className={styles.color_trigger}></div> 
                         <p>カラー</p>
                     </div>
-                    <div>
+                    <div style={{display:"flex"}}>
+                        <input type="radio"  id="small" name="weight" className={styles.weight} value={10} onChange={(e) => {setSize(Number(e.target.value));}} /> 
+                        <label htmlFor='small' className={styles.label}>◯</label>
+                        <input type="radio"  id="normal" name="weight" className={styles.weight} value={20} onChange={(e) => {setSize(Number(e.target.value));}} /> 
+                        <label htmlFor='normal' className={styles.label}>◯</label>
+                        <input type="radio"  id="bold" name="weight" className={styles.weight} value={30} onChange={(e) => {setSize(Number(e.target.value));}} /> 
+                        <label htmlFor='bold' className={styles.label}>◯</label>
                         <p>太さ</p>
                     </div>
+
                     <div onClick={()=>{
                         setTool("pen");
                     }}>
@@ -187,13 +185,37 @@ const Case_edit =({
                     }}>
                         <p>消しゴム</p>
                     </div>
-
                 </div>
+                    <ColorPallet/>
                     <Button onClick={()=>setDownload(true)} label="次へ" situ_name="screen"/>
                 </div>
             )
         }
-            
+    
+    
+const ColorPallet = ()=>{
+    const colors = ["#000","#FF7C7C","#FFCA7A","#FCFF7D","#F1FF9A",
+                    "#FFCA7A","#FCFF7D","#F1FF9A","#A1FF81","#95FFF9",
+                    "#52B576","#8BC7FF","#B479FF","#FC7BFF","#FFBEED",
+                    "#F9F0C5","#999999","#EBEBEB"]
+
+    return(
+    <div className={styles.color_pallet}>
+        {colors.map((value:string,index:number)=>{
+            return (
+                <div key={index} >
+                    <label style={{background:`${value}`}} className={styles.color_category}>
+                        　
+                        <input type="radio" name='color' value={value} id={`${index}`} onChange={(e)=>setDrawcolor(e.target.value)}/>
+                    {index === 8 && <br/>}
+                    </label>
+                </div>
+            )
+        }
+        )}
+    </div>)
+}
+
     return(
         //  デバイスを選択するエリア(コンポーネントに分ける) 
         <div id={styles.case_edit}>
@@ -211,6 +233,9 @@ const Case_edit =({
                     
         </div>
     )
+
+    
 }
 
-export default Case_edit
+
+export default React.memo(Case_edit)

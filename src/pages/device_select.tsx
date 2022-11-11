@@ -7,6 +7,7 @@ import Case_edit from '../components/Case_edit';
 import useSWR from 'swr';
 import { useRecoilState,useRecoilValue } from "recoil";
 import { productState,stepState,tabState} from '../atoms/atoms';
+import React from 'react';
 
 
 
@@ -118,4 +119,4 @@ useEffect(()=>{
     )
 }
 
-export default DeviceSelect;
+export default React.memo(DeviceSelect);
