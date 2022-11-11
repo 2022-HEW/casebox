@@ -28,7 +28,6 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
 
   const [image] = useImage(image_path)
   const [camera] = useImage(camera_image_path)
-  console.log(camera_image_path);
   
 
 
@@ -86,9 +85,8 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
     }
   },[modal])
 
-
-  
-  
+    // console.log(stageRef.current.getStage().toJSON());
+    
 
   return (
     <>
@@ -111,6 +109,8 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
             <Layer>
               {lines.map((line, i) => (
                 <Line
+                draggable={true}
+
                   key={i}
                   points={line.points}
                   stroke={line.color}
