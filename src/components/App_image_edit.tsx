@@ -27,12 +27,15 @@ function App_image_edit() {
     const image_height = window.innerHeight-200
     const image_width = image_height * 269/540
     const stageRef = useRef<any>(null);
+    const [item,setItem] = useState(1)
     let lastCenter: { x: number; y: number; } | null = null;
     let lastDist = 0;
   
 
   function handleTouch(e:any) {
     e.evt.preventDefault();
+    setItem(e.target.index);
+    
     let touch1 = e.evt.touches[0];
     let touch2 = e.evt.touches[1];
     const stage:any = stageRef.current;
@@ -110,8 +113,15 @@ function App_image_edit() {
         onTouchMove={handleTouch}
         onTouchEnd={handleTouchEnd}
         draggable={true}
-        ref={stageRef}
+        ref={item === 1 ? stageRef:null}
     />
+    <Image image={image} width={100} height={100} 
+        onTouchMove={handleTouch}
+        onTouchEnd={handleTouchEnd}
+        draggable={true}
+        ref={item === 2 ? stageRef:null}
+    />
+    
     </Layer>
    </Stage>
  )
