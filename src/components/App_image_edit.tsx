@@ -1,5 +1,5 @@
 import Konva from 'konva';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Stage, Layer } from 'react-konva';
 import { Image } from 'react-konva';
 import useImage from 'use-image';
@@ -21,12 +21,15 @@ function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; })
 }
 
 
-function App_image_edit() {
+function App_image_edit({save}:{save:boolean}) {
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
+    // const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
+    
     // header,footer文
     const image_height = window.innerHeight-200
     const image_width = image_height * 269/540
-    const stageRef = useRef<any>(null);
+    const stageRef = useRef<any>(null)
+    const imageRef = useRef(null);
     const [item,setItem] = useState(1)
     let lastCenter: { x: number; y: number; } | null = null;
     let lastDist = 0;
@@ -38,7 +41,7 @@ function App_image_edit() {
     
     let touch1 = e.evt.touches[0];
     let touch2 = e.evt.touches[1];
-    const stage:any = stageRef.current;
+    const stage:any = imageRef.current;
     if (stage !== null) {
       if (touch1 && touch2) {
         if (stage.isDragging()) {
@@ -99,11 +102,15 @@ function App_image_edit() {
     lastCenter = null;
     lastDist = 0;
   }
+    useEffect(()=>{
+        console.log(stageRef.current.getStage().toJSON());    
+    },[save])
 
   return (
     <Stage
         height={image_height}
         width={image_width}
+        ref={stageRef}
     >
         
     <Layer id='stuffToShow'>
@@ -113,15 +120,19 @@ function App_image_edit() {
         onTouchMove={handleTouch}
         onTouchEnd={handleTouchEnd}
         draggable={true}
-        ref={item === 1 ? stageRef:null}
+        x={100}
+        y={300}
+        ref={item === 1 ? imageRef:null}
     />
     <Image image={image} width={100} height={100} 
         onTouchMove={handleTouch}
         onTouchEnd={handleTouchEnd}
         draggable={true}
-        ref={item === 2 ? stageRef:null}
+        x={10}
+        y={300}
+        ref={item === 2 ? imageRef:null}
     />
-    
+    {/* <Image image={camera} width={image_width} height={image_height}/> */}
     </Layer>
    </Stage>
  )
