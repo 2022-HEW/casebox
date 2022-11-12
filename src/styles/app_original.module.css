@@ -1,5 +1,10 @@
+.app_original{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .tool_box{
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
     height: 100px;

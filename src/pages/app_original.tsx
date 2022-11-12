@@ -6,11 +6,11 @@ const App_image_edit = dynamic(() => import('../components/App_image_edit'), { s
 
  const app_original = () => {
   return (
-      <>
-        <div style={{width:"100%",height:"100px",background:"#aaa"}}>header</div>
-        <App_image_edit/>
-        <Tool_box/>
-    </>
+        <div className={styles.app_original}>
+            <div style={{width:"100%",height:"100px",background:"#aaa"}}>header</div>
+            <App_image_edit/>
+            <Tool_box/>
+        </div>
   )
 }
 

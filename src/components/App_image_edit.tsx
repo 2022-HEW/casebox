@@ -23,9 +23,10 @@ function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; })
 
 function App_image_edit() {
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
-    const image_height = window.innerHeight/1.5
+    // header,footer文
+    const image_height = window.innerHeight-200
     const image_width = image_height * 269/540
-    const stageRef = useRef(null);
+    const stageRef = useRef<any>(null);
     let lastCenter: { x: number; y: number; } | null = null;
     let lastDist = 0;
   
@@ -98,23 +99,18 @@ function App_image_edit() {
 
   return (
     <Stage
-        width={window.innerWidth}
-        height={window.innerHeight/1.5}
+        height={image_height}
+        width={image_width}
     >
         
     <Layer id='stuffToShow'>
-        {/* 土台の画像 */}
-    <Image image={image} width={image_width} height={image_height}
-     scaleX={1}
-     scaleY={1}
-     x={window.innerWidth/4}
-    />
+    {/* 土台の画像 */}
+    <Image image={image} width={image_width} height={image_height}/>
     <Image image={image} width={100} height={100} 
-        
         onTouchMove={handleTouch}
         onTouchEnd={handleTouchEnd}
         draggable={true}
-     ref={stageRef}
+        ref={stageRef}
     />
     </Layer>
    </Stage>
