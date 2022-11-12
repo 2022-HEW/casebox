@@ -1,101 +1,124 @@
-import React, { Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from "react";
-import { Stage, Layer, Line,Text  } from "react-konva";
-import useImage from 'use-image'
+import Konva from 'konva';
+import { useRef, useState } from 'react';
+import { Stage, Layer } from 'react-konva';
 import { Image } from 'react-konva';
-import { TouchEvent } from "react";
-import styles from "../styles/draw.module.css"
-import { useRecoilState,useRecoilValue } from "recoil";
-import { toolState,sizeState,colorState,downloadState,modalState } from '../atoms/atoms';
-import { forwardRef } from "react";
+import useImage from 'use-image';
+import styles from "../styles/app_original.module.css"
 
-const App_image_edit = () => {
+// import MyLargeComponent from './thingToRenderOnStage';
 
-    const image_path="./iPhone/iPhone7/(PRODUCT)RED.png"
-    const [drag,setDrag] = useState(false)
-    const [x,setX] = useState(0)
-    const [y,setY] = useState(0)
+Konva.hitOnDragEnabled = true;
 
-    const tool = useRecoilValue(toolState);
-    const size = useRecoilValue(sizeState);
-    const [color, setColor] = useRecoilState(colorState);
-    const [lines, setLines] = useState<Array<any>>([]);
-    const isDrawing = React.useRef(false);
-    const stageRef = React.useRef<any>();
-    const camera_image_path = image_path.replace(".png","_camera.png")
+function getDistance(p1:{x:number,y:number}, p2: { x: number; y: number; }) {
+    return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+}
 
-  const [image] = useImage(image_path)
-  const [camera] = useImage(camera_image_path)
+function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; }) {
+  return {
+    x: (p1.x + p2.x) / 2,
+    y: (p1.y + p2.y) / 2,
+  };
+}
+
+
+function App_image_edit() {
+    const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
+    const image_height = window.innerHeight/1.5
+    const image_width = image_height * 269/540
+    const stageRef = useRef(null);
+    let lastCenter: { x: number; y: number; } | null = null;
+    let lastDist = 0;
   
 
-
-  const handleTouchStart = (e:any) => {
-    isDrawing.current = true;
-    const pos = e.target.getStage().getPointerPosition();
-    
-    setLines([
-      ...lines,
-      {
-        tool,
-        points: [pos.x, pos.y],
-        color,
-        size
+  function handleTouch(e:any) {
+    e.evt.preventDefault();
+    let touch1 = e.evt.touches[0];
+    let touch2 = e.evt.touches[1];
+    const stage:any = stageRef.current;
+    if (stage !== null) {
+      if (touch1 && touch2) {
+        if (stage.isDragging()) {
+          stage.stopDrag();
+        }
+  
+        var p1 = {
+          x: touch1.clientX,
+          y: touch1.clientY
+        };
+        var p2 = {
+          x: touch2.clientX,
+          y: touch2.clientY
+        };
+  
+        if (!lastCenter) {
+          lastCenter = getCenter(p1, p2);
+          return;
+        }
+        var newCenter = getCenter(p1, p2);
+  
+        var dist = getDistance(p1, p2);
+  
+        if (!lastDist) {
+          lastDist = dist;
+        }
+  
+        // local coordinates of center point
+        var pointTo = {
+          x: (newCenter.x - stage.x()) / stage.scaleX(),
+          y: (newCenter.y - stage.y()) / stage.scaleX()
+        };
+  
+        var scale = stage.scaleX() * (dist / lastDist);
+  
+        stage.scaleX(scale);
+        stage.scaleY(scale);
+  
+        // calculate new position of the stage
+        var dx = newCenter.x - lastCenter.x;
+        var dy = newCenter.y - lastCenter.y;
+  
+        var newPos = {
+          x: newCenter.x - pointTo.x * scale + dx,
+          y: newCenter.y - pointTo.y * scale + dy
+        };
+  
+        stage.position(newPos);
+        // stage.batchDraw();
+  
+        lastDist = dist;
+        lastCenter = newCenter;
       }
-    ]);
-  };
-
-  const handleTouchMove = (e:any) => {
-    // no drawing - skipping
-    if (!isDrawing.current) {
-      return;
     }
-    const stage = e.target.getStage();
-    const point = stage.getPointerPosition();
-    let lastLine = lines[lines.length - 1];
-    lastLine.points = lastLine.points.concat([point.x, point.y]);
-    lines.splice(lines.length - 1, 1, lastLine);
-    setLines(lines.concat());
-  };
+  }
 
-  const handleTouchEnd = () => {
-    isDrawing.current = false;
-  };
-    // console.log(stageRef.current.getStage().toJSON());
-    
+  function handleTouchEnd() {
+    lastCenter = null;
+    lastDist = 0;
+  }
 
   return (
-    <>
-      <div>
+    <Stage
+        width={window.innerWidth}
+        height={window.innerHeight/1.5}
+    >
         
-      </div>
-        <div >
-        <div className={styles.view_box}>
-          <Stage
-            width={268}
-            height={539}
-          >
-            <Layer>
-                <Image
-                text="Draggable Text"
-                image={image}  
-                width={269} height={540} 
-                x={x}
-                y={y}
-                draggable
-                // fill={drag ? 'green' : 'black'}
-                onDragStart={()=>setDrag(true)}
-                onDragend={(e:any)=>{
-                    setX(e.target.x());
-                    setY(e.target.y());
-                }}
-                />
-              {/* <Image image={camera} width={269} height={540}/> */}
-            </Layer>
-            
+    <Layer id='stuffToShow'>
+        {/* 土台の画像 */}
+    <Image image={image} width={image_width} height={image_height}
+     scaleX={1}
+     scaleY={1}
+     x={window.innerWidth/4}
+    />
+    <Image image={image} width={100} height={100} 
+        
+        onTouchMove={handleTouch}
+        onTouchEnd={handleTouchEnd}
+        draggable={true}
+     ref={stageRef}
+    />
+    </Layer>
+   </Stage>
+ )
+}
 
-          </Stage>
-        </div>
-      </div>
-    </>
-  );
-};
-  export default App_image_edit
+export default App_image_edit
