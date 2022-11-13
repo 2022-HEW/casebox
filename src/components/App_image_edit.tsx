@@ -1,4 +1,5 @@
 // プレビューのみカメラを重ねる
+import { url } from 'inspector';
 import Konva from 'konva';
 import { useEffect, useRef, useState } from 'react';
 import { Stage, Layer } from 'react-konva';
@@ -23,24 +24,59 @@ function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; })
 
 
 function App_image_edit({save}:{save:boolean}) {
-    const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
-    const [design] = useImage("/design/avocado.svg") 
-    const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
     
     // header,footer文
     const image_height = window.innerHeight-200
     const image_width = image_height * 269/540
     const stageRef = useRef<any>(null)
     const imageRef = useRef(null);
-    const [item,setItem] = useState(1)
-    const [cameraflg,setCameraFlg] =useState(false)
+    const [item,setItem] = useState(0)
     let lastCenter: { x: number; y: number; } | null = null;
     let lastDist = 0;
-  
+    const [images, setImage] = useState([]);
+    const [createObjectURL, setCreateObjectURL] = useState<any>([{url:""},{url:""},{url:""}]); 
+    const[imagePath,setImagePath]=useState("");
+    const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
+    const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
+    const [design0] = useImage(createObjectURL[0].url) 
+    const [design1] = useImage(createObjectURL[1].url) 
+    const [design2] = useImage(createObjectURL[2].url) 
+    
+    const uploadToClient = (event:any) => {
+        console.log('event.target.files', event.target.files[0]);
+        if (event.target.files[0] ) {
+            const file = event.target.files[0];
+            
+            const list:any = [...images];
+            list.push({ image:file });
+            
+            setImage(list);
+            console.log(list);
+
+            const urlList:any = [...createObjectURL];
+            const index_list:Array<number> = []
+            urlList.forEach((element:any,index:number) => {
+                if(element.url===""){
+                    index_list.push(index)
+                }
+            });
+
+            const index = Math.min(...index_list)
+            
+            urlList[index]["url"] = URL.createObjectURL(file)
+            
+            setCreateObjectURL(urlList);
+            console.log(urlList); 
+            
+        }
+    };
+
 
   function handleTouch(e:any) {
     e.evt.preventDefault();
     setItem(e.target.index);
+    console.log(e.target);
+    
     let touch1 = e.evt.touches[0];
     let touch2 = e.evt.touches[1];
     const image:any = imageRef.current;
@@ -101,15 +137,15 @@ function App_image_edit({save}:{save:boolean}) {
   }
 
   function handleTouchEnd() {
-    setCameraFlg(true)
     lastCenter = null;
     lastDist = 0;
   }
     useEffect(()=>{
-        console.log(stageRef.current.getStage().toJSON());    
+        // console.log(stageRef.current.getStage().toJSON());    
     },[save])
 
   return (
+    <>
     <Stage
         height={image_height}
         width={image_width}
@@ -119,29 +155,56 @@ function App_image_edit({save}:{save:boolean}) {
     <Layer id='stuffToShow'>
     {/* 土台の画像 */}
     <Image image={image} width={image_width} height={image_height}/>
-    <Image image={design} width={300} height={300} 
-        onTouchMove={handleTouch}
-        onTouchEnd={handleTouchEnd}
-        draggable={true}
-        x={100}
-        y={300}
-        ref={item === 1 ? imageRef:null}
-        />
         
-    <Image image={design} width={300} height={300} 
+                <Image image={design0} width={100} height={100} 
+                    id={"0"}
+                    onTouchMove={handleTouch}
+                    onTouchEnd={handleTouchEnd}
+                    draggable={true}
+                    x={10}
+                    y={30}
+                    ref={item === 3 ? imageRef:null}
+                />
+                
+                <Image image={design1} width={100} height={100} 
+                    onTouchMove={handleTouch}
+                    onTouchEnd={handleTouchEnd}
+                    draggable={true}
+                    x={10}
+                    y={30}
+                    ref={item === 2 ? imageRef:null}
+                />
+                
+                <Image image={design2} width={100} height={100} 
+                    onTouchMove={handleTouch}
+                    onTouchEnd={handleTouchEnd}
+                    draggable={true}
+                    x={10}
+                    y={30}
+                    ref={item === 1 ? imageRef:null}
+                />
+        
+    {/* <Image image={design} width={300} height={300} 
             onTouchMove={handleTouch}
             onTouchEnd={handleTouchEnd}
             draggable={true}
             x={10}
             y={300}
             ref={item === 2 ? imageRef:null}
-        />
+        /> */}
     <Image image={camera} width={image_width/5.5} height={image_height/17} 
     x={image_width/10} y={image_height/22}/>
 
     
     </Layer>
    </Stage>
+        <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage" onChange={uploadToClient} />
+
+
+
+
+
+   </>
  )
 }
 
