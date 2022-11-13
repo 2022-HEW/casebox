@@ -106,7 +106,7 @@ function App_image_edit({save}:{save:boolean}) {
     lastDist = 0;
   }
     useEffect(()=>{
-        // console.log(stageRef.current.getStage().toJSON());    
+        console.log(stageRef.current.getStage().toJSON());    
     },[save])
 
   return (

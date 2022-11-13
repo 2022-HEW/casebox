@@ -122,7 +122,7 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
                   }
                 />
               ))}
-              <Image image={camera} width={269} height={540}/>
+              <Image image={camera} width={50} height={35} x={27} y={23}/>
 
             </Layer>
           </Stage>

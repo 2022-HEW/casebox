@@ -21,9 +21,14 @@ const Draw = ()=>{
   const [lines, setLines] = useState<Array<any>>([]);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef<any>();
+  let images = ["./iPhone/iPhone7/(PRODUCT)RED.png","./design/avocado.svg","./design/avocado.svg","./iPhone/iPhone7/(PRODUCT)RED_camera.png"]
+  
+  const[image0] =useImage(images[0])
+  const[image1] =useImage(images[1])
+  const[image2] =useImage(images[2])
+  const[image3] =useImage(images[3])
   const camera_image_path = "./iPhone/iPhone7/(PRODUCT)RED_camera.png"
 
-  const [image] = useImage("./iPhone/iPhone7/(PRODUCT)RED.png")
   const [camera] = useImage(camera_image_path)
   console.log(camera_image_path);
 
@@ -91,9 +96,9 @@ const Draw = ()=>{
   //               ]
   //             }
 
-      const json = {"attrs":{"width":346.7111111111111,"height":696},"className":"Stage","children":[{"attrs":{"id":"stuffToShow"},"className":"Layer","children":[{"attrs":{"width":346.7111111111111,"height":696},"className":"Image"},{"attrs":{"width":100,"height":100,"draggable":true,"x":196.08075670505758,"y":538.6666870117188},"className":"Image"},{"attrs":{"width":100,"height":100,"draggable":true,"x":14.003364862710725,"y":5.33331298828125},"className":"Image"}]}]}
+      const json = {"attrs":{"width":232.63518518518518,"height":467},"className":"Stage","children":[{"attrs":{"id":"stuffToShow"},"className":"Layer","children":[{"attrs":{"width":232.63518518518518,"height":467},"className":"Image"},{"attrs":{"width":300,"height":300,"draggable":true,"x":-92.90309483334943,"y":181.48153686523438},"className":"Image"},{"attrs":{"width":300,"height":300,"draggable":true,"x":29.475711484291025,"y":50.925933837890625},"className":"Image"},{"attrs":{"width":42.29730639730639,"height":27.470588235294116,"x":23.263518518518516,"y":21.227272727272727},"className":"Image"}]}]}
   
-  // console.log(json.children);
+  console.log(json.children);
   
   return (
     <>
@@ -108,12 +113,13 @@ const Draw = ()=>{
             ref={stageRef}
           >
             <Layer>
-                <Image  image={image}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height} />
+                <Image  image={image0}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height} />
             {json.children[0].children.map((value:any,index:number)=>{
-              if(index!==0){
+              if(index!==0 && index !==json.children[0].children.length-1){
+                // console.log(index);                
                 return (
                   <Image 
-                    image={image} 
+                    image={eval("image" + index)} 
                     width={value.attrs.height} 
                     height={value.attrs.width}
                     scaleX={value.attrs.scaleX}
@@ -123,8 +129,15 @@ const Draw = ()=>{
                     y={value.attrs.y}
                   />
                   )
-                }
+                }  
             })}
+
+              <Image  image={image3}  
+                width={json.children[0].children[json.children[0].children.length-1].attrs.width} 
+                height={json.children[0].children[json.children[0].children.length-1].attrs.height} 
+                x={json.children[0].children[json.children[0].children.length-1].attrs.x}
+                y={json.children[0].children[json.children[0].children.length-1].attrs.y}
+              />
               {/* <Image image={camera}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height}/> */}
             </Layer>
           </Stage>
