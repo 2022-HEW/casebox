@@ -125,7 +125,7 @@ const Draw = ()=>{
                   )
                 }
             })}
-              <Image image={camera}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height}/>
+              {/* <Image image={camera}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height}/> */}
             </Layer>
           </Stage>
         </div>

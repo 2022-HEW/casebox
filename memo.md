@@ -144,3 +144,4 @@ npm install react-konva konva --save
 <!-- npm install react-color --save -->
 npm install use-image
 npm install @welldone-software/why-did-you-render --save-dev
+<!-- npm install react-konva-utils -->

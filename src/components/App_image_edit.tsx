@@ -1,3 +1,4 @@
+// プレビューのみカメラを重ねる
 import Konva from 'konva';
 import { useEffect, useRef, useState } from 'react';
 import { Stage, Layer } from 'react-konva';
@@ -23,7 +24,8 @@ function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; })
 
 function App_image_edit({save}:{save:boolean}) {
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
-    // const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
+    const [design] = useImage("/design/avocado.svg") 
+    const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
     
     // header,footer文
     const image_height = window.innerHeight-200
@@ -31,6 +33,7 @@ function App_image_edit({save}:{save:boolean}) {
     const stageRef = useRef<any>(null)
     const imageRef = useRef(null);
     const [item,setItem] = useState(1)
+    const [cameraflg,setCameraFlg] =useState(false)
     let lastCenter: { x: number; y: number; } | null = null;
     let lastDist = 0;
   
@@ -38,14 +41,13 @@ function App_image_edit({save}:{save:boolean}) {
   function handleTouch(e:any) {
     e.evt.preventDefault();
     setItem(e.target.index);
-    
     let touch1 = e.evt.touches[0];
     let touch2 = e.evt.touches[1];
-    const stage:any = imageRef.current;
-    if (stage !== null) {
+    const image:any = imageRef.current;
+    if (image !== null) {
       if (touch1 && touch2) {
-        if (stage.isDragging()) {
-          stage.stopDrag();
+        if (image.isDragging()) {
+          image.stopDrag();
         }
   
         var p1 = {
@@ -71,14 +73,14 @@ function App_image_edit({save}:{save:boolean}) {
   
         // local coordinates of center point
         var pointTo = {
-          x: (newCenter.x - stage.x()) / stage.scaleX(),
-          y: (newCenter.y - stage.y()) / stage.scaleX()
+          x: (newCenter.x - image.x()) / image.scaleX(),
+          y: (newCenter.y - image.y()) / image.scaleX()
         };
   
-        var scale = stage.scaleX() * (dist / lastDist);
+        var scale = image.scaleX() * (dist / lastDist);
   
-        stage.scaleX(scale);
-        stage.scaleY(scale);
+        image.scaleX(scale);
+        image.scaleY(scale);
   
         // calculate new position of the stage
         var dx = newCenter.x - lastCenter.x;
@@ -89,7 +91,7 @@ function App_image_edit({save}:{save:boolean}) {
           y: newCenter.y - pointTo.y * scale + dy
         };
   
-        stage.position(newPos);
+        image.position(newPos);
         // stage.batchDraw();
   
         lastDist = dist;
@@ -99,11 +101,12 @@ function App_image_edit({save}:{save:boolean}) {
   }
 
   function handleTouchEnd() {
+    setCameraFlg(true)
     lastCenter = null;
     lastDist = 0;
   }
     useEffect(()=>{
-        console.log(stageRef.current.getStage().toJSON());    
+        // console.log(stageRef.current.getStage().toJSON());    
     },[save])
 
   return (
@@ -116,23 +119,27 @@ function App_image_edit({save}:{save:boolean}) {
     <Layer id='stuffToShow'>
     {/* 土台の画像 */}
     <Image image={image} width={image_width} height={image_height}/>
-    <Image image={image} width={100} height={100} 
+    <Image image={design} width={300} height={300} 
         onTouchMove={handleTouch}
         onTouchEnd={handleTouchEnd}
         draggable={true}
         x={100}
         y={300}
         ref={item === 1 ? imageRef:null}
-    />
-    <Image image={image} width={100} height={100} 
-        onTouchMove={handleTouch}
-        onTouchEnd={handleTouchEnd}
-        draggable={true}
-        x={10}
-        y={300}
-        ref={item === 2 ? imageRef:null}
-    />
-    {/* <Image image={camera} width={image_width} height={image_height}/> */}
+        />
+        
+    <Image image={design} width={300} height={300} 
+            onTouchMove={handleTouch}
+            onTouchEnd={handleTouchEnd}
+            draggable={true}
+            x={10}
+            y={300}
+            ref={item === 2 ? imageRef:null}
+        />
+    <Image image={camera} width={image_width/5.5} height={image_height/17} 
+    x={image_width/10} y={image_height/22}/>
+
+    
     </Layer>
    </Stage>
  )
