@@ -21,12 +21,11 @@ const Draw = ()=>{
   const [lines, setLines] = useState<Array<any>>([]);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef<any>();
-  let images = ["./iPhone/iPhone7/(PRODUCT)RED.png","./design/avocado.svg","./design/avocado.svg","./iPhone/iPhone7/(PRODUCT)RED_camera.png"]
+  let images = ["./iPhone/iPhone7/(PRODUCT)RED.png","blob:http://localhost:3000/b6ebd784-9dce-4213-929b-71c2f9206163","./iPhone/iPhone7/(PRODUCT)RED_camera.png"]
   
   const[image0] =useImage(images[0])
   const[image1] =useImage(images[1])
-  const[image2] =useImage(images[2])
-  const[image3] =useImage(images[3])
+  const[image2] =useImage(images[3])
   const camera_image_path = "./iPhone/iPhone7/(PRODUCT)RED_camera.png"
 
   const [camera] = useImage(camera_image_path)
@@ -96,7 +95,7 @@ const Draw = ()=>{
   //               ]
   //             }
 
-      const json = {"attrs":{"width":232.63518518518518,"height":467},"className":"Stage","children":[{"attrs":{"id":"stuffToShow"},"className":"Layer","children":[{"attrs":{"width":232.63518518518518,"height":467},"className":"Image"},{"attrs":{"width":300,"height":300,"draggable":true,"x":-92.90309483334943,"y":181.48153686523438},"className":"Image"},{"attrs":{"width":300,"height":300,"draggable":true,"x":29.475711484291025,"y":50.925933837890625},"className":"Image"},{"attrs":{"width":42.29730639730639,"height":27.470588235294116,"x":23.263518518518516,"y":21.227272727272727},"className":"Image"}]}]}
+      const json = {"attrs":{"width":183.81666666666666,"height":369},"className":"Stage","children":[{"attrs":{"id":"stuffToShow"},"className":"Layer","children":[{"attrs":{"width":183.81666666666666,"height":369},"className":"Image"},{"attrs":{"width":100,"height":100,"id":"0","draggable":true,"x":-15.10809754427062,"y":180.5173154160553,"scaleX":2.051779172237358,"scaleY":2.051779172237358},"className":"Image"},{"attrs":{"width":33.42121212121212,"height":21.705882352941178,"x":18.381666666666668,"y":16.772727272727273},"className":"Image"}]}]}
   
   console.log(json.children);
   
@@ -132,7 +131,7 @@ const Draw = ()=>{
                 }  
             })}
 
-              <Image  image={image3}  
+              <Image  image={image2}  
                 width={json.children[0].children[json.children[0].children.length-1].attrs.width} 
                 height={json.children[0].children[json.children[0].children.length-1].attrs.height} 
                 x={json.children[0].children[json.children[0].children.length-1].attrs.x}

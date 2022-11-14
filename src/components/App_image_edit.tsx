@@ -38,12 +38,10 @@ function App_image_edit({save}:{save:boolean}) {
     const[imagePath,setImagePath]=useState("");
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
     const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
-    const [design0] = useImage(createObjectURL[0].url) 
-    const [design1] = useImage(createObjectURL[1].url) 
-    const [design2] = useImage(createObjectURL[2].url) 
+    const [design] = useImage(createObjectURL[0].url) 
     
     const uploadToClient = (event:any) => {
-        console.log('event.target.files', event.target.files[0]);
+        // console.log('event.target.files', event.target.files[0]);
         if (event.target.files[0] ) {
             const file = event.target.files[0];
             
@@ -51,7 +49,7 @@ function App_image_edit({save}:{save:boolean}) {
             list.push({ image:file });
             
             setImage(list);
-            console.log(list);
+            // console.log(list);
 
             const urlList:any = [...createObjectURL];
             const index_list:Array<number> = []
@@ -75,7 +73,7 @@ function App_image_edit({save}:{save:boolean}) {
   function handleTouch(e:any) {
     e.evt.preventDefault();
     setItem(e.target.index);
-    console.log(e.target);
+    // console.log(e.target);
     
     let touch1 = e.evt.touches[0];
     let touch2 = e.evt.touches[1];
@@ -141,7 +139,7 @@ function App_image_edit({save}:{save:boolean}) {
     lastDist = 0;
   }
     useEffect(()=>{
-        // console.log(stageRef.current.getStage().toJSON());    
+        console.log(stageRef.current.getStage().toJSON());    
     },[save])
 
   return (
@@ -156,46 +154,17 @@ function App_image_edit({save}:{save:boolean}) {
     {/* 土台の画像 */}
     <Image image={image} width={image_width} height={image_height}/>
         
-                <Image image={design0} width={100} height={100} 
+                <Image image={design} width={100} height={100} 
                     id={"0"}
                     onTouchMove={handleTouch}
                     onTouchEnd={handleTouchEnd}
                     draggable={true}
                     x={10}
                     y={30}
-                    ref={item === 3 ? imageRef:null}
+                    ref={imageRef}
                 />
-                
-                <Image image={design1} width={100} height={100} 
-                    onTouchMove={handleTouch}
-                    onTouchEnd={handleTouchEnd}
-                    draggable={true}
-                    x={10}
-                    y={30}
-                    ref={item === 2 ? imageRef:null}
-                />
-                
-                <Image image={design2} width={100} height={100} 
-                    onTouchMove={handleTouch}
-                    onTouchEnd={handleTouchEnd}
-                    draggable={true}
-                    x={10}
-                    y={30}
-                    ref={item === 1 ? imageRef:null}
-                />
-        
-    {/* <Image image={design} width={300} height={300} 
-            onTouchMove={handleTouch}
-            onTouchEnd={handleTouchEnd}
-            draggable={true}
-            x={10}
-            y={300}
-            ref={item === 2 ? imageRef:null}
-        /> */}
-    <Image image={camera} width={image_width/5.5} height={image_height/17} 
-    x={image_width/10} y={image_height/22}/>
-
-    
+                <Image image={camera} width={image_width/5.5} height={image_height/17} 
+                x={image_width/10} y={image_height/22}/>
     </Layer>
    </Stage>
         <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage" onChange={uploadToClient} />
