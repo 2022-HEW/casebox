@@ -105,12 +105,24 @@
     box-shadow: -3px -3px 4px 1px #ccc inset;
 }
 
+.payType_a{
+    width: 200px;
+    height: 200px;
+    border: #666666 solid 2px;
+    border-radius: 20px;
+    background-color: #F9F9F9;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-shadow: 3px 3px 4px 1px #ccc inset;
+}
+
 .payType:active {
     width: 200px;
     height: 200px;
     border: #666666 solid 2px;
     border-radius: 20px;
-    background-color: white;
+    background-color: #F9F9F9;
     display: flex;
     flex-flow: column;
     align-items: center;
