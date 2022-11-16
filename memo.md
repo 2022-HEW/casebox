@@ -145,3 +145,6 @@ npm install react-konva konva --save
 npm install use-image
 npm install @welldone-software/why-did-you-render --save-dev
 <!-- npm install react-konva-utils -->
+npm install @azure/storage-blob
+npm install @azure/identity
+<!-- npm install uuid dotenv -->
