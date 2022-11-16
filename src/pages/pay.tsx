@@ -25,10 +25,10 @@ const pay = () => {
 
                     <div className={styles.buttons}>
 
-                        <Buttons imgPath={Cash} name="現金" />
-                        <Buttons imgPath={trafic} name="クレジットカード" />
-                        <Buttons imgPath={electric} name="交通系電子マネー" />
-                        <Buttons imgPath={other} name="その他" />
+                        <Buttons imgPath={Cash} name="現金" classname={styles.payType_a} />
+                        <Buttons imgPath={trafic} name="クレジットカード" classname={styles.payType}/>
+                        <Buttons imgPath={electric} name="交通系電子マネー" classname={styles.payType}/>
+                        <Buttons imgPath={other} name="その他" classname={styles.payType}/>
 
                     </div>
                 </div>
@@ -56,11 +56,12 @@ const Price_result = ({ write, id }: pay_props) => {
 interface btn_props {
     imgPath: string;
     name: string;
+    classname: string
 }
-const Buttons = ({ imgPath, name }: btn_props) => {
+const Buttons = ({ imgPath, name, classname }: btn_props) => {
 
     return (
-        <a className={styles.payType}>
+        <a className={classname}>
             <div className={styles.btnContent}>
                 <Image src={imgPath} alt="現金の画像" id={styles.image} />
                 <p id={styles.btnname}>{name}</p>
