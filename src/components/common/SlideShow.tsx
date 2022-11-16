@@ -1,29 +1,34 @@
 import React from "react";
 import Slider from "react-slick";
 import styles from "../../styles/SlideShow.module.css";
-import Image from "next/image";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// type Props={
-	
-// }
-const SlideShow = () => {
-    const settings = {
-        // autoplay: true, //自動的に動き出すか。初期値はfalse。
-        // infinite: true, //スライドをループさせるかどうか。初期値はtrue。
-        // slidesToShow: 1,//スライドを画面に3枚見せる
-		// slidesToScroll: 1,//1回のスクロールで3枚の写真を移動して見せる
-		// // prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
-		// // nextArrow: '<div class="slick-next"></div>',//矢印部分NextのHTMLを変更
-		// dots: true,//下部ドットナビゲーションの表示
-		// arrow:true,
 
-		dots: true,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		arrow: true,
+import Image from "next/image";
+
+// Imageの型定義
+type imageType={
+	imgPath: string,
+	imgAlt: string,
+}
+
+const SlideShow = () => {
+
+	// slick option
+    const settings = {
+        // autoplay: true,  	// 自動的に動き出すか。
+		infinite: true, 	// スライドをループさせるかどうか。
+		speed: 500,			// スライド、フェードアニメーションの速度
+		slidesToShow: 1, 	// スライドを画面に見せる枚数
+		slidesToScroll: 1,  // 1回のスクロールで1枚の写真を移動して見せる
+
+		// dotsのカスタム
+		dots: false,		// 下部ドットナビゲーションの表示
+		// dotsClass: "dots", // ドットにクラス付与
+
+		// arrowのカスタム
+		arrow: true, 		// 前・次の矢印表示
 	// 	responsive: [
 	// 		{
 	// 		breakpoint: 769,//モニターの横幅が769px以下の見せ方
@@ -35,26 +40,38 @@ const SlideShow = () => {
 	// 	{
 	// 		breakpoint: 426,//モニターの横幅が426px以下の見せ方
 	// 		settings: {
-	// 			slidesToShow: 1,//スライドを画面に1枚見せる
-	// 			slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
+	// 			slidesToShow: 1,
+	// 			slidesToScroll: 1,
 	// 		}
 	// 	}
 	// ]
         
     };
 
+// SlideShow表示
     return(
-            <div id={styles.slideshow}>
+		<>
+			<div id={styles.SliderContainer}>
 				<Slider {...settings}>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
-					<Image className={styles.slideImg} src="/image/strap.svg" alt="スマホストラップ" width={100} height={100}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
 				</Slider>
-            </div>
+			</div>
+		</>
     )
+}
+
+
+const ImgDesc = ({ imgPath, imgAlt }:imageType) => {
+	return(
+		<div className={styles.imgContainer}>
+			<Image className={styles.slideImg} src={imgPath} alt={imgAlt} width={525} height={270}/>
+		</div>
+	)
 }
 
 export default SlideShow;

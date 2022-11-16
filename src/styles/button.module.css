@@ -11,3 +11,18 @@ box-shadow: inset 2px 5px 2px rgba(255, 255, 255, 0.65), inset -2px -5px 2px rgb
 border-radius: 58px;
 
 }
+.nav{
+        /* Rectangle 143 */
+        box-sizing: border-box;
+        position: absolute;
+        width: 166px;
+        height: 84px;
+        left: 80%;
+        top: 100%;
+        font-weight: bold;
+        background: #FFA262;
+        border: 2px solid #858585;
+        box-shadow: inset 2px 5px 2px rgba(255, 255, 255, 0.65), inset -2px -5px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 58px;
+    
+}

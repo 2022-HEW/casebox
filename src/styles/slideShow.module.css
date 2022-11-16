@@ -1,16 +1,18 @@
     /*==================================================
     スライダーのためのcss
     ===================================*/
-    #slideshow {
-        width: 1000px;
+
+    #SliderContainer > *{
+        max-width: 525px;
+        margin: 0 auto;
     }
-    
+
     .slider { /*横幅94%で左右に余白を持たせて中央寄せ*/
         width: 94%;
         margin: 20px auto 0 auto;
     }
-    
-    .slider img {
+
+    .slider img{
         width: 60%; /*スライダー内の画像を横幅100%に*/
         height: auto;
         margin: 0 auto 0 auto;
@@ -26,12 +28,12 @@
     /*戻る、次へ矢印の位置*/
     .slick-prev,
     .slick-next {
-        position: absolute; /*絶対配置にする*/
+        position: absolute; /* 絶対配置にする */
         top: 42%;
-        cursor: pointer; /*マウスカーソルを指マークに*/
-        outline: none; /*クリックをしたら出てくる枠線を消す*/
-        border-top: 5px solid #666; /*矢印の色*/
-        border-right: 5px solid #666; /*矢印の色*/
+        cursor: pointer; /*マウスカーソルを指マークに */
+        outline: none; /* クリックをしたら出てくる枠線を消す*/
+        border-top: 5px solid #000; /* 矢印の色 */
+        border-right: 5px solid #000; /* 矢印の色 */
         border-bottom-right-radius: 2px;
         border-bottom-left-radius: 2px;
         border-top-left-radius: 2px;
@@ -40,7 +42,7 @@
         height: 15px;
         width: 15px;
     }
-    
+
     .slick-prev { /*戻る矢印の位置と形状*/
         left: -1.5%;
         transform: rotate(-135deg);
@@ -63,16 +65,20 @@
     }
     
     .slick-dots button {
-        color: transparent;
         outline: none;
         width: 8px; /*ドットボタンのサイズ*/
         height: 8px; /*ドットボタンのサイズ*/
         display: block;
         border-radius: 50%;
-        /* background: #ccc; ドットボタンの色 */
+        background: #ccc; /* ドットボタンの色 */
         background: #333;
     }
     
     .slick-dots .slick-active button {
         background: #333; /*ドットボタンの現在地表示の色*/
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: yellow;
     }
