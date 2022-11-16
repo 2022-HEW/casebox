@@ -1,6 +1,5 @@
 import React, { Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from "react";
 import { Stage, Layer, Line } from "react-konva";
-import { SketchPicker } from "react-color";
 import useImage from 'use-image'
 import { Image } from 'react-konva';
 import { TouchEvent } from "react";
@@ -25,8 +24,12 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
   const [lines, setLines] = useState<Array<any>>([]);
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef<any>();
-  
+  const camera_image_path = image_path.replace(".png","_camera.png")
+
   const [image] = useImage(image_path)
+  const [camera] = useImage(camera_image_path)
+  
+
 
   const handleTouchStart = (e:any) => {
     isDrawing.current = true;
@@ -82,12 +85,8 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
     }
   },[modal])
 
-
-  const handleChangeComplete = (color:any) => {
-    setColor(color.hex);
-  };
-
-  
+    // console.log(stageRef.current.getStage().toJSON());
+    
 
   return (
     <>
@@ -110,6 +109,8 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
             <Layer>
               {lines.map((line, i) => (
                 <Line
+                draggable={true}
+
                   key={i}
                   points={line.points}
                   stroke={line.color}
@@ -121,13 +122,11 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
                   }
                 />
               ))}
+              <Image image={camera} width={50} height={35} x={27} y={23}/>
+
             </Layer>
           </Stage>
         </div>
-            {/* <SketchPicker
-            color={color}
-            onChangeComplete={handleChangeComplete}
-            /> */}
       </div>
     </>
   );
