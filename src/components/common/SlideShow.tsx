@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import styles from "../../styles/SlideShow.module.css";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -23,7 +24,7 @@ const SlideShow = () => {
 		slidesToScroll: 1,  // 1回のスクロールで1枚の写真を移動して見せる
 
 		// dotsのカスタム
-		dots: true,		// 下部ドットナビゲーションの表示
+		dots: false,		// 下部ドットナビゲーションの表示
 		// dotsClass: "dots", // ドットにクラス付与
 
 		// arrowのカスタム
