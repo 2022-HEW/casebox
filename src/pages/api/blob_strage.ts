@@ -1,8 +1,40 @@
-export default function blob(){
+import { NextApiRequest, NextApiResponse } from "next";
+import { BlobServiceClient, ContainerClient} from '@azure/storage-blob';
+const formidable = require("formidable");
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+
+const containerName = `tutorial-container`;
+const sasToken = process.env.REACT_APP_STORAGESASTOKEN;
+const storageAccountName = process.env.REACT_APP_STORAGERESOURCENAME;
+
+export default async (req: NextApiRequest, res:NextApiResponse) => {
+  if (req.method !== "POST") return;
+
+  const form = new formidable.IncomingForm();
+
+  form.parse(req, async function (err:Error|null, fields:any, files:any) {
+    if (err) {
+      res.statusCode = 500;
+      res.json({
+        method: req.method,
+        error: err
+      });
+      res.end();
+      return;
+    }
+    const file = files.file;
+    // ファイルをなんやかんやする
+    // return res.status(200).json(file)
+
 const { DefaultAzureCredential } = require('@azure/identity');
-const { BlobServiceClient } = require("@azure/storage-blob");
-const { v1: uuidv1 } = require("uuid");
-require("dotenv").config();
+// const { BlobServiceClient } = require("@azure/storage-blob");
+// const {uploadFileToBlob} = require("@azure/storage-blob")
 
 async function main() {
   try {
@@ -23,7 +55,7 @@ async function main() {
 
 
       // // Create a unique name for the container
-      const containerName = 'quickstarte4f95d40-6575-11ed-a5ae-877a635505ef';
+      const containerName = 'product';
 
       // console.log('\nCreating container...');
       // console.log('\t', containerName);
@@ -39,21 +71,21 @@ async function main() {
 
       // // 中身を作る
       // const blobName = 'quickstart' + uuidv1() + '.txt';
-      const blobName = 'Galaxy_S22.png';
+      const blobName = 'Galaxy_S22.svg';
 
       // // Get a block blob client
       const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
-      // // Display blob name and url
-      // console.log(
-      //   `\nUploading to Azure storage as blob\n\tname: ${blobName}:\n\tURL: ${blockBlobClient.url}`
-      // );
-      // // Upload data to the blob
-      // const data = 'Hello, World!';
-      // const uploadBlobResponse = await blockBlobClient.upload(data, data.length);
-      // console.log(
-      //   `Blob was uploaded successfully. requestId: ${uploadBlobResponse.requestId}`
-      // );
+      // Display blob name and url
+      console.log(
+        `\nUploading to Azure storage as blob\n\tname: ${blobName}:\n\tURL: ${blockBlobClient.url}`
+      );
+      // Upload data to the blob
+      const data = file;
+      const uploadBlobResponse = await blockBlobClient.upload(data, data.length);
+      console.log(
+        `Blob was uploaded successfully. requestId: ${uploadBlobResponse.requestId}`
+      );
 
 
       // console.log('\nListing blobs...');
@@ -115,6 +147,7 @@ const getBlobsInContainer = async (containerClient: any) => {
   }
 }
 
+
 // Convert stream to text
 async function streamToText(readable:any) {
   readable.setEncoding('utf8');
@@ -128,7 +161,8 @@ async function streamToText(readable:any) {
 
 
 main()
-  .then(() => console.log("Done"))
-  .catch((ex) => console.log(ex.message));
-  
-}
+.then(() => console.log("Done"))
+.catch((ex) => console.log(ex.message));
+
+    return res.status(200).json(file)
+})}

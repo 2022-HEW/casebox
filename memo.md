@@ -148,3 +148,4 @@ npm install @welldone-software/why-did-you-render --save-dev
 npm install @azure/storage-blob
 npm install @azure/identity
 <!-- npm install uuid dotenv -->
+npm install formidable

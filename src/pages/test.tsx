@@ -1,4 +1,4 @@
-import React, { Children, Dispatch, MutableRefObject, SetStateAction, useEffect, useState } from "react";
+import React, { Children, Dispatch, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { Stage, Layer, Line } from "react-konva";
 import useImage from 'use-image'
 import { Image } from 'react-konva';
@@ -10,94 +10,113 @@ import { forwardRef } from "react";
 import Konva from "konva";
 
 
+Konva.hitOnDragEnabled = true;
+
+function getDistance(p1:{x:number,y:number}, p2: { x: number; y: number; }) {
+    return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+}
+
+function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; }) {
+  return {
+    x: (p1.x + p2.x) / 2,
+    y: (p1.y + p2.y) / 2,
+  };
+}
+
 const Draw = ()=>{
 
  
-  const tool = useRecoilValue(toolState);
-  const size = useRecoilValue(sizeState);
-  const [color, setColor] = useRecoilState(colorState);
-  const [download,setDownload] = useRecoilState(downloadState)
-  const [modal,setModal] = useRecoilState(modalState)
-  const [lines, setLines] = useState<Array<any>>([]);
-  const isDrawing = React.useRef(false);
+  // const tool = useRecoilValue(toolState);
+  // const size = useRecoilValue(sizeState);
+  // const [color, setColor] = useRecoilState(colorState);
+  // const [download,setDownload] = useRecoilState(downloadState)
+  // const [modal,setModal] = useRecoilState(modalState)
+  // const [lines, setLines] = useState<Array<any>>([]);
+  // const isDrawing = React.useRef(false);
+  const image_height = window.innerHeight-200
+  const image_width = image_height * 269/540
+  const imageRef = useRef(null);
+  let lastCenter: { x: number; y: number; } | null = null;
+  let lastDist = 0;
   const stageRef = React.useRef<any>();
-  let images = ["./iPhone/iPhone7/(PRODUCT)RED.png","blob:http://localhost:3000/b6ebd784-9dce-4213-929b-71c2f9206163","./iPhone/iPhone7/(PRODUCT)RED_camera.png"]
-  
-  const[image0] =useImage(images[0])
-  const[image1] =useImage(images[1])
-  const[image2] =useImage(images[3])
+  const reader =  new FileReader();
+  let images:Array<string> = ["./iPhone/iPhone7/(PRODUCT)RED.png",`blob:http://localhost:3000/219bbcf3-864a-4508-8333-b44f3f83c92b`,"./iPhone/iPhone7/(PRODUCT)RED_camera.png"]  
   const camera_image_path = "./iPhone/iPhone7/(PRODUCT)RED_camera.png"
-
+  const[Phone] = useImage(images[0])
   const [camera] = useImage(camera_image_path)
-  console.log(camera_image_path);
+  const[image] =useImage( images[1])
+  // console.log(camera_image_path);
 
-  // const json = 
-  // {"attrs":{"width":268,"height":539},
-  // "className":"Stage",
-  // "children":
-  //   [{"attrs":{},"className":"Layer",
-  //     "children":[{"attrs":{"width":269,"height":540},"className":"Image"}]},
-  //     {"attrs":{},"className":"Layer",
-  //     "children":
-  //       [{"attrs":
-  //         {"points":[46.48957824707031,96.13542556762695,47.15625,95.46875381469727,51.822906494140625,94.13542556762695,55.822906494140625,93.46875381469727,62.48957824707031,90.80208206176758,71.15625,86.80208206176758,74.48957824707031,85.46875381469727,80.48957824707031,82.80208206176758,87.15625,80.13542556762695,91.82290649414062,78.80208206176758,93.15625,78.13542556762695,95.15625,77.46875381469727,96.48957824707031,77.46875381469727],
-  //         "stroke":"#000","strokeWidth":5,"tension":0.5,"lineCap":"round"},
-  //         "className":"Line"}
-  //       ,{"attrs":
-  //         {"points":[67.82290649414062,206.13542556762695,67.82290649414062,205.46876907348633,67.82290649414062,204.13542556762695,67.82290649414062,200.13542556762695,69.15625,190.13542556762695,70.48957824707031,183.46876907348633,75.82290649414062,168.13542556762695,80.48957824707031,152.13542556762695,83.15625,143.46876907348633,89.82290649414062,126.13542556762695,95.82290649414062,110.13542556762695,102.48957824707031,94.80208206176758,105.82290649414062,88.13542556762695,113.15625,76.13542556762695,121.15625,66.80208206176758,129.15625,59.468753814697266,133.15625,56.80208206176758,141.15625,53.468753814697266,147.82290649414062,52.13542556762695,155.15625,52.80208206176758,161.82290649414062,55.468753814697266,165.15625,57.468753814697266,173.15625,61.468753814697266,179.82290649414062,67.46875381469727,186.48959350585938,74.13542556762695,189.82290649414062,77.46875381469727,195.15625,86.13542556762695,199.82290649414062,94.80208206176758,204.48959350585938,106.13542556762695,207.15625,111.46875381469727,211.15625,124.13542556762695,213.82290649414062,138.80208206176758,215.15625,154.80208206176758,215.15625,163.46876907348633,215.15625,181.46876907348633,215.15625,199.46876907348633,213.82290649414062,217.46876907348633,213.15625,226.13542556762695,211.15625,244.13542556762695,207.15625,262.13542556762695,202.48959350585938,278.8020820617676,200.48959350585938,286.8020820617676,195.82290649414062,301.4687690734863,189.82290649414062,313.4687690734863,184.48959350585938,323.4687690734863,180.48959350585938,328.8020820617676,173.82290649414062,338.13542556762695,167.15625,345.4687690734863,163.15625,348.13542556762695,156.48959350585938,353.4687690734863,148.48959350585938,357.4687690734863,140.48959350585938,359.4687690734863,131.82290649414062,360.13542556762695,127.82290649414062,360.13542556762695,119.82290649414062,359.4687690734863,110.48959350585938,357.4687690734863,102.48957824707031,354.13542556762695,98.48957824707031,352.13542556762695,89.82290649414062,347.4687690734863,83.15625,341.4687690734863,75.82290649414062,333.4687690734863,72.48957824707031,328.8020820617676,67.15625,319.4687690734863,63.15625,306.8020820617676,61.15625,293.4687690734863,60.48957824707031,286.13542556762695,60.48957824707031,270.13542556762695,61.822906494140625,253.46876907348633,63.822906494140625,238.13542556762695,69.15625,223.46876907348633,72.48957824707031,216.13542556762695,78.48957824707031,202.13542556762695,86.48957824707031,188.80208206176758,94.48957824707031,177.46876907348633,99.15625,172.13542556762695,108.48959350585938,164.13542556762695,118.48959350585938,157.46876907348633,123.82290649414062,155.46876907348633,133.15625,152.13542556762695,143.15625,152.13542556762695,153.15625,153.46876907348633,157.82290649414062,154.80208206176758,166.48959350585938,159.46876907348633,175.82290649414062,167.46876907348633,183.82290649414062,176.13542556762695,188.48959350585938,182.80208206176758,195.82290649414062,195.46876907348633,201.15625,209.46876907348633,205.82290649414062,224.80208206176758,209.82290649414062,240.80208206176758,210.48959350585938,248.80208206176758,211.15625,265.4687690734863,210.48959350585938,280.8020820617676,209.82290649414062,287.4687690734863,207.15625,301.4687690734863,202.48959350585938,316.13542556762695,197.82290649414062,331.4687690734863,191.15625,346.8020820617676,187.15625,354.13542556762695,179.15625,368.8020820617676,169.15625,382.8020820617676,159.82290649414062,394.1354560852051,153.82290649414062,398.8020820617676,143.15625,406.8020820617676,131.82290649414062,412.1354560852051,125.82290649414062,414.8020820617676,113.82290649414062,419.4687690734863,102.48957824707031,421.4687690734863,89.82290649414062,419.4687690734863,77.15625,414.8020820617676,71.82290649414062,412.1354560852051,60.48957824707031,404.1354560852051,50.48957824707031,394.1354560852051,41.15625,381.4687690734863,35.822906494140625,374.13542556762695,29.15625,357.4687690734863,22.489578247070312,339.4687690734863,17.15625,320.8020820617676,15.15625,310.8020820617676,13.15625,287.4687690734863,13.15625,262.8020820617676,13.822906494140625,240.13542556762695,13.822906494140625,229.46876907348633,16.489578247070312,207.46876907348633,19.822906494140625,185.46876907348633,25.15625,164.13542556762695,28.489578247070312,154.80208206176758,35.15625,136.13542556762695,43.15625,119.46875381469727,46.48957824707031,112.13542556762695,55.15625,98.80208206176758,63.15625,88.13542556762695,71.82290649414062,79.46875381469727,75.82290649414062,76.13542556762695,83.82290649414062,70.80208206176758,91.82290649414062,68.80208206176758,101.15625,68.13542556762695,109.82290649414062,70.13542556762695,115.15625,71.46875381469727,124.48959350585938,76.80208206176758,133.15625,85.46875381469727,137.82290649414062,91.46875381469727,145.82290649414062,107.46875381469727,152.48959350585938,126.80208206176758,158.48959350585938,152.13542556762695,162.48959350585938,182.13542556762695,164.48959350585938,198.13542556762695,167.15625,235.46876907348633,171.82290649414062,277.4687690734863,181.82290649414062,332.13542556762695,191.15625,362.13542556762695,213.15625,410.8020820617676],
-  //         "stroke":"#000","strokeWidth":5,"tension":0.5,"lineCap":"round"},
-  //         "className":"Line"},
-  //         {"attrs":{"width":269,"height":540},"className":"Image"}]}]}
+  const json = {"attrs":{"width":183.81666666666666,"height":369},"className":"Stage","children":[{"attrs":{"id":"stuffToShow"},"className":"Layer","children":[{"attrs":{"width":183.81666666666666,"height":369},"className":"Image"},{"attrs":{"width":100,"height":100,"id":"0","draggable":true,"x":-15.10809754427062,"y":180.5173154160553,"scaleX":2.051779172237358,"scaleY":2.051779172237358},"className":"Image"},{"attrs":{"width":33.42121212121212,"height":21.705882352941178,"x":18.381666666666668,"y":16.772727272727273},"className":"Image"}]}]}
   
-  // const json = {
-  //               "attrs":{
-  //                 "width":346.7111111111111,
-  //                 "height":696
-  //               },
-  //               "className":"Stage",
-  //               "children":[
-  //                 {
-  //                   "attrs":{"id":"stuffToShow"},
-  //                   "className":"Layer",
-  //                   "children":[
-  //                     {
-  //                       "attrs":{
-  //                         "width":346.7111111111111,
-  //                         "height":696
-  //                       },
-  //                       "className":"Image"
-  //                     },
-  //                     {
-  //                       "attrs":{
-  //                         "width":100,
-  //                         "height":100,
-  //                         "draggable":true,
-  //                         "x":44.56234283160552,
-  //                         "y":169.44210165973126,
-  //                         "scaleX":1.2362662942445084,
-  //                         "scaleY":1.2362662942445084},
-  //                         "className":"Image"
-  //                     },
-  //                     {
-  //                       "attrs":{
-  //                         "width":100,
-  //                         "height":100,
-  //                         "draggable":true,
-  //                         "x":141.61643295501202,
-  //                         "y":387.1532292708224,
-  //                         "scaleX":2.220443156351971,
-  //                         "scaleY":2.220443156351971
-  //                       },
-  //                       "className":"Image"
-  //                     }
-  //                   ]
-  //                 }
-  //               ]
-  //             }
+  // console.log(json.children);
+  function handleTouch(e:any) {
+    e.evt.preventDefault();
+    // console.log(e.target);
+    
+    let touch1 = e.evt.touches[0];
+    let touch2 = e.evt.touches[1];
+    const image:any = imageRef.current;
+    if (image !== null) {
+      if (touch1 && touch2) {
+        if (image.isDragging()) {
+          image.stopDrag();
+        }
+  
+        var p1 = {
+          x: touch1.clientX,
+          y: touch1.clientY
+        };
+        var p2 = {
+          x: touch2.clientX,
+          y: touch2.clientY
+        };
+  
+        if (!lastCenter) {
+          lastCenter = getCenter(p1, p2);
+          return;
+        }
+        var newCenter = getCenter(p1, p2);
+  
+        var dist = getDistance(p1, p2);
+  
+        if (!lastDist) {
+          lastDist = dist;
+        }
+  
+        // local coordinates of center point
+        var pointTo = {
+          x: (newCenter.x - image.x()) / image.scaleX(),
+          y: (newCenter.y - image.y()) / image.scaleX()
+        };
+  
+        var scale = image.scaleX() * (dist / lastDist);
+  
+        image.scaleX(scale);
+        image.scaleY(scale);
+  
+        // calculate new position of the stage
+        var dx = newCenter.x - lastCenter.x;
+        var dy = newCenter.y - lastCenter.y;
+  
+        var newPos = {
+          x: newCenter.x - pointTo.x * scale + dx,
+          y: newCenter.y - pointTo.y * scale + dy
+        };
+  
+        image.position(newPos);
+        // stage.batchDraw();
+  
+        lastDist = dist;
+        lastCenter = newCenter;
+      }
+    }
+  }
 
-      const json = {"attrs":{"width":183.81666666666666,"height":369},"className":"Stage","children":[{"attrs":{"id":"stuffToShow"},"className":"Layer","children":[{"attrs":{"width":183.81666666666666,"height":369},"className":"Image"},{"attrs":{"width":100,"height":100,"id":"0","draggable":true,"x":-15.10809754427062,"y":180.5173154160553,"scaleX":2.051779172237358,"scaleY":2.051779172237358},"className":"Image"},{"attrs":{"width":33.42121212121212,"height":21.705882352941178,"x":18.381666666666668,"y":16.772727272727273},"className":"Image"}]}]}
-  
-  console.log(json.children);
+  function handleTouchEnd() {
+    lastCenter = null;
+    lastDist = 0;
+  }
   
   return (
     <>
@@ -112,32 +131,26 @@ const Draw = ()=>{
             ref={stageRef}
           >
             <Layer>
-                <Image  image={image0}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height} />
-            {json.children[0].children.map((value:any,index:number)=>{
-              if(index!==0 && index !==json.children[0].children.length-1){
-                // console.log(index);                
-                return (
-                  <Image 
-                    image={eval("image" + index)} 
-                    width={value.attrs.height} 
-                    height={value.attrs.width}
-                    scaleX={value.attrs.scaleX}
-                    scaleY={value.attrs.scaleY}
-                    draggable={value.attrs.draggable}
-                    x={value.attrs.x}
-                    y={value.attrs.y}
-                  />
-                  )
-                }  
-            })}
-
-              <Image  image={image2}  
+                <Image  image={Phone}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height} />
+                <Image 
+                  onTouchMove={handleTouch}
+                  onTouchEnd={handleTouchEnd}
+                  image={image} 
+                  width={json.children[0].children[1].attrs.height} 
+                  height={json.children[0].children[1].attrs.width}
+                  scaleX={json.children[0].children[1].attrs.scaleX}
+                  scaleY={json.children[0].children[1].attrs.scaleY}
+                  draggable={json.children[0].children[1].attrs.draggable}
+                  x={json.children[0].children[1].attrs.x}
+                  y={json.children[0].children[1].attrs.y}
+                  ref={imageRef}
+                />
+              <Image  image={camera}  
                 width={json.children[0].children[json.children[0].children.length-1].attrs.width} 
                 height={json.children[0].children[json.children[0].children.length-1].attrs.height} 
                 x={json.children[0].children[json.children[0].children.length-1].attrs.x}
                 y={json.children[0].children[json.children[0].children.length-1].attrs.y}
               />
-              {/* <Image image={camera}  width={json.children[0].children[0].attrs.width} height={json.children[0].children[0].attrs.height}/> */}
             </Layer>
           </Stage>
         </div>

@@ -6,6 +6,9 @@ import { Stage, Layer } from 'react-konva';
 import { Image } from 'react-konva';
 import useImage from 'use-image';
 import styles from "../styles/app_original.module.css"
+import QRCode from "qrcode.react"
+import useSWR from 'swr';
+import axios from "axios";
 
 // import MyLargeComponent from './thingToRenderOnStage';
 
@@ -23,14 +26,13 @@ function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; })
 }
 
 
+
 function App_image_edit({save}:{save:boolean}) {
-    
     // header,footer文
     const image_height = window.innerHeight-200
     const image_width = image_height * 269/540
     const stageRef = useRef<any>(null)
     const imageRef = useRef(null);
-    const [item,setItem] = useState(0)
     let lastCenter: { x: number; y: number; } | null = null;
     let lastDist = 0;
     const [images, setImage] = useState([]);
@@ -39,14 +41,41 @@ function App_image_edit({save}:{save:boolean}) {
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
     const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
     const [design] = useImage(createObjectURL[0].url) 
+
+    const handleUploadClick = async () => {
+      const file = images[0];
+      const formData = new FormData();
+      formData.append('file', file);
+  
+      try {
+        await axios.post(`/api/blob_strage`,
+          formData
+        ).then((res)=>{
+          console.log(res.data);
+          
+        })
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    useEffect(()=>{
+      console.log(stageRef.current.getStage().toJSON());  
+      handleUploadClick()   
+    },[save])
+
+    
+
     
     const uploadToClient = (event:any) => {
         // console.log('event.target.files', event.target.files[0]);
         if (event.target.files[0] ) {
             const file = event.target.files[0];
+            // console.log(file);
+            
             
             const list:any = [...images];
-            list.push({ image:file });
+            list.push(file);
             
             setImage(list);
             // console.log(list);
@@ -72,7 +101,6 @@ function App_image_edit({save}:{save:boolean}) {
 
   function handleTouch(e:any) {
     e.evt.preventDefault();
-    setItem(e.target.index);
     // console.log(e.target);
     
     let touch1 = e.evt.touches[0];
@@ -138,9 +166,6 @@ function App_image_edit({save}:{save:boolean}) {
     lastCenter = null;
     lastDist = 0;
   }
-    useEffect(()=>{
-        console.log(stageRef.current.getStage().toJSON());    
-    },[save])
 
   return (
     <>
@@ -153,9 +178,7 @@ function App_image_edit({save}:{save:boolean}) {
     <Layer id='stuffToShow'>
     {/* 土台の画像 */}
     <Image image={image} width={image_width} height={image_height}/>
-        
                 <Image image={design} width={100} height={100} 
-                    id={"0"}
                     onTouchMove={handleTouch}
                     onTouchEnd={handleTouchEnd}
                     draggable={true}
@@ -169,12 +192,15 @@ function App_image_edit({save}:{save:boolean}) {
    </Stage>
         <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage" onChange={uploadToClient} />
 
-
-
-
-
+    {/* {save &&
+        <QRCode value={`http://localhost:3000/test2?json=${stageRef.current.getStage().toJSON()} && image=${createObjectURL[0].url}`}/>
+    } */}
    </>
  )
 }
 
 export default App_image_edit
+
+function then(arg0: (res: any) => void) {
+  throw new Error('Function not implemented.');
+}
