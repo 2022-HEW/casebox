@@ -39,6 +39,7 @@ const scan = () => {
               </div>
             </form>
         </div>
+        <Camera/>
       </Nav>
     </Box>
   )

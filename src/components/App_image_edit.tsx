@@ -6,7 +6,7 @@ import { Stage, Layer } from 'react-konva';
 import { Image } from 'react-konva';
 import useImage from 'use-image';
 import styles from "../styles/app_original.module.css"
-import QRCode from "qrcode.react"
+import {QRCode} from "react-qrcode"
 import useSWR from 'swr';
 import axios from "axios";
 
@@ -41,26 +41,40 @@ function App_image_edit({save}:{save:boolean}) {
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
     const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
     const [design] = useImage(createObjectURL[0].url) 
+    const [base64,setBase64] = useState<string | ArrayBuffer | null>()
 
     const handleUploadClick = async () => {
       const file = images[0];
       const formData = new FormData();
       formData.append('file', file);
-  
-      try {
-        await axios.post(`/api/blob_strage`,
-          formData
-        ).then((res)=>{
-          console.log(res.data);
-          
-        })
-      } catch (e) {
-        console.error(e);
-      }
+        
+      // nodeでは出来ない
+      const reader = new FileReader();
+      reader.onload= async() =>{    
+        // console.log(reader.result);
+        // Azureに入れる
+        try {
+          await fetch(`/api/blob_strage`,{
+            method:"POST",
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reader.result)
+          }).then(res=>{
+            res.json();
+          })
+        } catch (e) {
+          console.error(e);
+        }  
+      }        
+      
+      if(file){
+        reader.readAsDataURL(file)
+      }      
     };
 
     useEffect(()=>{
-      console.log(stageRef.current.getStage().toJSON());  
+      // console.log(stageRef.current.getStage().toJSON());  
       handleUploadClick()   
     },[save])
 
@@ -93,7 +107,7 @@ function App_image_edit({save}:{save:boolean}) {
             urlList[index]["url"] = URL.createObjectURL(file)
             
             setCreateObjectURL(urlList);
-            console.log(urlList); 
+            // console.log(urlList); 
             
         }
     };
@@ -191,16 +205,12 @@ function App_image_edit({save}:{save:boolean}) {
     </Layer>
    </Stage>
         <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage" onChange={uploadToClient} />
-
-    {/* {save &&
-        <QRCode value={`http://localhost:3000/test2?json=${stageRef.current.getStage().toJSON()} && image=${createObjectURL[0].url}`}/>
-    } */}
+        {save &&
+          <QRCode value={`http://localhost:3000/test2?json=${stageRef.current.getStage().toJSON()} && image=${createObjectURL[0].url}`}/>
+        }
    </>
  )
 }
 
 export default App_image_edit
 
-function then(arg0: (res: any) => void) {
-  throw new Error('Function not implemented.');
-}

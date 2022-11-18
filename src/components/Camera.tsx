@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import Modal from './common/Modal';
 import { useRecoilState } from "recoil";
 import { modalState } from '../atoms/atoms';
+import OriginalCheck from './OriginalCheck';
 
 const videoWidth: number = 750;
 const videoHeight: number = 750;
@@ -177,7 +178,9 @@ useEffect(()=>{
         <div>
           <p>{qrCodeData.join('\n')}</p>
         </div>
-        <Modal></Modal>
+        <Modal>
+          <OriginalCheck qrCodeData={qrCodeData} />
+        </Modal>
       </div>
     </div>
   );
