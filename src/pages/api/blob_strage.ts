@@ -1,3 +1,4 @@
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { BlobServiceClient, ContainerClient} from '@azure/storage-blob';
 import { Blob } from 'buffer';
@@ -5,7 +6,6 @@ import { Blob } from 'buffer';
 const containerName = `tutorial-container`;
 
 export default async (req: NextApiRequest, res:NextApiResponse,) => {
-
     // const a = new Blob(file);
     // console.log(req.body);
 
@@ -82,6 +82,7 @@ async function main() {
   }}
   main().then(() => console.log("Done"))
 .catch((ex) => console.log(ex.message));
-  return res.status(200).json(req.body)
+return res.json("aaa")  
+
 }
 

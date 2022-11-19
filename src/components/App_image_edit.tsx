@@ -60,9 +60,14 @@ function App_image_edit({save}:{save:boolean}) {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(reader.result)
-          }).then(res=>{
-            res.json();
-          })
+          }).then((res)=>{
+            return res.json();            
+          }).then(data=>{
+            const a = data
+            console.log(a);
+            
+          }
+            )
         } catch (e) {
           console.error(e);
         }  
