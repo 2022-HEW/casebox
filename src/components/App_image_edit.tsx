@@ -63,9 +63,8 @@ function App_image_edit({save}:{save:boolean}) {
           }).then((res)=>{
             return res.json();            
           }).then(data=>{
-            const a = data
-            console.log(a);
-            
+            // Azureからbase64を取ってくる
+            setImagePath(data.slice(1).slice(0,-1))
           }
             )
         } catch (e) {
@@ -188,6 +187,9 @@ function App_image_edit({save}:{save:boolean}) {
 
   return (
     <>
+    {imagePath &&   
+      <img src={imagePath}/>
+    }
     <Stage
         height={image_height}
         width={image_width}
