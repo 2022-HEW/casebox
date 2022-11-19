@@ -41,7 +41,6 @@ function App_image_edit({save}:{save:boolean}) {
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
     const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
     const [design] = useImage(createObjectURL[0].url) 
-    const [base64,setBase64] = useState<string | ArrayBuffer | null>()
 
     const handleUploadClick = async () => {
       const file = images[0];
@@ -52,14 +51,19 @@ function App_image_edit({save}:{save:boolean}) {
       const reader = new FileReader();
       reader.onload= async() =>{    
         // console.log(reader.result);
-        // Azureに入れる
+        // Azureに入れる  
+        // const body:any = {"image":reader.result,"situ":"add","place":stageRef.current.getStage().toJSON()}
         try {
           await fetch(`/api/blob_strage`,{
             method:"POST",
             headers:{
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(reader.result)
+            body: JSON.stringify({
+              "image":reader.result,
+              "situ":"add",
+              "place":stageRef.current.getStage().toJSON()
+            })
           }).then((res)=>{
             return res.json();            
           }).then(data=>{
@@ -213,7 +217,7 @@ function App_image_edit({save}:{save:boolean}) {
    </Stage>
         <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage" onChange={uploadToClient} />
         {save &&
-          <QRCode value={`http://localhost:3000/test2?json=${stageRef.current.getStage().toJSON()} && image=${createObjectURL[0].url}`}/>
+          <QRCode value={`http://localhost:3000/test2?design=user && json=user`}/>
         }
    </>
  )

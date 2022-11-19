@@ -5,11 +5,12 @@ import { Blob } from 'buffer';
 import { time } from "console";
 import { useState } from "react";
 
-const containerName = `product`;
+const imgContainerName = `product`;
+const placeContainerName = `place`;
 
 export default async (req: NextApiRequest, res:NextApiResponse,) => {
     // const a = new Blob(file);
-    // console.log(req.body);
+    console.log(req.body);
 
     // const reader = new window.FileReader()
     // reader.readAsDataURL(file);    
@@ -40,16 +41,21 @@ export default async (req: NextApiRequest, res:NextApiResponse,) => {
       );
   
       // get Container - full public read access
-      const containerClient: ContainerClient = blobService.getContainerClient(containerName);
-      await containerClient.createIfNotExists({
+      const imgContainerClient: ContainerClient = blobService.getContainerClient(imgContainerName);
+      await imgContainerClient.createIfNotExists({
+          access: 'container',
+      });
+
+      const placeContainerClient: ContainerClient = blobService.getContainerClient(placeContainerName);
+      await placeContainerClient.createIfNotExists({
           access: 'container',
       });
 
 
-      const createBlobInContainer = async (containerClient: ContainerClient, base64:string) => {
+      const createBlobInContainer = async (containerClient: ContainerClient, base64:string,filename:string) => {
   
         // create blobClient for container
-        const blobClient = containerClient.getBlockBlobClient("userID.txt");
+        const blobClient = containerClient.getBlockBlobClient(filename);
       
         // set mimetype as determined from browser with file upload control
       
@@ -66,7 +72,7 @@ export default async (req: NextApiRequest, res:NextApiResponse,) => {
       for await (const blob of containerClient.listBlobsFlat()) {
         // if image is public, just construct URL
         returnedBlobUrls.push(
-          `https://${storageAccountName}.blob.core.windows.net/${containerName}/${blob.name}`
+          `https://${storageAccountName}.blob.core.windows.net/${imgContainerName}/${blob.name}`
         );
       }
       console.log(returnedBlobUrls);
@@ -84,13 +90,19 @@ export default async (req: NextApiRequest, res:NextApiResponse,) => {
     }
   
     // upload file
-    // await createBlobInContainer(containerClient,req.body);
+    if(req.body.situ === "add"){
+      await createBlobInContainer(imgContainerClient,req.body.image,"userID.txt");
+      await createBlobInContainer(placeContainerClient,req.body.place,"userID.json");
+      return res.json("success");
+    }
   
     // get list of blobs in container
-    getBlobsInContainer(containerClient).then(res=>{return res}).then(data=>{
-      // console.log(data);
-      return res.json(JSON.stringify(data))  
-    })
+    if(req.body.situ=== "select"){  
+      getBlobsInContainer(imgContainerClient).then(res=>{return res}).then(data=>{
+        // console.log(data);
+        return res.json(JSON.stringify(data))  
+      })
+    }
   
     // return JSON.stringify(result)
   } catch (err:any) {
