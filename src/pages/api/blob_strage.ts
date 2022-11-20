@@ -10,7 +10,7 @@ const placeContainerName = `place`;
 
 export default async (req: NextApiRequest, res:NextApiResponse,) => {
     // const a = new Blob(file);
-    console.log(req.body);
+    // console.log(req.body);
 
     // const reader = new window.FileReader()
     // reader.readAsDataURL(file);    
@@ -64,20 +64,25 @@ export default async (req: NextApiRequest, res:NextApiResponse,) => {
         await blobClient.upload(base64,base64.length);
       }
 
-    const getBlobsInContainer = async (containerClient: ContainerClient) => {
-      const returnedBlobUrls: string[] = [];
+    const getBlobsInContainer = async (imgContainerClient: ContainerClient,placeContainerClient: ContainerClient) => {
+      // const returnedBlobUrls: string[] = [];
 
     // get list of blobs in container
     // eslint-disable-next-line
-      for await (const blob of containerClient.listBlobsFlat()) {
-        // if image is public, just construct URL
-        returnedBlobUrls.push(
-          `https://${storageAccountName}.blob.core.windows.net/${imgContainerName}/${blob.name}`
-        );
-      }
-      console.log(returnedBlobUrls);
+      // for await (const blob of containerClient.listBlobsFlat()) {
+      //   // if image is public, just construct URL
+      //   returnedBlobUrls.push(
+      //     `https://${storageAccountName}.blob.core.windows.net/${imgContainerName}/${blob.name}`
+      //   );
+      // }
+      // console.log(returnedBlobUrls);
 
-      const downloadBlockBlobResponse = await containerClient.getBlockBlobClient("userID").download(0);
+      const imgDownloadBlockBlobResponse = await imgContainerClient.getBlockBlobClient(req.body.userID + ".txt").download(0);
+      
+      const placeDownloadBlockBlobResponse = await placeContainerClient.getBlockBlobClient(req.body.userID + ".json").download(0);
+
+      const DownloadBlockBlobResponses =  [await streamToText(imgDownloadBlockBlobResponse.readableStreamBody),
+                                          await streamToText(placeDownloadBlockBlobResponse.readableStreamBody)]
       console.log('\nDownloaded blob content...');
       console.log(
         '\t',
@@ -86,7 +91,7 @@ export default async (req: NextApiRequest, res:NextApiResponse,) => {
         // await  streamToText(downloadBlockBlobResponse.readableStreamBody)
       );
   
-      return  await  streamToText(downloadBlockBlobResponse.readableStreamBody);
+      return  DownloadBlockBlobResponses;
     }
   
     // upload file
@@ -97,10 +102,10 @@ export default async (req: NextApiRequest, res:NextApiResponse,) => {
     }
   
     // get list of blobs in container
-    if(req.body.situ=== "select"){  
-      getBlobsInContainer(imgContainerClient).then(res=>{return res}).then(data=>{
+    if(req.body.situ=== "create"){  
+      getBlobsInContainer(imgContainerClient,placeContainerClient).then(res=>{return res}).then(data=>{
         // console.log(data);
-        return res.json(JSON.stringify(data))  
+        return res.json(data)  
       })
     }
   

@@ -52,7 +52,6 @@ function App_image_edit({save}:{save:boolean}) {
       reader.onload= async() =>{    
         // console.log(reader.result);
         // Azureに入れる  
-        // const body:any = {"image":reader.result,"situ":"add","place":stageRef.current.getStage().toJSON()}
         try {
           await fetch(`/api/blob_strage`,{
             method:"POST",
@@ -60,15 +59,23 @@ function App_image_edit({save}:{save:boolean}) {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+              //  アップロード
               "image":reader.result,
               "situ":"add",
               "place":stageRef.current.getStage().toJSON()
+
+              // QRcode
+                // "situ":"create",
+                // "userID":"userID"
             })
           }).then((res)=>{
             return res.json();            
           }).then(data=>{
             // Azureからbase64を取ってくる
-            setImagePath(data.slice(1).slice(0,-1))
+            // setImagePath(data[0])
+            // console.log(typeof data);
+            
+
           }
             )
         } catch (e) {
@@ -217,7 +224,8 @@ function App_image_edit({save}:{save:boolean}) {
    </Stage>
         <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage" onChange={uploadToClient} />
         {save &&
-          <QRCode value={`http://localhost:3000/test2?design=user && json=user`}/>
+        // どのユーザーの何番目？
+          <QRCode value={`userID`}/>
         }
    </>
  )
