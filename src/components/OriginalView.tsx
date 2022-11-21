@@ -123,9 +123,7 @@ const OriginalView = ()=>{
   
   return (
     <>
-      <div>
-        
-      </div>
+      { designImage &&    
         <div >
         <div className={styles.view_box}>
           <Stage
@@ -158,6 +156,7 @@ const OriginalView = ()=>{
           </Stage>
         </div>
       </div>
+      }
     </>
   );
 };
