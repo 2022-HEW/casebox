@@ -89,7 +89,7 @@ function App_image_edit({save}:{save:boolean}) {
     };
 
     useEffect(()=>{
-      // console.log(stageRef.current.getStage().toJSON());  
+      console.log(JSON.parse(stageRef.current.getStage().toJSON()));  
       handleUploadClick()   
     },[save])
 

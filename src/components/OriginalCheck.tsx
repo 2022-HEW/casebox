@@ -61,26 +61,35 @@ const OriginalCheck = () => {
 
   const ProductView = ()=>{
     return(
-      <Stage width={268}height={539}>
-        <Layer>
-          {designImage &&
-          <>
-          <Image image={phone}  width={269} height={540} />
-          <Image image={design}  
-                  width={designPath.attrs.width} 
-                  height={designPath.attrs.height}
-                  scaleX={designPath.attrs.scaleX}
-                  scaleY={designPath.attrs.scaleY}
-                  x={designPath.attrs.x}
-                  y={designPath.attrs.y}
-          />
-          <Image image={camera} width={50} height={35} x={27} y={23}/>
-          </>
-          }
-        </Layer>
-      </Stage>
+      <>
+      {designImage &&
+        <Stage width={designPath.attrs.width} height={designPath.attrs.height}>
+          <Layer>
+            
+            <Image image={phone}  
+              width={designPath.children[0].children[0].attrs.width} 
+              height={designPath.children[0].children[0].attrs.height} />
+            <Image image={design}  
+                    width={designPath.children[0].children[1].attrs.width} 
+                    height={designPath.children[0].children[1].attrs.height}
+                    scaleX={designPath.children[0].children[1].attrs.scaleX}
+                    scaleY={designPath.children[0].children[1].attrs.scaleY}
+                    x={designPath.children[0].children[1].attrs.x}
+                    y={designPath.children[0].children[1].attrs.y}
+            />
+            <Image image={camera} 
+              width={designPath.children[0].children[2].attrs.width} 
+              height={designPath.children[0].children[2].attrs.height} 
+              x={designPath.children[0].children[2].attrs.x} 
+              y={designPath.children[0].children[2].attrs.y}/>
+          </Layer>
+        </Stage>
+      }
+      </>
+
     )
-  }
+      }
+      
   
   return (
     <>
