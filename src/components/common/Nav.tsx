@@ -83,6 +83,9 @@ const Nav =({children}:Props)=>{
                 break;
             case "/pay":
                 break;
+            case "/originalEdit":
+                setTab("オリジナル")
+                break;
             default:
                 console.log("error");
         }
