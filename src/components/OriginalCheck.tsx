@@ -3,14 +3,20 @@ import React, { useEffect, useState } from 'react'
 import { Stage, Layer, Line } from "react-konva";
 import useImage from 'use-image'
 import { Image } from 'react-konva';
+import { Button } from './common/Button';
+import { designState,imageState } from '../atoms/atoms';
+import { useRecoilState,useRecoilValue } from "recoil";
+
 
 const OriginalCheck = () => {
   // console.log(qrCodeData);
   
   const router = useRouter();
   const query = router.query;
-  const [designPath,setDesignPath] = useState<any>([])
-  const [designImage,setDesignImage] = useState("")
+  // const [designPath,setDesignPath] = useState<any>([])
+  // const [designImage,setDesignImage] = useState("")
+  const [designPath,setDesignPath] = useRecoilState<any>(designState)
+  const [designImage,setDesignImage] = useRecoilState(imageState)
   const [phone] = useImage("./iPhone/iPhone7/(PRODUCT)RED.png")
   const [camera] = useImage("./iPhone/iPhone7/(PRODUCT)RED_camera.png")
   const [design] = useImage(designImage)
@@ -86,15 +92,32 @@ const OriginalCheck = () => {
         </Stage>
       }
       </>
-
     )
+    }
+
+    const ProductInfo = ()=>{
+      const goEdit = ()=>{
+        router.push({
+          pathname:"/originalEdit"
+        })
       }
+
+      return(
+        <div >
+          <div>アボカドケース</div>
+          <div>CASEBOXオリジナル</div>
+          <div>￥1,500(税込み)</div>
+          <Button label={'編集へ'} situ_name={'screen'} onClick={goEdit}/>
+        </div>
+      )
+    }
       
   
   return (
-    <>
+    <div style={{display:"flex"}}>
       <ProductView/>
-    </>
+      <ProductInfo/>
+    </div>
   )
 }
 

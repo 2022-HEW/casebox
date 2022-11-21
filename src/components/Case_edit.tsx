@@ -6,7 +6,6 @@ import {
         productState,modalState,stepState, 
         toolState,sizeState,colorState,downloadState
     } from '../atoms/atoms';
-import { Color } from 'textalive-app-api';
 import React from 'react';
 import { useRouter } from 'next/router';
 import  {Button}  from "./common/Button"
