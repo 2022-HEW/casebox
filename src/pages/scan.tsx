@@ -1,66 +1,48 @@
-import React from 'react'
-import Box from '../components/common/Box'
-import Nav from '../components/common/Nav'
-import Camera from '../components/Camera'
-import Movie from '../components/common/Movie' 
+import React from 'react';
+import Box from '../components/common/Box';
+import Nav from '../components/common/Nav';
+import Camera from '../components/Camera';
+import Movie from '../components/common/Movie';
 import styles from "../styles/scan.module.css";
 
-const Scan = () => {
+const scan = () => {
   return (
     <Box>
-        <Nav>
-            <Movie movieUrl={""}/>
-            <div id={styles.wrap}>
-              <div id={styles.number}>
-              <form name="dentaku">
-                {/* <table> */}
-                  {/* <!-- 液晶画面部分 --> */}
-                  {/* <tr>
-                    <td colSpan={4}>
-                      <input type="text" className="display" name="display" value="" disabled/>
-                    </td>
-                  </tr> */}
-            
-                  {/* <!-- 上から1段目（7~9＋÷） --> */}
-                  {/* <tr> */}
-                    {/* <td><input type="button" value="7" onClick={get_calc(this)}/></td>
-                    <td><input type="button" value="8" onClick={get_calc(this)}/></td>
-                    <td><input type="button" value="9" onClick={get_calc(this)}/></td>
-                    <td><input type="button" value="÷" className="operator" name="div_btn" onClick={get_calc(this)}/></td> */}
-                  {/* </tr> */}
-                    
-                  {/* <!-- 上から2段目（4~6＋×） --> */}
-                  {/* <tr> */}
-                    {/* <td><input type="button" value="4" onClick={get_calc(this)}/></td>
-                    <td><input type="button" value="5" onClick={get_calc(this)}/></td>
-                    <td><input type="button" value="6" onClick={get_calc(this)}/></td>
-                    <td><input type="button" value="×" className="operator" name="multi_btn" onClick={get_calc(this)}/></td> */}
-                  {/* </tr> */}
-            
-                  {/* <!-- 上から3段目（1~3＋-） --> */}
-                  {/* <tr> */}
-                    {/* <td><input type="button" value="1" onclick="get_calc(this)"></td>
-                    <td><input type="button" value="2" onclick="get_calc(this)"></td>
-                    <td><input type="button" value="3" onclick="get_calc(this)"></td>
-                    <td><input type="button" value="-" class="operator" onclick="get_calc(this)"></td> */}
-                  {/* </tr> */}
-            
-                  {/* <!-- 上から4段目（0/C/=/+) --> */}
-                  {/* <tr> */}
-                    {/* <td><input type="button" value="0" onclick="get_calc(this)"></td>
-                    <td><input type="button" value="C" onclick="get_calc(this)"></td>
-                    <td><input type="button" value="=" class="equal" onclick="get_calc(this)"></td>
-                    <td><input type="button" value="+" class="operator" onclick="get_calc(this)"></td> */}
-                  {/* </tr> */}
-            
-                {/* </table> */}
-                </form>
+      <Nav>
+          <div className={styles.table}>
+            <div className={styles.tr}>
+              <div className={styles.th}>
+                　
               </div>
             </div>
-            <Camera/>
-            <div>scan</div>
-        </Nav>
+            
+            <form>
+              <div className={styles.tr}>
+                <div className={styles.td}><input type="button" value="１" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="２" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="３" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="C" className={styles.buttonC}/></div>
+              </div>
+              <div className={styles.tr}>
+                <div className={styles.td}><input type="button" value="４" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="５" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="６" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="検索" className={styles.buttonS}/></div>
+              </div>
+              <div className={styles.tr}>
+                <div className={styles.td}><input type="button" value="７" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="８" className={styles.button}/></div>
+                <div className={styles.td}><input type="button" value="９" className={styles.button}/></div>
+              </div>
+              <div>
+                <a href='' className={styles.scan}>スキャン</a>
+              </div>
+            </form>
+        </div>
+        <Camera/>
+      </Nav>
     </Box>
   )
 }
-export default Scan
+
+export default scan

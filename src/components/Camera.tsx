@@ -6,6 +6,10 @@ import { useRouter } from 'next/router';
 import Modal from './common/Modal';
 import { useRecoilState } from "recoil";
 import { modalState } from '../atoms/atoms';
+import dynamic from 'next/dynamic';
+// import OriginalCheck from './OriginalCheck';
+const OriginalCheck = dynamic(() => import('./OriginalCheck'), { ssr: false })
+
 
 const videoWidth: number = 750;
 const videoHeight: number = 750;
@@ -144,10 +148,13 @@ useEffect(()=>{
         console.log(qrCodeData);
         setIsContinue(false);
         setModal(true);
-        // router.push({
-        //     pathname:"/device_select"
-        // }
-        // )
+        router.push({
+            pathname:"/scan",
+            query:{
+              "productID":qrCodeData
+            }
+        }
+        )
         
         // stopCamera();
         // return;
@@ -177,7 +184,9 @@ useEffect(()=>{
         <div>
           <p>{qrCodeData.join('\n')}</p>
         </div>
-        <Modal></Modal>
+        <Modal>
+          <OriginalCheck/>
+        </Modal>
       </div>
     </div>
   );

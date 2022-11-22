@@ -6,6 +6,9 @@ import { Stage, Layer } from 'react-konva';
 import { Image } from 'react-konva';
 import useImage from 'use-image';
 import styles from "../styles/app_original.module.css"
+import {QRCode} from "react-qrcode"
+import useSWR from 'swr';
+import axios from "axios";
 
 // import MyLargeComponent from './thingToRenderOnStage';
 
@@ -23,14 +26,13 @@ function getCenter(p1: { x: number; y: number; }, p2: { x: number; y: number; })
 }
 
 
+
 function App_image_edit({save}:{save:boolean}) {
-    
     // header,footer文
     const image_height = window.innerHeight-200
     const image_width = image_height * 269/540
     const stageRef = useRef<any>(null)
     const imageRef = useRef(null);
-    const [item,setItem] = useState(0)
     let lastCenter: { x: number; y: number; } | null = null;
     let lastDist = 0;
     const [images, setImage] = useState([]);
@@ -39,14 +41,70 @@ function App_image_edit({save}:{save:boolean}) {
     const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png")
     const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png")
     const [design] = useImage(createObjectURL[0].url) 
+
+    const handleUploadClick = async () => {
+      const file = images[0];
+      const formData = new FormData();
+      formData.append('file', file);
+        
+      // nodeでは出来ない
+      const reader = new FileReader();
+      reader.onload= async() =>{    
+        // console.log(reader.result);
+        // Azureに入れる  
+        try {
+          await fetch(`/api/blob_strage`,{
+            method:"POST",
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              //  アップロード
+              "image":reader.result,
+              "situ":"add",
+              "place":stageRef.current.getStage().toJSON()
+
+              // QRcode
+                // "situ":"create",
+                // "userID":"userID"
+            })
+          }).then((res)=>{
+            return res.json();            
+          }).then(data=>{
+            // Azureからbase64を取ってくる
+            // setImagePath(data[0])
+            // console.log(typeof data);
+            
+
+          }
+            )
+        } catch (e) {
+          console.error(e);
+        }  
+      }        
+      
+      if(file){
+        reader.readAsDataURL(file)
+      }      
+    };
+
+    useEffect(()=>{
+      console.log(JSON.parse(stageRef.current.getStage().toJSON()));  
+      handleUploadClick()   
+    },[save])
+
+    
+
     
     const uploadToClient = (event:any) => {
         // console.log('event.target.files', event.target.files[0]);
         if (event.target.files[0] ) {
             const file = event.target.files[0];
+            // console.log(file);
+            
             
             const list:any = [...images];
-            list.push({ image:file });
+            list.push(file);
             
             setImage(list);
             // console.log(list);
@@ -64,7 +122,7 @@ function App_image_edit({save}:{save:boolean}) {
             urlList[index]["url"] = URL.createObjectURL(file)
             
             setCreateObjectURL(urlList);
-            console.log(urlList); 
+            // console.log(urlList); 
             
         }
     };
@@ -72,7 +130,6 @@ function App_image_edit({save}:{save:boolean}) {
 
   function handleTouch(e:any) {
     e.evt.preventDefault();
-    setItem(e.target.index);
     // console.log(e.target);
     
     let touch1 = e.evt.touches[0];
@@ -138,12 +195,12 @@ function App_image_edit({save}:{save:boolean}) {
     lastCenter = null;
     lastDist = 0;
   }
-    useEffect(()=>{
-        console.log(stageRef.current.getStage().toJSON());    
-    },[save])
 
   return (
     <>
+    {imagePath &&   
+      <img src={imagePath}/>
+    }
     <Stage
         height={image_height}
         width={image_width}
@@ -153,9 +210,7 @@ function App_image_edit({save}:{save:boolean}) {
     <Layer id='stuffToShow'>
     {/* 土台の画像 */}
     <Image image={image} width={image_width} height={image_height}/>
-        
                 <Image image={design} width={100} height={100} 
-                    id={"0"}
                     onTouchMove={handleTouch}
                     onTouchEnd={handleTouchEnd}
                     draggable={true}
@@ -168,13 +223,13 @@ function App_image_edit({save}:{save:boolean}) {
     </Layer>
    </Stage>
         <input id="file-input" className="hidden" type="file" accept="image/*" name="myImage" onChange={uploadToClient} />
-
-
-
-
-
+        {save &&
+        // どのユーザーの何番目？
+          <QRCode value={`userID`}/>
+        }
    </>
  )
 }
 
 export default App_image_edit
+

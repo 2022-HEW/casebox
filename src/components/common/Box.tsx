@@ -12,6 +12,8 @@ const Box = ({ children}:{children:ReactNode}) =>{
             setModal(false)
         }
     }, [])
+
+    
     
     
     return (

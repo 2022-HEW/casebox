@@ -3,7 +3,7 @@ import { useRouter } from'next/router'
 import Link from "next/link"
 import { ReactNode, useState,useMemo, useRef,} from 'react';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { productState,tabState,stepState,modalState } from '../../atoms/atoms';
+import { productState,tabState,stepState,modalState,designState,imageState } from '../../atoms/atoms';
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
@@ -25,10 +25,18 @@ type Tab_type ={
 const Nav =({children}:Props)=>{
 
     const router = useRouter()    
-    const[tab,setTab] = useRecoilState(tabState);
+    const [tab,setTab] = useRecoilState(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const [step,setStep] = useRecoilState(stepState)
-    const[modal,setModal] = useRecoilState(modalState)
+    const [modal,setModal] = useRecoilState(modalState)
+    const [design,setDesign] = useRecoilState(designState)
+    const [image,setImage] = useRecoilState(imageState)
+
+    //オリジナル情報をリセット
+    if(image && tab !== "オリジナル"){
+        setDesign([])
+        setImage("")
+    }
 
     /**
      * 色は反映されたまま
@@ -74,6 +82,9 @@ const Nav =({children}:Props)=>{
                 setTab("ヘルプ")
                 break;
             case "/pay":
+                break;
+            case "/originalEdit":
+                setTab("オリジナル")
                 break;
             default:
                 console.log("error");

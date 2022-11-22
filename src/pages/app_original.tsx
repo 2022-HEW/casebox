@@ -6,6 +6,7 @@ const App_image_edit = dynamic(() => import('../components/App_image_edit'), { s
 
  const app_original = () => {
      const [save,setSave] = useState(false)
+     
   
     const Tool_box =()=>{
         return(

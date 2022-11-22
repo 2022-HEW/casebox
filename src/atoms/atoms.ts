@@ -60,27 +60,17 @@ export const colorState = atom({
 export const downloadState = atom({
     key: "download",
     default: false
-    // default: {
-        // current:[],
-        // _id:
-        // eventListeners:
-        // attrs:
-        // index:
-        // _allEventListeners: 
-        // parent: 
-        // _cache: 
-        // _attachedDepsListeners:
-        // _batchingTransformChange: 
-        // needClearTransformCache: 
-        // _filterUpToDate: 
-        // _isUnderCache: 
-        // _dragEventId: 
-        // _shouldFireChangeEvents: 
-        // children: 
-        // _pointerPositions: 
-        // _changedPointerPositions: 
-        // bufferCanvas: 
-        // bufferHitCanvas:
-        // content:
-    // }
 });
+
+// オリジナルデザイン
+export const designState:any = atom({
+    key: "design",
+    default: []
+});
+
+// オリジナル画像
+export const imageState = atom({
+    key: "image",
+    default: ""
+});
+
