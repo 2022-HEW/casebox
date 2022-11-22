@@ -1,6 +1,26 @@
-.product_box{
+.top_line{
+  display: flex;
+  height: 50%;
+}
+.bottom_line{
+  display: flex;
+  height: 50%;
+}
+#product_image{
+  width: 200px;
+  height: 200px;
+}
+.case_name{
+  font-weight: bold;
   position: relative;
-  height: 100px;
-  z-index: 2;
-  top: 70px;
+  left: 52px;
+  bottom: 21px;
+}
+.case_category{
+  position: relative;
+  bottom: 35px;
+  left: 52px;
+}
+.case_price{
+
 }

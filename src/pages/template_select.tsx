@@ -25,28 +25,27 @@ import useSWR from "swr";
   setProduct_ID:React.Dispatch<React.SetStateAction<number>>
 }
 
-// const Product_box = forwardRef<HTMLDivElement, Product>(
-//   (props,ref)=> {    
-// const Product_box =({id,image_path,case_name,case_category,case_price,modal_flg,setModal,setProduct_ID}:Product)=> {
+// 商品一個あたり
 const Product_box =({id,image_path,case_name,case_category,case_price,setProduct_ID}:Product)=> {
   const[modal,setModal] = useRecoilState(modalState) 
 // モーダルを動かして、商品IDを送る
-function Modal_toggle(e:React.MouseEvent<HTMLDivElement>){
-  setModal(!modal)    
-  setProduct_ID(id)
-};
+  function Modal_toggle(e:React.MouseEvent<HTMLDivElement>){
+    setModal(!modal)    
+    setProduct_ID(id)
+  };
 
-return(
+  return(
       // <div className={styles.product_box} ref={ref} >
       <div className={styles.product_box} onClick={Modal_toggle} >
-          <img src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100}/>
-          <p className="case_name">{case_name}</p>
-          <p className="case_category">{case_category}</p>
-          <p className="case_price">{case_price}</p>
+          <img src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100} id={styles.product_image}/>
+          <p className={styles.case_name}>{case_name}</p>
+          <p className={styles.case_category}>{case_category}</p>
+          <p className={styles.case_price}>{case_price}</p>
       </div>
   )
 }
 
+// メイン
 const Template = () => {
   type Product ={
     product_ID:number,
@@ -81,23 +80,38 @@ const Template = () => {
         <>
         <Box>
             <Nav>
+
               <Modal>
-              {/* <Modal modal_flg={modal_flg} setModal={setModal}> */}
                 <Product_check product={product[product_ID-1]} />
               </Modal>
-              {product.map((product:Product) => (
-              <Product_box image_path={product.product_place}
-                          case_name={product.product_name}
-                          case_category={product.m_product_category}
-                          case_price={product.m_product_price}
-                          key={product.product_ID}
-                          id={product.product_ID}
-                          // modal_flg={modal_flg} 
-                          // setModal={setModal}
-                          setProduct_ID={setProduct_ID}
-                          // ref={modalEl}
-              />
-              ))}
+
+              <div className={styles.top_line}>
+                {product.map((product:Product,index:number) => (
+                  index % 2 === 0 &&
+                  <Product_box image_path={product.product_place}
+                              case_name={product.product_name}
+                              case_category={product.m_product_category}
+                              case_price={product.m_product_price}
+                              key={product.product_ID}
+                              id={product.product_ID}
+                              setProduct_ID={setProduct_ID}
+                  />
+                ))}
+              </div>
+
+              <div className={styles.bottom_line}>
+                {product.map((product:Product,index:number) => (
+                  index % 2 === 1 &&
+                  <Product_box image_path={product.product_place}
+                              case_name={product.product_name}
+                              case_category={product.m_product_category}
+                              case_price={product.m_product_price}
+                              key={product.product_ID}
+                              id={product.product_ID}
+                              setProduct_ID={setProduct_ID}
+                  />
+                ))}
+              </div>
                 
             </Nav>
         </Box>
@@ -110,4 +124,4 @@ const Template = () => {
 // });
 
 
-export default Template;
+export default React.memo(Template);
