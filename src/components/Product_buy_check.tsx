@@ -21,7 +21,7 @@ type Props=  {
 
     const go_pay_select=()=>{
             router.push({
-                pathname:"pay"
+                pathname:"/pay"
             })
     }
 

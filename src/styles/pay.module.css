@@ -1,14 +1,11 @@
 #wrap {
-    background-color: none;
+    margin-top: 3%;
     display: flex;
     flex-flow: column;
     align-items: center;
-    position: relative;
     z-index: 1000;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    top: 7%;
-    right: 0%;
 }
 
 .block1 {
@@ -110,24 +107,16 @@
     height: 200px;
     border: #666666 solid 2px;
     border-radius: 20px;
-    background-color: #F9F9F9;
+    background-color: #f4f4f4;
     display: flex;
     flex-flow: column;
     align-items: center;
     box-shadow: 3px 3px 4px 1px #ccc inset;
 }
-
+/* 
 .payType:active {
-    width: 200px;
-    height: 200px;
-    border: #666666 solid 2px;
-    border-radius: 20px;
-    background-color: #F9F9F9;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
     box-shadow: 3px 3px 4px 1px #ccc inset;
-}
+} */
 
 .btnContent {
     margin-top: 4%;
@@ -137,4 +126,49 @@
     width: 100%;
     text-align: center;
     font-weight: 700;
+}
+
+.modal_price_box {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: 70px 0 0 0;
+}
+
+.modal_write{
+    width: auto;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.modal_money{
+    width: 120px;
+    height: 10px;
+    text-align: right;
+    margin-top: -5%;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.modal_category{
+    margin: 25px 0 0 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.modal_category > div{
+    width: 175px;
+    height: 175px;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 0 0 ;
+}
+
+.modal_alert{
+    text-align: center;
+    font-weight: bold;
+    margin: 35px 0 0 0;
 }
