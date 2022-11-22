@@ -16,7 +16,7 @@ const Service = () => {
             <Box>
                 <Nav >
                     <SlideShow/>
-                    {/* <Service_cards/> */}
+                    <Service_cards/>
                 </Nav>
             </Box>
         </>
