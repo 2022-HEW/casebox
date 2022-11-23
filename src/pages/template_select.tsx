@@ -38,7 +38,7 @@ const Product_box =({id,image_path,case_name,case_category,case_price,setProduct
   return(
       // <div className={styles.product_box} ref={ref} >
       <div className={styles.product_box} onClick={Modal_toggle} >
-          <Image src={"/product_image/" + image_path} alt="商品の画像" width={175} height={175} id={styles.product_image}/>
+          <Image src={"/product_image/" + image_path} alt="商品の画像" width={200} height={200} id={styles.product_image}/>
           <p className={styles.case_name}>{case_name}</p>
           <p className={styles.case_category}>{case_category}</p>
           <p className={styles.case_price}>￥{case_price.toLocaleString()}(税込)</p>
@@ -114,7 +114,6 @@ const Template = () => {
                   />
                 ))}
               </div>
-                
             </Nav>
         </Box>
         

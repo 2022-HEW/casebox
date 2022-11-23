@@ -1,29 +1,41 @@
 .top_line{
   display: flex;
+  /* overflow: hidden; */
   height: 50%;
+  /* float: left; */
+  overflow-x: scroll;
+}
+.top_line::-webkit-scrollbar {  
+  display: none; /*Google Chrome、Safari、Microsoft Edge対応のスクロールバー非表示コード*/
 }
 .bottom_line{
   display: flex;
   height: 50%;
+  overflow-x: scroll;
 }
-#product_image{
-  width: 200px;
-  height: 200px;
+.bottom_line::-webkit-scrollbar {  
+  display: none; /*Google Chrome、Safari、Microsoft Edge対応のスクロールバー非表示コード*/
 }
 .case_name{
   font-weight: bold;
   position: relative;
   left: 52px;
   bottom: 21px;
+  font-size: 15px;
 }
 .case_category{
   position: relative;
   bottom: 35px;
   left: 52px;
-  color:#888
+  color:#888;
+  font-size: 10px;
 }
 .case_price{
   position: relative;
-  bottom: 55px;
+  bottom:48px;
   left: 52px;
+  font-size: 10px;
+}
+.product_box{
+  min-width: 200px;
 }
