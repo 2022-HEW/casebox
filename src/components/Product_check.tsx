@@ -20,7 +20,6 @@ type Props = {
 const Product_check = ({product}:Props) => {
     const router = useRouter();
     const[product_info,setProduct] = useRecoilState(productState)
-    // console.log(props.product);
     // 画面遷移
         const go_type_select=()=>{
             // console.log(product);
@@ -29,6 +28,8 @@ const Product_check = ({product}:Props) => {
                 pathname:"/device_select",
             })
         }
+        
+        
     return(
         <>
             <Image src={"/product_image/" + product.product_place} width={100} height={100}/>

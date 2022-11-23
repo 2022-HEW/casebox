@@ -43,6 +43,7 @@ const Product_box =({id,image_path,case_name,case_category,case_price,setProduct
           <p className={styles.case_category}>{case_category}</p>
           <p className={styles.case_price}>￥{case_price.toLocaleString()}(税込)</p>
       </div>
+      // "../../public/product_image/bts_butter.png"
   )
 }
 
@@ -74,7 +75,7 @@ const Template = () => {
       // 取得するまで
     if(!data) return (<Box><Nav><></></Nav></Box>)
 
-          // console.log(product);
+          console.log(product);
         //   console.log(data[0].product_ID);
 
     return(
@@ -83,7 +84,7 @@ const Template = () => {
             <Nav>
 
               <Modal>
-                <Product_check product={product[product_ID-1]} />
+                <Product_check product={product[product_ID]} />
               </Modal>
 
               <div className={styles.top_line}>
@@ -94,7 +95,7 @@ const Template = () => {
                               case_category={product.m_product_category}
                               case_price={product.m_product_price}
                               key={product.product_ID}
-                              id={product.product_ID}
+                              id={index}
                               setProduct_ID={setProduct_ID}
                   />
                 ))}
@@ -108,7 +109,7 @@ const Template = () => {
                               case_category={product.m_product_category}
                               case_price={product.m_product_price}
                               key={product.product_ID}
-                              id={product.product_ID}
+                              id={index}
                               setProduct_ID={setProduct_ID}
                   />
                 ))}
