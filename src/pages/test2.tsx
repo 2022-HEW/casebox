@@ -1,12 +1,18 @@
 import dynamic from "next/dynamic";
-const Draw = dynamic(() => import('./test'), { ssr: false })
-
+import { useState } from "react";
+import styles from "../styles/test.module.css"
 const a = ()=>{
+
+    const [hover,setHover]=useState(false)
+
+    
+
     return(
-            <>
-                <Draw/>
-                <img src="https://halgroup6.blob.core.windows.net/quickstarte4f95d40-6575-11ed-a5ae-877a635505ef/Galaxy_S22.png"/>
-            </>
+        <>
+            <div className={styles.up}></div>
+            <img src="./image/test.svg" className={styles.b}></img>
+            <img src = "./image/test2.svg" className={styles.a}/>
+        </>
     )
 }
 

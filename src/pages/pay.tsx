@@ -14,7 +14,8 @@ import { productState,modalState } from '../atoms/atoms';
 import { useState } from "react";
 import React from "react";
 import Modal from "../components/common/Modal";
-import PayCheck from "../components/PayCheck";
+import Other from "../components/Other";
+import Touch from "../components/Touch";
 
 
 const pay = () => {
@@ -62,11 +63,15 @@ const pay = () => {
                     </div>
                 </div>
                 <Modal>
-                    <PayCheck pay={pay}>
-                        <Buttons imgPath={ID} name="ID"/>
-                        <Buttons imgPath={QuicPay} name="QuicPay"/>
-                        <Buttons imgPath={Edy} name="Edy"/>
-                    </PayCheck>
+                    {pay ==="その他" ?
+                        <Other pay={pay}>
+                            <Buttons imgPath={ID} name="ID"/>
+                            <Buttons imgPath={QuicPay} name="QuicPay"/>
+                            <Buttons imgPath={Edy} name="Edy"/>
+                        </Other>
+                        :
+                        <Touch pay={pay}/>
+                    }
                 </Modal>
             </Nav>
         </Box>

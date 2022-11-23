@@ -172,3 +172,27 @@
     font-weight: bold;
     margin: 35px 0 0 0;
 }
+
+.touch_price_box{
+    margin: 55px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+    text-align: right;
+}
+.touch_money{
+        width: 170px;
+        text-align: right;
+        margin-top: -5%;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        font-size: 40px;
+        font-weight: 600;
+}
+.touch_info_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0 0 0;
+}

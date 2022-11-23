@@ -1,0 +1,30 @@
+.a{
+    left: 42px;
+    top: 42px;
+    position: absolute;
+    opacity: 0;
+}
+.b{
+    z-index: 999;
+    position: absolute;
+}
+.b:hover  + .a{
+    opacity: 1;
+}
+.up{
+    /* Rectangle 10 */
+
+box-sizing: border-box;
+
+position: absolute;
+width: 574.17px;
+height: 136.72px;
+left: 733.17px;
+top: 63.51px;
+
+background: #68BEEF;
+border-bottom: 4px solid #745897;
+transform: rotate(-11.1deg);
+position: absolute;
+left: 0;
+}

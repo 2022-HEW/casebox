@@ -7,9 +7,9 @@ type Props={
     children:Array<JSX.Element>
     pay:string
 }
-const PayCheck = ({children,pay}:Props) => {
+const Other = ({children,pay}:Props) => {
     const {m_product_price} = useRecoilValue(productState)
-    console.log(pay);
+    // console.log(pay);
     
     return (
         <>
@@ -34,4 +34,4 @@ const PayCheck = ({children,pay}:Props) => {
         </>
     )
 }
-export default PayCheck
+export default Other
