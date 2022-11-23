@@ -20,7 +20,10 @@
   position: relative;
   bottom: 35px;
   left: 52px;
+  color:#888
 }
 .case_price{
-
+  position: relative;
+  bottom: 55px;
+  left: 52px;
 }

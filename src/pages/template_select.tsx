@@ -9,6 +9,7 @@ import Product_check from "../components/Product_check";
 import { useRecoilState } from "recoil";
 import { modalState } from '../atoms/atoms';
 import useSWR from "swr";
+import Image from "next/image"
 
 /**
  * 商品情報を表示する
@@ -37,10 +38,10 @@ const Product_box =({id,image_path,case_name,case_category,case_price,setProduct
   return(
       // <div className={styles.product_box} ref={ref} >
       <div className={styles.product_box} onClick={Modal_toggle} >
-          <img src={"/product_image/" + image_path} alt="商品の画像" width={100} height={100} id={styles.product_image}/>
+          <Image src={"/product_image/" + image_path} alt="商品の画像" width={175} height={175} id={styles.product_image}/>
           <p className={styles.case_name}>{case_name}</p>
           <p className={styles.case_category}>{case_category}</p>
-          <p className={styles.case_price}>{case_price}</p>
+          <p className={styles.case_price}>￥{case_price.toLocaleString()}(税込)</p>
       </div>
   )
 }
