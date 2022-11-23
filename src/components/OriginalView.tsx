@@ -124,7 +124,6 @@ const OriginalView = ()=>{
   return (
     <>
       { designImage &&    
-        <div >
         <div className={styles.view_box}>
           <Stage
             width={designPath.attrs.width}
@@ -154,8 +153,8 @@ const OriginalView = ()=>{
               />
             </Layer>
           </Stage>
+          <div className={styles.left}/>
         </div>
-      </div>
       }
     </>
   );
