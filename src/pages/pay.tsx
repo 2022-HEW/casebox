@@ -11,11 +11,12 @@ import QuicPay from "../../public/image/QuicPay.svg";
 import Edy from "../../public/image/Edy.svg";
 import { useRecoilValue,useRecoilState } from "recoil";
 import { productState,modalState } from '../atoms/atoms';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import Modal from "../components/common/Modal";
 import Other from "../components/Other";
 import Touch from "../components/Touch";
+import { useRouter } from "next/router";
 
 
 const pay = () => {
@@ -27,12 +28,31 @@ const pay = () => {
     }
     const [pay,setPay] = useState("現金");   
     const [modal,setModal] = useRecoilState(modalState)
+    const { m_product_price,product_ID } = useRecoilValue(productState)
     const handlePay = (name:string) =>{
         setPay(name)
         if(name !== "現金"){
             setModal(true)
         }
     }
+
+    const router = useRouter()
+    // 時間経過で遷移
+    useEffect(() => {
+      const time = setInterval(()=>{
+        if(pay!="その他"){
+            // console.log("a");
+            router.push({
+                pathname:"/thankyou"
+            })
+        }
+      },5000)
+
+      return()=>{
+        clearInterval(time)
+      }      
+    }, [pay])
+    
 
     const Buttons = ({ imgPath, name}: btn_props) => {
         
@@ -51,9 +71,9 @@ const pay = () => {
         <Box>
             <Nav >
                 <div id={styles.wrap}>
-                    <Price_result id={styles.price} write="支払額" />
-                    <Price_result id={styles.payed} write="投入額" />
-                    <Price_result id={styles.back} write="おつり" />
+                    <Price_result id={styles.price} write="支払額" price={m_product_price}/>
+                    <Price_result id={styles.payed} write="投入額" price={m_product_price}/>
+                    <Price_result id={styles.back} write="おつり" price={0}/>
 
                     <div className={styles.buttons}>
                         <Buttons imgPath={Cash} name="現金"  />
@@ -63,7 +83,7 @@ const pay = () => {
                     </div>
                 </div>
                 <Modal>
-                    {pay ==="その他" ?
+                    {pay ==="その他" || pay==="ID" || pay=="QuicPay" || pay=="Edy" ?
                         <Other pay={pay}>
                             <Buttons imgPath={ID} name="ID"/>
                             <Buttons imgPath={QuicPay} name="QuicPay"/>
@@ -82,13 +102,14 @@ const pay = () => {
 interface pay_props {
     write: string;
     id: string;
+    price:number;
 }
-const Price_result = ({ write, id }: pay_props) => {
-    const { m_product_price } = useRecoilValue(productState)
+const Price_result = ({ write, id ,price}: pay_props) => {
+    
     return (
         <div className={styles.block2} id={id}>
             <p className={styles.write}>{write}</p>
-            <p className={styles.money}>{m_product_price}</p>
+            <p className={styles.money}>{price}</p>
             <p className={styles.en}>円</p>
         </div>
     )

@@ -23,7 +23,13 @@ const Product_check = ({product}:Props) => {
     // 画面遷移
         const go_type_select=()=>{
             // console.log(product);
-            setProduct(product);
+            // objectの一部を書き換える
+            setProduct((before)=>({...before,
+                product_ID:product.product_ID,
+                m_product_price:product.m_product_price,
+                product_place:product.product_place,
+                product_name:product.product_name
+            }));
             router.push({
                 pathname:"/device_select",
             })

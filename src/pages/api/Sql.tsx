@@ -35,7 +35,12 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse,
 ){
+  
+  // price=m_product_price&&productID=product_ID&&modelID=model_id
   const flg = req.query.sql
+  const price = req.query.price
+  const productID = req.query.productID
+  const modelID = req.query.modelID
 
   // const router = useRouter()
   // let sql = router.query   
@@ -54,12 +59,15 @@ export default async function handler(
       break;
 
     case "color":
-      sql = `SELECT s.model_name,c.color_name from t_color_relation r JOIN t_stocks s ON s.model_ID = r.model_ID JOIN t_product_colors c ON c.color_ID = r.color_ID WHERE s.model_delete_flg = 0;`
+      sql = `SELECT s.model_id,s.model_name,c.color_name from t_color_relation r JOIN t_stocks s ON s.model_ID = r.model_ID JOIN t_product_colors c ON c.color_ID = r.color_ID WHERE s.model_delete_flg = 0;`
+      break;
+    
+    case "complete":
+      sql=`INSERT INTO t_buys( product_id, buy_created, buy_money, model_id) VALUES (${productID},NOW(),${price},${modelID})`
       break;
 
-
-      default:
-        console.log("error");
+    default:
+      console.log("error");
     }
         
     const result = await db.query(sql);

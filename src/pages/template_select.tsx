@@ -29,6 +29,7 @@ import Image from "next/image"
 // 商品一個あたり
 const Product_box =({id,image_path,case_name,case_category,case_price,setProduct_ID}:Product)=> {
   const[modal,setModal] = useRecoilState(modalState) 
+  
 // モーダルを動かして、商品IDを送る
   function Modal_toggle(e:React.MouseEvent<HTMLDivElement>){
     setModal(!modal)    
@@ -63,8 +64,9 @@ const Template = () => {
     async function fetcher(url: string): Promise<boolean | null > {
       const response = await fetch(url);
       return response.json();
-  }
-  const { data } = useSWR<any>(`/api/Sql?sql=template`,fetcher) 
+    }
+    
+    const { data } = useSWR<any>(`/api/Sql?sql=template`,fetcher) 
   
     // DBから取得
     useEffect(()=>{

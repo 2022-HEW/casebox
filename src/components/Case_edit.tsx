@@ -5,7 +5,7 @@ import { useRecoilState,useRecoilValue } from "recoil";
 import { 
         productState,modalState,stepState, 
         toolState,sizeState,colorState,downloadState
-    } from '../atoms/atoms';
+        } from '../atoms/atoms';
 import React from 'react';
 import { useRouter } from 'next/router';
 import  {Button}  from "./common/Button"
@@ -50,19 +50,24 @@ const Case_edit =({
         product_place:"",
         user_name:"",
     }
-    const router = useRouter()
-
-
+    // 機種を入れる
+    useEffect(()=>{
+        setProduct((before)=>({...before,model_id:model_colors[model_names[type_index] + "_id"]}));  
+        console.log(model_colors);
+              
+    },[model_names[type_index]])
     /**
      * step1
      * @returns 
      */
+    console.log(product.model_id);
+    
     const Device = () =>{
         //戻るボタンの耐対策 
-        if(type_index){
-            setType(0)
-            console.log("type_index" +  type_index);   
-        }
+        // if(type_index){
+        //     setType(0)
+        //     console.log("type_index" +  type_index);   
+        // }
         return(
                 <div>
                     <p >デバイスをお選びください</p>
@@ -91,7 +96,8 @@ const Case_edit =({
                         return(
                             <div key={index}>    
                                 <label htmlFor={`${select_device}`}>{value}</label>
-                                <input type="radio" value={index} name={`${select_device}`} id={`${select_device}`} onChange={(e)=>setType(Number(e.target.value))} />  
+                                <input type="radio" value={index} name={`${select_device}`} id={`${select_device}`} 
+                                onChange={(e)=>setType(Number(e.target.value))} />  
                             </div>
                         )
                     })}
@@ -105,17 +111,23 @@ const Case_edit =({
      * @returns 
      */
     const Color =()=>{
-            
         return(
                 <>
                     <p>カラーをお選びください</p>
                     
                     {Object.keys(model_colors).map((value)=>{
+                        // console.log(value);
+                        
+                        // console.log(product);                        
+                        // console.log(model_colors);
+                        // console.log();
+                        
                         if(value.includes(`${model_names[type_index]}(`)){   
                             return(
                                 <div key={value}>    
                                     <label htmlFor={`${value}`}>{model_colors[value]}</label>
-                                    <input type="radio" value={model_colors[value]} name={`${value}`} id={`${value}`} onChange={(e)=>setColor(e.target.value)} />  
+                                    <input type="radio" value={model_colors[value]} name={`${value}`} id={`${value}`} 
+                                    onChange={(e)=>setColor(e.target.value)}/>  
                                 </div>
                             )
                         }

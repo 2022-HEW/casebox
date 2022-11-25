@@ -28,25 +28,22 @@ const DeviceSelect = () => {
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const reset = {
-        m_product_category:"",
         m_product_price:1500,
-        product_ID:0,
-        product_liked:0,
+        product_ID:null,
         product_name:"",
         product_place:"",
-        user_name:"",
+        // model_id:0
     }
 
     // タブを移動した際リセット
-useEffect(()=>{
-    if(tab === "手書き"){
-        setProduct(reset)
-        setDevice("iPhone")
-        setType(0)
-    }
-        setStep(1)
-},[tab])
-
+    useEffect(()=>{
+        if(tab === "手書き"){
+            setProduct((before)=>({...before,reset}))
+            setDevice("iPhone")
+            setType(0)
+        }
+            setStep(1)
+    },[tab])
 
     
     /**
@@ -66,16 +63,20 @@ useEffect(()=>{
 
         if(data){
             for(let value of data){
+                // console.log(value);
+                
                 // 重複の判定
                 // していないとき
                 if(!iPhone_model_names.includes(value.model_name) && !Android_model_names.includes(value.model_name) ){
-                    i=1;
+                    i=1;                    
                     if(value.model_name.includes("iPhone")){
                         iPhone_model_names.push(value.model_name)
                         iPhone_model_colors[value.model_name+ `(${i})`] = value.color_name
+                        iPhone_model_colors[value.model_name + "_id"] = value.model_id
                     }else{
                         Android_model_names.push(value.model_name)
                         Android_model_colors[value.model_name+ `(${i})`] = value.color_name
+                        Android_model_colors[value.model_name + "_id"] = value.model_id
                     }
                 }else{
                     i++;
@@ -96,6 +97,8 @@ useEffect(()=>{
     }
 
     const {iPhone_model_names,Android_model_names,iPhone_model_colors,Android_model_colors}= getProduct()   
+
+
     // console.log(iPhone_model_names);
     // console.log(Android_model_names);
     // console.log(iPhone_model_colors);
