@@ -1,12 +1,10 @@
 import { atom,selector } from "recoil";
 type Product=  {
     product_name:string,
-    m_product_category:string,
     m_product_price:number,
-    product_ID:number,
-    product_liked:number,
+    product_ID:number | null,
     product_place:string,
-    user_name:string,
+    model_id:number
 }
 //tab色
 export const tabState = atom({
@@ -22,13 +20,11 @@ export const modalState = atom({
 export const productState= atom<Product>({
     key: "product_info",
     default:{ 
-        m_product_category:"",
         m_product_price:1500,
-        product_ID:0,
-        product_liked:0,
+        product_ID:null,
         product_name:"",
         product_place:"",
-        user_name:"",
+        model_id:0
     }
 });
 
