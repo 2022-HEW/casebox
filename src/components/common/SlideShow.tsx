@@ -73,7 +73,7 @@ const SlideShow = () => {
 const ImgDesc = ({ imgPath, imgAlt }:imageType) => {
 	return(
 		<div className={styles.imgContainer}>
-			<Image className={styles.slideImg} src={imgPath} alt={imgAlt} width={525} height={270}/>
+			<Image className={styles.slideImg} src={imgPath} alt={imgAlt} width={500} height={240}/>
 		</div>
 	)
 }

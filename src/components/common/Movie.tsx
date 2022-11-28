@@ -15,9 +15,7 @@ type movie = {
 const Movie = ({ movieUrl }:movie)=>{
     return(
         <>
-            <div id={styles.videoContainer}>
-                <video src={movieUrl} autoPlay/>
-            </div>
+                <video src={movieUrl} autoPlay loop style={{width:"100%",height:"100%",outline: "none",border: "none"}}/>
         </>
     )
 }

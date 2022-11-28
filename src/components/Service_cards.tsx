@@ -36,7 +36,7 @@ const Service_card = (
         <>
             <Link href={Card_link}>
                 <div className={styles.CardContainer}>
-                <div className={styles.images}></div>
+                    <div className={styles.images}></div>
                 {/* <Image src={imgPath} alt={imgAlt} width={300} height={140}/> */}
                     <div className={styles.content}>
                         <h3>{Card_name}</h3>
