@@ -38,12 +38,15 @@ const Product_check = ({product}:Props) => {
         
     return(
         <>
-            <Image src={"/product_image/" + product.product_place} width={100} height={100}/>
-            <p >{product.product_name}</p>
-            <p>{product.m_product_category}</p>
-            <p>{product.m_product_price}</p>
-            <Button situ_name="screen" label="機種選択へ" onClick={go_type_select}/>
-
+            <div className={styles.product_view}>
+                <Image src={"/product_image/" + product.product_place} width={300} height={300} />
+            </div>
+            <div className={styles.product_info}>
+                <h2>{product.product_name}</h2>
+                <p className={styles.category}>{product.m_product_category}</p>
+                <h2 className={styles.price}>￥{product.m_product_price.toLocaleString()}(税込)</h2>
+                <Button situ_name="screen" label="機種選択へ" onClick={go_type_select}/>
+            </div>
         </>
     )
 }

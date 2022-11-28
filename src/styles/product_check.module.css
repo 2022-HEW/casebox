@@ -1,3 +1,17 @@
-.a{
-    width: 200px;
+.product_view{
+    position: relative;
+    top: 68px;
+}
+.product_info{
+    position: relative;
+    left: 50%;
+    bottom: 50%;
+    line-height: 5px;
+}
+.category{
+    color: #888888;
+}
+.price{
+    font-weight: 400;
+    line-height: 100px;
 }
