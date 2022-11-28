@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { useRouter } from 'next/router';
 import  {Button}  from "./common/Button"
+import Image from 'next/image';
 
 // import { useRouter } from'next/router'
 
@@ -71,11 +72,21 @@ const Case_edit =({
         return(
                 <div>
                     <p >デバイスをお選びください</p>
-                    <label htmlFor="iPhone">iPhone</label>
-                    <input type="radio" value="iPhone" name='device' id='iPhone' onChange={(e)=>setDevice(e.target.value)} />
-                    <label htmlFor="Android">Android</label>
-                    <input type="radio" value="Android" name='device' id='Android' onChange={(e)=>setDevice(e.target.value)}/>
-                    <Button onClick={()=>setStep(2)} label="次へ" situ_name="screen"/>
+                    <div style={{display:"flex",justifyContent: "space-evenly"}}>                    
+                        <label htmlFor="Android" className={styles.type}>
+                            <Image src={"/image/android.svg"} width={150} height={150}/>
+                            <span className={styles.type_name}>Android</span>
+                        </label>
+                        <input type="radio" value="Android" name='device' id='Android' onChange={(e)=>setDevice(e.target.value)}/>                    
+                        <label htmlFor="iPhone" className={styles.type}>
+                            <Image src={"/image/android.svg"} width={150} height={150}/>
+                            <span className={styles.type_name}>iPhone</span>
+                        </label>
+                        <input type="radio" value="iPhone" name='device' id='iPhone' onChange={(e)=>setDevice(e.target.value)} />
+                    </div>
+                    <div className={styles.button}>
+                        <Button onClick={()=>setStep(2)} label="次へ" situ_name="screen"/>
+                    </div>
                 </div>
         )
     }
@@ -231,6 +242,9 @@ const ColorPallet = ()=>{
         //  デバイスを選択するエリア(コンポーネントに分ける) 
         <div id={styles.case_edit}>
             <h1>商品</h1>
+            <div className={styles.tryangle}>
+                <Image src={"/image/tryangle.svg"}width={50} height={50}/>
+            </div>
             
             {step === 1 ?
                <Device />
