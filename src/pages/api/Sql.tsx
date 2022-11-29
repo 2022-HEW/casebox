@@ -42,6 +42,7 @@ export default async function handler(
   const productID = req.query.productID
   const modelID = req.query.modelID
   const stock = req.query.stock
+  const quant = req.query.quant
 
   // const router = useRouter()
   // let sql = router.query   
@@ -64,7 +65,7 @@ export default async function handler(
       break;
     
     case "buy_data":
-      sql=`INSERT INTO t_buys( product_id, buy_created, buy_money, model_id) VALUES (${productID},NOW(),${price},${modelID})`
+      sql=`INSERT INTO t_buys( product_id, buy_created, buy_money, model_id,quant) VALUES (${productID},NOW(),${price},${modelID},${quant})`
       break;
 
     case "stock_data":

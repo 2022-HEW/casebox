@@ -32,10 +32,10 @@ const Thankyou = () => {
 
     // console.log(product_ID)
     const InsertDB = async()=>{    
-        // await fetch(`/api/Sql?sql=buy_data&&price=${m_product_price}&&productID=${product_ID}&&modelID=${model_id}`)
-        // .then((res)=>{return res.json()})
-        // .then((data)=>{console.log(data);
-        // })
+        await fetch(`/api/Sql?sql=buy_data&&price=${m_product_price * quant}&&productID=${product_ID}&&modelID=${model_id}&&quant=${quant}`)
+        .then((res)=>{return res.json()})
+        .then((data)=>{console.log(data);
+        })
         
         // 在庫情報を追加
         await fetch(`/api/Sql?sql=update_stock&&modelID=${model_id}&&stock=${stock()}`)
