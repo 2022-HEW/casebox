@@ -193,7 +193,7 @@ const Case_edit =({
               </button> */}
                     <div style={{display:"flex"}} onClick={()=>{setColorPallet(!colorPallet)}}>
                         <div className={styles.color_trigger}></div> 
-                        <p>カラー</p>
+                        <p className={styles.serv_guide}>カラー</p>
                     </div>
                     <div style={{display:"flex"}}>
                         <input type="radio"  id="small" name="weight" className={styles.weight} value={10} onChange={(e) => {setSize(Number(e.target.value));}} /> 
@@ -202,18 +202,18 @@ const Case_edit =({
                         <label htmlFor='normal' className={styles.label}>◯</label>
                         <input type="radio"  id="bold" name="weight" className={styles.weight} value={30} onChange={(e) => {setSize(Number(e.target.value));}} /> 
                         <label htmlFor='bold' className={styles.label}>◯</label>
-                        <p>太さ</p>
+                        <p className={styles.serv_guide}>太さ</p>
                     </div>
 
                     <div onClick={()=>{
                         setTool("pen");
                     }}>
-                        <p>えんぴつ</p>
+                        <p className={styles.serv_guide}>えんぴつ</p>
                     </div>
                     <div onClick={()=>{
                         setTool("eraser");
                     }}>
-                        <p>消しゴム</p>
+                        <p className={styles.serv_guide}>消しゴム</p>
                     </div>
                 </div>
                     <ColorPallet/>
