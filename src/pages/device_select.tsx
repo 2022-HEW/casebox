@@ -57,9 +57,10 @@ const DeviceSelect = () => {
       }
 
     const stock_data:any = getDB("stock_data")
+
     if(stock_data){
         setStock(stock_data.data)
-        console.log(stock);
+        // console.log(stock);
     } 
     
     /**

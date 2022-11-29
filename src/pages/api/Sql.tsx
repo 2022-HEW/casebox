@@ -67,7 +67,7 @@ export default async function handler(
       break;
 
     case "stock_data":
-      sql=`SELECT model_stock_standard,model_id  from t_stocks `
+      sql=`SELECT model_stocks,model_id  from t_stocks `
       break;
       
     default:
