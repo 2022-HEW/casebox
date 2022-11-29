@@ -216,7 +216,9 @@ const Case_edit =({
                     </div>
                 </div>
                     <ColorPallet/>
-                    <Button onClick={()=>setDownload(true)} label="次へ" situ_name="screen"/>
+                    <div className={styles.nextbutton}>
+                        <Button onClick={()=>setDownload(true)} label="次へ" situ_name="screen"/>
+                    </div>
                 </div>
             )
         }
