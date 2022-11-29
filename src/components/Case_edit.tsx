@@ -107,8 +107,8 @@ const Case_edit =({
                     {model_names.map((value,index)=>{
                         return(
                             <div key={index} className={styles.list}>    
-                                <label htmlFor={`${select_device}`}>{value}</label>
-                                <input type="radio" value={index} name={`${select_device}`} id={`${select_device}`} 
+                                <label htmlFor={value}>{value}</label>
+                                <input type="radio" value={index} name={value} id={value} 
                                 onChange={(e)=>setType(Number(e.target.value))} />  
                             </div>
                         )
