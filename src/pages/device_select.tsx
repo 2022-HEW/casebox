@@ -28,18 +28,20 @@ const DeviceSelect = () => {
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const [stock,setStock] = useRecoilState(stockState)
-    const reset = {
-        m_product_price:1500,
-        product_ID:null,
-        product_name:"",
-        product_place:"",
-        // model_id:0
-    }
-
+    
     // タブを移動した際リセット
     useEffect(()=>{
+        console.log(product);
+        console.log(tab);
+        
         if(tab === "手書き"){
-            setProduct((before)=>({...before,reset}))
+            setProduct((before)=>({
+                ...before,
+                m_product_price:1500,
+                product_ID:null,
+                product_name:"",
+                product_place:"",
+            }))
             setDevice("iPhone")
             setType(0)
         }

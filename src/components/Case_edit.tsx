@@ -63,6 +63,7 @@ const Case_edit =({
      */
     console.log(product.model_id);
     
+    
     const Device = () =>{
         //戻るボタンの耐対策 
         // if(type_index){
