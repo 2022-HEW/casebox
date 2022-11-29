@@ -127,8 +127,8 @@ const Case_edit =({
         return(
                 <>
                     <p>カラーをお選びください</p>
-                    
-                    {Object.keys(model_colors).map((value)=>{
+                    <div style={{display:"flex",flexWrap: "wrap",justifyContent: "space-evenly"}}>
+                    {Object.keys(model_colors).map((value,index)=>{
                         // console.log(value);
                         
                         // console.log(product);                        
@@ -137,15 +137,20 @@ const Case_edit =({
                         
                         if(value.includes(`${model_names[type_index]}(`)){   
                             return(
-                                <div key={value}>    
+                                <>
+                                <div key={value} className={styles.color_select}>    
                                     <label htmlFor={`${value}`}>{model_colors[value]}</label>
-                                    <input type="radio" value={model_colors[value]} name={`${value}`} id={`${value}`} 
-                                    onChange={(e)=>setColor(e.target.value)}/>  
+                                    <input type="radio" value={model_colors[value]} name={`${value}`} id={`${value}`} onChange={(e)=>setColor(e.target.value)}/>
                                 </div>
+                                    {index % 2 === 0 && index!=0 &&
+                                        <div style={{width:"100%"}} id={`${index}`}>a</div>
+                                    }
+                                </>
                             )
                         }
                         })
                     }
+                    </div>
                 
                     
                     <Button onClick={()=>{
