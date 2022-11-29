@@ -41,6 +41,7 @@ export default async function handler(
   const price = req.query.price
   const productID = req.query.productID
   const modelID = req.query.modelID
+  const stock = req.query.stock
 
   // const router = useRouter()
   // let sql = router.query   
@@ -68,6 +69,10 @@ export default async function handler(
 
     case "stock_data":
       sql=`SELECT model_stocks,model_id  from t_stocks `
+      break;
+
+    case "update_stock":
+      sql=`UPDATE t_stocks SET model_stocks=${stock}  WHERE model_id=${modelID}`
       break;
       
     default:

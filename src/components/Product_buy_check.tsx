@@ -1,9 +1,11 @@
 import { type } from 'os'
-import React from 'react'
+import React, { useState } from 'react'
 import  Image from "next/image"
 import styles from '../styles/device_select.module.css';
 import { Button } from './common/Button';
 import { useRouter } from 'next/router';
+import { useRecoilState} from "recoil";
+import { productState} from '../atoms/atoms';
 
 type Props=  {
     image_path:string
@@ -16,10 +18,12 @@ type Props=  {
 
  const Product_buy_check = ({image_path,design_path,type_name,color_name,product_price}:Props) => {
     const router = useRouter()
-    
+    const [count,setCount] = useState(1)
+    const [product,setProduct] = useRecoilState(productState)
     
 
     const go_pay_select=()=>{
+        setProduct((before)=>({...before,quant:count}))
             router.push({
                 pathname:"/pay"
             })
@@ -42,9 +46,9 @@ type Props=  {
 
             <p>{product_price}</p>
             <div>
-                <span>-</span>
-                <span>1</span>
-                <span>+</span>
+                <span onClick={()=>{count>1 && setCount(count-1)}}>-</span>
+                <span>{count}</span>
+                <span onClick={()=>{count <6 && setCount(count+1)}}>+</span>
             </div>
             <Button situ_name="screen" label="購入へ" onClick={go_pay_select}/>
         </div>

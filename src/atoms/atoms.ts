@@ -5,6 +5,7 @@ type Product=  {
     product_ID:number | null,
     product_place:string,
     model_id:number
+    quant:number
 }
 //tab色
 export const tabState = atom({
@@ -24,7 +25,8 @@ export const productState= atom<Product>({
         product_ID:null,
         product_name:"",
         product_place:"",
-        model_id:0
+        model_id:0,
+        quant:1
     }
 });
 
