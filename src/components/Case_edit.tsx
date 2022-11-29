@@ -140,8 +140,8 @@ const Case_edit =({
                             return(
                                 <>
                                 <div key={value} className={styles.color_select}>    
-                                    <label htmlFor={`${value}`}>{model_colors[value]}</label>
-                                    <input type="radio" value={model_colors[value]} name={`${value}`} id={`${value}`} onChange={(e)=>setColor(e.target.value)}/>
+                                    <label htmlFor={value} >{model_colors[value]}</label>
+                                    <input type="radio" value={model_colors[value]} name={value} id={value} onChange={(e)=>setColor(e.target.value)}/>
                                 </div>
                                     {index % 2 === 0 && index!=0 &&
                                         <div style={{width:"100%"}} id={`${index}`}>a</div>

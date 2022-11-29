@@ -44,13 +44,15 @@
     z-index: 2;
 }
 .color_select{
+  
+}
+
+.color_select label{
+    display: inline-block;
     width: 150px;
     height: 90px;
     border: 1px solid #AAAAAA;
     border-radius: 6px;
-}
-.color_select label{
-    
 }
 
 .type{
