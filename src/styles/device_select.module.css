@@ -67,16 +67,40 @@
     font-size: 1.3rem;
 }
 
+
+/* 購入確認CSS */
 .design{
-    width:400px; 
-    height:541px;
+    width: 250px; 
+    height: 541px;
     position: absolute;
     top: 0px;
     left: 30px;
 }
 
 .product_info{
-    display: inline-block;
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+    right: 70px;
+    height: 100%;
+    width: 300px;
+    background-color: aquamarine;
+}
+
+/* 商品詳細のコンテナ― */
+.productDesc{
+    
+}
+/* 商品名 */
+.productName{
+    font-weight: bold;
+}
+
+/* 商品のカラー */
+.productColor{
+    color: #ccc;
 }
 
 .draw_edit_box{
@@ -140,9 +164,12 @@
     bottom: 25px;
     right: 25px;
 }
+<<<<<<< HEAD
 .nextbutton{
     position: relative;
     left: 150px;
     top: -30px;
     
 }
+=======
+>>>>>>> 22f25bbc3302271f77a83e1dec8b9c8b9098ae8f

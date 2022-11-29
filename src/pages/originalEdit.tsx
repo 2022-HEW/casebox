@@ -10,7 +10,7 @@ import styles from "../styles/draw.module.css"
 const OriginalView = dynamic(() => import('../components/OriginalView'), { ssr: false })
 
 
- const originalEdit = () => {
+const originalEdit = () => {
   const router = useRouter()
   const goPay = ()=>{
     router.push({
