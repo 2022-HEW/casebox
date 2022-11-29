@@ -35,8 +35,11 @@ type Props=  {
         </div>
         }
         <div className={styles.product_info}>
-            <p>{type_name}</p>
-            <p>{color_name}</p>
+            <div className={styles.productDesc}>
+                <p className={styles.productName}>{type_name}</p>
+                <p className={styles.productColor}>{color_name}</p>
+            </div>
+
             <p>{product_price}</p>
             <div>
                 <span>-</span>
