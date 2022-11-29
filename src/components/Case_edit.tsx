@@ -105,14 +105,16 @@ const Case_edit =({
                 <p>機種をお選びください</p>
                     {model_names.map((value,index)=>{
                         return(
-                            <div key={index}>    
+                            <div key={index} className={styles.list}>    
                                 <label htmlFor={`${select_device}`}>{value}</label>
                                 <input type="radio" value={index} name={`${select_device}`} id={`${select_device}`} 
                                 onChange={(e)=>setType(Number(e.target.value))} />  
                             </div>
                         )
                     })}
-                    <Button onClick={()=>setStep(3)} label="次へ" situ_name="screen"/>
+                    <div className={styles.button}>
+                        <Button onClick={()=>setStep(3)} label="次へ" situ_name="screen"/>
+                    </div>
             </>
         )
     }

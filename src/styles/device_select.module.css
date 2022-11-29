@@ -20,12 +20,12 @@
     color: #FFFFFF;
     height: 70px;
     margin:0;
-    padding: 15px 0;
+    padding: 20px 0 0 0;
     font-family: 'Noto Sans JP';
     font-style: normal;
     font-weight: 100;
     text-align: center;
-    font-weight: 10px;
+    font-size: 25px;
 }
 #case_edit p{
     text-align: center;
@@ -55,6 +55,16 @@
 .type_name{
     position: relative;
     bottom: 20px;
+}
+.list{
+    position: relative;
+    bottom: 85px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    height: 70px;
+    padding: 20px 0 0 30px;
+}
+.list label{
+    font-size: 1.3rem;
 }
 
 .design{
@@ -124,7 +134,7 @@
     display: none;
 }
 .button{
-    position: relative;
-    top: 50px;
-    left: 295px;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
 }
