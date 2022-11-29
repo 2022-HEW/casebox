@@ -6,7 +6,7 @@ import Case_view from '../components/Case_view';
 import Case_edit from '../components/Case_edit';
 import useSWR from 'swr';
 import { useRecoilState,useRecoilValue } from "recoil";
-import { productState,stepState,tabState} from '../atoms/atoms';
+import { productState,stepState,tabState,stockState} from '../atoms/atoms';
 import React from 'react';
 
 
@@ -27,6 +27,7 @@ const DeviceSelect = () => {
     const [step,setStep]  = useRecoilState(stepState)
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
+    const [stock,setStock] = useRecoilState(stockState)
     const reset = {
         m_product_price:1500,
         product_ID:null,
@@ -45,14 +46,32 @@ const DeviceSelect = () => {
             setStep(1)
     },[tab])
 
+    function getDB (query:string) {
+        const { data, error } = useSWR(`/api/Sql?sql=${query}`, fetcher)
+      
+        return {
+          data: data,
+          isLoading: !error && !data,
+          isError: error
+        }
+      }
+
+    const stock_data:any = getDB("stock_data")
+    if(stock_data){
+        setStock(stock_data.data)
+        console.log(stock);
+    } 
     
     /**
      * DBから取得
      * @returns iPhone_model_names,Android_model_names,
      * iPhone_model_colors,Android_model_colors
      */
-    const { data } = useSWR<any>(`/api/Sql?sql=color`,fetcher) 
-    if(!data) return (<Box><Nav><></></Nav></Box>)
+    // const { data } = useSWR<any>(`/api/Sql?sql=color`,fetcher) 
+    const color_data:any = getDB("color").data
+    // console.log(color_data);
+    
+    if(!color_data) return (<Box><Nav><></></Nav></Box>)
 
     const getProduct =()=>{
         const iPhone_model_names:Array<string> = []
@@ -61,8 +80,8 @@ const DeviceSelect = () => {
         const Android_model_colors:Color = new Object 
         let i:number = 1 
 
-        if(data){
-            for(let value of data){
+        if(color_data){
+            for(let value of color_data){
                 // console.log(value);
                 
                 // 重複の判定

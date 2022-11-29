@@ -70,3 +70,8 @@ export const imageState = atom({
     default: ""
 });
 
+// 在庫情報
+export const stockState = atom({
+    key: "stock",
+    default:[{}]
+});
