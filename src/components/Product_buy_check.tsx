@@ -40,17 +40,17 @@ type Props=  {
         }
         <div className={styles.product_info}>
             <div className={styles.productDesc}>
-                <p className={styles.productName}>{type_name}</p>
+                <h2 className={styles.productName}>{type_name}</h2>
                 <p className={styles.productColor}>{color_name}</p>
             </div>
 
-            <p>{product_price}</p>
-            <div>
-                <span onClick={()=>{count>1 && setCount(count-1)}}>-</span>
-                <span>{count}</span>
-                <span onClick={()=>{count <6 && setCount(count+1)}}>+</span>
+            <h2 className={styles.price}>&yen;{product_price}(税込)</h2>
+            <div className={styles.choseQuantity}>
+                <span className={styles.count} onClick={()=>{count>1 && setCount(count-1)}}>－</span>
+                <span className={styles.quantity}>{count}</span>
+                <span className={styles.count} onClick={()=>{count <6 && setCount(count+1)}}>＋</span>
             </div>
-            <Button situ_name="screen" label="購入へ" onClick={go_pay_select}/>
+            <Button className={styles.go_pay} situ_name="screen" label="購入へ" onClick={go_pay_select}/>
         </div>
     </>
 
