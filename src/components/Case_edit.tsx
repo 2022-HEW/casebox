@@ -129,7 +129,7 @@ const Case_edit =({
                 <>
                     <p>カラーをお選びください</p>
                     <div style={{display:"flex",flexWrap: "wrap",justifyContent: "space-evenly"}}>
-                    {Object.keys(model_colors).map((value,index)=>{
+                    {Object.keys(model_colors).map((value:any,index)=>{
                         // console.log(value);
                         
                         // console.log(product);                        
@@ -142,7 +142,7 @@ const Case_edit =({
                                 <div key={value} className={styles.color_select}>    
                                     <label htmlFor={value} >{model_colors[value]}</label>
                                     <input type="radio" value={model_colors[value]} name={value} id={value} onChange={(e)=>setColor(e.target.value)}/>
-                                    <div className={styles.color_view}></div>
+                                    <div className={styles.color_view} style={{background:`${value.color_code}`}}></div>
                                 </div>
                                 {/* 改行 */}
                                     {index % 2 === 0 && index!=0 &&
