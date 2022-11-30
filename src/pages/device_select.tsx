@@ -31,8 +31,8 @@ const DeviceSelect = () => {
     
     // タブを移動した際リセット
     useEffect(()=>{
-        console.log(product);
-        console.log(tab);
+        // console.log(product);
+        // console.log(tab);
         
         if(tab === "手書き"){
             setProduct((before)=>({
@@ -95,17 +95,22 @@ const DeviceSelect = () => {
                         iPhone_model_names.push(value.model_name)
                         iPhone_model_colors[value.model_name+ `(${i})`] = value.color_name
                         iPhone_model_colors[value.model_name + "_id"] = value.model_id
+                        iPhone_model_colors[value.model_name + `(${i})_code`] = value.color_code
                     }else{
                         Android_model_names.push(value.model_name)
                         Android_model_colors[value.model_name+ `(${i})`] = value.color_name
                         Android_model_colors[value.model_name + "_id"] = value.model_id
+                        Android_model_colors[value.model_name + `(${i})_code`] = value.color_code
+
                     }
                 }else{
                     i++;
                     if(value.model_name.includes("iPhone")){
                         iPhone_model_colors[value.model_name + `(${i})`] = value.color_name
+                        iPhone_model_colors[value.model_name + `(${i})_code`] = value.color_code
                     }else{
                         Android_model_colors[value.model_name + `(${i})`] = value.color_name
+                        Android_model_colors[value.model_name + `(${i})_code`] = value.color_code
                     }
                 }
             }
@@ -123,8 +128,8 @@ const DeviceSelect = () => {
 
     // console.log(iPhone_model_names);
     // console.log(Android_model_names);
-    // console.log(iPhone_model_colors);
-    // console.log(Android_model_colors);
+    console.log(iPhone_model_colors);
+    console.log(Android_model_colors);
     return(
         <Box>
             <Nav>

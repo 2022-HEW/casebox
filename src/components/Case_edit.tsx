@@ -136,15 +136,17 @@ const Case_edit =({
                         // console.log(model_colors);
                         // console.log();
                         
-                        if(value.includes(`${model_names[type_index]}(`)){   
+                        if(value.includes(`${model_names[type_index]}(`) && !value.includes("_code")){   
                             return(
                                 <>
                                 <div key={value} className={styles.color_select}>    
                                     <label htmlFor={value} >{model_colors[value]}</label>
                                     <input type="radio" value={model_colors[value]} name={value} id={value} onChange={(e)=>setColor(e.target.value)}/>
+                                    <div className={styles.color_view}></div>
                                 </div>
+                                {/* 改行 */}
                                     {index % 2 === 0 && index!=0 &&
-                                        <div style={{width:"100%"}} id={`${index}`}>a</div>
+                                        <div style={{width:"100%"}} id={`${index}`}></div>
                                     }
                                 </>
                             )
