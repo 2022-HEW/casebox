@@ -191,11 +191,11 @@ const Case_edit =({
               >
                 reset
               </button> */}
-                    <div style={{display:"flex"}} onClick={()=>{setColorPallet(!colorPallet)}}>
+                    <div className={styles.color_frame} style={{display:"flex"}} onClick={()=>{setColorPallet(!colorPallet)}}>
                         <div className={styles.color_trigger}></div> 
                         <p className={styles.serv_guide}>カラー</p>
                     </div>
-                    <div style={{display:"flex"}}>
+                    <div  className={styles.color_frame} style={{display:"flex"}}>
                         <input type="radio"  id="small" name="weight" className={styles.weight} value={10} onChange={(e) => {setSize(Number(e.target.value));}} /> 
                         <label htmlFor='small' className={styles.label}>◯</label>
                         <input type="radio"  id="normal" name="weight" className={styles.weight} value={20} onChange={(e) => {setSize(Number(e.target.value));}} /> 
@@ -206,13 +206,20 @@ const Case_edit =({
                     </div>
 
                     <div onClick={()=>{
-                        setTool("pen");
-                    }}>
+                        setTool("pen"); 
+                        }} 
+                        className={styles.color_frame} 
+                    >
+                        <Image src={"/material_provision/pencil_select.png"} width={114} height={50}/>
                         <p className={styles.serv_guide}>えんぴつ</p>
                     </div>
                     <div onClick={()=>{
                         setTool("eraser");
-                    }}>
+                        }}
+                        className={styles.color_frame} 
+                    >
+                        
+                        <Image src={"/material_provision/eraser.png"} width={84} height={52}/>
                         <p className={styles.serv_guide}>消しゴム</p>
                     </div>
                 </div>

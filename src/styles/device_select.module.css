@@ -106,10 +106,20 @@
     width: 50%;
     height: 80%;
 }
+.color_frame:first-child{
+    margin-top: 32px;
+}
+.color_frame{
+    float: right;
+    width: 100%;
+    height: 25%;
+}
 .serv_guide{
-    background-color: #fff!important;
-    margin: auto;
-    padding: 0px!important;
+    width: 30%;
+    background-color: transparent!important;
+    margin: 0 auto!important;
+    padding: 0!important;
+    bottom: 0!important;
 }
 .weight{
     display:none
@@ -123,12 +133,16 @@
     background-color: pink;
 }
 .color_trigger{
-    width: 150px;
+    width: 100px;
     height: 7px;
     background:#777;
     border-radius: 10px;
+    margin:  10px 0 0 33px;
 }
-
+.pencil_select_img{
+    height: 20px;
+    z-index: 99;
+}
 .color_pallet{
     box-sizing: border-box;
     background: #FFFFFF;
