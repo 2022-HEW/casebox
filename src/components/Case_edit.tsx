@@ -214,7 +214,7 @@ const Case_edit =({
                     <div onClick={()=>{
                         setTool("pen"); 
                         }} 
-                        className={styles.color_frame} 
+                        className={styles.color_frame} style={{display:"flex"}}
                     >
                         <img src="/material_provision/pencil_select.png" alt="" className={styles.pencil_select_img}/>
                         <p className={styles.serv_guide}>えんぴつ</p>
@@ -222,7 +222,7 @@ const Case_edit =({
                     <div onClick={()=>{
                         setTool("eraser");
                         }}
-                        className={styles.color_frame} 
+                        className={styles.color_frame} style={{display:"flex"}}
                     >
                         <img src="/material_provision/eraser.png" alt="" className={styles.pencil_select_img}/>
                         <p className={styles.serv_guide}>消しゴム</p>
