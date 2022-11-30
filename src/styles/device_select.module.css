@@ -177,9 +177,18 @@
     bottom: 25px;
     right: 25px;
 }
-.nextbutton{
+/* .nextbutton{
     position: relative;
     left: 150px;
-    top: -30px;
-    
+    top: -30px;    
+} */
+
+.color_view{
+    height: 25px;
+    width: 60px;
+    margin: 0 0 10px 0;
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+}
+.step3button{
+
 }
