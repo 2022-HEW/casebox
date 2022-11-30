@@ -104,7 +104,7 @@ const Draw = ({setDownloadPath,image_path}:Props) => {
             ref={stageRef}
           >
             <Layer>
-                <Image image={image}  width={269} height={540} />
+                <Image image={image}  width={268} height={540} />
             </Layer>
             <Layer>
               {lines.map((line, i) => (

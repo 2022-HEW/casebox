@@ -136,13 +136,17 @@ const Case_edit =({
                         // console.log(model_colors);
                         // console.log();
                         
-                        if(value.includes(`${model_names[type_index]}(`) && !value.includes("_code")){   
+                        if(value.includes(`${model_names[type_index]}(`) && !value.includes("_code")){  
+                            console.log(model_colors);
+                             
                             return(
                                 <>
                                 <div key={value} className={styles.color_select}>    
-                                    <label htmlFor={value} >{model_colors[value]}</label>
+                                    <label htmlFor={value} style={{display:"flex",flexDirection: "column",justifyContent: "center",alignItems: "center"}}>
+                                        <div className={styles.color_view} style={{background:`${model_colors[value + "_code"]}`}}></div>
+                                        {model_colors[value]}
+                                    </label>
                                     <input type="radio" value={model_colors[value]} name={value} id={value} onChange={(e)=>setColor(e.target.value)}/>
-                                    <div className={styles.color_view} style={{background:`${value.color_code}`}}></div>
                                 </div>
                                 {/* 改行 */}
                                     {index % 2 === 0 && index!=0 &&
@@ -154,17 +158,17 @@ const Case_edit =({
                         })
                     }
                     </div>
-                
-                    
-                    <Button onClick={()=>{
-                        product.product_place === "" ?
-                        setStep(4)
-                        :
-                        setModal(true)
-                    }}
-                    label="次へ"
-                    situ_name='screen'
-                    />
+                    <div className={styles.button}>
+                        <Button onClick={()=>{
+                            product.product_place === "" ?
+                            setStep(4)
+                            :
+                            setModal(true)
+                        }}
+                        label="次へ"
+                        situ_name='screen'
+                        />
+                    </div>
                 </>
                 )}
         /**
