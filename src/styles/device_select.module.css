@@ -126,7 +126,11 @@
 }
 .label{
     cursor: pointer;
-    padding-left: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: solid #777 ;
+
 }
 
 .weight:checked + .label {

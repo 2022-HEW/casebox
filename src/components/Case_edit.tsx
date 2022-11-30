@@ -203,11 +203,11 @@ const Case_edit =({
                     </div>
                     <div  className={styles.color_frame} style={{display:"flex"}}>
                         <input type="radio"  id="small" name="weight" className={styles.weight} value={10} onChange={(e) => {setSize(Number(e.target.value));}} /> 
-                        <label htmlFor='small' className={styles.label}>◯</label>
+                        <div className={styles.label}></div>
                         <input type="radio"  id="normal" name="weight" className={styles.weight} value={20} onChange={(e) => {setSize(Number(e.target.value));}} /> 
-                        <label htmlFor='normal' className={styles.label}>◯</label>
+                        <div className={styles.label}></div>
                         <input type="radio"  id="bold" name="weight" className={styles.weight} value={30} onChange={(e) => {setSize(Number(e.target.value));}} /> 
-                        <label htmlFor='bold' className={styles.label}>◯</label>
+                        <div className={styles.label}></div>
                         <p className={styles.serv_guide}>太さ</p>
                     </div>
 
