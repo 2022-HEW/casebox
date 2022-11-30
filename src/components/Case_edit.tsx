@@ -212,7 +212,7 @@ const Case_edit =({
                         }} 
                         className={styles.color_frame} 
                     >
-                        <Image src={"/material_provision/pencil_select.png"} width={114} height={50}/>
+                        <img src="/material_provision/pencil_select.png" alt="" className={styles.pencil_select_img}/>
                         <p className={styles.serv_guide}>えんぴつ</p>
                     </div>
                     <div onClick={()=>{
@@ -220,8 +220,7 @@ const Case_edit =({
                         }}
                         className={styles.color_frame} 
                     >
-                        
-                        <Image src={"/material_provision/eraser.png"} width={84} height={52}/>
+                        <img src="/material_provision/eraser.png" alt="" className={styles.pencil_select_img}/>
                         <p className={styles.serv_guide}>消しゴム</p>
                     </div>
                 </div>
