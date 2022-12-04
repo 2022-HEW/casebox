@@ -29,20 +29,16 @@ const Service_cards = ()=> {
 
 const Service_card = (
             { Card_link,Card_name,Card_desc }:CardType,
-            // { imgPath, imgAlt }:imageType
         )=>{
 
     return(
         <>
             <Link href={Card_link}>
-                <div className={styles.CardContainer}>
-                    <div className={styles.images}></div>
-                {/* <Image src={imgPath} alt={imgAlt} width={300} height={140}/> */}
                     <div className={styles.content}>
+                        <div className={styles.images}></div>
                         <h3>{Card_name}</h3>
                         <p>{Card_desc}</p>
                     </div>
-                </div>
             </Link>
         </>
     )

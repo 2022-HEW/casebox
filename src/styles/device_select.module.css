@@ -116,10 +116,8 @@
 }
 .serv_guide{
     width: 30%;
-    position: absolute;
-    right: 0;
     background-color: transparent!important;
-    margin: 0!important;
+    margin: 0 auto!important;
     padding: 0!important;
     bottom: 0!important;
 }
@@ -128,7 +126,11 @@
 }
 .label{
     cursor: pointer;
-    padding-left: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: solid #777 ;
+
 }
 
 .weight:checked + .label {
@@ -142,11 +144,12 @@
     margin:  10px 0 0 33px;
 }
 .pencil_select_img{
-    position: absolute;
-    top: -10px;
     left: 0;
-    height: 45px;
-    width: auto;
+    height: 50px;
+    margin-top: -13px;
+    width: 135px;
+
+
 }
 .color_pallet{
     box-sizing: border-box;
@@ -191,4 +194,62 @@
 }
 .step3button{
 
+}
+
+.product_info{
+    position: relative;
+    vertical-align: top;
+    top: 68px;
+}
+.productDesc{
+    position: relative;
+    left: 50%;
+    bottom: 50%;
+    line-height: 5px;
+}
+
+.productName{
+}
+
+.productColor{
+    color: #888888;
+}
+.price{
+    position: relative;
+    left: 50%;
+    bottom: 50%;
+    font-weight: 400;
+    line-height: 100px;
+    font-weight: normal;
+}
+
+.choseQuantity{
+    
+    position: relative;
+    left: 50%;
+    bottom: 50%;
+    font-weight: 400;
+    line-height: 100px;
+}
+
+.count{
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    color: #fff;
+    background-color:#999;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 42px;
+}
+
+.quantity{
+    border:#999 solid;
+    display: inline-block;
+    width: 126px;
+    height: 65px;
+    text-align: center;
+    border-radius: 89px;
+    font-size: 42px;
 }
