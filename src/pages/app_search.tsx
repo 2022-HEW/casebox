@@ -58,7 +58,7 @@ const SearchResult = ({text}:Props) =>{
 
     // 降順sort
     const Rank = () =>{
-        let newList:any = product.sort((el1:any,el2:any)=>{
+        product.sort((el1:Product,el2:Product)=>{
             if(el1.product_liked < el2.product_liked){
                 return 1;
             }
