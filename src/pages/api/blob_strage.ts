@@ -96,6 +96,7 @@ export default async (req: NextApiRequest, res:NextApiResponse,) => {
   
     // upload file
     if(req.body.situ === "add"){
+      console.log(req.body.situ);
       await createBlobInContainer(imgContainerClient,req.body.image,"userID.txt");
       await createBlobInContainer(placeContainerClient,req.body.place,"userID.json");
       return res.json("success");

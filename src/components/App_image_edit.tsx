@@ -72,10 +72,8 @@ function App_image_edit({save}:{save:boolean}) {
             return res.json();            
           }).then(data=>{
             // Azureからbase64を取ってくる
-            // setImagePath(data[0])
+            setImagePath(data[0])
             // console.log(typeof data);
-            
-
           }
             )
         } catch (e) {
