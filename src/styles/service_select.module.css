@@ -20,9 +20,13 @@
 
 .Container{
   width: 100%;
-  height: 20%;
+  height: 250px;
   display: flex;
   justify-content: center;
+}
+
+.cards{
+
 }
 
 .CardContainer{
