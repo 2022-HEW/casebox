@@ -37,9 +37,11 @@ const Service_cards = ()=> {
                     return(
                         <Link key={item.href} href={item.href}>
                             <a className={styles.cards}>
-                                <Image src={item.imgPath} alt={item.name} width={280} height={140} />
-                                <h3>{item.name}</h3>
-                                <p>{item.desc}</p>
+                                <Image className={styles.cardImg} src={item.imgPath} alt={item.name} width={260} height={120} />
+                                <div className={styles.content}>
+                                    <h3>{item.name}</h3>
+                                    <p>{item.desc}</p>
+                                </div>
                             </a>
                         </Link>
                     );

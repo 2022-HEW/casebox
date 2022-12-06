@@ -20,18 +20,37 @@
 
 .Container{
   width: 100%;
-  height: 250px;
+  height: 220px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .cards{
-
+  width: 260px;
+  height: 100%;
+  /* height: 220px; */
+  box-shadow: 0 2px 5px #ccc;
 }
 
-.CardContainer{
-  width: 100%;
-  margin: 0 2% 0 2%;
+.content > p{
+  color: #777;
+  font-size: 13px;
+  margin: 0 16px;
+  /* margin-bottom: 0.2em; */
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.content > h3 {
+  color: #333;
+  font-size: 17px;
+  margin: 0 16px;
+  padding-bottom: 5px;
+}
+
+.cardImg{
+  margin: 0 auto;
+  border-radius: 10px;
 }
 
 #cardbox {
@@ -60,26 +79,18 @@
   background: #ddd;
 }
 
-.card img {
-  border-radius: 7px 7px 0 0;
-  width: 250px;
-}
-
 .content {
   width: 100%;
   height: 50%;
 }
 
-.content h3 {
-  color: #333;
-  font-size: 16px;
-  padding-bottom: 5px;
-}
+
 
 .content p {
   color: #777;
   font-size: 14px;
-  margin-bottom: 0.2em;
+  margin: 0 16px;
+  /* margin-bottom: 0.2em; */
   overflow: hidden;
   word-break: break-word;
 }
