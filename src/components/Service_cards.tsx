@@ -9,18 +9,24 @@ const Service_cards = ()=> {
             name: "テンプレートケース",
             desc: "もう既にデザインが仕上がっているケース",
             imgPath: '/service_select/template_select.png',
+            width:"260",
+            height:"120"
         },
         {
             href: "/scan",
             name: "オリジナルケース",
             desc: "写真を自由に入れることができるオリジナルのケース",
-            imgPath: '/service_select/original.png',
+            imgPath: '/service_select/original.svg',
+            width:"220",
+            height:"120"
         },
         {
             href: "/device_select",
             name: "手書きケース",
             desc: "自販機で自分で書いたイラストをケースできる",
-            imgPath: '/service_select/illust.png',
+            imgPath: '/image/illust.svg',
+            width:"220",
+            height:"120"
         },
     ]
 
@@ -32,7 +38,7 @@ const Service_cards = ()=> {
                     return(
                         <Link key={item.href} href={item.href}>
                             <a className={styles.cards}>
-                                <Image className={styles.cardImg} src={item.imgPath} alt={item.name} width={260} height={120} />
+                                <Image className={styles.cardImg} src={item.imgPath} alt={item.name} width={item.width} height={item.height} objectFit={"cover"}/>
                                 <div className={styles.content}>
                                     <h3>{item.name}</h3>
                                     <p>{item.desc}</p>
