@@ -18,51 +18,49 @@
 サービス選択
 ===================================*/
 
+/* 全体 */
 .Container{
   width: 100%;
-  height: 220px;
+  height: 210px;
   display: flex;
   justify-content: space-evenly;
 }
 
+/* 一個ずつ */
 .cards{
   width: 260px;
   height: 100%;
+  border-radius: 10px;
   /* height: 220px; */
   box-shadow: 0 2px 5px #ccc;
+  margin: 0 13px;
 }
 
+/* 概要 */
 .content > p{
   color: #777;
   font-size: 13px;
-  margin: 0 16px;
+  margin: 5px 16px;
   /* margin-bottom: 0.2em; */
   overflow: hidden;
   word-break: break-word;
 }
 
+/* 概要の */
 .content > h3 {
   color: #333;
   font-size: 17px;
-  margin: 0 16px;
+  margin: 5px 16px;
   padding-bottom: 5px;
 }
 
 .cardImg{
   margin: 0 auto;
   border-radius: 10px;
+  background: #ddd;
 }
 
-#cardbox {
-  width: 1000px;
-  margin: 20px auto 0 auto;
-  /* position: relative; */
-  top: 0;
-  left: 0;
-  z-index: 99;
-}
-
-.card {
+/* .card {
   width: 300px;
   height: 230px;
   background: #fff;
@@ -70,27 +68,27 @@
   box-shadow: 0 2px 5px #ccc;
   display: inline-block;
   margin: 0 13px;
-}
+} */
 
-.images {
+/* .images {
   width: 100%;
   height: 100%;
   border-radius: 10px 10px 0 0;
   background: #ddd;
-}
+} */
 
-.content {
+/* .content {
   width: 100%;
   height: 50%;
-}
+} */
 
 
 
-.content p {
+/* .content p {
   color: #777;
   font-size: 14px;
   margin: 0 16px;
-  /* margin-bottom: 0.2em; */
+  margin-bottom: 0.2em;
   overflow: hidden;
   word-break: break-word;
-}
+} */
