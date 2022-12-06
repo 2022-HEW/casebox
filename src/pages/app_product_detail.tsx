@@ -5,7 +5,7 @@ import App_header from '../components/common/App_header'
 import Image from 'next/image'
 import styles from '../styles/app_product_detail.module.css'
 import App_nav from '../components/common/App_nav'
-import Modal from '../components/common/Modal'
+import Modal from '../components/common/App_modal'
 const app_product_detail = () => {
     const {product_place,product_name,m_product_category,m_product_price} =useRecoilValue(productState)
     return (
