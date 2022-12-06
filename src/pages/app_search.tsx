@@ -3,8 +3,13 @@ import styles from "../styles/app_search.module.css"
 import Image from 'next/image'
 import App_nav from '../components/common/App_nav'
 import useSWR from 'swr'
+import { NextRouter, useRouter } from 'next/router'
+import { useRecoilState } from "recoil";
+import { productState } from '../atoms/app_atoms';
 
-const app_search = () => {
+
+
+const app_search = () => {    
     const [text,setText] = useState("")
     return (
         <div className={styles.container}>
@@ -35,7 +40,7 @@ type Product ={
     product_liked:number,
     product_place:string,
     m_product_category:string,
-    m_product_price:number
+    m_product_price:number,
   }
 const SearchResult = ({text}:Props) =>{
 
@@ -68,8 +73,6 @@ const SearchResult = ({text}:Props) =>{
             return 0
         }) ;
         // console.log(newList);
-        
-        
     }
     Rank()
         // 取得するまで
@@ -101,8 +104,23 @@ const SearchResult = ({text}:Props) =>{
 }
 
     const ProductBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_liked}:Product)=> {
+        const [product,setProduct] = useRecoilState(productState)
+        const router = useRouter()
+
+        const goDetail= () =>{
+            setProduct((before)=>({...before,
+                m_product_price:m_product_price,
+                product_ID:product_ID,
+                product_name:product_name,
+                product_place:product_place,
+                m_product_category:m_product_category
+            }))
+            router.push({
+                pathname:"/app_product_detail"
+            })
+        }
         return(
-            <div>
+            <div onClick={()=>{goDetail()}}>
                 <p className={styles.like}>❤{product_liked}</p>
                 <Image src={"/product_image/" + product_place} alt="商品の画像" width={200} height={200} id={styles.product_image}/>
                 <p className={styles.case_name}>{product_name}</p>
