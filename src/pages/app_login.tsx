@@ -1,6 +1,8 @@
 import Link from 'next/link'
-import React, { useCallback, useState } from 'react'
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import useSWR from 'swr'
+import { profileState } from '../atoms/app_atoms'
 import { Button } from '../components/common/App_button'
 import App_header from '../components/common/App_header'
 import styles from '../styles/app_login.module.css'
@@ -40,9 +42,37 @@ const Form = ()=>{
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const [loginflg,setLoginflg] = useState(false)
-    const { data } = useSWR<any>(loginflg && `/api/app_sql?sql=login&&email=${email}`,fetcher)
-    console.log(data);
-    console.log(email);
+    const { data,error } = useSWR<any>(loginflg && `/api/app_sql?sql=login&&email=${email}`,fetcher)
+    const [profile,setProfile] = useRecoilState(profileState)
+    if(error){
+        console.log(error);
+    }
+
+    // ログインチェック
+    useEffect(() => {
+    if(data){
+        console.log(data);
+        if(data[0].user_password === password){
+            setProfile(data[0])
+        }else{
+            console.log("password:miss");
+            setLoginflg(false)
+            // console.log(password);
+            // console.log(data.user_password);
+        }
+    }
+    }, [data])
+
+    // セットされたら
+    useEffect(()=>{
+        if(profile.userID!==0){
+            console.log(profile);
+        }
+    },[profile])
+    
+ 
+    
+    // console.log(email);
     
     // console.log(loginflg);
     
@@ -50,13 +80,9 @@ const Form = ()=>{
         <>
             <input placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
             <input placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-            <Button label='ログイン' onClick={()=>LoginCheck(email,password,setLoginflg)}/>
+            <Button label='ログイン' onClick={()=>setLoginflg(true)}/>
         </>
     )
-}
-
-const LoginCheck=(email:string,password:string,setLoginflg:any)=>{
-   setLoginflg(true)   
 }
 
 export default app_login

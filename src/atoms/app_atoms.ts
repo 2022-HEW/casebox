@@ -8,6 +8,14 @@ type Product=  {
     model_id:number
     quant:number
 }
+type Profile = {
+    userID:number,
+    user_name:string,
+    user_comment:string,
+    user_email:string,
+    user_image:string,
+    user_password:string
+}
 //tab色
 export const tabState = atom({
     key: "tab",
@@ -33,9 +41,16 @@ export const productState= atom<Product>({
 });
 
 //機種選択のstep
-export const stepState = atom({
-    key: "step",
-    default: 1
+export const profileState = atom<Profile>({
+    key: "profile",
+    default: {
+        userID:0,
+        user_name:"",
+        user_comment:"",
+        user_email:"",
+        user_image:"",
+        user_password:""
+    }
 });
 
 // 手書きツール
