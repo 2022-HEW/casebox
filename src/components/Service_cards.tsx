@@ -12,7 +12,6 @@ const Service_cards = ()=> {
             imgPath: '/service_select/template_select.png',
             width:"260",
             height:"120",
-            layout: "fill"
         },
         {
             href: "/scan",
@@ -21,7 +20,6 @@ const Service_cards = ()=> {
             imgPath: '/service_select/original.svg',
             width:"220",
             height:"120",
-            layout: "fill"
         },
         {
             href: "/device_select",
@@ -30,7 +28,6 @@ const Service_cards = ()=> {
             imgPath: '/image/illust.svg',
             width:"220",
             height:"120",
-            layout: "fill"
         },
     ]
 
@@ -43,7 +40,7 @@ const Service_cards = ()=> {
                         <Link key={item.href} href={item.href}>
                             <a className={styles.cards}>
                                 <figure className={styles.cardImg}>
-                                    <Image src={item.imgPath} alt={item.name} width={item.width} height={item.height} objectFit={"fill"}/>
+                                    <Image src={item.imgPath} alt={item.name} width={item.width} height={item.height} objectFit={"cover"}/>
                                 </figure>
                                 <div className={styles.content}>
                                     <h3>{item.name}</h3>
