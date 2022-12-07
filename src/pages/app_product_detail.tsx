@@ -6,6 +6,7 @@ import Image from 'next/image'
 import styles from '../styles/app_product_detail.module.css'
 import App_nav from '../components/common/App_nav'
 import Modal from '../components/common/App_modal'
+import { Button } from '../components/common/App_button'
 const app_product_detail = () => {
     const {product_place,product_name,m_product_category,m_product_price} =useRecoilValue(productState)
     return (
@@ -13,7 +14,7 @@ const app_product_detail = () => {
             <App_header/>
             <ImageView path={product_place}/>
             <ProductInfo name={product_name} category={m_product_category} price={m_product_price}/>
-            <QRButton label={"QRコードを表示"}/>
+            <QRButton />
             <App_nav/>
             <Modal></Modal>
         </>
@@ -42,16 +43,15 @@ const ProductInfo = ({name,category,price}:Product) =>{
     )
 }
 type QRButton={
-    label:string
+    // label:string
 }
-const QRButton=({label}:QRButton)=>{
+const QRButton=()=>{
     const [modal,setModal] = useRecoilState(modalState)
     const handleQRcode=()=>{
         setModal(true)
     }
-
     return(
-        <button className={styles.qr_button} onClick={()=>handleQRcode()}>{label}</button>
+        <Button label="QRコードを表示" onClick={handleQRcode}/>
     )
 }
 export default app_product_detail 
