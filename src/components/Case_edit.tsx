@@ -229,7 +229,7 @@ const Case_edit =({
                     </div>
                 </div>
                     <ColorPallet/>
-                    <div className={styles.nextbutton}>
+                    <div className={styles.button}>
                         <Button onClick={()=>setDownload(true)} label="次へ" situ_name="screen"/>
                     </div>
                 </div>

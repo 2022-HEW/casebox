@@ -14,18 +14,21 @@
     width: 50%;
     height: 100%;
     background-color: #fff;
+    border-left: 1px solid #666;
+    border-radius: 0 0 10px 0;
 }
 #case_edit h1{
     background: #666;
     color: #FFFFFF;
     height: 70px;
-    margin:0;
-    padding: 20px 0 0 0;
+    margin: -1px;
+    padding-top: 15px;
     font-family: 'Noto Sans JP';
     font-style: normal;
     font-weight: 100;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
+    border-radius: 0 5px 0 0;
 }
 #case_edit p{
     text-align: center;
@@ -43,10 +46,6 @@
     bottom: 25px;
     z-index: 2;
 }
-.color_select{
-
-}
-
 .color_select label{
     display: inline-block;
     width: 150px;
@@ -54,7 +53,6 @@
     border: 1px solid #AAAAAA;
     border-radius: 6px;
 }
-
 .type{
     display: flex;
     flex-direction: column;
@@ -103,8 +101,12 @@
     background: #FFFFFF;
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
     border-radius: 17px;
-    width: 50%;
-    height: 80%;
+    width: 25%;
+    padding-top: 10px;
+    height: 55%;
+    position: absolute;
+    top: 110px;
+    right: 130px;
 }
 .color_frame:first-child{
     margin-top: 32px;
@@ -130,7 +132,6 @@
     height: 30px;
     border-radius: 50%;
     border: solid #777 ;
-
 }
 
 .weight:checked + .label {
@@ -148,27 +149,26 @@
     height: 50px;
     margin-top: -13px;
     width: 135px;
-
-
 }
 .color_pallet{
     box-sizing: border-box;
     background: #FFFFFF;
     box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.15);
     border-radius: 17px 0 0 17px;
+    padding-top: 10px;
     width: 10%;
-    height: 65%;
+    height: 55%;
     position: absolute;
-    top: 120px;
-    right:  0px;
+    top: 110px;
+    right: 0px;
     display: grid;
-    grid-template-columns: repeat( 2 , 1fr);
+    grid-template-columns: repeat(2,1fr);
 }
 .color_category{
     height: 10%;
     width: 15%;
     padding-left: 5px;
-    margin-left: 12px;
+    margin-left: 15px;
     border-radius: 50%;
     position: relative;
 }
@@ -180,11 +180,6 @@
     bottom: 25px;
     right: 25px;
 }
-/* .nextbutton{
-    position: relative;
-    left: 150px;
-    top: -30px;    
-} */
 
 .color_view{
     height: 25px;
@@ -192,10 +187,6 @@
     margin: 0 0 10px 0;
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
 }
-.step3button{
-
-}
-
 .product_info{
     position: relative;
     vertical-align: top;
@@ -207,10 +198,6 @@
     bottom: 50%;
     line-height: 5px;
 }
-
-.productName{
-}
-
 .productColor{
     color: #888888;
 }
@@ -222,16 +209,13 @@
     line-height: 100px;
     font-weight: normal;
 }
-
 .choseQuantity{
-    
     position: relative;
     left: 50%;
     bottom: 50%;
     font-weight: 400;
     line-height: 100px;
 }
-
 .count{
     display: inline-block;
     width: 45px;
@@ -243,7 +227,6 @@
     border-radius: 50%;
     font-size: 42px;
 }
-
 .quantity{
     border:#999 solid;
     display: inline-block;

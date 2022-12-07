@@ -9,6 +9,7 @@ const scan = () => {
   return (
     <Box>
       <Nav>
+        <div className={styles.wrap}>
           <div className={styles.table}>
             <div className={styles.tr}>
               <div className={styles.th}>
@@ -34,10 +35,11 @@ const scan = () => {
                 <div className={styles.td}><input type="button" value="８" className={styles.button}/></div>
                 <div className={styles.td}><input type="button" value="９" className={styles.button}/></div>
               </div>
-              <div>
+              <div className={styles.nav}>
                 <a href='' className={styles.scan}>スキャン</a>
               </div>
             </form>
+          </div>
         </div>
         <Camera/>
       </Nav>
