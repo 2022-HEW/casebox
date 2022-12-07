@@ -88,8 +88,8 @@
 
 
 .design {
-    /* width: 400px;
-    height: 541px; */
+    width: 400px;
+    height: 541px;
     position: absolute;
     top: 0px;
     left: 30px;
@@ -219,15 +219,16 @@
 .wrapper{
     zoom: 90%;
     position: relative;
-    top: 50px;
-    left: 80px;
+    top: 30px;
+    left: 20px;
 }
 
 .product_info {
+    zoom: 110%;
     position: relative;
     vertical-align: top;
     top: 6px;
-    right: 40px;
+    right: 90px;
     display: inline-block;
 }
 
@@ -286,18 +287,25 @@
     text-align: center;
     vertical-align: middle;
     border-radius: 89px;
-    font-size: 32px;
+    
     position: relative;
     bottom: 10px;
 }
 
-.number{
+.quantity_text{
+    font-size: 38px;
     position: relative;
-    bottom: 50px;
+    bottom: 58px;
+    left: 15px;
+}
+
+.quantity_text span{
+    margin-left: 15px;
+    font-size: 18px;
 }
 
 .go_pay {
     position: relative;
-    left: 90px;
-    top: 20px;
+    left: 120px;
+    top: 40px;
 }
