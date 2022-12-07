@@ -1,6 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "../../styles/slideShow.module.css";
@@ -15,26 +14,34 @@ type imageType={
 	imgAlt: string,
 }
 
-const PrevArrow = ({onClick}: any)  => {
-	return (
-	<div className={styles.prevContainer} onClick={onClick}>
-		<button className={styles.prev}>&#060;</button>
-	</div>
-	);
-}
+// const PrevArrow = ({onClick}: any)  => {
+// 	return (
+// 	<div className={styles.prevContainer} onClick={onClick}>
+// 		<button className={styles.prev}>
+// 			<span></span>
+// 			<span></span>
+// 			{/* &#060; */}
+// 		</button>
+// 	</div>
+// 	);
+// }
 
-const NextArrow = ({onClick}: any) => {
-	return (
-	<div className={styles.nextContainer} onClick={onClick}>
-		<button className={styles.next}>&#062;</button>
-	</div>
-	);
-}
+// const NextArrow = ({onClick}: any) => {
+// 	return (
+// 	<div className={styles.nextContainer} onClick={onClick}>
+// 		<button className={styles.next}>
+// 			<span></span>
+// 			<span></span>
+// 			{/* &#062; */}
+// 		</button>
+// 	</div>
+// 	);
+// }
 
 const SlideShow = () => {
 
 	// slick option
-    const settings = {
+    const Settings = {
         // autoplay: true,  	// 自動的に動き出すか。
 		infinite: true, 	// スライドをループさせるかどうか。
 		speed: 500,			// スライド、フェードアニメーションの速度
@@ -47,8 +54,8 @@ const SlideShow = () => {
 
 		// arrowのカスタム
 		arrow: true, 		// 前・次の矢印表示
-		nextArrow: <NextArrow />,
-		prevArrow: <PrevArrow />
+		// nextArrow: <NextArrow />,
+		// prevArrow: <PrevArrow />
     };
 
 
@@ -56,7 +63,7 @@ const SlideShow = () => {
     return(
 		<>
 			<div id={styles.SliderContainer}>
-				<Slider {...settings}>
+				<Slider {...Settings}>
 					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
 					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
 					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
@@ -72,9 +79,9 @@ const SlideShow = () => {
 
 const ImgDesc = ({ imgPath, imgAlt }:imageType) => {
 	return(
-		<div className={styles.imgContainer}>
+		<figure className={styles.imgContainer}>
 			<Image className={styles.slideImg} src={imgPath} alt={imgAlt} width={500} height={240}/>
-		</div>
+		</figure>
 	)
 }
 
