@@ -26,16 +26,17 @@
 
     /*矢印の設定*/
     /*戻る、次へ矢印の位置*/
-    .prev
 
     .slick-prev { /*戻る矢印の位置と形状*/
         left: -1.5%;
         transform: rotate(-135deg);
+        color: #333 !important;
     }
 
     .slick-next { /*次へ矢印の位置と形状*/
         right: -1.5%;
         transform: rotate(45deg);
+        color: #333 !important;
     }
 
     /* .slick-dots .slick-active button {
@@ -64,4 +65,19 @@
         display: inline;
         top: -141px;
         left: 500px;
+    }
+
+    .prev{
+        height: 50px;
+        width: 50px;
+        background-color: aqua;
+    }
+
+    .prev span:nth-child(1){
+        width: 3px;
+        height: 3px;
+        color: aqua;
+    }
+    .prev span:nth-child(2){
+
     }
