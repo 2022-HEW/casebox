@@ -1,0 +1,24 @@
+.product_view{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+.product_info{
+    width: 100%;
+    border-top: 0.5px solid #DDDDDD;
+    padding: 0 0 0 30px;
+}
+.case_name{
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 15px;
+}
+.case_category{
+    color:#888;
+    font-size: 15px;
+}
+.case_price{
+    line-height: 30px;
+    font-size: 15px;
+}
