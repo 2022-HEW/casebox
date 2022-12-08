@@ -39,7 +39,8 @@ const Form = ()=>{
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const [duplication,setDuplication] = useState(false)
-    const [regex,setRegex] = useState(true)
+    const [EmailRegex,setEmailRegex] = useState(true)
+    const [PassRegex,setPassRegex] = useState(true)
 
     const { data,error } = useSWR<any>(email!=="" && `/api/app_sql?sql=signup_check`,fetcher)
     
@@ -68,9 +69,15 @@ const Form = ()=>{
         }
         // 正しい書式かどうか
         if(email.match(/[a-zA-Z0-9]+[a-zA-Z0-9\._-]*@[a-zA-Z0-9_-]+[a-zA-Z0-9\._-]+/)){
-            setRegex(false)
+            setEmailRegex(false)
         }
     },[email, data])
+
+    useEffect(()=>{
+        if(password.match(/^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}$/i)){
+            setPassRegex(false)
+        }
+    },[password])
     
 
     
@@ -80,9 +87,9 @@ const Form = ()=>{
     
     return(
         <>
-            <input placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={duplication ?{background:"red"}:{background:"white"}}/>
-            <input placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-            <Button label='同意して会員登録' onClick={addDB} disabled={(duplication || regex) && true} style={(duplication || regex) ?{opacity:"0.5"}:{opacity:"1.0"}}/>
+            <input placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}}/>
+            <input placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/>
+            <Button label='同意して会員登録' onClick={addDB} disabled={(duplication || EmailRegex ||PassRegex) && true}/>
         </>
     )
 }
