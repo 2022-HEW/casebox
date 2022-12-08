@@ -16,6 +16,7 @@
     "@types/react-slick": "^0.23.10",
     "async": "^3.2.4",
     "formidable": "^2.0.1",
+    "js-sha1": "^0.6.0",
     "jsqr": "^1.4.0",
     "konva": "^8.3.14",
     "next": "12.3.1",
