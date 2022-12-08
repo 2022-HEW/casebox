@@ -30,7 +30,7 @@ const LoginBox= ({}) =>{
             <Link href="/app_password_reset">
                 <p>パスワードを忘れた方</p>
             </Link>
-            <Link href="/app_password_reset">
+            <Link href="/app_sign_up">
                 <p>新規会員登録</p>
             </Link>
         </div>
@@ -42,7 +42,7 @@ const Form = ()=>{
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const [loginflg,setLoginflg] = useState(false)
-    const { data,error } = useSWR<any>(loginflg && `/api/app_sql?sql=login&&email=${email}`,fetcher)
+    const { data,error } = useSWR<any>(loginflg && `/api/app_sql?sql=login&&login=${email}`,fetcher)
     const [profile,setProfile] = useRecoilState(profileState)
     if(error){
         console.log(error);
@@ -51,7 +51,10 @@ const Form = ()=>{
     // ログインチェック
     useEffect(() => {
     if(data){
-        console.log(data);
+        // console.log(data);
+        const sha1 = require('js-sha1');
+        console.log(sha1(password));
+        
         if(data[0].user_password === password){
             setProfile(data[0])
         }else{

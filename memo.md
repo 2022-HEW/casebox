@@ -150,3 +150,4 @@ npm install @azure/identity
 <!-- npm install uuid dotenv -->
 npm install formidable
 npm install react-qrcode
+npm install js-sha1
