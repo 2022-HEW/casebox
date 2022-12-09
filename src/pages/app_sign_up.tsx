@@ -105,7 +105,7 @@ const Form = ()=>{
         const insertDB = async(UserID:string) =>{
             await fetch(`/api/app_sql?sql=signup&&user_id=${UserID}&&user_email=${email}&&user_password=${password}`)
             .then(res=>{return res.json()})
-            .then((data)=> console.log(data))
+            // .then((data)=> console.log(data))
         }
         if(UserID!==""){
             insertDB(UserID)

@@ -9,12 +9,7 @@ type Product=  {
     quant:number
 }
 type Profile = {
-    user_id:number,
-    user_name:string,
-    user_comment:string,
-    user_email:string,
-    user_image:string,
-    user_password:string
+    [key:string]:string
 }
 //tab色
 export const tabState = atom({
@@ -44,7 +39,7 @@ export const productState= atom<Product>({
 export const profileState = atom<Profile>({
     key: "profile",
     default: {
-        user_id:0,
+        user_id:"",
         user_name:"",
         user_comment:"",
         user_email:"",

@@ -68,7 +68,7 @@ const Form = ()=>{
 
     // セットされたら
     useEffect(()=>{
-        if(profile.user_id!==0){
+        if(profile.user_id!=="0"){
             console.log(profile);
         }
     },[profile])
