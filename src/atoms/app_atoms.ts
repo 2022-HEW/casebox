@@ -9,7 +9,7 @@ type Product=  {
     quant:number
 }
 type Profile = {
-    userID:number,
+    user_id:number,
     user_name:string,
     user_comment:string,
     user_email:string,
@@ -44,7 +44,7 @@ export const productState= atom<Product>({
 export const profileState = atom<Profile>({
     key: "profile",
     default: {
-        userID:0,
+        user_id:0,
         user_name:"",
         user_comment:"",
         user_email:"",

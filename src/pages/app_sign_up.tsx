@@ -45,6 +45,26 @@ const Form = ()=>{
     const { data,error } = useSWR<any>(email!=="" && `/api/app_sql?sql=signup_check`,fetcher)
     
     const addDB = async() =>{
+        const SELECT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const N=9
+        let new_user_id = ""
+        // ランダム９桁
+        const createUserID=(new_user_id:string):string=>{
+             new_user_id = Array.from(Array(N)).map(()=>SELECT[Math.floor(Math.random()*SELECT.length)]).join('')
+            return "1"
+        }
+        // console.log(new_user_id);
+        // 重複チェック
+        data.map((value:Profile)=>{
+            if(value.user_id === createUserID(new_user_id)){
+                // addDB()
+                console.log(value.user_id);
+                console.log(createUserID(new_user_id));
+            }else{
+                console.log(typeof value.user_id);
+                console.log(typeof createUserID(new_user_id));
+            }
+        })
         await fetch(`/api/app_sql?sql=signup`)
         .then(res=>{return res.json()})
         .then((data)=> console.log(data))
