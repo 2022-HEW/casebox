@@ -43,8 +43,9 @@ export default async function handler(
   const modelID = req.query.modelID
   const stock = req.query.stock
   const quant = req.query.quant
-  const login = req.query.login
 
+  // const login = req.query.login
+  const {login,user_password,user_id,user_email}=req.query
   // const router = useRouter()
   // let sql = router.query   
   // //   console.log(sql);
@@ -64,9 +65,8 @@ export default async function handler(
       sql = `SELECT user_id,user_email from t_users`
       break;
 
-
     case "signup":
-      sql=`SELECT model_stocks,model_id  from t_stocks `
+      sql=`INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/image/user_icon.svg',NOW())`
       break;
 
     case "update_stock":

@@ -41,7 +41,8 @@ const Form = ()=>{
     const [duplication,setDuplication] = useState(false)
     const [EmailRegex,setEmailRegex] = useState(true)
     const [PassRegex,setPassRegex] = useState(true)
-    const [insertflg,setInsertflg] = useState(false)
+    const [UserID,setUserID] = useState("")
+    
 
     const { data,error } = useSWR<any>(email!=="" && `/api/app_sql?sql=signup_check`,fetcher)
     
@@ -65,7 +66,7 @@ const Form = ()=>{
                 console.log("同じ")
                 SignupHandler()
             }else{
-                setInsertflg(true)
+                setUserID(new_user_id)
             }
         })
     }
@@ -101,15 +102,15 @@ const Form = ()=>{
 
     // 会員登録処理
     useEffect(()=>{
-        const insertDB = async() =>{
-            await fetch(`/api/app_sql?sql=signup`)
+        const insertDB = async(UserID:string) =>{
+            await fetch(`/api/app_sql?sql=signup&&user_id=${UserID}&&user_email=${email}&&user_password=${password}`)
             .then(res=>{return res.json()})
             .then((data)=> console.log(data))
         }
-        if(insertflg){
-            insertDB()
+        if(UserID!==""){
+            insertDB(UserID)
         }
-    },[insertflg])
+    },[UserID])
     
 
     
