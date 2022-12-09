@@ -41,33 +41,33 @@ const Form = ()=>{
     const [duplication,setDuplication] = useState(false)
     const [EmailRegex,setEmailRegex] = useState(true)
     const [PassRegex,setPassRegex] = useState(true)
+    const [insertflg,setInsertflg] = useState(false)
 
     const { data,error } = useSWR<any>(email!=="" && `/api/app_sql?sql=signup_check`,fetcher)
     
-    const addDB = async() =>{
-        const SELECT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        const N=9
-        let new_user_id = ""
+    const SignupHandler= ()  =>{
+        // const SELECT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        // const N=9
+
+        const SELECT = "01";
+        const N=1
         // ランダム９桁
-        const createUserID=(new_user_id:string):string=>{
-             new_user_id = Array.from(Array(N)).map(()=>SELECT[Math.floor(Math.random()*SELECT.length)]).join('')
-            return "1"
+        const createUserID=():string=>{
+            const new_user_id = Array.from(Array(N)).map(()=>SELECT[Math.floor(Math.random()*SELECT.length)]).join('')
+            return new_user_id
         }
+
+        const new_user_id = createUserID()
         // console.log(new_user_id);
         // 重複チェック
         data.map((value:Profile)=>{
-            if(value.user_id === createUserID(new_user_id)){
-                // addDB()
-                console.log(value.user_id);
-                console.log(createUserID(new_user_id));
+            if(value.user_id === new_user_id){
+                console.log("同じ")
+                SignupHandler()
             }else{
-                console.log(typeof value.user_id);
-                console.log(typeof createUserID(new_user_id));
+                setInsertflg(true)
             }
         })
-        await fetch(`/api/app_sql?sql=signup`)
-        .then(res=>{return res.json()})
-        .then((data)=> console.log(data))
     }
     type Profile={
         [key:string]:string
@@ -98,6 +98,18 @@ const Form = ()=>{
             setPassRegex(false)
         }
     },[password])
+
+    // 会員登録処理
+    useEffect(()=>{
+        const insertDB = async() =>{
+            await fetch(`/api/app_sql?sql=signup`)
+            .then(res=>{return res.json()})
+            .then((data)=> console.log(data))
+        }
+        if(insertflg){
+            insertDB()
+        }
+    },[insertflg])
     
 
     
@@ -109,7 +121,7 @@ const Form = ()=>{
         <>
             <input placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}}/>
             <input placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/>
-            <Button label='同意して会員登録' onClick={addDB} disabled={(duplication || EmailRegex ||PassRegex) && true}/>
+            <Button label='同意して会員登録' onClick={SignupHandler} disabled={(duplication || EmailRegex ||PassRegex) && true}/>
         </>
     )
 }
