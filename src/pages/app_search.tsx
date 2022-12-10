@@ -7,6 +7,7 @@ import { NextRouter, useRouter } from 'next/router'
 import { useRecoilState } from "recoil";
 import { productState } from '../atoms/app_atoms';
 import { NextPage } from 'next'
+import { App_productBox } from '../components/common/App_product_box'
 
 
 
@@ -88,7 +89,8 @@ const SearchResult = ({text}:Props) =>{
                 <div className={styles.result_line}>
                     {product.map((product:Product,index:number) => (
                         product.product_name.includes(text) &&
-                            <ProductBox product_place={product.product_place}
+                            <App_productBox 
+                                        product_place={product.product_place}
                                         product_name={product.product_name}
                                         m_product_category={product.m_product_category}
                                         m_product_price={product.m_product_price}
@@ -104,30 +106,5 @@ const SearchResult = ({text}:Props) =>{
     )
 }
 
-    const ProductBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_liked}:Product)=> {
-        const [product,setProduct] = useRecoilState(productState)
-        const router = useRouter()
-
-        const goDetail= () =>{
-            setProduct((before)=>({...before,
-                m_product_price:m_product_price,
-                product_ID:product_ID,
-                product_name:product_name,
-                product_place:product_place,
-                m_product_category:m_product_category
-            }))
-            router.push({
-                pathname:"/app_product_detail"
-            })
-        }
-        return(
-            <div onClick={()=>{goDetail()}}>
-                <p className={styles.like}>❤{product_liked}</p>
-                <Image src={"/product_image/" + product_place} alt="商品の画像" width={200} height={200} id={styles.product_image}/>
-                <p className={styles.case_name}>{product_name}</p>
-                <p className={styles.case_category}>{m_product_category}</p>
-                <p className={styles.case_price}>￥{m_product_price.toLocaleString()}(税込)</p>
-            </div>
-        )
-    }
+    
 export default app_search 
