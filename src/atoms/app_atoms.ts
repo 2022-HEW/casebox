@@ -1,4 +1,7 @@
 import { atom,selector } from "recoil";
+import { recoilPersist } from "recoil-persist"; 
+
+
 type Product=  {
     product_name:string,
     m_product_category:string,
@@ -11,6 +14,8 @@ type Product=  {
 type Profile = {
     [key:string]:string
 }
+const { persistAtom } = recoilPersist();
+
 //tab色
 export const tabState = atom({
     key: "tab",
@@ -45,7 +50,8 @@ export const profileState = atom<Profile>({
         user_email:"",
         user_image:"",
         user_password:""
-    }
+    },
+    effects_UNSTABLE: [persistAtom] //永続化
 });
 
 // 手書きツール
