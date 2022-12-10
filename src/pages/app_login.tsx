@@ -1,3 +1,4 @@
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
@@ -14,7 +15,7 @@ async function fetcher(url: string): Promise<boolean | null > {
 }
 
 
- const app_login = () => {
+ const app_login:NextPage = () => {
   return (
     <>
         <App_header label='ログイン'/>

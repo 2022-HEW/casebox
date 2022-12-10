@@ -3,8 +3,9 @@ import App_nav from '../components/common/App_nav'
 import Image from 'next/image'
 import styles from "../styles/app_service_select.module.css"
 import Link from 'next/link'
+import { NextPage } from 'next'
 
-const app_service_select = () => {
+const app_service_select:NextPage = () => {
 
   return (
 

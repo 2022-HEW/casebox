@@ -7,7 +7,8 @@ import styles from '../styles/app_product_detail.module.css'
 import App_nav from '../components/common/App_nav'
 import Modal from '../components/common/App_modal'
 import { Button } from '../components/common/App_button'
-const app_product_detail = () => {
+import { NextPage } from 'next'
+const app_product_detail:NextPage = () => {
     const {product_place,product_name,m_product_category,m_product_price} =useRecoilValue(productState)
     return (
         <>

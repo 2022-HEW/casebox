@@ -4,8 +4,9 @@ import Nav from '../components/common/Nav';
 import Camera from '../components/Camera';
 import Movie from '../components/common/Movie';
 import styles from "../styles/scan.module.css";
+import { NextPage } from 'next';
 
-const scan = () => {
+const scan:NextPage = () => {
   return (
     <Box>
       <Nav>

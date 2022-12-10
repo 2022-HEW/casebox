@@ -2,8 +2,9 @@ import React from 'react'
 import Box from '../components/common/Box';
 import Nav from '../components/common/Nav';
 import Image from 'next/image';
+import { NextPage } from 'next';
 
-const Site = () => {
+const Site:NextPage = () => {
     return (
         <Box>
             <Nav>

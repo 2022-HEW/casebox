@@ -1,3 +1,4 @@
+import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { type } from 'os';
@@ -14,7 +15,7 @@ async function fetcher(url: string): Promise<boolean | null > {
     return response.json();
 }
 
-const app_sign_up = () => {
+const app_sign_up:NextPage = () => {
   return (
     <>
         <App_header label={"会員登録"}/>

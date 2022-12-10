@@ -1,3 +1,4 @@
+import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -10,7 +11,7 @@ import styles from "../styles/draw.module.css"
 const OriginalView = dynamic(() => import('../components/OriginalView'), { ssr: false })
 
 
-const originalEdit = () => {
+const originalEdit:NextPage = () => {
   const router = useRouter()
   const goPay = ()=>{
     router.push({

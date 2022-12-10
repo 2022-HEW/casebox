@@ -17,9 +17,10 @@ import Modal from "../components/common/Modal";
 import Other from "../components/Other";
 import Touch from "../components/Touch";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 
 
-const pay = () => {
+const pay:NextPage = () => {
     // 今までの情報をリセット
 
     interface btn_props {

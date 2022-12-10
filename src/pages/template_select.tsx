@@ -10,6 +10,7 @@ import { useRecoilState } from "recoil";
 import { modalState } from '../atoms/atoms';
 import useSWR from "swr";
 import Image from "next/image"
+import { NextPage } from "next";
 
 /**
  * 商品情報を表示する
@@ -49,7 +50,7 @@ const Product_box =({id,image_path,case_name,case_category,case_price,setProduct
 }
 
 // メイン
-const Template = () => {
+const Template:NextPage = () => {
   type Product ={
     product_ID:number,
     product_name:string,

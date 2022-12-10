@@ -3,7 +3,8 @@ import Box from '../components/common/Box'
 import Nav from '../components/common/Nav'
 import styles from "../styles/help.module.css"
 import Image from 'next/image'
-const Help = () => {
+import { NextPage } from 'next'
+const Help:NextPage = () => {
     const answer:string[]=["CASEBOXチャットサポートです。どのようなことでお困りでしょうか"]
     return (
         <Box>

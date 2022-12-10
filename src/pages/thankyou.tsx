@@ -4,10 +4,11 @@ import Box from '../components/common/Box'
 import Nav from '../components/common/Nav'
 import { useRecoilValue } from 'recoil';
 import { productState,stockState } from '../atoms/atoms';
+import { NextPage } from 'next';
 
 
 
-const Thankyou = () => {
+const Thankyou:NextPage = () => {
     // dataを持っていないとき遷移させる
     // if(){
 

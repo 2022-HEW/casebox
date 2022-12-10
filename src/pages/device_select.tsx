@@ -8,11 +8,12 @@ import useSWR from 'swr';
 import { useRecoilState,useRecoilValue } from "recoil";
 import { productState,stepState,tabState,stockState} from '../atoms/atoms';
 import React from 'react';
+import { NextPage } from 'next';
 
 
 
 
-const DeviceSelect = () => {
+const DeviceSelect:NextPage = () => {
     interface Color{
         [props:string]:any
     }

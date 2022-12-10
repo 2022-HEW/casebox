@@ -6,10 +6,11 @@ import useSWR from 'swr'
 import { NextRouter, useRouter } from 'next/router'
 import { useRecoilState } from "recoil";
 import { productState } from '../atoms/app_atoms';
+import { NextPage } from 'next'
 
 
 
-const app_search = () => {    
+const app_search:NextPage = () => {    
     const [text,setText] = useState("")
     return (
         <div className={styles.container}>

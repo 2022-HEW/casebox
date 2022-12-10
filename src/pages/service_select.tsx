@@ -7,9 +7,10 @@ import Service_cards from '../components/Service_cards';
 import SlideShow from '../components/common/SlideShow';
 import { useRecoilState } from "recoil";
 import { tabState } from '../atoms/atoms';
+import { NextPage } from 'next';
 
 
-const Service = () => {
+const Service:NextPage = () => {
 
     return(
         <>

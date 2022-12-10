@@ -1,10 +1,11 @@
+import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
 import styles from "../styles/app_original.module.css"
 const App_image_edit = dynamic(() => import('../components/App_image_edit'), { ssr: false })
 
 
- const app_original = () => {
+ const app_original:NextPage = () => {
      const [save,setSave] = useState(false)
      
   
