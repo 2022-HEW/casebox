@@ -3,13 +3,28 @@ import { Button } from '../components/common/App_button'
 import App_nav from '../components/common/App_nav'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRecoilValue } from 'recoil'
+import { profileState } from '../atoms/app_atoms'
+import { NextPage } from 'next'
 
- const app_profile = () => {
+ const app_profile:NextPage = () => {
+    const {user_id}=useRecoilValue(profileState)
+    console.log(user_id);
+    
   return (
     <>
         <App_nav/>
-        <LoginBox/>
-        <News/> 
+        {user_id ===""?
+            <>
+                <LoginBox/>
+                <News/>
+            </> 
+            :
+            <>
+                <div>あ</div>
+            </>
+
+        }
     </>
   )
 }
