@@ -42,6 +42,8 @@ const Form = ()=>{
     const [EmailRegex,setEmailRegex] = useState(true)
     const [PassRegex,setPassRegex] = useState(true)
     const [UserID,setUserID] = useState("")
+    const sha1 = require('js-sha1');
+
     
 
     const { data,error } = useSWR<any>(email!=="" && `/api/app_sql?sql=signup_check`,fetcher)
@@ -103,7 +105,7 @@ const Form = ()=>{
     // 会員登録処理
     useEffect(()=>{
         const insertDB = async(UserID:string) =>{
-            await fetch(`/api/app_sql?sql=signup&&user_id=${UserID}&&user_email=${email}&&user_password=${password}`)
+            await fetch(`/api/app_sql?sql=signup&&user_id=${UserID}&&user_email=${email}&&user_password=${sha1(password)}`)
             .then(res=>{return res.json()})
             // .then((data)=> console.log(data))
         }

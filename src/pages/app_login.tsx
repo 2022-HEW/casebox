@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import useSWR from 'swr'
@@ -44,31 +45,36 @@ const Form = ()=>{
     const [loginflg,setLoginflg] = useState(false)
     const { data,error } = useSWR<any>(loginflg && `/api/app_sql?sql=login&&login=${email}`,fetcher)
     const [profile,setProfile] = useRecoilState(profileState)
+    const [LoginError,setLoginError] = useState(false)
+    const router = useRouter()
     if(error){
         console.log(error);
     }
 
     // ログインチェック
     useEffect(() => {
-    if(data){
-        // console.log(data);
-        const sha1 = require('js-sha1');
-        console.log(sha1(password));
-        
-        if(data[0].user_password === password){
-            setProfile(data[0])
-        }else{
-            console.log("password:miss");
-            setLoginflg(false)
-            // console.log(password);
-            // console.log(data.user_password);
+        if(loginflg){
+            setLoginError(true)            
         }
-    }
+        if(data){
+            console.log(data);
+            const sha1 = require('js-sha1');
+            // console.log(sha1(password));
+            
+            if(data[0]?.user_password === sha1(password)){
+                setProfile(data[0])
+                console.log(profile);
+                router.push("/profile")
+            }
+        //emailが違う 
+        }
+        // 取得をリセット
+        setLoginflg(false)
     }, [data])
 
     // セットされたら
     useEffect(()=>{
-        if(profile.user_id!=="0"){
+        if(profile.user_id!==""){
             console.log(profile);
         }
     },[profile])
@@ -80,7 +86,9 @@ const Form = ()=>{
     // console.log(loginflg);
     
     return(
-        <>
+        <>{LoginError&&
+            <p>メールアドレス、またはパスワードが違います。</p>
+        }
             <input placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
             <input placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
             <Button label='ログイン' onClick={()=>setLoginflg(true)}/>
