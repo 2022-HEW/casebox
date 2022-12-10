@@ -151,3 +151,4 @@ npm install @azure/identity
 npm install formidable
 npm install react-qrcode
 npm install js-sha1
+npm install recoil-persist
