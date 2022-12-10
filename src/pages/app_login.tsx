@@ -63,8 +63,8 @@ const Form = ()=>{
             
             if(data[0]?.user_password === sha1(password)){
                 setProfile(data[0])
-                console.log(profile);
-                router.push("/profile")
+                setLoginError(false)            
+                router.push({pathname:"/app_profile"})
             }
         //emailが違う 
         }

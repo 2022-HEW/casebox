@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { type } from 'os';
 import React, { useEffect, useState } from 'react'
 import useSWR from 'swr';
@@ -43,17 +44,16 @@ const Form = ()=>{
     const [PassRegex,setPassRegex] = useState(true)
     const [UserID,setUserID] = useState("")
     const sha1 = require('js-sha1');
+    const router = useRouter()
 
     
 
     const { data,error } = useSWR<any>(email!=="" && `/api/app_sql?sql=signup_check`,fetcher)
     
     const SignupHandler= ()  =>{
-        // const SELECT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        // const N=9
+        const SELECT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const N=9
 
-        const SELECT = "01";
-        const N=1
         // ランダム９桁
         const createUserID=():string=>{
             const new_user_id = Array.from(Array(N)).map(()=>SELECT[Math.floor(Math.random()*SELECT.length)]).join('')
@@ -111,6 +111,9 @@ const Form = ()=>{
         }
         if(UserID!==""){
             insertDB(UserID)
+            router.push({
+                pathname:"/app_login"
+            })
         }
     },[UserID])
     
