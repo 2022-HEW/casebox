@@ -43,6 +43,9 @@ export default async function handler(
   const modelID = req.query.modelID
   const stock = req.query.stock
   const quant = req.query.quant
+  const where = req.query?.where
+  console.log(where);
+  
 
   // const login = req.query.login
   const {login,user_password,user_id,user_email}=req.query
@@ -76,8 +79,9 @@ export default async function handler(
     default:
       console.log("error");
     }
+        console.log(sql + " where " + `"${where}"`);
         
-    const result = await db.query(sql);
+    const result = await db.query(where ? sql + " where " + where:sql);
     console.log(typeof result);
     return res.status(200).json(result)
 }
