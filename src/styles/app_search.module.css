@@ -62,7 +62,9 @@
         padding: 10px;
         color: #BF2213;
         position: relative;
-        top: 39px;
-        left: 120px;
+        bottom: 10px;
+        left: 130px;
         z-index: 2;
+        width: 55px;
+        height: 40px;
   }

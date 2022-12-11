@@ -96,7 +96,7 @@ const SearchResult = ({text}:Props) =>{
                                         m_product_price={product.m_product_price}
                                         product_liked={product.product_liked}
                                         key={product.product_ID}
-                                        product_ID={index}
+                                        product_ID={product.product_ID}
                                         //   setProduct_ID={setProduct_ID}
                             />
                     ))}
