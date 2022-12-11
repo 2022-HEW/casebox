@@ -35,6 +35,20 @@ type Product ={
         // console.log(data);
     },[data])
 
+    // 降順sort
+    const Rank = () =>{
+        product.sort((el1:Product,el2:Product)=>{
+            if(el1.product_liked < el2.product_liked){
+                return 1;
+            }
+            if (el1.product_liked > el2.product_liked) {
+                return -1;
+            }
+            return 0
+        }) ;
+        // console.log(newList);
+    }
+    Rank()
 
 
         // 取得するまで
