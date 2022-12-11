@@ -37,18 +37,20 @@ export default async function handler(
 ){
   
   // price=m_product_price&&productID=product_ID&&modelID=model_id
-  const flg = req.query.sql
-  const price = req.query.price
-  const productID = req.query.productID
-  const modelID = req.query.modelID
-  const stock = req.query.stock
-  const quant = req.query.quant
+  const flg=req.query.sql
   const where = req.query?.where
-  console.log(where);
+
+  // console.log(like);
   
 
   // const login = req.query.login
-  const {login,user_password,user_id,user_email}=req.query
+  const {
+    login,user_password,
+    user_id,
+    user_email,
+    productID,
+    like
+  }=req.query
   // const router = useRouter()
   // let sql = router.query   
   // //   console.log(sql);
@@ -72,17 +74,27 @@ export default async function handler(
       sql=`INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/image/user_icon.svg',NOW())`
       break;
 
-    case "update_stock":
-      sql=`UPDATE t_stocks SET model_stocks=${stock}  WHERE model_id=${modelID}`
+    case "likes":
+      sql=`SELECT product_id FROM t_likes WHERE  user_id = "${user_id}"`
       break;
-      
+
+    case "likechange":
+        sql=`UPDATE t_products SET product_liked=${like} WHERE product_ID ="${productID}" `
+        break;
+
+    case "create_relation":
+        sql=`INSERT INTO t_likes(product_ID,user_id) VALUES (${productID},"${user_id}")`
+        break;
+
+    case "remove_relation":
+      sql=`DELETE FROM t_likes WHERE product_ID = ${productID} AND user_id="${user_id}"`
+      break;
+
     default:
       console.log("error");
     }
-        console.log(sql + " where " + `"${where}"`);
         
     const result = await db.query(where ? sql + " where " + where:sql);
-    console.log(typeof result);
     return res.status(200).json(result)
 }
 
