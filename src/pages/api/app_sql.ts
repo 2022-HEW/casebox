@@ -75,7 +75,7 @@ export default async function handler(
       break;
 
     case "likecount":
-      sql=`SELECT COUNT(product_id) FROM t_likes WHERE  product_id = ${productID}`
+      sql=`SELECT COUNT(product_ID) FROM t_likes WHERE  product_ID = ${productID}`
       break;
 
     case "likes":

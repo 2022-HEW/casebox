@@ -22,7 +22,6 @@ type Product ={
     const [product,setProduct] = useRecoilState(productState)
     const {user_id} = useRecoilValue(profileState)
     const [liked,setLiked] = useState(false)
-    const [newLiked,setNewLiked] = useState(product_liked)
     const router = useRouter()
     
     async function fetcher(url: string): Promise<boolean | null > {
@@ -39,8 +38,24 @@ type Product ={
         }
     }
 
+    const useLikeCount  = () =>{
+      const { data, error } = useSWR<any>(`/api/app_sql?sql=likecount&&productID=${product_ID}`, fetcher)
+      return {
+          product_count: data,
+          isLoading: !error && !data,
+          isError: error
+        }
+    }
+
     const { user_like } = useUserLike() 
+    const {product_count} = useLikeCount()
+    const [newLiked,setNewLiked] = useState(product_liked)
+
+    useEffectCustom(()=>{
+      setNewLiked(product_count[0]["COUNT(product_ID)"])
+    },[product_count])
     
+
     type Product={
       product_id:number
     }
@@ -69,21 +84,23 @@ type Product ={
         })
     }
     
+    
     const likehandler=async()=>{
       if(liked){
         setNewLiked(newLiked-1)
         // console.log(liked);
-        
       } else{
         setNewLiked(newLiked+1)
       }
       setLiked(!liked)
     }
+
+
     // いいねDBを更新
     useEffectCustom(()=>{
       const UpdateLike=async()=>{
         
-        await fetch(`/api/app_sql?sql=likechange&&like=${newLiked}&&productID=${product_ID}`)
+        await fetch(`/api/app_sql?sql=likechange&&like=${0}&&productID=${product_ID}`)
         .then((res)=>{return res.json()})
 
         await fetch(`/api/app_sql?sql=${liked ?"create_relation":"remove_relation"}&&user_id=${user_id}&&productID=${product_ID}`)
