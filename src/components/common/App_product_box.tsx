@@ -53,7 +53,7 @@ type Product ={
 
     useEffectCustom(()=>{
       setNewLiked(product_count[0]["COUNT(product_ID)"])
-    },[product_count])
+    },[product])
     
 
     type Product={
@@ -100,7 +100,7 @@ type Product ={
     useEffectCustom(()=>{
       const UpdateLike=async()=>{
         
-        await fetch(`/api/app_sql?sql=likechange&&like=${0}&&productID=${product_ID}`)
+        await fetch(`/api/app_sql?sql=likechange&&like=${newLiked}&&productID=${product_ID}`)
         .then((res)=>{return res.json()})
 
         await fetch(`/api/app_sql?sql=${liked ?"create_relation":"remove_relation"}&&user_id=${user_id}&&productID=${product_ID}`)
