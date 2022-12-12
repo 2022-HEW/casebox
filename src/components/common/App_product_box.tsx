@@ -111,7 +111,7 @@ type Product ={
 
     return(
       <>
-        <p className={liked ?styles.liked:styles.like} onClick={likehandler} >❤{newLiked}</p>
+        <p className={liked ?styles.liked:styles.like} onClick={likehandler} >❤{newLiked<0 ?0:newLiked}</p>
         <div onClick={goDetail}>
             <Image src={"/product_image/" + product_place} alt="商品の画像" width={200} height={200} id={styles.product_image}/>
             <p className={styles.case_name}>{product_name}</p>
