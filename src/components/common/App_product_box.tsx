@@ -30,13 +30,23 @@ type Product ={
         return response.json();
     }
 
-    const { data } = useSWR<any>(`/api/app_sql?sql=likes&&user_id=${user_id}`,fetcher) 
+    const useUserLike  = () =>{
+      const { data, error } = useSWR<any>(`/api/app_sql?sql=likes&&user_id=${user_id}`, fetcher)
+      return {
+          user_like: data,
+          isLoading: !error && !data,
+          isError: error
+        }
+    }
+
+    const { user_like } = useUserLike() 
+    
     type Product={
       product_id:number
     }
     useEffect(()=>{
-        if(data){
-          data.map((value:Product)=>{
+        if(user_like){
+          user_like.map((value:Product)=>{
             if(value.product_id === product_ID){
               setLiked(true)
               // console.log(liked);
@@ -44,7 +54,7 @@ type Product ={
           })
         }
         // console.log(data);
-    },[data])
+    },[user_like])
 
     const goDetail= () =>{
         setProduct((before)=>({...before,

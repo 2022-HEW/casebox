@@ -74,6 +74,10 @@ export default async function handler(
       sql=`INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/image/user_icon.svg',NOW())`
       break;
 
+    case "likecount":
+      sql=`SELECT COUNT(product_id) FROM t_likes WHERE  product_id = ${productID}`
+      break;
+
     case "likes":
       sql=`SELECT product_id FROM t_likes WHERE  user_id = "${user_id}"`
       break;

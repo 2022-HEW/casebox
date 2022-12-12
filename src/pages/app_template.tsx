@@ -46,9 +46,9 @@ type Product ={
             }
             return 0
         }) ;
-        // console.log(newList);
+
+        console.log("a");
     }
-    Rank()
 
 
         // 取得するまで
@@ -58,7 +58,9 @@ type Product ={
             <App_header label='テンプレート'/>
             <div className={styles.result_header}>
                 <p>人気順</p>
-                <Image width={10} height={10} src={"/image/filter.svg"}/>
+                <div onClick={Rank}>
+                    <Image width={10} height={10} src={"/image/filter.svg"}/>
+                </div>
             </div>
             <div className={styles.result_box}>
                 <div className={styles.result_line}>
