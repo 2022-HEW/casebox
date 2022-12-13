@@ -1,4 +1,4 @@
-import React,{useReducer} from 'react'
+import React,{Dispatch, SetStateAction, useEffect, useReducer, useState} from 'react'
 import styles from "../../styles/app_search.module.css"
 import Image from 'next/image'
 import Modal from './App_modal'
@@ -17,20 +17,13 @@ type Product ={
 
 export const App_product_filter = ({product}:{product:never[]}) => {
     
-    const reducer = (state:any, action:any) => {
-        switch(action.type) {
-            case "ACTION_TYPE":
-              return action.content
-            case "ACTION_TYPE_NUMBER" :
-              return action.content
-            default:
-              state
-          }
-    };
-    const [state,dispatch] = useReducer(reducer,"初期値");
+    const [filter,setFilter] = useState("人気順");
     const [modal,setModal] = useRecoilState(modalState)
+    // console.log(filter);
+
 
     // 降順sort
+    
     const Rank = () =>{
         product.sort((el1:Product,el2:Product)=>{
             if(el1.product_liked < el2.product_liked){
@@ -43,20 +36,53 @@ export const App_product_filter = ({product}:{product:never[]}) => {
         }) ;
         console.log("a");
     }
+
+    useEffect(()=>{
+        switch (filter){
+            case "人気順":
+                Rank()
+                console.log("a");
+            break;
+
+            
+            default:
+                console.log("error");
+        }
+    },[filter])
   return (
     <>
         <div className={styles.result_header}>
-                    <p>人気順</p>
-                    <Image width={15} height={15} src={"/image/filter.svg"} onClick={()=>setModal(true)}/>
+            <p>人気順</p>
+            <Image width={15} height={15} src={"/image/filter.svg"} onClick={()=>setModal(true)}/>
         </div>
         <Modal>
-            <FilterBox/>
+            <FilterBox setFilter={setFilter}/>
         </Modal>
     </>
   )
 }
+type Filter ={
+    setFilter:Dispatch<SetStateAction<string>>
+}
+const FilterBox=({setFilter}:Filter)=>{
+    type Props={
+        label:string
+    }
+    
+    const Select = ({label}:Props) =>{
+        return(
+            <div>
+                <div>
+                    <label>
+                        {label}
+                        {/* <input value="" type="checkbox" style={{display:"none"}}/> */}
+                        <input value={label} type="radio" name='filter' onChange={(e)=>{setFilter(e.target.value)}}/>
+                    </label>
+                </div>
+            </div>
+        )
+    } 
 
-const FilterBox=()=>{
     return(
         <div className={styles.modal}>
             <p>並び替え</p>
@@ -70,17 +96,3 @@ const FilterBox=()=>{
         </div>
     )
 }
-type Props={
-    label:string
-}
-const Select = ({label}:Props) =>{
-    return(
-        <div>
-            <label>
-                {label}
-                {/* <input value="" type="checkbox" style={{display:"none"}}/> */}
-                <input value="" type="radio" name='filter'/>
-            </label>
-        </div>
-    )
-} 
