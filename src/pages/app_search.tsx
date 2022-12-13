@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 import { productState } from '../atoms/app_atoms';
 import { NextPage } from 'next'
 import { App_productBox } from '../components/common/App_product_box'
+import { App_product_filter } from '../components/common/App_product_filter'
 
 
 
@@ -81,10 +82,7 @@ const SearchResult = ({text}:Props) =>{
     //   if(!data) return (<Box><Nav><></></Nav></Box>)
     return(
         <>
-            <div className={styles.result_header}>
-                <p>人気順</p>
-                <Image width={10} height={10} src={"/image/filter.svg"}/>
-            </div>
+            <App_product_filter product={product}/>
             <div className={styles.result_box}>
                 <div className={styles.result_line}>
                     {product.map((product:Product,index:number) => (
