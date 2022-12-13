@@ -50,8 +50,37 @@ export const App_product_filter = ({product}:{product:never[]}) => {
                     <Image width={15} height={15} src={"/image/filter.svg"} onClick={()=>setModal(true)}/>
         </div>
         <Modal>
-
+            <FilterBox/>
         </Modal>
     </>
   )
 }
+
+const FilterBox=()=>{
+    return(
+        <div className={styles.modal}>
+            <p>並び替え</p>
+            <Image width={10} height={10} src="/image/cancel.svg"/>
+            <div>
+                <Select label="人気順"/>
+                <Select label="新着順"/>
+                <Select label="価格が安い順"/>
+                <Select label="価格が高い順"/>
+            </div>
+        </div>
+    )
+}
+type Props={
+    label:string
+}
+const Select = ({label}:Props) =>{
+    return(
+        <div>
+            <label>
+                {label}
+                {/* <input value="" type="checkbox" style={{display:"none"}}/> */}
+                <input value="" type="radio" name='filter'/>
+            </label>
+        </div>
+    )
+} 
