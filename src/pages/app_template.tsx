@@ -18,6 +18,7 @@ const App_template:NextPage = () => {
         product_place:string,
         m_product_category:string,
         m_product_price:number,
+        user_id:string,
     }
 
     const [product, setProduct] = useState([])
@@ -51,6 +52,7 @@ const App_template:NextPage = () => {
                                         m_product_price={product.m_product_price}
                                         key={product.product_ID}
                                         product_ID={product.product_ID}
+                                        product_user_id={product.user_id}
                                         //   setProduct_ID={setProduct_ID}
                             />
                     ))}

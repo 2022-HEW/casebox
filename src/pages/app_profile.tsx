@@ -15,17 +15,9 @@ import useSWR from 'swr'
   return (
     <>
         <App_nav/>
-        {user_id ===""?
-            <>
-                <LoginBox/>
-                <News/>
-            </> 
-            :
             <>
                 <ProfileHeader/>
             </>
-
-        }
     </>
   )
 }
@@ -37,6 +29,7 @@ const ProfileHeader=()=>{
         product_place:string,
         m_product_category:string,
         m_product_price:number,
+        user_id:string,
       }
     const [product, setProduct] = useState([])
     const {user_id}=useRecoilValue(profileState)
@@ -44,7 +37,7 @@ const ProfileHeader=()=>{
         const response = await fetch(url);
         return response.json();
     }
-    const { data } = useSWR<any>(`/api/app_sql?sql=template&&where=mp.m_product_category="${user_id}"`,fetcher) 
+    const { data } = useSWR<any>(`/api/app_sql?sql=template&&where=p.user_id="${user_id}"`,fetcher) 
     useEffect(()=>{
         if(data){
             setProduct(data)
@@ -57,15 +50,16 @@ const ProfileHeader=()=>{
         <ProfileButton/>
         
         {product.map((product:Product,index:number) => (
-        <App_productBox product_place={product.product_place}
-                                        product_name={product.product_name}
-                                        m_product_category={product.m_product_category}
-                                        m_product_price={product.m_product_price}
-                                        product_liked={product.product_liked}
-                                        key={product.product_ID}
-                                        product_ID={index}
-                                        //   setProduct_ID={setProduct_ID}
-                            />
+            <App_productBox product_place={product.product_place}
+                                            product_name={product.product_name}
+                                            m_product_category={product.m_product_category}
+                                            m_product_price={product.m_product_price}
+                                            key={product.product_ID}
+                                            product_ID={index}
+                                            product_user_id={product.user_id}
+
+                                            //   setProduct_ID={setProduct_ID}
+            />
         ))}
     </>)
 }

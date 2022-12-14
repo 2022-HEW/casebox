@@ -60,7 +60,7 @@ export default async function handler(
   let sql = "";
     switch (flg){
     case "template":
-      sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID`
+      sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID`
       break;
 
     case "login":
@@ -96,7 +96,7 @@ export default async function handler(
       break;
     
       case "filter":
-        sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID ORDER BY ${filter}`
+        sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID ORDER BY ${filter}`
         
         break;
 
@@ -104,7 +104,9 @@ export default async function handler(
       console.log("error");
     }
         
-    const result = await db.query(where ? sql + " where " + where:sql);
+    const result = await db.query(where ? sql + " where " + where : sql);
+    // console.log(sql + " where " + where);
+    
     return res.status(200).json(result)
 }
 

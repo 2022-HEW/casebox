@@ -15,13 +15,16 @@ type Product ={
     product_place:string,
     m_product_category:string,
     m_product_price:number,
+    product_user_id:string
   }
 // export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_liked}:Product)=> {
-  export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID}:Product)=> {
+  export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_user_id}:Product)=> {
     const [product,setProduct] = useRecoilState(productState)
     const {user_id} = useRecoilValue(profileState)
     const [liked,setLiked] = useState(false)
     const router = useRouter()
+    console.log(product_user_id);
+    
     
     async function fetcher(url: string): Promise<boolean | null > {
         const response = await fetch(url);
@@ -120,7 +123,7 @@ type Product ={
 
     return(
       <>
-        <p className={liked ?styles.liked:styles.like} onClick={()=>likehandler()} >❤{newLiked<0 ? 0 : newLiked }</p>
+        <button className={liked ?styles.liked:styles.like} onClick={()=>likehandler()} disabled={user_id === product_user_id && true }>❤{newLiked<0 ? 0 : newLiked }</button>
         <div onClick={goDetail}>
             <Image src={"/product_image/" + product_place} alt="商品の画像" width={200} height={200} id={styles.product_image}/>
             <p className={styles.case_name}>{product_name}</p>
