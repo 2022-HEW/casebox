@@ -7,31 +7,6 @@
         margin: 0 auto;
     }
 
-    .slider { /*横幅94%で左右に余白を持たせて中央寄せ*/
-        width: 94%;
-        margin: 20px auto 0 auto;
-    }
-
-    .slider{
-        width: 60%; /*スライダー内の画像を横幅100%に*/
-        height: auto;
-        margin: 0 auto 0 auto;
-        border-radius: 15px;
-    }
-
-    .slick-prev { /*戻る矢印の位置と形状*/
-        left: -1.5%;
-        transform: rotate(-135deg);
-        /* color: #333 !important; */
-    }
-
-    .slick-next { /*次へ矢印の位置と形状*/
-        right: -1.5%;
-        transform: rotate(45deg);
-        /* color: #333 !important; */
-    }
-
-
     /* ボタンの位置 */
     .prevContainer{
         position: relative;
