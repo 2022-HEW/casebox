@@ -7,6 +7,8 @@ import Modal from './common/Modal';
 import { useRecoilState } from "recoil";
 import { modalState } from '../atoms/atoms';
 import dynamic from 'next/dynamic';
+
+import styles from "../styles/scan.module.css";
 // import OriginalCheck from './OriginalCheck';
 const OriginalCheck = dynamic(() => import('./OriginalCheck'), { ssr: false })
 
@@ -168,9 +170,9 @@ useEffect(()=>{
 // }, []);
 
   return (
-    <div>
+    <div className={styles.Container}>
       <p>QR Code Scanner</p>
-      <div style={{ display: 'grid' }}>
+      <div className={styles.CameraContainer}> {/*style={{ display: 'grid' }}*/}
         <div>
           <video
             autoPlay

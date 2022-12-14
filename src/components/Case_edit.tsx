@@ -203,13 +203,14 @@ const Case_edit =({
                     </div>
                     <div  className={styles.color_frame} style={{display:"flex"}}>
                         <input type="radio"  id="small" name="weight" className={styles.weight} value={10} onChange={(e) => {setSize(Number(e.target.value));}} /> 
-                        <div className={styles.label}></div>
+                        <div className={styles.label1}></div>
                         <input type="radio"  id="normal" name="weight" className={styles.weight} value={20} onChange={(e) => {setSize(Number(e.target.value));}} /> 
-                        <div className={styles.label}></div>
+                        <div className={styles.label2}></div>
                         <input type="radio"  id="bold" name="weight" className={styles.weight} value={30} onChange={(e) => {setSize(Number(e.target.value));}} /> 
-                        <div className={styles.label}></div>
+                        <div className={styles.label3}></div>
                         <p className={styles.serv_guide}>太さ</p>
                     </div>
+                    <div className={styles.line}></div>
 
                     <div onClick={()=>{
                         setTool("pen"); 
