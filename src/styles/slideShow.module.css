@@ -37,21 +37,25 @@
         position: relative;
         display: inline;
         top: 134px;
-        left: -18px;
+        left: 0px;
+        z-index: 99;
     }
 
     .nextContainer{
         position: relative;
         display: inline;
-        top: -150px;
-        left: 500px;
+        bottom: 134px;
+        left: 475px;
     }
 
 
-    .prevBtn, .nextBtn{
+    .prevBtn,
+    .nextBtn{
         width: 2em;
         height: 2em;
         cursor: pointer;
+        background: transparent;
+        border: none;
     }
 
     /* 矢印共通のスタイル */
@@ -60,23 +64,33 @@
     .nextBtn span:nth-child(1),
     .nextBtn span:nth-child(3){
         display: block;
-        border: 2px #000 solid;
-        width: 16px;
+        border: 3px #AAA solid;
+        width: 14px;
         position: relative;
         border-radius: 6px;
-        background-color: #000;
+        background-color: #AAA;
     }
 
     /* 戻るボタン 上辺調整 */
     .prevBtn span:nth-child(1){
         transform: rotate(135deg);
-        top: -3px;
         left: -3px;
     }
 
     /* 戻るボタン 下辺調整 */
     .prevBtn span:nth-child(3){
         transform: rotate(45deg);
-        top: 3px;
+        left: -3px;
+    }
+
+    /* 次へボタン　上辺調整 */
+    .nextBtn span:nth-child(1){
+        transform: rotate(-135deg);
+        left: -3px;
+    }
+
+    /* 次へボタン　下辺調整 */
+    .nextBtn span:nth-child(3){
+        transform: rotate(-45deg);
         left: -3px;
     }
