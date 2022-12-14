@@ -1,23 +1,32 @@
 import React from 'react'
 import Box from '../components/common/Box';
 import Nav from '../components/common/Nav';
+import Movie from '../components/common/Movie';
+import styles from "../styles/site.module.css";
 import Image from 'next/image';
 import { NextPage } from 'next';
 
-const Site:NextPage = () => {
+const Site: NextPage = () => {
     return (
         <Box>
             <Nav>
-                <QR/>
+                <div className={styles.wrap}>
+                    <div className={styles.Frame}>
+                        {/* <Movie /> */}
+                        チュートリアル動画
+
+                        </div>
+                    <div className={styles.Frame}><QR /></div>
+                </div>
             </Nav>
         </Box>
     )
 }
 
-const QR = ()=>{
+const QR = () => {
 
-    return(
-        <Image src={"/image/frame.png"} width={300} height={300} objectFit={"contain"}/>
+    return (
+        <Image src={"/image/frame.png"} width={412} height={412} objectFit={"contain"} />
     )
 }
 

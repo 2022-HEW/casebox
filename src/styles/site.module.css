@@ -1,0 +1,16 @@
+.wrap{
+    /* border: solid 1px; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    right: 0%;
+}
+.Frame{
+    border: solid 1.5px;
+    width: 412px;
+    height: 412px;
+    vertical-align: middle;
+    
+}
