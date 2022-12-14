@@ -25,43 +25,32 @@ type Props={
 export const App_product_filter = ({product,setProduct}:Props) => {
     // const a = [...product]
     
-    const [filter,setFilter] = useState("人気順");
+    const [filter,setFilter] = useState("");
     const [modal,setModal] = useRecoilState(modalState)
     // console.log(filter);
     
-    async function fetcher(url: string): Promise<boolean | null > {
-        const response = await fetch(url);
-        return response.json();
-    }
 
-    const useRank  = () => {
-        const { data, error } = useSWR<any>(`/api/app_sql?sql=filter&&filter=p.product_liked desc`, fetcher)
-        return {
-            rank: data,
-            isLoading: !error && !data,
-            isError: error
-        }
+    const useRank  = async() => {
+        await fetch(`/api/app_sql?sql=filter&&filter=p.product_liked desc`)
+        .then(res=>{return res.json()})
+        .then((data)=>{setProduct(data)})
     }
-    const useNew  = () => {
-        const { data, error } = useSWR<any>(`/api/app_sql?sql=filter&&filter=p.product_change_time desc`, fetcher)
-        return {
-            new_time: data,
-            isLoading: !error && !data,
-            isError: error
-        }
+    const useNew  = async() => {
+        await fetch(`/api/app_sql?sql=filter&&filter=p.product_change_time desc`)
+        .then(res=>{return res.json()})
+        .then((data)=>{setProduct(data)})
     }
-    const {rank} = useRank()
-    const {new_time} = useNew()
+    // const {rank} = useRank()
+    // const {new_time} = useNew()
     
     useEffectCustom(()=>{
         switch (filter){
             case "人気順":
-                setProduct(rank)
+                useRank()
             break;
 
             case "新着順":
-                setProduct(new_time)
-                console.log(filter);
+                useNew()
                 
             break;
             
