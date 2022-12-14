@@ -61,18 +61,16 @@ const SlideShow = () => {
 
 // SlideShow表示
     return(
-		<>
-			<div id={styles.SliderContainer}>
-				<Slider {...Settings}>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				</Slider>
-			</div>
-		</>
+		<div id={styles.SliderContainer}>
+			<Slider {...Settings}>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+			</Slider>
+		</div>
     )
 }
 
