@@ -40,8 +40,18 @@ export const App_product_filter = ({product,setProduct}:Props) => {
         .then(res=>{return res.json()})
         .then((data)=>{setProduct(data)})
     }
-    // const {rank} = useRank()
-    // const {new_time} = useNew()
+    const useExpensive  = async() => {
+        await fetch(`/api/app_sql?sql=filter&&filter=mp.m_product_price desc`)
+        .then(res=>{return res.json()})
+        .then((data)=>{setProduct(data)})
+    }
+    const useCheap  = async() => {
+        await fetch(`/api/app_sql?sql=filter&&filter=mp.m_product_price `)
+        .then(res=>{return res.json()})
+        .then((data)=>{setProduct(data)})
+    }
+    
+
     
     useEffectCustom(()=>{
         switch (filter){
@@ -51,9 +61,15 @@ export const App_product_filter = ({product,setProduct}:Props) => {
 
             case "新着順":
                 useNew()
-                
             break;
             
+            case "価格が安い順":
+                useCheap()
+            break;
+            
+            case "価格が高い順":
+                useExpensive()
+            break;
             default:
                 console.log("error");
         }
