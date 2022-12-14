@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick-theme.css";
 import styles from "../../styles/slideShow.module.css";
 
 
@@ -14,29 +14,29 @@ type imageType={
 	imgAlt: string,
 }
 
-// const PrevArrow = ({onClick}: any)  => {
-// 	return (
-// 	<div className={styles.prevContainer} onClick={onClick}>
-// 		<button className={styles.prev}>
-// 			<span></span>
-// 			<span></span>
-// 			{/* &#060; */}
-// 		</button>
-// 	</div>
-// 	);
-// }
+const PrevArrow = ({onClick}: any)  => {
+	return (
+		<div className={styles.prevContainer} onClick={onClick}>
+			<button className={styles.prevBtn}>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	);
+}
 
-// const NextArrow = ({onClick}: any) => {
-// 	return (
-// 	<div className={styles.nextContainer} onClick={onClick}>
-// 		<button className={styles.next}>
-// 			<span></span>
-// 			<span></span>
-// 			{/* &#062; */}
-// 		</button>
-// 	</div>
-// 	);
-// }
+const NextArrow = ({onClick}: any) => {
+	return (
+		<div className={styles.nextContainer} onClick={onClick}>
+			<button className={styles.nextBtn}>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	);
+}
 
 const SlideShow = () => {
 
@@ -54,25 +54,23 @@ const SlideShow = () => {
 
 		// arrowのカスタム
 		arrow: true, 		// 前・次の矢印表示
-		// nextArrow: <NextArrow />,
-		// prevArrow: <PrevArrow />
+		nextArrow: <NextArrow />,
+		prevArrow: <PrevArrow />
     };
 
 
 // SlideShow表示
     return(
-		<>
-			<div id={styles.SliderContainer}>
-				<Slider {...Settings}>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-					<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
-				</Slider>
-			</div>
-		</>
+		<div id={styles.SliderContainer}>
+			<Slider {...Settings}>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+				<ImgDesc imgPath={"/image/strap.svg"} imgAlt={"スマホストラップ"}/>
+			</Slider>
+		</div>
     )
 }
 

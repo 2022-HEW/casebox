@@ -7,77 +7,65 @@
         margin: 0 auto;
     }
 
-    .slider { /*横幅94%で左右に余白を持たせて中央寄せ*/
-        width: 94%;
-        margin: 20px auto 0 auto;
-    }
-
-    .slider{
-        width: 60%; /*スライダー内の画像を横幅100%に*/
-        height: auto;
-        margin: 0 auto 0 auto;
-        border-radius: 15px;
-    }
-    
-    /*slickのJSで書かれるタグ内、スライド左右の余白調整*/
-    .slider .slick-slide {
-        margin: 0 10px;
-    }
-
-    /*矢印の設定*/
-    /*戻る、次へ矢印の位置*/
-
-    .slick-prev { /*戻る矢印の位置と形状*/
-        left: -1.5%;
-        transform: rotate(-135deg);
-        color: #333 !important;
-    }
-
-    .slick-next { /*次へ矢印の位置と形状*/
-        right: -1.5%;
-        transform: rotate(45deg);
-        color: #333 !important;
-    }
-
-    /* .slick-dots .slick-active button {
-        background: #333;
-    } */
-
-
-    .prevContainer .prev,
-    .nextContainer .next{
-        color: black;
-        background-color: transparent;
-        border: none;
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-
+    /* ボタンの位置 */
     .prevContainer{
         position: relative;
         display: inline;
-        top: 150px;
-        left: -18px;
+        top: 134px;
+        left: 0px;
+        z-index: 99;
     }
 
     .nextContainer{
         position: relative;
         display: inline;
-        top: -141px;
-        left: 500px;
+        bottom: 134px;
+        left: 480px;
     }
 
-    .prev{
-        height: 50px;
-        width: 50px;
-        background-color: aqua;
+
+    .prevBtn,
+    .nextBtn{
+        width: 2em;
+        height: 2em;
+        cursor: pointer;
+        background: transparent;
+        border: none;
     }
 
-    .prev span:nth-child(1){
-        width: 3px;
-        height: 3px;
-        color: aqua;
+    /* 矢印共通のスタイル */
+    .prevBtn span:nth-child(1),
+    .prevBtn span:nth-child(3),
+    .nextBtn span:nth-child(1),
+    .nextBtn span:nth-child(3){
+        display: block;
+        border: 3px #AAA solid;
+        width: 14px;
+        position: relative;
+        border-radius: 6px;
+        background-color: #AAA;
     }
-    .prev span:nth-child(2){
 
+    /* 戻るボタン 上辺調整 */
+    .prevBtn span:nth-child(1){
+        transform: rotate(135deg);
+        left: -3px;
+    }
+
+    /* 戻るボタン 下辺調整 */
+    .prevBtn span:nth-child(3){
+        transform: rotate(45deg);
+        left: -3px;
+    }
+
+    /* 次へボタン　上辺調整 */
+    .nextBtn span:nth-child(1){
+        transform: rotate(-135deg);
+        left: -3px;
+    }
+
+    /* 次へボタン　下辺調整 */
+    .nextBtn span:nth-child(3){
+        transform: rotate(-45deg);
+        left: -3px;
     }
