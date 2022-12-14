@@ -49,7 +49,8 @@ export default async function handler(
     user_id,
     user_email,
     productID,
-    like
+    like,
+    filter
   }=req.query
   // const router = useRouter()
   // let sql = router.query   
@@ -93,6 +94,11 @@ export default async function handler(
     case "remove_relation":
       sql=`DELETE FROM t_likes WHERE product_ID = ${productID} AND user_id="${user_id}"`
       break;
+    
+      case "filter":
+        sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID ORDER BY ${filter}`
+        
+        break;
 
     default:
       console.log("error");

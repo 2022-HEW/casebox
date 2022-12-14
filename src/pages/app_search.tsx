@@ -54,7 +54,7 @@ const SearchResult = ({text}:Props) =>{
         return response.json();
     }
 
-    const { data } = useSWR<any>(`/api/app_sql?sql=template`,fetcher) 
+    const { data } = useSWR<any>(`/api/app_sql?sql=filter&&filter=p.product_liked desc`,fetcher) 
     
     useEffect(()=>{
         if(data){
@@ -64,25 +64,11 @@ const SearchResult = ({text}:Props) =>{
     },[data])
 
 
-    // 降順sort
-    const Rank = () =>{
-        product.sort((el1:Product,el2:Product)=>{
-            if(el1.product_liked < el2.product_liked){
-                return 1;
-            }
-            if (el1.product_liked > el2.product_liked) {
-                return -1;
-            }
-            return 0
-        }) ;
-        // console.log(newList);
-    }
-    Rank()
         // 取得するまで
     //   if(!data) return (<Box><Nav><></></Nav></Box>)
     return(
         <>
-            <App_product_filter product={product}/>
+            <App_product_filter product={product} setProduct={setProduct}/>
             <div className={styles.result_box}>
                 <div className={styles.result_line}>
                     {product.map((product:Product,index:number) => (
@@ -92,7 +78,6 @@ const SearchResult = ({text}:Props) =>{
                                         product_name={product.product_name}
                                         m_product_category={product.m_product_category}
                                         m_product_price={product.m_product_price}
-                                        product_liked={product.product_liked}
                                         key={product.product_ID}
                                         product_ID={product.product_ID}
                                         //   setProduct_ID={setProduct_ID}

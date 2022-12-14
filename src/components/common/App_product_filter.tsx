@@ -1,9 +1,12 @@
-import React,{Dispatch, SetStateAction, useEffect, useReducer, useState} from 'react'
+import React,{Dispatch, SetStateAction, useEffect, useLayoutEffect, useReducer, useState} from 'react'
 import styles from "../../styles/app_search.module.css"
 import Image from 'next/image'
 import Modal from './App_modal'
 import { useRecoilState } from 'recoil'
 import { modalState } from '../../atoms/app_atoms'
+import { log } from 'console'
+import useSWR from 'swr'
+import useEffectCustom from './useEffectCustom'
 
 
 type Product ={
@@ -14,36 +17,53 @@ type Product ={
     m_product_category:string,
     m_product_price:number,
 }
+type Props={
+    product:never[]
+    setProduct:Dispatch<SetStateAction<never[]>>
+}
 
-export const App_product_filter = ({product}:{product:never[]}) => {
+export const App_product_filter = ({product,setProduct}:Props) => {
+    // const a = [...product]
     
     const [filter,setFilter] = useState("人気順");
     const [modal,setModal] = useRecoilState(modalState)
     // console.log(filter);
-
-
-    // 降順sort
     
-    const Rank = () =>{
-        product.sort((el1:Product,el2:Product)=>{
-            if(el1.product_liked < el2.product_liked){
-                return 1;
-            }
-            if (el1.product_liked > el2.product_liked) {
-                return -1;
-            }
-            return 0
-        }) ;
-        console.log("a");
+    async function fetcher(url: string): Promise<boolean | null > {
+        const response = await fetch(url);
+        return response.json();
     }
 
-    useEffect(()=>{
+    const useRank  = () => {
+        const { data, error } = useSWR<any>(`/api/app_sql?sql=filter&&filter=p.product_liked desc`, fetcher)
+        return {
+            rank: data,
+            isLoading: !error && !data,
+            isError: error
+        }
+    }
+    const useNew  = () => {
+        const { data, error } = useSWR<any>(`/api/app_sql?sql=filter&&filter=p.product_change_time desc`, fetcher)
+        return {
+            new_time: data,
+            isLoading: !error && !data,
+            isError: error
+        }
+    }
+    const {rank} = useRank()
+    const {new_time} = useNew()
+    
+    useEffectCustom(()=>{
         switch (filter){
             case "人気順":
-                Rank()
-                console.log("a");
+                setProduct(rank)
             break;
 
+            case "新着順":
+                setProduct(new_time)
+                console.log(filter);
+                
+            break;
             
             default:
                 console.log("error");
@@ -68,6 +88,7 @@ const FilterBox=({setFilter}:Filter)=>{
     type Props={
         label:string
     }
+    const [modal,setModal] = useRecoilState(modalState)
     
     const Select = ({label}:Props) =>{
         return(
@@ -86,7 +107,7 @@ const FilterBox=({setFilter}:Filter)=>{
     return(
         <div className={styles.modal}>
             <p>並び替え</p>
-            <Image width={10} height={10} src="/image/cancel.svg"/>
+            <Image width={10} height={10} src="/image/cancel.svg" onClick={()=>setModal(false)}/>
             <div>
                 <Select label="人気順"/>
                 <Select label="新着順"/>

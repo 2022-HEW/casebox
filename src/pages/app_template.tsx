@@ -26,7 +26,7 @@ const App_template:NextPage = () => {
         return response.json();
     }
 
-    const { data } = useSWR<any>(`/api/app_sql?sql=template`,fetcher) 
+    const { data } = useSWR<any>(`/api/app_sql?sql=filter&&filter=p.product_liked desc`,fetcher) 
     
     useEffect(()=>{
         if(data){
@@ -40,7 +40,7 @@ const App_template:NextPage = () => {
     return(
         <div className={styles.container}>
             <App_header label='テンプレート'/>
-            <App_product_filter product={product}/>
+            <App_product_filter product={product} setProduct={setProduct}/>
             <div className={styles.result_box}>
                 <div className={styles.result_line}>
                     {product.map((product:Product,index:number) => (
@@ -49,7 +49,6 @@ const App_template:NextPage = () => {
                                         product_name={product.product_name}
                                         m_product_category={product.m_product_category}
                                         m_product_price={product.m_product_price}
-                                        product_liked={product.product_liked}
                                         key={product.product_ID}
                                         product_ID={product.product_ID}
                                         //   setProduct_ID={setProduct_ID}
