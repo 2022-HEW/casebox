@@ -62,7 +62,7 @@ const ProfileHeader=()=>{
 
     // ユーザーがいいねした商品を取得
     const useFavorite = ()=>{
-        const { data } = useSWR<any>(`/api/app_sql?sql=template`,fetcher)
+        const { data } = useSWR<any>(`/api/app_sql?sql=favorite&&user_id=${user_id}`,fetcher)
         return{
             liked:data
         }
@@ -70,9 +70,10 @@ const ProfileHeader=()=>{
 
     const {created} = useCreated()
     const {liked} = useFavorite()
+    // 初回
     useEffectCustom(()=>{
         if(select === "my"){
-            console.log(created);
+            // console.log(created);
             setProduct(created)
         }
     },[created])
@@ -80,12 +81,12 @@ const ProfileHeader=()=>{
         if(select === "my"){
             if(created){
                 setProduct(created)
-                console.log(created);
+                // console.log(created);
             }
         }else{
             if(liked){
                 setProduct(liked)
-                console.log(liked);
+                // console.log(liked);
             }
         }
         // console.log(data);
