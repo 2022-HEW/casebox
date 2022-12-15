@@ -103,7 +103,7 @@ const ProfileHeader=()=>{
                                             m_product_category={product.m_product_category}
                                             m_product_price={product.m_product_price}
                                             key={product.product_ID}
-                                            product_ID={index}
+                                            product_ID={product.product_ID}
                                             product_user_id={product.user_id}
 
                                             //   setProduct_ID={setProduct_ID}
