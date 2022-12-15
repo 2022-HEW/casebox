@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { Button } from '../components/common/App_button'
 import App_nav from '../components/common/App_nav'
 import Image from 'next/image'
@@ -8,17 +8,30 @@ import { profileState } from '../atoms/app_atoms'
 import { NextPage } from 'next'
 import { App_productBox } from '../components/common/App_product_box'
 import useSWR from 'swr'
+import useEffectCustom from '../components/common/useEffectCustom'
 
- const app_profile:NextPage = () => {
+ const app_profile = () => {
     // console.log(user_id);
     const {user_id}=useRecoilValue(profileState)
-  return (
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+  return mounted &&(
     <>
-        <App_nav/>
-            <>
-                <ProfileHeader/>
-            </>
-    </>
+    <App_nav/>
+    {user_id ===""?
+        <>
+            <LoginBox/>
+            <News/>
+        </> 
+        :
+        <>
+            <ProfileHeader/>
+        </>
+
+    }
+</>
   )
 }
 const ProfileHeader=()=>{
@@ -37,18 +50,53 @@ const ProfileHeader=()=>{
         const response = await fetch(url);
         return response.json();
     }
-    const { data } = useSWR<any>(`/api/app_sql?sql=template&&where=p.user_id="${user_id}"`,fetcher) 
-    useEffect(()=>{
-        if(data){
-            setProduct(data)
+    // const { data } = useSWR<any>(`/api/app_sql?sql=template&&where=p.user_id="${user_id}"`,fetcher) 
+    const[select,setSelect] = useState("my")
+    // ユーザーが作った商品を取得
+    const useCreated = ()=>{
+        const { data } = useSWR<any>(`/api/app_sql?sql=template&&where=p.user_id="${user_id}"`,fetcher)
+        return{
+            created:data
         }
-        console.log(data);
-    },[data])
+    }
+
+    // ユーザーがいいねした商品を取得
+    const useFavorite = ()=>{
+        const { data } = useSWR<any>(`/api/app_sql?sql=template`,fetcher)
+        return{
+            liked:data
+        }
+    }
+
+    const {created} = useCreated()
+    const {liked} = useFavorite()
+    useEffectCustom(()=>{
+        if(select === "my"){
+            console.log(created);
+            setProduct(created)
+        }
+    },[created])
+    useEffect(()=>{
+        if(select === "my"){
+            if(created){
+                setProduct(created)
+                console.log(created);
+            }
+        }else{
+            if(liked){
+                setProduct(liked)
+                console.log(liked);
+            }
+        }
+        // console.log(data);
+    },[select])
+
+
+
     return(
     <>
         <ProfileInfo/>
-        <ProfileButton/>
-        
+        <ProfileButton select={select} setSelect={setSelect}/>
         {product.map((product:Product,index:number) => (
             <App_productBox product_place={product.product_place}
                                             product_name={product.product_name}
@@ -74,9 +122,11 @@ const ProfileInfo=()=>{
         </div>
     )
 }
-
-const ProfileButton=()=>{
-    const[select,setSelect] = useState("my")
+type ProfileButton={
+    select:string,
+    setSelect:Dispatch<SetStateAction<string>>
+}
+const ProfileButton=({select,setSelect}:ProfileButton)=>{
     return(
     <div>
         <Button 
@@ -95,6 +145,7 @@ const ProfileButton=()=>{
     )
 }
 
+// 非ログイン時
 const LoginBox=()=>{
     return(
         <div>

@@ -59,9 +59,10 @@ type Product ={
     }
 
     useEffectCustom(()=>{      
-      setNewLiked(product_count[0]["COUNT(product_ID)"])
-      console.log(product_count[0]["COUNT(product_ID)"]);
-      
+      if(product_count){
+        setNewLiked(product_count[0]["COUNT(product_ID)"])
+      }
+      console.log(product_count);
     },[product_count])
 
     useEffect(()=>{
