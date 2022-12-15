@@ -9,9 +9,11 @@ import { NextPage } from 'next'
 import { App_productBox } from '../components/common/App_product_box'
 import useSWR from 'swr'
 import useEffectCustom from '../components/common/useEffectCustom'
+import { useRouter } from 'next/router'
 
  const app_profile = () => {
     // console.log(user_id);
+    const router = useRouter()
     const {user_id}=useRecoilValue(profileState)
     const [mounted, setMounted] = useState(false);
     useEffect(() => {
@@ -27,6 +29,9 @@ import useEffectCustom from '../components/common/useEffectCustom'
         </> 
         :
         <>
+            <Link href={"/app_profile_edit"}>
+                <div>プロフィール編集</div>
+            </Link>
             <ProfileHeader/>
         </>
 
