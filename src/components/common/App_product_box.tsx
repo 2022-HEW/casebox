@@ -84,6 +84,7 @@ type Product ={
             product_name:product_name,
             product_place:product_place,
             m_product_category:m_product_category,
+            product_user_id:product_user_id
         }))
         router.push({
             pathname:"/app_product_detail"

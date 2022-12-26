@@ -10,6 +10,7 @@ type Product=  {
     product_place:string,
     model_id:number
     quant:number
+    product_user_id:string
 }
 type Profile = {
     [key:string]:string
@@ -36,7 +37,8 @@ export const productState= atom<Product>({
         product_place:"",
         m_product_category:"",
         model_id:0,
-        quant:1
+        quant:1,
+        product_user_id:""
     }
 });
 
