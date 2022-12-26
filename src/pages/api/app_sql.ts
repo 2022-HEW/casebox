@@ -47,10 +47,13 @@ export default async function handler(
   const {
     login,user_password,
     user_id,
+    user_name,
+    user_comment,
     user_email,
+    user_image,
     productID,
     like,
-    filter
+    filter,
   }=req.query
   // const router = useRouter()
   // let sql = router.query   
@@ -102,6 +105,11 @@ export default async function handler(
     case "favorite":
       sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID JOIN t_likes l ON l.product_ID = p.product_ID WHERE l.user_id = "KYpRx2psu"`
       break;
+
+    case "update_profile":
+      sql  = `UPDATE t_users SET user_name='${user_name}',user_comment='${user_comment}',user_image='${user_image}' WHERE user_id = "${user_id}"`
+      break;
+
     default:
       console.log("error");
     }
