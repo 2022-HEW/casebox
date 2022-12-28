@@ -16,6 +16,7 @@ import { Product } from '../../types';
     const [liked,setLiked] = useState(false)
     const router = useRouter()
     // console.log(product_user_id);
+    console.log(product_situation);
     
     
     async function fetcher(url: string): Promise<boolean | null > {

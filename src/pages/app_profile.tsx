@@ -91,6 +91,7 @@ const ProfileHeader=()=>{
     },[select])
 
     
+    
 
 
     return(
@@ -98,6 +99,7 @@ const ProfileHeader=()=>{
         <ProfileInfo/>
         <ProfileButton select={select} setSelect={setSelect}/>
         {product.map((product:Product,index:number) => (
+            
             <App_productBox product_place={product.product_place}
                                             product_name={product.product_name}
                                             m_product_category={product.m_product_category}

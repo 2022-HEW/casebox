@@ -54,6 +54,7 @@ export default async function handler(
     productID,
     like,
     filter,
+    product_situation,
   }=req.query
   // const router = useRouter()
   // let sql = router.query   
@@ -111,7 +112,7 @@ export default async function handler(
       break;
     
     case "situation":
-      sql  = `UPDATE t_products SET product_situation=1 where product_ID = ${productID}`
+      sql  = `UPDATE t_products SET product_situation=${product_situation} where product_ID = ${productID}`
       break;
   
       case "product_delete":

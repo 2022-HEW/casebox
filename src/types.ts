@@ -7,6 +7,6 @@ export type Product={
     m_product_price:number,
     user_id?:string,
     product_user_id?:string,
-    product_situation?:number
+    product_situation?:0|1
 
 }

@@ -37,7 +37,9 @@ const ProductMenu = () => {
     const {
         product_ID
       } = useRecoilValue(productState);
+    // console.log(product_situation);
   const [modal, setModal] = useRecoilState(modalState);
+  const [product, setProduct] = useRecoilState(productState);
 
   const MenuButton = ({ label, onClick }: MenuButton) => {
     return <button onClick={onClick}>{label}</button>;
@@ -46,8 +48,13 @@ const ProductMenu = () => {
     setModal(false);
   };
   const handleClickSituation = async() => {
-    fetch(`/api/app_sql?sql=situation&productID=${product_ID}`)
+    fetch(`/api/app_sql?sql=situation&productID=${product_ID}&product_situation=${product.product_situation}`)
     .then(res=>{return res.json})
+    if(product.product_situation){
+        setProduct((prev)=>({...prev,product_situation:0}))
+    }else{
+        setProduct((prev)=>({...prev,product_situation:1}))
+    }
   };
   const handleClickEditProduct = () => {};
   const handleClickDeleteProduct = async() => {
@@ -64,7 +71,7 @@ const ProductMenu = () => {
           onClick={handleClickCancel}
         />
         <MenuButton
-          label="デザインを公開する"
+          label={product.product_situation ? "デザインを非公開にする":"デザインを公開にする"}
           onClick={handleClickSituation}
         />
         <MenuButton label="編集" onClick={handleClickEditProduct} />
@@ -130,9 +137,6 @@ const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
     setModal(true);
     setModalBody("ProductMenu");
   };
-  console.log(user_id);
-  console.log(product_user_id);
-  
 
   return (
     <div className={styles.product_info}>
