@@ -1,16 +1,16 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { Button } from '../components/common/App_button'
-import App_nav from '../components/common/App_nav'
+import { Button } from '../../components/common/App_button'
+import App_nav from '../../components/common/App_nav'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
-import { profileState,productState } from '../atoms/app_atoms'
+import { profileState,productState } from '../../atoms/app_atoms'
 import { NextPage } from 'next'
-import { App_productBox } from '../components/common/App_product_box'
+import { App_productBox } from '../../components/common/App_product_box'
 import useSWR from 'swr'
-import useEffectCustom from '../components/common/useEffectCustom'
+import useEffectCustom from '../../components/common/useEffectCustom'
 import { useRouter } from 'next/router'
-import { Product } from '../types'
+import { Product } from '../../types'
 
  const app_profile = () => {
     // console.log(user_id);

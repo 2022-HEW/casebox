@@ -1,14 +1,14 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import styles from "../styles/app_search.module.css"
+import styles from "../../styles/app_search.module.css"
 import Image from 'next/image'
-import App_nav from '../components/common/App_nav'
+import App_nav from '../../components/common/App_nav'
 import useSWR from 'swr'
 import { NextRouter, useRouter } from 'next/router'
 import { useRecoilState } from "recoil";
-import { productState } from '../atoms/app_atoms';
+import { productState } from '../../atoms/app_atoms';
 import { NextPage } from 'next'
-import { App_productBox } from '../components/common/App_product_box'
-import { App_product_filter } from '../components/common/App_product_filter'
+import { App_productBox } from '../../components/common/App_product_box'
+import { App_product_filter } from '../../components/common/App_product_filter'
 
 
 

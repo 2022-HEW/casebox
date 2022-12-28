@@ -1,12 +1,12 @@
 import { NextPage } from 'next'
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import App_header from '../components/common/App_header'
+import App_header from '../../components/common/App_header'
 import Image from 'next/image'
 import { SetterOrUpdater, useRecoilState } from 'recoil'
-import { profileState } from '../atoms/app_atoms'
+import { profileState } from '../../atoms/app_atoms'
 import { type } from 'os'
-import { Button } from '../components/common/App_button'
-import useEffectCustom from '../components/common/useEffectCustom'
+import { Button } from '../../components/common/App_button'
+import useEffectCustom from '../../components/common/useEffectCustom'
 
 
 type Input={

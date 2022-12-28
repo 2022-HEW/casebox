@@ -81,7 +81,7 @@ import { Product } from '../../types';
             product_situation:product_situation
         }))
         router.push({
-            pathname:"/app_product_detail"
+            pathname:"./app_product_detail"
         })
     }
     

@@ -2,12 +2,12 @@ import { NextPage } from "next";
 import React, { useEffect, useReducer, useState } from "react";
 import { text } from "stream/consumers";
 import useSWR from "swr";
-import { App_productBox } from "../components/common/App_product_box";
+import { App_productBox } from "../../components/common/App_product_box";
 import Image from "next/image";
-import styles from "../styles/app_search.module.css";
-import App_header from "../components/common/App_header";
-import App_nav from "../components/common/App_nav";
-import { App_product_filter } from "../components/common/App_product_filter";
+import styles from "../../styles/app_search.module.css";
+import App_header from "../../components/common/App_header";
+import App_nav from "../../components/common/App_nav";
+import { App_product_filter } from "../../components/common/App_product_filter";
 
 const App_template: NextPage = () => {
   type Product = {

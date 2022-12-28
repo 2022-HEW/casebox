@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import App_nav from "../components/common/App_nav";
+import App_nav from "../../components/common/App_nav";
 
 type Card = {
   href: string;
@@ -19,19 +19,19 @@ const app_category: NextPage = () => {
         imagePath={"/service_select/template_select.png"}
         title={"テンプレートケース"}
         text={"デザインが既に完成しているケースです。"}
-        href={"/app_template"}
+        href={"./app_template"}
       />
       <Card
         imagePath={"/service_select/template_select.png"}
         title={"オリジナルケース"}
         text={"写真を自由に入れ、オリジナルのケースを作ることができます"}
-        href={"/originalEdit"}
+        href={"./originalEdit"}
       />
       <Card
         imagePath={"/service_select/template_select.png"}
         title={"手書きケース"}
         text={"自販機で自分が書いたイラストをケースにすることができます。"}
-        href={"/app_draw"}
+        href={"./app_draw"}
       />
     </div>
   );
