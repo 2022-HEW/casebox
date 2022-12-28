@@ -7,23 +7,15 @@ import { productState, profileState } from '../../atoms/app_atoms';
 import { NextPage } from 'next'
 import styles from "../../styles/app_search.module.css"
 import useEffectCustom from "./useEffectCustom"; 
+import { Product } from '../../types';
 
-
-type Product ={
-    product_ID:number,
-    product_name:string,
-    product_place:string,
-    m_product_category:string,
-    m_product_price:number,
-    product_user_id:string
-  }
 // export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_liked}:Product)=> {
-  export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_user_id}:Product)=> {
+  export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_user_id,product_situation}:Product)=> {
     const [product,setProduct] = useRecoilState(productState)
     const {user_id} = useRecoilValue(profileState)
     const [liked,setLiked] = useState(false)
     const router = useRouter()
-    console.log(product_user_id);
+    // console.log(product_user_id);
     
     
     async function fetcher(url: string): Promise<boolean | null > {
@@ -62,7 +54,7 @@ type Product ={
       if(product_count){
         setNewLiked(product_count[0]["COUNT(product_ID)"])
       }
-      console.log(product_count);
+      // console.log(product_count);
     },[product_count])
 
     useEffect(()=>{
@@ -84,7 +76,8 @@ type Product ={
             product_name:product_name,
             product_place:product_place,
             m_product_category:m_product_category,
-            product_user_id:product_user_id
+            product_user_id:product_user_id,
+            product_situation:product_situation
         }))
         router.push({
             pathname:"/app_product_detail"

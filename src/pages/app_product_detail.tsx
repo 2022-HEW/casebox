@@ -45,8 +45,8 @@ const ProductMenu = () => {
   const handleClickCancel = () => {
     setModal(false);
   };
-  const handleClickDesignOpen = async() => {
-    fetch(`/api/app_sql?sql=product_open?productID=${product_ID}`)
+  const handleClickSituation = async() => {
+    fetch(`/api/app_sql?sql=situation&productID=${product_ID}`)
     .then(res=>{return res.json})
   };
   const handleClickEditProduct = () => {};
@@ -65,7 +65,7 @@ const ProductMenu = () => {
         />
         <MenuButton
           label="デザインを公開する"
-          onClick={handleClickDesignOpen}
+          onClick={handleClickSituation}
         />
         <MenuButton label="編集" onClick={handleClickEditProduct} />
         <MenuButton label="削除" onClick={handleClickDeleteProduct} />
@@ -130,6 +130,9 @@ const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
     setModal(true);
     setModalBody("ProductMenu");
   };
+  console.log(user_id);
+  console.log(product_user_id);
+  
 
   return (
     <div className={styles.product_info}>

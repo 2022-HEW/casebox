@@ -4,12 +4,13 @@ import App_nav from '../components/common/App_nav'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
-import { profileState } from '../atoms/app_atoms'
+import { profileState,productState } from '../atoms/app_atoms'
 import { NextPage } from 'next'
 import { App_productBox } from '../components/common/App_product_box'
 import useSWR from 'swr'
 import useEffectCustom from '../components/common/useEffectCustom'
 import { useRouter } from 'next/router'
+import { Product } from '../types'
 
  const app_profile = () => {
     // console.log(user_id);
@@ -40,15 +41,7 @@ import { useRouter } from 'next/router'
   )
 }
 const ProfileHeader=()=>{
-    type Product ={
-        product_ID:number,
-        product_name:string,
-        product_liked:number,
-        product_place:string,
-        m_product_category:string,
-        m_product_price:number,
-        user_id:string,
-      }
+   
     const [product, setProduct] = useState([])
     const {user_id}=useRecoilValue(profileState)
     async function fetcher(url: string): Promise<boolean | null > {
@@ -97,6 +90,7 @@ const ProfileHeader=()=>{
         // console.log(data);
     },[select])
 
+    
 
 
     return(
@@ -111,6 +105,7 @@ const ProfileHeader=()=>{
                                             key={product.product_ID}
                                             product_ID={product.product_ID}
                                             product_user_id={product.user_id}
+                                            product_situation={product.product_situation}
 
                                             //   setProduct_ID={setProduct_ID}
             />

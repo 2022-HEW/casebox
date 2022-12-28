@@ -63,7 +63,7 @@ export default async function handler(
   let sql = "";
     switch (flg){
     case "template":
-      sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID`
+      sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.user_id,p.product_situation, u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID`
       break;
 
     case "login":
@@ -110,7 +110,7 @@ export default async function handler(
       sql  = `UPDATE t_users SET user_name='${user_name}',user_comment='${user_comment}',user_image='${user_image}' WHERE user_id = "${user_id}"`
       break;
     
-    case "product_update":
+    case "situation":
       sql  = `UPDATE t_products SET product_situation=1 where product_ID = ${productID}`
       break;
   
