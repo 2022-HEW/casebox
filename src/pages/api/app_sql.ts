@@ -109,6 +109,14 @@ export default async function handler(
     case "update_profile":
       sql  = `UPDATE t_users SET user_name='${user_name}',user_comment='${user_comment}',user_image='${user_image}' WHERE user_id = "${user_id}"`
       break;
+    
+    case "product_update":
+      sql  = `UPDATE t_products SET product_situation=1 where product_ID = ${productID}`
+      break;
+  
+      case "product_delete":
+        // sql  = `UPDATE t_users SET user_name='${user_name}',user_comment='${user_comment}',user_image='${user_image}' WHERE user_id = "${user_id}"`
+        break;
 
     default:
       console.log("error");
