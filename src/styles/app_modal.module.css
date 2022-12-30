@@ -20,3 +20,23 @@
     border-radius: 20px;
     opacity: 1.0!important;
 }
+.modal_body{
+    z-index: 1000;
+    width: 100%;
+    height: 40%;
+    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px 20px 0px 0px;
+    display: flex;
+    justify-content: center;
+  }
+.modal_header{
+    display: flex;
+    height: 50px;
+}
+.cancel{
+    position: relative;
+    top: 15px;
+    left: 65px;
+}
