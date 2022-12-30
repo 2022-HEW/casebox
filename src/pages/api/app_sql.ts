@@ -57,7 +57,7 @@ export default async function handler(
   // let sql = router.query
   // //   console.log(sql);
   //   const a = context.query.sql
-  //   console.log(a);
+    // console.log(user_name);
   let sql = "";
   switch (flg) {
     case "template":
