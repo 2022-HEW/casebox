@@ -1,13 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import Head from 'next/head'
-import styles from '../../styles/Home.module.css'
+import type { NextApiRequest, NextApiResponse } from "next";
+import Head from "next/head";
+import styles from "../../styles/Home.module.css";
 import { useRouter } from "next/router";
-import { useEffect } from 'react';
-import { GetServerSideProps } from 'next';
+import { useEffect } from "react";
+import { GetServerSideProps } from "next";
 
-
-import { log } from 'console';
-import mysql from "serverless-mysql"
+import { log } from "console";
+import mysql from "serverless-mysql";
 
 // DB接続
 const db = mysql({
@@ -16,116 +15,116 @@ const db = mysql({
     database: process.env.MYSQL_DATABASE,
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
-
-  }
-})
+  },
+});
 
 exports.query = async (query: any) => {
   try {
-    const results = await db.query(query)
-    await db.end()
-    return results
+    const results = await db.query(query);
+    await db.end();
+    return results;
   } catch (error) {
-    return error
+    return error;
   }
-
-}
+};
 
 export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse,
-){
-  
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   // price=m_product_price&&productID=product_ID&&modelID=model_id
-  const flg=req.query.sql
-  const where = req.query?.where
+  const flg = req.query.sql;
+  const where = req.query?.where;
 
   // console.log(like);
-  
 
   // const login = req.query.login
   const {
-    login,user_password,
+    login,
+    user_password,
     user_id,
     user_name,
     user_comment,
     user_email,
     user_image,
     productID,
+    product_name,
     like,
     filter,
     product_situation,
-  }=req.query
+  } = req.query;
   // const router = useRouter()
-  // let sql = router.query   
+  // let sql = router.query
   // //   console.log(sql);
   //   const a = context.query.sql
   //   console.log(a);
   let sql = "";
-    switch (flg){
+  switch (flg) {
     case "template":
-      sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.user_id,p.product_situation, u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID`
+      sql = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.user_id,p.product_situation, u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID`;
       break;
 
     case "login":
-      sql  = `SELECT user_id,user_name,user_comment,user_email,user_password,user_image FROM t_users  WHERE user_email = "${login}" `
+      sql = `SELECT user_id,user_name,user_comment,user_email,user_password,user_image FROM t_users  WHERE user_email = "${login}" `;
       break;
-  
+
     case "signup_check":
-      sql = `SELECT user_id,user_email from t_users`
+      sql = `SELECT user_id,user_email from t_users`;
       break;
 
     case "signup":
-      sql=`INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/image/user_icon.svg',NOW())`
+      sql = `INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/image/user_icon.svg',NOW())`;
       break;
 
     case "likecount":
-      sql=`SELECT COUNT(product_ID) FROM t_likes WHERE  product_ID = ${productID}`
+      sql = `SELECT COUNT(product_ID) FROM t_likes WHERE  product_ID = ${productID}`;
       break;
 
     case "likes":
-      sql=`SELECT l.product_id FROM t_likes l JOIN t_products p ON  p.product_ID = l.product_ID WHERE l.user_id = "${user_id}" AND p.product_situation=1`
+      sql = `SELECT l.product_id FROM t_likes l JOIN t_products p ON  p.product_ID = l.product_ID WHERE l.user_id = "${user_id}" AND p.product_situation=1`;
       break;
 
     case "likechange":
-        sql=`UPDATE t_products SET product_liked=${like} WHERE product_ID ="${productID}" `
-        break;
+      sql = `UPDATE t_products SET product_liked=${like} WHERE product_ID ="${productID}" `;
+      break;
 
     case "create_relation":
-        sql=`INSERT INTO t_likes(product_ID,user_id) VALUES (${productID},"${user_id}")`
-        break;
+      sql = `INSERT INTO t_likes(product_ID,user_id) VALUES (${productID},"${user_id}")`;
+      break;
 
     case "remove_relation":
-      sql=`DELETE FROM t_likes WHERE product_ID = ${productID} AND user_id="${user_id}"`
+      sql = `DELETE FROM t_likes WHERE product_ID = ${productID} AND user_id="${user_id}"`;
       break;
-    
+
     case "filter":
-      sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID  WHERE p.product_situation=1 ORDER BY ${filter}`
+      sql = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID  WHERE p.product_situation=1 ORDER BY ${filter}`;
       break;
 
     case "favorite":
-      sql  = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID JOIN t_likes l ON l.product_ID = p.product_ID WHERE l.user_id = "${user_id}" AND p.product_situation=1`
+      sql = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID JOIN t_likes l ON l.product_ID = p.product_ID WHERE l.user_id = "${user_id}" AND p.product_situation=1`;
       break;
 
     case "update_profile":
-      sql  = `UPDATE t_users SET user_name='${user_name}',user_comment='${user_comment}',user_image='${user_image}' WHERE user_id = "${user_id}"`
+      sql = `UPDATE t_users SET user_name='${user_name}',user_comment='${user_comment}',user_image='${user_image}' WHERE user_id = "${user_id}"`;
       break;
-    
-    case "situation":
-      sql  = `UPDATE t_products SET product_situation=${product_situation} where product_ID = ${productID}`
-      break;
-  
-      case "product_delete":
-        sql  = `DELETE FROM t_products WHERE product_ID = ${productID}`
-        break;
 
+    case "situation":
+      sql = `UPDATE t_products SET product_situation=${product_situation} where product_ID = ${productID}`;
+      break;
+
+    case "product_delete":
+      sql = `DELETE FROM t_products WHERE product_ID = ${productID}`;
+      break;
+
+    case "update_product":
+      sql = `UPDATE t_products SET product_name='${product_name}',product_situation='${product_situation}' WHERE product_id = "${productID}"`;
+      break;
     default:
       console.log("error");
-    }
-        
-    const result = await db.query(where ? sql + " where " + where : sql);
-    // console.log(sql + " where " + where);
-    
-    return res.status(200).json(result)
-}
+  }
 
+  const result = await db.query(where ? sql + " where " + where : sql);
+  // console.log(sql + " where " + where);
+
+  return res.status(200).json(result);
+}

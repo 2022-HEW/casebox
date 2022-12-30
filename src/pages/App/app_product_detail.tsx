@@ -44,8 +44,8 @@ const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
     setModal(false);
     setCheckDelete(false);
   };
-  const productDelete = () => {
-    fetch(`/api/app_sql?sql=product_delete&productID=${product_ID}`)
+  const productDelete = async() => {
+    await fetch(`/api/app_sql?sql=product_delete&productID=${product_ID}`)
       .then((res) => {
         return res.json;
       })
@@ -79,7 +79,7 @@ const ProductMenu = () => {
     setModal(false);
   };
   const handleClickSituation = async () => {
-    fetch(
+    await fetch(
       `/api/app_sql?sql=situation&productID=${product_ID}&product_situation=${
         product.product_situation === 0 ? 1 : 0
       }`
