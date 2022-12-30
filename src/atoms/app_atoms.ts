@@ -13,6 +13,7 @@ type Product=  {
     product_user_id?:string
     user_id?:string
     product_situation?:0|1
+    model_color?:string
 }
 type Profile = {
     [key:string]:string
@@ -42,7 +43,8 @@ export const productState= atom<Product>({
         quant:1,
         product_user_id:"",
         user_id:"",
-        product_situation:1
+        product_situation:1,
+        model_color:""
     }
 });
 

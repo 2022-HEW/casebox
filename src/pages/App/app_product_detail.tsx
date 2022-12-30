@@ -38,18 +38,21 @@ const QRcode = () => {
 };
 
 const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
-  const router = useRouter()
+  const router = useRouter();
   const [modal, setModal] = useRecoilState(modalState);
   const deleteCancel = () => {
     setModal(false);
     setCheckDelete(false);
   };
   const productDelete = () => {
-    fetch(`/api/app_sql?sql=product_delete&productID=${product_ID}`).then(
-      (res) => {
+    fetch(`/api/app_sql?sql=product_delete&productID=${product_ID}`)
+      .then((res) => {
         return res.json;
-      }
-    ).then((data)=>{router.back()})
+      })
+      .then((data) => {
+        setModal(false);
+        router.back();
+      });
   };
   return (
     <div className={styles.delete_check}>
@@ -91,7 +94,7 @@ const ProductMenu = () => {
   };
   const handleClickEditProduct = () => {
     router.push({
-      pathname: "./app_product_edit.tsx",
+      pathname: "./app_product_edit",
     });
   };
   const handleClickDeleteProduct = async () => {
