@@ -116,7 +116,7 @@ export default async function handler(
       break;
   
       case "product_delete":
-        // sql  = `UPDATE t_users SET user_name='${user_name}',user_comment='${user_comment}',user_image='${user_image}' WHERE user_id = "${user_id}"`
+        sql  = `DELETE FROM t_products WHERE product_ID = ${productID}`
         break;
 
     default:

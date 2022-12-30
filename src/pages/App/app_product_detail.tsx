@@ -29,17 +29,45 @@ type MenuButton = {
   onClick: () => void;
 };
 
+type CheckDelete = {
+  setCheckDelete: Dispatch<SetStateAction<boolean>>;
+  product_ID: number | null;
+};
 const QRcode = () => {
   return <div>a</div>;
 };
 
+const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
+  const router = useRouter()
+  const [modal, setModal] = useRecoilState(modalState);
+  const deleteCancel = () => {
+    setModal(false);
+    setCheckDelete(false);
+  };
+  const productDelete = () => {
+    fetch(`/api/app_sql?sql=product_delete&productID=${product_ID}`).then(
+      (res) => {
+        return res.json;
+      }
+    ).then((data)=>{router.back()})
+  };
+  return (
+    <div className={styles.delete_check}>
+      <h3>商品を削除しますか？</h3>
+      <p>商品は完全に削除され、もとに戻すことは出来ません</p>
+      <button onClick={productDelete}>削除</button>
+      <button onClick={deleteCancel}>キャンセル</button>
+    </div>
+  );
+};
+
 const ProductMenu = () => {
-    const {
-        product_ID
-      } = useRecoilValue(productState);
-    // console.log(product_situation);
+  const { product_ID } = useRecoilValue(productState);
   const [modal, setModal] = useRecoilState(modalState);
   const [product, setProduct] = useRecoilState(productState);
+  const [checkDelete, setCheckDelete] = useState(false);
+
+  const router = useRouter();
 
   const MenuButton = ({ label, onClick }: MenuButton) => {
     return <button onClick={onClick}>{label}</button>;
@@ -47,22 +75,36 @@ const ProductMenu = () => {
   const handleClickCancel = () => {
     setModal(false);
   };
-  const handleClickSituation = async() => {
-    
-    fetch(`/api/app_sql?sql=situation&productID=${product_ID}&product_situation=${product.product_situation===0?1:0}`)
-    .then(res=>{return res.json})
-    if(product.product_situation === 1){
-        setProduct((prev)=>({...prev,product_situation:0}))
-    }else{
-        setProduct((prev)=>({...prev,product_situation:1}))
+  const handleClickSituation = async () => {
+    fetch(
+      `/api/app_sql?sql=situation&productID=${product_ID}&product_situation=${
+        product.product_situation === 0 ? 1 : 0
+      }`
+    ).then((res) => {
+      return res.json;
+    });
+    if (product.product_situation === 1) {
+      setProduct((prev) => ({ ...prev, product_situation: 0 }));
+    } else {
+      setProduct((prev) => ({ ...prev, product_situation: 1 }));
     }
   };
-  const handleClickEditProduct = () => {};
-  const handleClickDeleteProduct = async() => {
-    fetch(`/api/app_sql?sql=product_delete`)
-    .then(res=>{return res.json})
+  const handleClickEditProduct = () => {
+    router.push({
+      pathname: "./app_product_edit.tsx",
+    });
   };
-  return (
+  const handleClickDeleteProduct = async () => {
+    setCheckDelete(true);
+    setModal(true);
+  };
+  return checkDelete ? (
+    <>
+      <Modal>
+        <DeleteCheck setCheckDelete={setCheckDelete} product_ID={product_ID} />
+      </Modal>
+    </>
+  ) : (
     <div className={ModalStyles.modal}>
       <div>
         <Image
@@ -72,7 +114,11 @@ const ProductMenu = () => {
           onClick={handleClickCancel}
         />
         <MenuButton
-          label={product.product_situation ? "デザインを非公開にする":"デザインを公開にする"}
+          label={
+            product.product_situation
+              ? "デザインを非公開にする"
+              : "デザインを公開にする"
+          }
           onClick={handleClickSituation}
         />
         <MenuButton label="編集" onClick={handleClickEditProduct} />

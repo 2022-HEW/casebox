@@ -22,3 +22,13 @@
     line-height: 30px;
     font-size: 15px;
 }
+.delete_check{
+    z-index: 999;
+    width: 261px;
+    height: 233px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+}
