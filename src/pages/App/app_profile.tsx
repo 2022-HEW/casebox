@@ -30,7 +30,7 @@ import { Product } from '../../types'
         </> 
         :
         <>
-            <Link href={"/app_profile_edit"}>
+            <Link href={"./app_profile_edit"}>
                 <div>プロフィール編集</div>
             </Link>
             <ProfileHeader/>
