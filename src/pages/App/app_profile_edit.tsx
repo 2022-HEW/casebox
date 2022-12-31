@@ -42,7 +42,6 @@ const IconCheck = ({setImagePath}:IconCheck) => {
     setImagePath(src)
   }
 
-
   return (
     <div>
       {icons.map((value: { id: number; name: string; src: string; }) => {
@@ -172,12 +171,12 @@ const register = async (
         console.log(data);
       });
 
-    // setProfile((before)=>({
-    //   ...before,
-    //   user_name:name,
-    //   user_comment:comment,
-    //   user_image:imagePath
-    // }))
+    setProfile((before)=>({
+      ...before,
+      user_name:name,
+      user_comment:comment,
+      user_image:imagePath
+    }))
     setError("");
   } else {
     setError("文字を入力してください。");
