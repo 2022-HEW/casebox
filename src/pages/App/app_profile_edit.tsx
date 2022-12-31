@@ -30,16 +30,24 @@ type Register = {
   id: string;
   setProfile: SetterOrUpdater<Profile>;
 };
+type IconCheck={
+  setImagePath:Dispatch<SetStateAction<string>>
+}
 
-const IconCheck = () => {
+const IconCheck = ({setImagePath}:IconCheck) => {
   const icons = icon.icon;
   console.log(icon);
+
+  const handleClickIcon=(src:string)=>{
+    setImagePath(src)
+  }
+
 
   return (
     <div>
       {icons.map((value: { id: number; name: string; src: string; }) => {
         return (
-          <div>
+          <div onClick={()=>{handleClickIcon(value.src)}}>
             <Image
               width={150}
               height={150}
@@ -121,7 +129,7 @@ const Profile_edit = () => {
       />
       <Modal>
         <App_modal_body title="プロフィール画像選択">
-          <IconCheck />
+          <IconCheck setImagePath={setImagePath}/>
         </App_modal_body>
       </Modal>
     </div>
