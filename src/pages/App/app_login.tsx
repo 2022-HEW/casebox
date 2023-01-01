@@ -14,11 +14,8 @@ import { profileState } from "../../atoms/app_atoms";
 import { Button } from "../../components/common/App_button";
 import App_header from "../../components/common/App_header";
 import styles from "../../styles/app_login.module.css";
+import { fetcher } from "../../utils";
 
-async function fetcher(url: string): Promise<boolean | null> {
-  const response = await fetch(url);
-  return response.json();
-}
 
 const app_login: NextPage = () => {
   return (
