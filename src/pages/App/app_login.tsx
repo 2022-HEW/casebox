@@ -31,10 +31,10 @@ const LoginBox = ({}) => {
     <div className={styles.container}>
       <h1>CASEBOX</h1>
       <Form />
-      <Link href="/app_password_reset">
+      <Link href="./app_password_reset">
         <p>パスワードを忘れた方</p>
       </Link>
-      <Link href="/app_sign_up">
+      <Link href="./app_sign_up">
         <p>新規会員登録</p>
       </Link>
     </div>
