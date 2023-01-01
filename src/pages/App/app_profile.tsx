@@ -153,7 +153,7 @@ const LoginBox=()=>{
     return(
         <div>
             <h2>ゲスト<span>様</span></h2>
-            <Link href={"/app_login"}>
+            <Link href={"./app_login"}>
                 <Button label={"ログイン・会員登録"}/>
             </Link>
         </div>
