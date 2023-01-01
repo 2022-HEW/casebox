@@ -11,6 +11,7 @@ import useSWR from 'swr'
 import useEffectCustom from '../../components/common/useEffectCustom'
 import { useRouter } from 'next/router'
 import { Product } from '../../types'
+import { fetcher } from '../../utils'
 
  const app_profile = () => {
     // console.log(user_id);
@@ -44,10 +45,7 @@ const ProfileHeader=()=>{
    
     const [product, setProduct] = useState([])
     const {user_id}=useRecoilValue(profileState)
-    async function fetcher(url: string): Promise<boolean | null > {
-        const response = await fetch(url);
-        return response.json();
-    }
+   
     // const { data } = useSWR<any>(`/api/app_sql?sql=template&&where=p.user_id="${user_id}"`,fetcher) 
     const[select,setSelect] = useState("my")
     // ユーザーが作った商品を取得
