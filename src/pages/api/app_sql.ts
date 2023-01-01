@@ -41,6 +41,7 @@ export default async function handler(
   // const login = req.query.login
   const {
     login,
+    loginID,
     user_password,
     user_id,
     user_name,
@@ -57,7 +58,7 @@ export default async function handler(
   // let sql = router.query
   // //   console.log(sql);
   //   const a = context.query.sql
-    // console.log(user_name);
+  // console.log(user_name);
   let sql = "";
   switch (flg) {
     case "template":
@@ -66,6 +67,14 @@ export default async function handler(
 
     case "login":
       sql = `SELECT user_id,user_name,user_comment,user_email,user_password,user_image FROM t_users  WHERE user_email = "${login}" `;
+      break;
+
+    case "logintime":
+      sql = `SELECT MAX(loginID) FROM t_logins WHERE user_id="${user_id}"`;
+      break;
+
+    case "logout":
+      sql = `UPDATE t_logins SET logout_time=NOW() WHERE loginID ="${loginID}" `;
       break;
 
     case "signup_check":
