@@ -9,7 +9,7 @@ import { useRecoilState,useRecoilValue } from "recoil";
 import { productState,stepState,tabState,stockState} from '../atoms/atoms';
 import React from 'react';
 import { NextPage } from 'next';
-
+import { fetcher } from '../utils';
 
 
 
@@ -18,10 +18,7 @@ const DeviceSelect:NextPage = () => {
         [props:string]:any
     }
     
-    async function fetcher(url: string): Promise<boolean | null > {
-        const response = await fetch(url);
-        return response.json();
-    }
+   
     const [select_device, setDevice] = useState("iPhone")  
     const [color_index,setColor] = useState("");
     const [type_index,setType] = useState(0);
