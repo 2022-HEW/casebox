@@ -132,6 +132,13 @@ export default async function handler(
     case "update_product":
       sql = `UPDATE t_products SET product_name='${product_name}',product_situation='${product_situation}' WHERE product_id = "${productID}"`;
       break;
+    case "device":
+      sql = `SELECT model_name from t_stocks`;
+      break;
+
+    case "color":
+      sql = `SELECT s.model_id,s.model_name,c.color_name,c.color_code from t_color_relation r JOIN t_stocks s ON s.model_ID = r.model_ID JOIN t_product_colors c ON c.color_ID = r.color_ID WHERE s.model_delete_flg = 0;`;
+      break;
     default:
       console.log("error");
   }
