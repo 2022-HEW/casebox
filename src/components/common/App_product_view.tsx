@@ -1,14 +1,14 @@
 import { useRecoilValue } from "recoil";
 import { productState } from "../../atoms/app_atoms";
 import Image from "next/image";
-export const App_product_view = () => {
+export const App_product_view = ({width=200,height=200}) => {
     const { product_place } = useRecoilValue(productState);
     return (
-      <div>
+      <div style={{display:"flex",justifyContent:"center"}}>
         <Image
-          width={200}
-          height={200}
-          src={product_place ? `/product_image/${product_place}` : ""}
+          width={width}
+          height={height}
+          src={product_place ? `${product_place}` : ""}
           alt="商品画像"
         />
       </div>

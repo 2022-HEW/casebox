@@ -71,11 +71,13 @@ import { Product } from '../../types';
     },[user_like])
 
     const goDetail= () =>{
+      console.log(product_place);
+      
         setProduct((before)=>({...before,
             m_product_price:m_product_price,
             product_ID:product_ID,
             product_name:product_name,
-            product_place:product_place,
+            product_place:"/product_image/" + product_place,
             m_product_category:m_product_category,
             product_user_id:product_user_id,
             product_situation:product_situation

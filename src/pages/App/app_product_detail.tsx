@@ -11,6 +11,7 @@ import Modal from "../../components/common/App_modal";
 import { Button } from "../../components/common/App_button";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { App_product_view } from "../../components/common/App_product_view";
 
 type QRButton = {
   // label:string
@@ -156,7 +157,7 @@ const app_product_detail: NextPage = () => {
   return (
     <>
       <App_header />
-      <ImageView path={product_place} />
+      <App_product_view  />
       <ProductInfo
         name={product_name}
         category={m_product_category}
@@ -170,13 +171,6 @@ const app_product_detail: NextPage = () => {
   );
 };
 
-const ImageView = ({ path }: { path: string }) => {
-  return (
-    <div className={styles.product_view}>
-      <Image width={300} height={300} src={"/product_image/" + path} />
-    </div>
-  );
-};
 
 const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
   const { user_id } = useRecoilValue(profileState);
