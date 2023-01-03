@@ -25,7 +25,7 @@ const app_category: NextPage = () => {
         imagePath={"/service_select/template_select.png"}
         title={"オリジナルケース"}
         text={"写真を自由に入れ、オリジナルのケースを作ることができます"}
-        href={"./originalEdit"}
+        href={"./app_original"}
       />
       <Card
         imagePath={"/service_select/template_select.png"}
