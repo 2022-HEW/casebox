@@ -7,6 +7,7 @@ import { productState,modalState } from "../../atoms/app_atoms";
 import { Button } from "../../components/common/App_button";
 import App_header from "../../components/common/App_header";
 import { IOSSwitch } from "../../components/common/App_iosswitch";
+import { App_product_view } from "../../components/common/App_product_view";
 
 type ProductInfo = {
   label: string;
@@ -38,25 +39,12 @@ const app_product_edit: NextPage = () => {
 const ProductEdit = () => {
   return (
     <>
-      <ProductView />
+      <App_product_view />
       <ProductDetail />
     </>
   );
 };
 
-const ProductView = () => {
-  const { product_place } = useRecoilValue(productState);
-  return (
-    <div>
-      <Image
-        width={200}
-        height={200}
-        src={product_place ? `/product_image/${product_place}` : ""}
-        alt="商品画像"
-      />
-    </div>
-  );
-};
 const ProductDetail = () => {
   const {
     product_ID,
