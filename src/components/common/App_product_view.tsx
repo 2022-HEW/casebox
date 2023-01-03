@@ -5,12 +5,14 @@ export const App_product_view = ({width=200,height=200}) => {
     const { product_place } = useRecoilValue(productState);
     return (
       <div style={{display:"flex",justifyContent:"center"}}>
-        <Image
-          width={width}
-          height={height}
-          src={product_place ? `${product_place}` : ""}
-          alt="商品画像"
-        />
+        { product_place &&
+          <Image
+            width={width}
+            height={height}
+            src={product_place}
+            alt="商品画像"
+          />
+        }
       </div>
     );
   };
