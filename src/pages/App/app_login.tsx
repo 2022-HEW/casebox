@@ -49,11 +49,16 @@ const Form = () => {
     loginflg && `/api/app_sql?sql=login&&login=${email}`,
     fetcher
   );
+  
   const [profile, setProfile] = useRecoilState(profileState);
   const [LoginError, setLoginError] = useState(false);
   const router = useRouter();
   if (error) {
     console.log(error);
+  }
+
+  const insertLoginDB=async(user_id:string)=>{
+    await fetch(`/api/app_sql?sql=insertLogin&&user_id=${user_id}`)
   }
 
   // ログインチェック
@@ -69,6 +74,7 @@ const Form = () => {
       if (data[0]?.user_password === sha1(password)) {
         setProfile(data[0]);
         setLoginError(false);
+        insertLoginDB(data[0]?.user_id);
         router.push({ pathname: "./app_profile" });
       }
       //emailが違う
@@ -99,6 +105,7 @@ const Form = () => {
         }}
       />
       <input
+        type={"password"}
         placeholder="パスワード"
         value={password}
         onChange={(e) => {

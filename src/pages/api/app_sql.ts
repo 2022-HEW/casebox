@@ -69,6 +69,10 @@ export default async function handler(
       sql = `SELECT user_id,user_name,user_comment,user_email,user_password,user_image FROM t_users  WHERE user_email = "${login}" `;
       break;
 
+    case "insertLogin":
+      sql = `INSERT INTO t_logins(user_id,login_time,administer_flg) VALUES ("${user_id}",NOW(),0) `;
+      break;
+
     case "logintime":
       sql = `SELECT MAX(loginID) FROM t_logins WHERE user_id="${user_id}"`;
       break;
