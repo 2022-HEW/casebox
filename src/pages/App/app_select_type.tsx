@@ -7,6 +7,9 @@ import { productState, profileState } from "../../atoms/app_atoms";
 import { fetcher } from "../../utils";
 import useSWR from "swr";
 import useEffectCustom from "../../components/common/useEffectCustom";
+import { profile } from "console";
+import { Button } from "../../components/common/App_button";
+import { useRouter } from "next/router";
 interface Device {
   model_name: string;
 }
@@ -22,7 +25,7 @@ type Select = {
   handleChangeSituation: (value: string, index: number) => void;
   index: number;
 };
-const app_select_type: NextPage = () => {
+const app_select_type = () => {
   const [product, setProduct] = useRecoilState(productState);
   const { user_name } = useRecoilValue(profileState);
   const getDevice = () => {
@@ -47,6 +50,12 @@ const app_select_type: NextPage = () => {
   const [situation, setSituation] = useState<string[]>([]);
   const [device, setDevice] = useState<string[]>([]);
   const [color, setColor] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter()
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleChangeSituation = (value: string, index: number) => {
     if (index === 0) {
@@ -90,12 +99,8 @@ const app_select_type: NextPage = () => {
         defaultColor[0].color_name,
       ]);
     }
-    if(index === 2){
-        setSituation((prevState) => [
-            prevState[0],
-            prevState[1],
-            value,
-          ]);
+    if (index === 2) {
+      setSituation((prevState) => [prevState[0], prevState[1], value]);
     }
   };
 
@@ -159,7 +164,14 @@ const app_select_type: NextPage = () => {
     }
   }, [situation]);
 
+  const handleClickStart=()=>{
+    router.push({
+        pathname:"./app_original"
+    })
+  }
+  
   return (
+    mounted && (
     <div>
       <App_header label="オリジナル" />
       <App_product_view width={100} />
@@ -182,9 +194,11 @@ const app_select_type: NextPage = () => {
           handleChangeSituation={handleChangeSituation}
           index={2}
         />
+        <ProductInfo/>
+        <Button label={"デザインをはじめる"} onClick={handleClickStart}/>
       </div>
     </div>
-  );
+  ))
 };
 
 const Select = ({ label, device, handleChangeSituation, index }: Select) => {
@@ -199,7 +213,11 @@ const Select = ({ label, device, handleChangeSituation, index }: Select) => {
         {device &&
           device.map((value: string, index) => {
             return (
-              <option key={index} value={value}selected={index === 0? true:false}>
+              <option
+                key={index}
+                value={value}
+                selected={index === 0 ? true : false}
+              >
                 {value}
               </option>
             );
@@ -207,5 +225,15 @@ const Select = ({ label, device, handleChangeSituation, index }: Select) => {
       </select>
     </div>
   );
+};
+
+const ProductInfo = () => {
+    const {user_name} = useRecoilValue(profileState)
+    const {m_product_price} = useRecoilValue(productState)
+  return <div>
+    <h3>オリジナルデザインケース</h3>
+    <p>{user_name}</p>
+    <p>&yen;{m_product_price.toLocaleString()}税込</p>
+  </div>;
 };
 export default app_select_type;
