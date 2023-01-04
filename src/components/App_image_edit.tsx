@@ -10,6 +10,8 @@ import { QRCode } from "react-qrcode";
 import useSWR from "swr";
 import axios from "axios";
 import { ReactJSXElementAttributesProperty } from "@emotion/react/types/jsx-namespace";
+import { useRecoilValue } from "recoil";
+import { productState } from "../atoms/app_atoms";
 
 // import MyLargeComponent from './thingToRenderOnStage';
 
@@ -45,11 +47,16 @@ function App_image_edit({ save }: { save: boolean }) {
   ]);
   const [isDelete, setIsDelete] = useState(false);
   const [imagePath, setImagePath] = useState("");
-  const [image] = useImage("/iPhone/iPhone7/(PRODUCT)RED.png");
-  const [camera] = useImage("/iPhone/iPhone7/(PRODUCT)RED_camera.png");
+  const {product_place} = useRecoilValue(productState)
+  const [image] = useImage(product_place);
+  const camera_image_path = product_place.replace(/\.[^/.]+$/, "")
+  const [camera] = useImage(camera_image_path+"_camera.png");
   const [design] = useImage(createObjectURL[0].url);
   const [cancel] = useImage("/image/delete.svg");
 
+  useEffect(()=>{
+    // console.log(camera_image_path)
+  },[])
   const handleUploadClick = async () => {
     const file = images[0];
     const formData = new FormData();
