@@ -112,7 +112,7 @@ const app_select_type = () => {
 
       setProduct((prevState) => ({
         ...prevState,
-        product_name: situation[1],
+        product_name: `オリジナルケース`,
         product_place: `/${situation[0]}/${situation[1]}/${situation[2]}.png`,
         m_product_category: `${user_name}`,
       }));

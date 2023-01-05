@@ -1,6 +1,9 @@
 import { NextPage } from "next";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { productState } from "../../atoms/app_atoms";
 import App_header from "../../components/common/App_header";
 import styles from "../../styles/app_original.module.css";
 const App_image_edit = dynamic(
@@ -10,21 +13,21 @@ const App_image_edit = dynamic(
 
 const app_original: NextPage = () => {
   const [save, setSave] = useState(false);
-
-  const Tool_box = () => {
-    return (
-      <div className={styles.tool_box}>
-        <button onClick={() => setSave(true)}>保存</button>
-      </div>
-    );
-  };
+  const router = useRouter()
+  const {product_place}=useRecoilValue(productState)
+  useLayoutEffect(()=>{
+    if(product_place.includes("data:")){
+      router.push({
+        pathname:"./app_select_type"
+      })
+    }
+  },[])
 
   return (
     <>
       <App_header label="オリジナル" />
       <div className={styles.app_original}>
         <App_image_edit save={save} />
-        <Tool_box />
       </div>
     </>
   );

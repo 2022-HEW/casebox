@@ -17,6 +17,7 @@ const app_product_edit: NextPage = () => {
   const router = useRouter();
   const { product_place, product_ID } = useRecoilValue(productState);
   const [modal,setModal]=useRecoilState(modalState)
+  
 
   useEffect(() => {
     if (router.isReady) {
@@ -27,7 +28,7 @@ const app_product_edit: NextPage = () => {
     if(modal){
       setModal(false)
     }
-  });
+  },[]);
   return (
     <div>
       <App_header label="商品登録" />

@@ -10,8 +10,10 @@ import { QRCode } from "react-qrcode";
 import useSWR from "swr";
 import axios from "axios";
 import { ReactJSXElementAttributesProperty } from "@emotion/react/types/jsx-namespace";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { productState } from "../atoms/app_atoms";
+import { useRouter } from "next/router";
+import useEffectCustom from "./common/useEffectCustom";
 
 // import MyLargeComponent from './thingToRenderOnStage';
 
@@ -47,16 +49,30 @@ function App_image_edit({ save }: { save: boolean }) {
   ]);
   const [isDelete, setIsDelete] = useState(false);
   const [imagePath, setImagePath] = useState("");
-  const {product_place} = useRecoilValue(productState)
-  const [image] = useImage(product_place);
-  const camera_image_path = product_place.replace(/\.[^/.]+$/, "")
-  const [camera] = useImage(camera_image_path+"_camera.png");
+  const [product, setProduct] = useRecoilState(productState);
+  const [image] = useImage(product.product_place);
+  const camera_image_path = product.product_place.replace(/\.[^/.]+$/, "");
+  const [camera] = useImage(camera_image_path + "_camera.png");
   const [design] = useImage(createObjectURL[0].url);
   const [cancel] = useImage("/image/delete.svg");
+  const [isSave, setIsSave] = useState(false);
+  const router = useRouter();
 
-  useEffect(()=>{
-    // console.log(camera_image_path)
-  },[])
+  const goCheckHandler = () => {
+    setIsSave(true);
+  };
+
+  useEffectCustom(()=>{
+    
+    setProduct((prevState) => ({
+      ...prevState,
+      product_place: stageRef.current
+        .getStage()
+        .toDataURL({ mimeType: "image/png", quality: 1.0 }),
+    }));
+    router.push({ pathname: "./app_product_edit" });
+  },[isSave])
+
   const handleUploadClick = async () => {
     const file = images[0];
     const formData = new FormData();
@@ -67,34 +83,33 @@ function App_image_edit({ save }: { save: boolean }) {
     reader.onload = async () => {
       // console.log(reader.result);
       // Azureに入れる
-    //   try {
-    //     await fetch(`/api/blob_strage`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         //  アップロード
-    //         image: reader.result,
-    //         situ: "add",
-    //         place: stageRef.current.getStage().toJSON(),
-
-    //         // QRcode
-    //         // "situ":"create",
-    //         // "userID":"userID"
-    //       }),
-    //     })
-    //       .then((res) => {
-    //         return res.json();
-    //       })
-    //       .then((data) => {
-    //         // Azureからbase64を取ってくる
-    //         setImagePath(data[0]);
-    //         // console.log(typeof data);
-    //       });
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
+      //   try {
+      //     await fetch(`/api/blob_strage`, {
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //       body: JSON.stringify({
+      //         //  アップロード
+      //         image: reader.result,
+      //         situ: "add",
+      //         place: stageRef.current.getStage().toJSON(),
+      //         // QRcode
+      //         // "situ":"create",
+      //         // "userID":"userID"
+      //       }),
+      //     })
+      //       .then((res) => {
+      //         return res.json();
+      //       })
+      //       .then((data) => {
+      //         // Azureからbase64を取ってくる
+      //         setImagePath(data[0]);
+      //         // console.log(typeof data);
+      //       });
+      //   } catch (e) {
+      //     console.error(e);
+      //   }
     };
 
     if (file) {
@@ -132,7 +147,6 @@ function App_image_edit({ save }: { save: boolean }) {
       urlList[index]["url"] = URL.createObjectURL(file);
 
       setCreateObjectURL(urlList);
-      // console.log(urlList);
     }
   };
 
@@ -205,7 +219,7 @@ function App_image_edit({ save }: { save: boolean }) {
   };
 
   const handleDelete = () => {
-    setIsDelete(true);    
+    setIsDelete(true);
   };
 
   return (
@@ -225,19 +239,21 @@ function App_image_edit({ save }: { save: boolean }) {
                 onTouchEnd={handleTouchEnd}
                 x={10}
                 y={30}
-                strokeEnabled={design ? true : false}
+                strokeEnabled={design && !isSave ? true : false}
                 stroke={"#555"}
                 strokeWidth={10}
                 // ref={imageRef}
               />
-              <Image
-                image={design && cancel}
-                x={-5}
-                y={15}
-                width={25}
-                height={25}
-                onTouchStart={handleDelete}
-              />
+              {isSave || (
+                <Image
+                  image={design && cancel}
+                  x={-5}
+                  y={15}
+                  width={25}
+                  height={25}
+                  onTouchStart={handleDelete}
+                />
+              )}
             </Group>
           )}
           <Image
@@ -257,6 +273,8 @@ function App_image_edit({ save }: { save: boolean }) {
         name="myImage"
         onChange={uploadToClient}
       />
+      <button onClick={goCheckHandler}>保存</button>
+
       {save && (
         // どのユーザーの何番目？
         <QRCode value={`userID`} />
