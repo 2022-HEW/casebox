@@ -55,6 +55,7 @@ const ProductDetail = () => {
     m_product_category,
     product_situation,
   } = useRecoilValue(productState);
+  const product = useRecoilValue(productState)
   const [name, setName] = useState("");
   const [situation, setSituation] = useState(product_situation);
   const router = useRouter();
@@ -71,7 +72,9 @@ const ProductDetail = () => {
   };
 
   const handleClickSave = async () => {
-    await fetch(
+    // 編集
+    if(product_ID){
+      await fetch(
       `/api/app_sql?sql=update_product&productID=${product_ID}&product_name=${name}&product_situation=${situation}`
     )
       .then((res) => {
@@ -80,6 +83,11 @@ const ProductDetail = () => {
       .then(() => {
         router.push({ pathname: "./app_service_select" });
       });
+    // 登録
+    }else{
+      console.log(product);
+    }
+    
   };
 
   const ProductInfo = ({ label, value }: ProductInfo) => {

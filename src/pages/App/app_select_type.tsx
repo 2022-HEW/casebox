@@ -165,6 +165,10 @@ const app_select_type = () => {
   }, [situation]);
 
   const handleClickStart=()=>{
+    setProduct((prevState) => ({
+      ...prevState,
+      product_ID: 0,
+    }));
     router.push({
         pathname:"./app_original"
     })
