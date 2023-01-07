@@ -46,7 +46,7 @@ const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
     setCheckDelete(false);
   };
   const productDelete = async() => {
-    await fetch(`/api/app_sql?sql=product_delete&productID=${product_ID}`)
+    await fetch(`/api/app_sql?sql=delete_product&productID=${product_ID}`)
       .then((res) => {
         return res.json;
       })
