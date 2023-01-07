@@ -18,6 +18,11 @@ type Product=  {
 type Profile = {
     [key:string]:string
 }
+type Original ={
+    designID:string
+    imagePosition:{},
+    image:Blob|null
+}
 const { persistAtom } = recoilPersist();
 
 //tab色
@@ -48,7 +53,7 @@ export const productState= atom<Product>({
     }
 });
 
-//機種選択のstep
+//プロフィール
 export const profileState = atom<Profile>({
     key: "profile",
     default: {
@@ -62,10 +67,14 @@ export const profileState = atom<Profile>({
     effects_UNSTABLE: [persistAtom] //永続化
 });
 
-// 手書きツール
-export const toolState = atom({
-    key: "tool",
-    default: "pen"
+// オリジナルデザイン
+export const originalState = atom<Original>({
+    key: "original",
+    default: {
+        designID:"",
+        imagePosition:{},
+        image:null
+    }
 });
 
 // 手書きサイズ

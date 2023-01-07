@@ -11,7 +11,7 @@ import useSWR from "swr";
 import axios from "axios";
 import { ReactJSXElementAttributesProperty } from "@emotion/react/types/jsx-namespace";
 import { useRecoilState } from "recoil";
-import { productState } from "../atoms/app_atoms";
+import { originalState, productState } from "../atoms/app_atoms";
 import { useRouter } from "next/router";
 import useEffectCustom from "./common/useEffectCustom";
 
@@ -33,7 +33,7 @@ function getCenter(p1: { x: number; y: number }, p2: { x: number; y: number }) {
   };
 }
 
-function App_image_edit({ save }: { save: boolean }) {
+function App_image_edit() {
   // header,footer文
   const image_height = window.innerHeight - 200;
   const image_width = (image_height * 269) / 540;
@@ -41,112 +41,49 @@ function App_image_edit({ save }: { save: boolean }) {
   const imageRef = useRef(null);
   let lastCenter: { x: number; y: number } | null = null;
   let lastDist = 0;
-  const [images, setImage] = useState([]);
-  const [createObjectURL, setCreateObjectURL] = useState<any>([
-    { url: "" },
-    { url: "" },
-    { url: "" },
-  ]);
+  const [images, setImage] = useState<Blob>();
+  const [createObjectURL, setCreateObjectURL] = useState("");
   const [isDelete, setIsDelete] = useState(false);
   const [imagePath, setImagePath] = useState("");
   const [product, setProduct] = useRecoilState(productState);
   const [image] = useImage(product.product_place);
   const camera_image_path = product.product_place.replace(/\.[^/.]+$/, "");
   const [camera] = useImage(camera_image_path + "_camera.png");
-  const [design] = useImage(createObjectURL[0].url);
+  const [design] = useImage(createObjectURL);
   const [cancel] = useImage("/image/delete.svg");
   const [isSave, setIsSave] = useState(false);
+  const [original, setOriginal] = useRecoilState(originalState);
   const router = useRouter();
 
   const goCheckHandler = () => {
     setIsSave(true);
   };
 
-  useEffectCustom(()=>{
-    
+  useEffectCustom(() => {
     setProduct((prevState) => ({
       ...prevState,
       product_place: stageRef.current
         .getStage()
         .toDataURL({ mimeType: "image/png", quality: 1.0 }),
     }));
+
+    setOriginal((prevState) => ({
+      ...prevState,
+      imagePosition: stageRef.current.getStage().toJSON(),
+      image: images ? images : null,
+    }));
+
     router.push({ pathname: "./app_product_edit" });
-  },[isSave])
+  }, [isSave]);
 
-  const handleUploadClick = async () => {
-    const file = images[0];
-    const formData = new FormData();
-    formData.append("file", file);
-
-    // nodeでは出来ない
-    const reader = new FileReader();
-    reader.onload = async () => {
-      // console.log(reader.result);
-      // Azureに入れる
-      //   try {
-      //     await fetch(`/api/blob_strage`, {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify({
-      //         //  アップロード
-      //         image: reader.result,
-      //         situ: "add",
-      //         place: stageRef.current.getStage().toJSON(),
-      //         // QRcode
-      //         // "situ":"create",
-      //         // "userID":"userID"
-      //       }),
-      //     })
-      //       .then((res) => {
-      //         return res.json();
-      //       })
-      //       .then((data) => {
-      //         // Azureからbase64を取ってくる
-      //         setImagePath(data[0]);
-      //         // console.log(typeof data);
-      //       });
-      //   } catch (e) {
-      //     console.error(e);
-      //   }
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
-  useEffect(() => {
-    console.log(JSON.parse(stageRef.current.getStage().toJSON()));
-    handleUploadClick();
-  }, [save]);
-
-  const uploadToClient = (event: any) => {
-    // console.log('event.target.files', event.target.files[0]);
-    if (event.target.files[0]) {
+  const uploadToClient = (event: { target: HTMLInputElement }) => {
+    if (event.target.files) {
+      console.log("event.target.files", event.target.files[0]);
       const file = event.target.files[0];
       // console.log(file);
-
-      const list: any = [...images];
-      list.push(file);
-
-      setImage(list);
+      setImage(file);
       // console.log(list);
-
-      const urlList: any = [...createObjectURL];
-      const index_list: Array<number> = [];
-      urlList.forEach((element: any, index: number) => {
-        if (element.url === "") {
-          index_list.push(index);
-        }
-      });
-
-      const index = Math.min(...index_list);
-
-      urlList[index]["url"] = URL.createObjectURL(file);
-
-      setCreateObjectURL(urlList);
+      setCreateObjectURL(URL.createObjectURL(file));
     }
   };
 
@@ -275,10 +212,10 @@ function App_image_edit({ save }: { save: boolean }) {
       />
       <button onClick={goCheckHandler}>保存</button>
 
-      {save && (
+      {/* {save && (
         // どのユーザーの何番目？
         <QRCode value={`userID`} />
-      )}
+      )} */}
     </>
   );
 }

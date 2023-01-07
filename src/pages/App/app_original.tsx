@@ -27,7 +27,7 @@ const app_original: NextPage = () => {
     <>
       <App_header label="オリジナル" />
       <div className={styles.app_original}>
-        <App_image_edit save={save} />
+        <App_image_edit />
       </div>
     </>
   );
