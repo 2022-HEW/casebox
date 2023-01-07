@@ -3,22 +3,25 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { productState, modalState, originalState } from "../../atoms/app_atoms";
+import useSWR from "swr";
+import {
+  productState,
+  modalState,
+  originalState,
+  profileState,
+} from "../../atoms/app_atoms";
 import { Button } from "../../components/common/App_button";
 import App_header from "../../components/common/App_header";
 import { IOSSwitch } from "../../components/common/App_iosswitch";
 import { App_product_view } from "../../components/common/App_product_view";
+import useEffectCustom from "../../components/common/useEffectCustom";
+import { fetcher } from "../../utils";
 
-type ProductInfo = {
-  label: string;
-  value: string;
-};
 const app_product_edit: NextPage = () => {
   const router = useRouter();
   const { product_place, product_ID } = useRecoilValue(productState);
   const [modal, setModal] = useRecoilState(modalState);
   const { image, imagePosition } = useRecoilValue(originalState);
-
 
   useEffect(() => {
     if (router.isReady) {
@@ -57,10 +60,22 @@ const ProductDetail = () => {
     m_product_category,
     product_situation,
   } = useRecoilValue(productState);
-  const product = useRecoilValue(productState);
+  const { user_id } = useRecoilValue(profileState);
   const [name, setName] = useState("");
   const [situation, setSituation] = useState(product_situation);
+  const [productPlace, setProductPlace] = useState("");
   const router = useRouter();
+
+  const { data, error } = useSWR(
+    `/api/app_sql?sql=template&&where=p.user_id="${user_id}"`,
+    fetcher
+  );
+
+  useEffect(() => {
+    if(data){
+      setProductPlace(user_id + data.length);
+    }
+  }, [data]);
 
   const handleChangeName = (name: string) => {
     setName(name);
@@ -73,19 +88,16 @@ const ProductDetail = () => {
     }
   };
 
-  
-const InsertBlobStorage = () => {
-
-  const file = image ;
-  const formData = new FormData();
-  if(file){
-    formData.append("file", file);
-  }
-  // nodeでは出来ない
-  const reader = new FileReader();
-  reader.onload = async () => {
-    
-    // Azureに入れる
+  const insertBlobStorage = () => {
+    const file = image;
+    const formData = new FormData();
+    if (file) {
+      formData.append("file", file);
+    }
+    // nodeでは出来ない
+    const reader = new FileReader();
+    reader.onload = async () => {
+      // Azureに入れる
       try {
         await fetch(`/api/blob_strage`, {
           method: "POST",
@@ -97,47 +109,63 @@ const InsertBlobStorage = () => {
             image: reader.result,
             situ: "add",
             place: imagePosition,
+            name:productPlace
             // QRcode
+            // user_id: user_id,
             // "situ":"create",
-            // "userID":"userID"
           }),
         })
           .then((res) => {
             return res.json();
           })
-    //       .then((data) => {
-    //         // Azureからbase64を取ってくる
-    //         setImagePath(data[0]);
-    //         // console.log(typeof data);
-    //       });
+          .then((data) => {
+            //         // Azureからbase64を取ってくる
+            //         setImagePath(data[0]);
+            console.log(data);
+          });
       } catch (e) {
         console.error(e);
       }
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-};
+  const insertProductDB = async () => {
+    await fetch(
+      `/api/app_sql?sql=insert_product&product_name=${name}&user_id=${user_id}&product_place=${productPlace}&product_situation=${situation}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {
+        // router.push({ pathname: "./app_service_select" });
+      });
+  };
+
+  const updateProductDB = async () => {
+    await fetch(
+      `/api/app_sql?sql=update_product&productID=${product_ID}&product_name=${name}&product_situation=${situation}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {
+        router.push({ pathname: "./app_service_select" });
+      });
+  };
 
   const handleClickSave = async () => {
     // 編集
     if (product_ID) {
-      await fetch(
-        `/api/app_sql?sql=update_product&productID=${product_ID}&product_name=${name}&product_situation=${situation}`
-      )
-        .then((res) => {
-          return res.json();
-        })
-        .then(() => {
-          router.push({ pathname: "./app_service_select" });
-        });
+      updateProductDB();
       // 登録
     } else {
-      InsertBlobStorage();
+      insertProductDB();
+      insertBlobStorage();
     }
-
-    
   };
 
   // const ProductInfo = ({ label, value }: ProductInfo) => {

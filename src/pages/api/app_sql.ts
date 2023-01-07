@@ -50,6 +50,7 @@ export default async function handler(
     user_image,
     productID,
     product_name,
+    product_place,
     like,
     filter,
     product_situation,
@@ -125,13 +126,18 @@ export default async function handler(
       sql = `UPDATE t_products SET product_situation=${product_situation} where product_ID = ${productID}`;
       break;
 
-    case "product_delete":
+    case "insert_product":
+      sql = `INSERT INTO  t_products(product_name,user_id,product_place,m_product_ID,product_situation) VALUES("${product_name}","${user_id}","${product_place}",2,${product_situation})`;
+      break;
+
+    case "delete_product":
       sql = `DELETE FROM t_products WHERE product_ID = ${productID}`;
       break;
 
     case "update_product":
       sql = `UPDATE t_products SET product_name='${product_name}',product_situation='${product_situation}' WHERE product_id = "${productID}"`;
       break;
+
     case "device":
       sql = `SELECT model_name from t_stocks`;
       break;

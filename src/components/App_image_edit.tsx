@@ -210,7 +210,7 @@ function App_image_edit() {
         name="myImage"
         onChange={uploadToClient}
       />
-      <button onClick={goCheckHandler}>保存</button>
+      <button onClick={goCheckHandler} disabled={images ?false:true}>保存</button>
 
       {/* {save && (
         // どのユーザーの何番目？
