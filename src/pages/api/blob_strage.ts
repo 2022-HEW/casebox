@@ -6,9 +6,10 @@ import { useState } from "react";
 
 const imgContainerName = `product`;
 const placeContainerName = `place`;
+const thumbnailContainerName=  "thumbnail"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const {user_id,situ,place,image,name} = req.body
+  const {user_id,situ,place,image,name,thumbnail} = req.body
   // const a = new Blob(file);
   // console.log(req.body);
 
@@ -48,6 +49,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       access: "container",
     });
 
+    const thumbnailContainerClient: ContainerClient =
+    blobService.getContainerClient(thumbnailContainerName);
+  await thumbnailContainerClient.createIfNotExists({
+    access: "container",
+  });
+
     const createBlobInContainer = async (
       containerClient: ContainerClient,
       base64: string,
@@ -65,7 +72,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const getBlobsInContainer = async (
       imgContainerClient: ContainerClient,
-      placeContainerClient: ContainerClient
+      placeContainerClient: ContainerClient,
+      thumbnailContainerClient:ContainerClient
     ) => {
       // const returnedBlobUrls: string[] = [];
 
@@ -87,9 +95,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .getBlockBlobClient(user_id + ".json")
         .download(0);
 
+        const thumbnailDownloadBlockBlobResponse = await thumbnailContainerClient
+        .getBlockBlobClient(user_id + ".txt")
+        .download(0);
+
       const DownloadBlockBlobResponses = [
         await streamToText(imgDownloadBlockBlobResponse.readableStreamBody),
         await streamToText(placeDownloadBlockBlobResponse.readableStreamBody),
+        await streamToText(thumbnailDownloadBlockBlobResponse.readableStreamBody),
       ];
       console.log("\nDownloaded blob content...");
       console.log(
@@ -115,13 +128,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         place,
         `${name}.json`
       );
+      await createBlobInContainer(
+        thumbnailContainerClient,
+        thumbnail,
+        `${name}.json`
+      );
       
       // return res.json("success");
     }
 
     // get list of blobs in container
     if (situ === "create") {
-      getBlobsInContainer(imgContainerClient, placeContainerClient)
+      getBlobsInContainer(imgContainerClient, placeContainerClient,thumbnailContainerClient)
         .then((res) => {
           return res;
         })
