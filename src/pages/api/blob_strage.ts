@@ -131,7 +131,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       await createBlobInContainer(
         thumbnailContainerClient,
         thumbnail,
-        `${name}.json`
+        `${name}.txt`
       );
       
       // return res.json("success");
