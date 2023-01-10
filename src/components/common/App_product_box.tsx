@@ -8,6 +8,7 @@ import { NextPage } from 'next'
 import styles from "../../styles/app_search.module.css"
 import useEffectCustom from "./useEffectCustom"; 
 import { Product } from '../../types';
+import { fetcher } from '../../utils';
 
 // export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_liked}:Product)=> {
   export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_user_id,product_situation}:Product)=> {
@@ -16,14 +17,8 @@ import { Product } from '../../types';
     const [liked,setLiked] = useState(false)
     const router = useRouter()
     // console.log(product_user_id);
-    console.log(product_situation);
+    // console.log(product_situation);
     
-    
-    async function fetcher(url: string): Promise<boolean | null > {
-        const response = await fetch(url);
-        return response.json();
-    }
-
     const useUserLike  = () =>{
       const { data, error } = useSWR<any>(`/api/app_sql?sql=likes&&user_id=${user_id}`, fetcher)
       return {
