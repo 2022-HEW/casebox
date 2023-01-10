@@ -6,10 +6,10 @@ import { useState } from "react";
 
 const imgContainerName = `product`;
 const placeContainerName = `place`;
-const thumbnailContainerName=  "thumbnail"
+const thumbnailContainerName = "thumbnail";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const {user_id,situ,place,image,name,thumbnail} = req.body
+  const { user_id, situ, place, image, name, thumbnail } = req.body;
   // const a = new Blob(file);
   // console.log(req.body);
 
@@ -50,10 +50,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     const thumbnailContainerClient: ContainerClient =
-    blobService.getContainerClient(thumbnailContainerName);
-  await thumbnailContainerClient.createIfNotExists({
-    access: "container",
-  });
+      blobService.getContainerClient(thumbnailContainerName);
+    await thumbnailContainerClient.createIfNotExists({
+      access: "container",
+    });
 
     const createBlobInContainer = async (
       containerClient: ContainerClient,
@@ -72,8 +72,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const getBlobsInContainer = async (
       imgContainerClient: ContainerClient,
-      placeContainerClient: ContainerClient,
-      thumbnailContainerClient:ContainerClient
+      placeContainerClient: ContainerClient
     ) => {
       // const returnedBlobUrls: string[] = [];
 
@@ -88,21 +87,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       // console.log(returnedBlobUrls);
 
       const imgDownloadBlockBlobResponse = await imgContainerClient
-        .getBlockBlobClient(user_id + ".txt")
+        .getBlockBlobClient(place + ".txt")
         .download(0);
 
       const placeDownloadBlockBlobResponse = await placeContainerClient
-        .getBlockBlobClient(user_id + ".json")
-        .download(0);
-
-        const thumbnailDownloadBlockBlobResponse = await thumbnailContainerClient
-        .getBlockBlobClient(user_id + ".txt")
+        .getBlockBlobClient(place + ".json")
         .download(0);
 
       const DownloadBlockBlobResponses = [
         await streamToText(imgDownloadBlockBlobResponse.readableStreamBody),
         await streamToText(placeDownloadBlockBlobResponse.readableStreamBody),
-        await streamToText(thumbnailDownloadBlockBlobResponse.readableStreamBody),
       ];
       console.log("\nDownloaded blob content...");
       console.log(
@@ -115,31 +109,48 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return DownloadBlockBlobResponses;
     };
 
+    const getThumbnailsInContainer = async (
+      thumbnailContainerClient: ContainerClient
+    ) => {
+      const thumbnailDownloadBlockBlobResponse = await thumbnailContainerClient
+        .getBlockBlobClient(place + ".txt")
+        .download(0);
+
+      const DownloadBlockBlobResponses = [
+        await streamToText(
+          thumbnailDownloadBlockBlobResponse.readableStreamBody
+        ),
+      ];
+      return DownloadBlockBlobResponses;
+    };
+
     // upload file
     if (situ === "add") {
-      console.log(situ);
-      await createBlobInContainer(
-        imgContainerClient,
-        image,
-        `${name}.txt`
-      );
-      await createBlobInContainer(
-        placeContainerClient,
-        place,
-        `${name}.json`
-      );
+      // console.log(situ);
+      await createBlobInContainer(imgContainerClient, image, `${name}.txt`);
+      await createBlobInContainer(placeContainerClient, place, `${name}.json`);
       await createBlobInContainer(
         thumbnailContainerClient,
         thumbnail,
         `${name}.txt`
       );
-      
+
       // return res.json("success");
     }
 
     // get list of blobs in container
     if (situ === "create") {
-      getBlobsInContainer(imgContainerClient, placeContainerClient,thumbnailContainerClient)
+      getBlobsInContainer(imgContainerClient, placeContainerClient)
+        .then((res) => {
+          return res;
+        })
+        .then((data) => {
+          // console.log(data);
+          return res.json(data);
+        });
+    }
+    if (situ === "thumbnail") {
+      getThumbnailsInContainer(thumbnailContainerClient)
         .then((res) => {
           return res;
         })
