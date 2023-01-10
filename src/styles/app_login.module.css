@@ -1,0 +1,36 @@
+/* 共通 */
+.Container{
+    height: 100vh;
+    width: 100vw;
+    background-color: aquamarine;
+}
+
+.subTitle{
+    margin: 70px auto 0px auto;
+}
+
+
+.Container > p{
+    color: red;
+}
+/* 会員登録 */
+
+/* 全体のコンテナ― */
+.loginFormContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    height: 20%;
+}
+
+/* メール入力エリア */
+.loginFormContainer > .mailForm{
+
+}
+
+/* パスワード入力エリア */
+.loginFormContainer > .passwordForm{
+
+}

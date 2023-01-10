@@ -16,21 +16,21 @@ async function fetcher(url: string): Promise<boolean | null > {
 }
 
 const app_sign_up:NextPage = () => {
-  return (
-    <>
-        <App_header label={"会員登録"}/>
-        <SignupBox/>
-        <Form/>
-        <p>
-            会員登録には、<Link href={""}>利用規約</Link>および<Link href={""}>プライバシーポリシー</Link>への同意が必要です。
-        </p>
-    </>
-  )
+    return (
+        <div className={styles.Container}>
+            <App_header label={"会員登録"}/>
+            <SignupBox/>
+            <Form/>
+            <p>
+                会員登録には、<Link href={""}>利用規約</Link>および<Link href={""}>プライバシーポリシー</Link>への同意が必要です。
+            </p>
+        </div>
+    )
 }
 
 const SignupBox = () =>{
     return(
-        <div>
+        <div className={styles.subTitle}>
             <h1>CASEBOXをはじめる</h1>
         </div>
     )
@@ -125,11 +125,11 @@ const Form = ()=>{
     // console.log(loginflg);
     
     return(
-        <>
-            <input placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}}/>
-            <input placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/>
+        <div className={styles.loginFormContainer}>
+            <input className={styles.mailForm} placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}}/>
+            <input className={styles.passwordForm} placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/>
             <Button label='同意して会員登録' onClick={SignupHandler} disabled={(duplication || EmailRegex ||PassRegex) && true}/>
-        </>
+        </div>
     )
 }
 

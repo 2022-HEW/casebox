@@ -111,9 +111,10 @@ const FilterBox=({setFilter}:Filter)=>{
 
     return(
         <div className={styles.modal}>
-            <p>並び替え</p>
-            <Image width={10} height={10} src="/image/cancel.svg" onClick={()=>setModal(false)}/>
-            <div>
+            <p className={styles.title}><h2>並び替え</h2>
+            <Image width={20} height={20} src="/image/cancel.svg" onClick={()=>setModal(false)}/>
+            </p>
+            <div className={styles.option}>
                 <Select label="人気順"/>
                 <Select label="新着順"/>
                 <Select label="価格が安い順"/>
