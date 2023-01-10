@@ -77,3 +77,9 @@
     bottom: 0;
     border-radius: 20px 20px 0px 0px;
   }
+
+  .title{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #888;
+  }

@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { Product } from "../../types";
 import { fetcher } from "../../utils";
 import App_header from "../../components/common/App_header";
+import styles from "../../styles/app_profile.module.css";
 type NewsRecord = {
   date: string;
   category: string;
@@ -68,9 +69,9 @@ const LoginBox = () => {
   const { user_id, user_name } = useRecoilValue(profileState);
   return (
     <div>
-      <h2>
+      <h2 className={styles.name}>
         {user_id ? user_name : "ゲスト"}
-        <span>様</span>
+        <span className={styles.sama}>様</span>
       </h2>
       <Link href={user_id ? "./app_mypage" : "./app_login"}>
         <Button label={user_id ? "プロフィールを見る" : "ログイン・会員登録"} />
@@ -82,8 +83,8 @@ const LoginBox = () => {
 const News = () => {
   return (
     <div>
-      <h3>お知らせ</h3>
-      <div>
+      <h3 className={styles.guide}>お知らせ</h3>
+      <div className={styles.guidelink}>
         <NewsRecord
           date={"2002.11.11"}
           category={"カテゴリ"}
