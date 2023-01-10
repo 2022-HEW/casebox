@@ -59,6 +59,7 @@ const ProductDetail = () => {
     model_color,
     m_product_category,
     product_situation,
+    product_place
   } = useRecoilValue(productState);
   const { user_id } = useRecoilValue(profileState);
   const [name, setName] = useState("");
@@ -109,7 +110,8 @@ const ProductDetail = () => {
             image: reader.result,
             situ: "add",
             place: imagePosition,
-            name:productPlace
+            name:productPlace,
+            thumbnail:product_place
             // QRcode
             // user_id: user_id,
             // "situ":"create",

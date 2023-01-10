@@ -1,0 +1,17 @@
+/* 共通 */
+
+/* 会員登録 */
+/* 全体のコンテナ― */
+.loginFormContainer{
+
+}
+
+/* メール入力エリア */
+.mailForm{
+    background-color: aqua;
+}
+
+/* パスワード入力エリア */
+.passwordForm{
+
+}
