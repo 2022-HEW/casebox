@@ -16,21 +16,21 @@ async function fetcher(url: string): Promise<boolean | null > {
 }
 
 const app_sign_up:NextPage = () => {
-  return (
-    <>
-        <App_header label={"会員登録"}/>
-        <SignupBox/>
-        <Form/>
-        <p>
-            会員登録には、<Link href={""}>利用規約</Link>および<Link href={""}>プライバシーポリシー</Link>への同意が必要です。
-        </p>
-    </>
-  )
+    return (
+        <div className={styles.Container}>
+            <App_header label={"会員登録"}/>
+            <SignupBox/>
+            <Form/>
+            <p>
+                会員登録には、<Link href={""}>利用規約</Link>および<Link href={""}>プライバシーポリシー</Link>への同意が必要です。
+            </p>
+        </div>
+    )
 }
 
 const SignupBox = () =>{
     return(
-        <div>
+        <div className={styles.subTitle}>
             <h1>CASEBOXをはじめる</h1>
         </div>
     )
