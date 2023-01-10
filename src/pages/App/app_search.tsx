@@ -9,7 +9,7 @@ import { productState } from '../../atoms/app_atoms';
 import { NextPage } from 'next'
 import { App_productBox } from '../../components/common/App_product_box'
 import { App_product_filter } from '../../components/common/App_product_filter'
-
+import { Product } from '../../types'
 
 
 const app_search:NextPage = () => {    
@@ -37,15 +37,7 @@ const SearchHeader = ({text,setText}:Props) =>{
     )
 }
 
-type Product ={
-    product_ID:number,
-    product_name:string,
-    product_liked:number,
-    product_place:string,
-    m_product_category:string,
-    m_product_price:number,
-    user_id:string
-  }
+
 const SearchResult = ({text}:Props) =>{
 
     const [product, setProduct] = useState([])
@@ -82,6 +74,7 @@ const SearchResult = ({text}:Props) =>{
                                         key={product.product_ID}
                                         product_ID={product.product_ID}
                                         product_user_id={product.user_id}
+                                        user_name={product.user_name}
                                         //   setProduct_ID={setProduct_ID}
                             />
                     ))}

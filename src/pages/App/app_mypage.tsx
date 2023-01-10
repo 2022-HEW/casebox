@@ -104,7 +104,7 @@ const ProfileHeader = () => {
           product_ID={product.product_ID}
           product_user_id={product.user_id}
           product_situation={product.product_situation}
-
+          user_name={product.user_name}
           //   setProduct_ID={setProduct_ID}
         />
       ))}

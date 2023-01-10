@@ -8,17 +8,8 @@ import styles from "../../styles/app_search.module.css";
 import App_header from "../../components/common/App_header";
 import App_nav from "../../components/common/App_nav";
 import { App_product_filter } from "../../components/common/App_product_filter";
-
+import { Product } from "../../types";
 const App_template: NextPage = () => {
-  type Product = {
-    product_ID: number;
-    product_name: string;
-    product_liked: number;
-    product_place: string;
-    m_product_category: string;
-    m_product_price: number;
-    user_id: string;
-  };
 
   const [product, setProduct] = useState([]);
   async function fetcher(url: string): Promise<boolean | null> {
@@ -56,6 +47,7 @@ const App_template: NextPage = () => {
               key={product.product_ID}
               product_ID={product.product_ID}
               product_user_id={product.user_id}
+              user_name={product.user_name}
               //   setProduct_ID={setProduct_ID}
             />
           ))}
