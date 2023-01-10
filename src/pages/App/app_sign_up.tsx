@@ -125,11 +125,11 @@ const Form = ()=>{
     // console.log(loginflg);
     
     return(
-        <>
-            <input placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}}/>
-            <input placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/>
+        <div className={styles.loginFormContainer}>
+            <input className={styles.mailForm} placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}}/>
+            <input className={styles.passwordForm} placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/>
             <Button label='同意して会員登録' onClick={SignupHandler} disabled={(duplication || EmailRegex ||PassRegex) && true}/>
-        </>
+        </div>
     )
 }
 
