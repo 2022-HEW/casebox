@@ -9,7 +9,6 @@ import styles from "../styles/app_original.module.css";
 import { QRCode } from "react-qrcode";
 import useSWR from "swr";
 import axios from "axios";
-import { ReactJSXElementAttributesProperty } from "@emotion/react/types/jsx-namespace";
 import { useRecoilState } from "recoil";
 import { originalState, productState } from "../atoms/app_atoms";
 import { useRouter } from "next/router";
@@ -100,11 +99,11 @@ function App_image_edit() {
           image.stopDrag();
         }
 
-        var p1 = {
+        const p1 = {
           x: touch1.clientX,
           y: touch1.clientY,
         };
-        var p2 = {
+        const p2 = {
           x: touch2.clientX,
           y: touch2.clientY,
         };
@@ -113,30 +112,30 @@ function App_image_edit() {
           lastCenter = getCenter(p1, p2);
           return;
         }
-        var newCenter = getCenter(p1, p2);
+        const newCenter = getCenter(p1, p2);
 
-        var dist = getDistance(p1, p2);
+        const dist = getDistance(p1, p2);
 
         if (!lastDist) {
           lastDist = dist;
         }
 
         // local coordinates of center point
-        var pointTo = {
+        const pointTo = {
           x: (newCenter.x - image.x()) / image.scaleX(),
           y: (newCenter.y - image.y()) / image.scaleX(),
         };
 
-        var scale = image.scaleX() * (dist / lastDist);
+        const scale = image.scaleX() * (dist / lastDist);
 
         image.scaleX(scale);
         image.scaleY(scale);
 
         // calculate new position of the stage
-        var dx = newCenter.x - lastCenter.x;
-        var dy = newCenter.y - lastCenter.y;
+        const dx = newCenter.x - lastCenter.x;
+        const dy = newCenter.y - lastCenter.y;
 
-        var newPos = {
+        const newPos = {
           x: newCenter.x - pointTo.x * scale + dx,
           y: newCenter.y - pointTo.y * scale + dy,
         };
