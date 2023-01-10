@@ -79,7 +79,7 @@ const app_select_type = () => {
           (val: Color) => val.model_name === defaultDevice[0]["model_name"]
         );
       }
-      console.log(defaultColor);
+      // console.log(defaultColor);
 
       setSituation([
         value,
@@ -108,7 +108,7 @@ const app_select_type = () => {
     if (color && device) {
       // console.log(device);
       // console.log(color);
-      console.log(situation);
+      // console.log(situation);
 
       setProduct((prevState) => ({
         ...prevState,
@@ -220,7 +220,6 @@ const Select = ({ label, device, handleChangeSituation, index }: Select) => {
               <option
                 key={index}
                 value={value}
-                selected={index === 0 ? true : false}
               >
                 {value}
               </option>
