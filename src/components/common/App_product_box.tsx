@@ -134,6 +134,7 @@ export const App_productBox = ({
       m_product_price: m_product_price,
       product_ID: product_ID,
       product_name: product_name,
+      azure_path:product_place,
       product_place:
         m_product_category === "user"
           ? originalPlace

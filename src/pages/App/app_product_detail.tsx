@@ -12,6 +12,8 @@ import { Button } from "../../components/common/App_button";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { App_product_view } from "../../components/common/App_product_view";
+import { QRCode } from "react-qrcode";
+
 
 type QRButton = {
   // label:string
@@ -35,7 +37,11 @@ type CheckDelete = {
   product_ID: number | null;
 };
 const QRcode = () => {
-  return <div>a</div>;
+  const { azure_path,product_place } = useRecoilValue(productState);
+
+  return <div className={styles.qr_modal_body}>
+              <QRCode value={azure_path ? azure_path : product_place}/>
+        </div>;
 };
 
 const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {

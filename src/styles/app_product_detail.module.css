@@ -32,3 +32,11 @@
     top: 30%;
     left: 15%;
 }
+.qr_modal_body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 9999;
+    
+}
