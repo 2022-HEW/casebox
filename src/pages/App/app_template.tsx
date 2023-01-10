@@ -48,6 +48,7 @@ const App_template: NextPage = () => {
               product_ID={product.product_ID}
               product_user_id={product.user_id}
               user_name={product.user_name}
+              product_situation={product.product_situation}
               //   setProduct_ID={setProduct_ID}
             />
           ))}

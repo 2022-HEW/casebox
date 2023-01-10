@@ -10,7 +10,7 @@ import { NextPage } from 'next'
 import { App_productBox } from '../../components/common/App_product_box'
 import { App_product_filter } from '../../components/common/App_product_filter'
 import { Product } from '../../types'
-
+import { fetcher } from '../../utils'
 
 const app_search:NextPage = () => {    
     const [text,setText] = useState("")
@@ -42,10 +42,6 @@ const SearchResult = ({text}:Props) =>{
 
     const [product, setProduct] = useState([])
     
-    async function fetcher(url: string): Promise<boolean | null > {
-        const response = await fetch(url);
-        return response.json();
-    }
 
     const { data } = useSWR<any>(`/api/app_sql?sql=filter&&filter=p.product_liked desc`,fetcher) 
     
@@ -53,7 +49,7 @@ const SearchResult = ({text}:Props) =>{
         if(data){
             setProduct(data)
         }
-        // console.log(data);
+        console.log(data);
     },[data])
 
 
@@ -75,6 +71,7 @@ const SearchResult = ({text}:Props) =>{
                                         product_ID={product.product_ID}
                                         product_user_id={product.user_id}
                                         user_name={product.user_name}
+                                        product_situation={product.product_situation}
                                         //   setProduct_ID={setProduct_ID}
                             />
                     ))}

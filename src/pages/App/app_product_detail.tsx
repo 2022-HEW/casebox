@@ -41,6 +41,7 @@ const QRcode = () => {
 const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
   const router = useRouter();
   const [modal, setModal] = useRecoilState(modalState);
+
   const deleteCancel = () => {
     setModal(false);
     setCheckDelete(false);
@@ -73,6 +74,10 @@ const ProductMenu = () => {
 
   const router = useRouter();
 
+  
+  useEffect(()=>{
+    console.log(product.product_situation)
+  },[])
   const MenuButton = ({ label, onClick }: MenuButton) => {
     return <button onClick={onClick}>{label}</button>;
   };
