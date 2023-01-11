@@ -102,7 +102,7 @@ const FilterBox=({setFilter}:Filter)=>{
                     <label>
                         {label}
                         {/* <input value="" type="checkbox" style={{display:"none"}}/> */}
-                        <input value={label} type="radio" name='filter' onChange={(e)=>{setFilter(e.target.value)}}/>
+                        <input value={label} type="radio" id='filter' name='filter' onChange={(e)=>{setFilter(e.target.value)}}/>
                     </label>
                 </div>
             </div>
@@ -112,13 +112,13 @@ const FilterBox=({setFilter}:Filter)=>{
     return(
         <div className={styles.modal}>
             <p className={styles.title}><h2>並び替え</h2>
-            <Image width={20} height={20} src="/image/cancel.svg" onClick={()=>setModal(false)}/>
+            <div className={styles.cancel}><Image width={35} height={35} src="/image/cancel.svg" onClick={()=>setModal(false)}/></div>
             </p>
             <div className={styles.option}>
-                <Select label="人気順"/>
-                <Select label="新着順"/>
-                <Select label="価格が安い順"/>
-                <Select label="価格が高い順"/>
+                <p><Select label="人気順"/></p>
+                <p><Select label="新着順"/></p>
+                <p><Select label="価格が安い順"/></p>
+                <p><Select label="価格が高い順"/></p>
             </div>
         </div>
     )
