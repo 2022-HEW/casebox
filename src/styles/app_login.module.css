@@ -6,13 +6,16 @@
 }
 
 .subTitle{
-    margin: 70px auto 0px auto;
+    display: flex;
+    justify-content: center;
+    /* margin: 70px auto 0px auto; */
 }
-
 
 .Container > p{
     color: red;
 }
+
+
 /* 会員登録 */
 
 /* 全体のコンテナ― */
@@ -21,16 +24,20 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
-
-    height: 20%;
+    gap: 8px;
 }
 
-/* メール入力エリア */
+/* 入力エリア */
 .loginFormContainer > .mailForm{
-
+    width: 80%;
+    height: 48px;
+    max-width: 333px;
+    border-radius: 10px;
 }
 
-/* パスワード入力エリア */
 .loginFormContainer > .passwordForm{
-
+    width: 80%;
+    height: 48px;
+    max-width: 333px;
+    border-radius: 10px;
 }

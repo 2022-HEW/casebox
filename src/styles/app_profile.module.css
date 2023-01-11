@@ -4,12 +4,33 @@
 .sama{
     font-size: 16px;
 }
-.loginbutton{
-    background-color: aqua;
-}
 .guide{
-    font-size: 1.3rem;
+    font-size: 1rem;
+    padding-top: 25px;
+    padding-left: 15px;
 }
-.guidelink date{
-    font-size: large;
+.guidelink{
+    display: flex;
+    background-color: #ffffff;
+    border: 1px dotted #bbb;
+    height: 60px;
+}
+.date{
+    font-size: small;
+    float: left;
+    padding-left: 15px;
+}
+.category{
+    color: red;
+    font-size: small;
+    padding-left: 20px;
+    float: left;
+}
+.title{
+    padding-left: 15px;
+}
+.SupportTitle{
+    padding-left: 15px;
+    background-color: #ffffff;
+    border: 1px dotted #bbb;
 }

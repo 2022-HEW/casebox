@@ -3,6 +3,7 @@
     border-radius: 28px;
     color: #fff;
     width: 80%;
-    margin:0 0 0 10%;
+    /* margin:0 0 0 10%; */
     padding: 10px 0;
+    max-width: 333px;
 }
