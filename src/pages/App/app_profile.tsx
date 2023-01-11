@@ -98,7 +98,7 @@ const News = () => {
 const Support = () => {
   return (
     <div>
-      <h3>サポート</h3>
+      <h3 className={styles.guide}>サポート</h3>
       <div>
         <SupportRecord title={"ヘルプ・よくある質問"} href={""} />
         <SupportRecord title={"利用規約"} href={""} />
@@ -111,9 +111,9 @@ const Support = () => {
 const NewsRecord = ({ date, category, title }: NewsRecord) => {
   return (
     <div>
-      <p>{date}</p>
-      <p>{category}</p>
-      <p>{title}</p>
+      <li className={styles.date}>{date}</li>
+      <li className={styles.category}>{category}</li>
+      <li className={styles.title}>{title}</li>
       <Image src={""} width={10} height={10} />
     </div>
   );
@@ -121,7 +121,7 @@ const NewsRecord = ({ date, category, title }: NewsRecord) => {
 
 const SupportRecord = ({ title, href }: SupportRecord) => {
   return (
-    <div>
+    <div className={styles.SupportTitle}>
       <Link href={href}>
         <p>{title}</p>
       </Link>

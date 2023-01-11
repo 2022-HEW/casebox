@@ -8,9 +8,9 @@ import { type } from "os";
 import { Button } from "../../components/common/App_button";
 import useEffectCustom from "../../components/common/useEffectCustom";
 import Modal from "../../components/common/App_modal";
-import styles from "../../styles/app_search.module.css";
 import { App_modal_body } from "../../components/common/App_modal_body";
 import icon from "../../icon.json";
+import styles from "../../styles/app_profile_edit.module.css";
 
 type Input = {
   label: string;
@@ -98,14 +98,16 @@ const Profile_edit = () => {
           onClick={handleClickIcon}
         />
       </div>
-      <Input
-        label="あだ名"
-        placeholder={profile.user_name}
-        state={name}
-        setState={setName}
-        name="name"
-      />
-      {error !== "" && <label htmlFor="name">{error}</label>}
+      <div className={styles.name}>
+        <Input
+          label="あだ名"
+          placeholder={profile.user_name}
+          state={name}
+          setState={setName}
+          name="name"
+        />
+        {error !== "" && <label htmlFor="name">{error}</label>}
+      </div>
       <Input
         label="プロフィール"
         placeholder={profile.user_comment}
