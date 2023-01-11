@@ -24,7 +24,9 @@ const App_header = ({label,pathname}:Props) => {
         <div className={styles.back} onClick={handleClickBack}>
             <Image src={"/image/back.svg"} width={20} height={20}/>
         </div>
-        <p>{label}</p>
+        <div className={styles.labelContainer}>
+          <p>{label}</p>
+        </div>
     </div>
   )
 }
