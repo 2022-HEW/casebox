@@ -1,3 +1,7 @@
+type Body =  {
+  [key:string]:string|number
+}
+
 export const fetcher = async (
     resource: RequestInfo,
     init?: RequestInit,
@@ -16,3 +20,14 @@ export const fetcher = async (
   
     return res.json()
   }
+
+export const InsertDB = async(url:string,body?:Body)=>{
+  await fetch(url,{
+    method:"POST",
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    },
+    // body:JSON.stringify(body)
+    body:JSON.stringify(body)
+  })
+}
