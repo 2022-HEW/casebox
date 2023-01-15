@@ -167,6 +167,7 @@ const app_select_type = () => {
   const handleClickStart=()=>{
     setProduct((prevState) => ({
       ...prevState,
+      model_name:prevState.product_place,
       product_ID: 0,
     }));
     router.push({

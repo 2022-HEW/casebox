@@ -15,6 +15,7 @@ type Product=  {
     product_situation?:0|1
     model_color?:string
     azure_path?:string
+    model_name?:string
 }
 type Profile = {
     [key:string]:string

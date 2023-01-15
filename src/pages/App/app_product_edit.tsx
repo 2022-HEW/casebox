@@ -143,7 +143,7 @@ const ProductDetail = () => {
         return res.json();
       })
       .then(() => {
-        // router.push({ pathname: "./app_service_select" });
+        router.push({ pathname: "./app_service_select" });
       });
   };
 

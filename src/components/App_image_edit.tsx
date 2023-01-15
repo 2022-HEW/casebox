@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 import { originalState, productState } from "../atoms/app_atoms";
 import { useRouter } from "next/router";
 import useEffectCustom from "./common/useEffectCustom";
+import { parse } from "path";
 
 // import MyLargeComponent from './thingToRenderOnStage';
 
@@ -68,12 +69,16 @@ function App_image_edit() {
 
     setOriginal((prevState) => ({
       ...prevState,
-      imagePosition: stageRef.current.getStage().toJSON(),
+      imagePosition: JSON.stringify({
+        ...JSON.parse(stageRef.current.getStage().toJSON()),
+        model_name: product.model_name,
+      }),
       image: images ? images : null,
     }));
 
     router.push({ pathname: "./app_product_edit" });
   }, [isSave]);
+  // console.log(product);
 
   const uploadToClient = (event: { target: HTMLInputElement }) => {
     if (event.target.files) {
@@ -209,7 +214,9 @@ function App_image_edit() {
         name="myImage"
         onChange={uploadToClient}
       />
-      <button onClick={goCheckHandler} disabled={images ?false:true}>保存</button>
+      <button onClick={goCheckHandler} disabled={images ? false : true}>
+        保存
+      </button>
 
       {/* {save && (
         // どのユーザーの何番目？

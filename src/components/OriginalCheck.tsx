@@ -16,8 +16,12 @@ const OriginalCheck = () => {
   // const [designImage,setDesignImage] = useState("")
   const [designPath, setDesignPath] = useRecoilState<any>(designState);
   const [designImage, setDesignImage] = useRecoilState(imageState);
-  const [phone] = useImage("./iPhone/iPhone7/(PRODUCT)RED.png");
-  const [camera] = useImage("./iPhone/iPhone7/(PRODUCT)RED_camera.png");
+  const [modelName, setModelName] = useState(
+    "/iPhone/iPhone7/(PRODUCT)RED.png"
+  );
+  const [phone] = useImage(modelName);
+  const camera_image_path = modelName.replace(/\.[^/.]+$/, "");
+  const [camera] = useImage(camera_image_path + "_camera.png");
   const [design] = useImage(designImage);
 
   // 読み取れたら
@@ -49,9 +53,11 @@ const OriginalCheck = () => {
           // Azureからbase64を取ってくる
           setDesignImage(data[0]);
           setDesignPath(JSON.parse(data[1]));
-          // console.log(typeof data);
-          console.log(data[1]);
-          console.log(designPath);
+          // setModelName(data)
+          // console.log(JSON.parse(data[1]));
+          // console.log();
+          setModelName(JSON.parse(data[1]).model_name)
+          // console.log(designPath);
         });
     } catch (e) {
       console.error(e);
@@ -80,17 +86,25 @@ const OriginalCheck = () => {
                 height={designPath.children[0].children[0].attrs.height}
               />
               <Group draggable={true}>
-              <Image
-                image={design}
-                width={designPath.children[0].children[1].children[0].attrs.width}
-                height={designPath.children[0].children[1].children[0].attrs.height}
-                scaleX={designPath.children[0].children[1].children[0].attrs.scaleX}
-                scaleY={designPath.children[0].children[1].children[0].attrs.scaleY}
-                x={designPath.children[0].children[1].children[0].attrs.x}
-                y={designPath.children[0].children[1].children[0].attrs.y}
-              />
+                <Image
+                  image={design}
+                  width={
+                    designPath.children[0].children[1].children[0].attrs.width
+                  }
+                  height={
+                    designPath.children[0].children[1].children[0].attrs.height
+                  }
+                  scaleX={
+                    designPath.children[0].children[1].children[0].attrs.scaleX
+                  }
+                  scaleY={
+                    designPath.children[0].children[1].children[0].attrs.scaleY
+                  }
+                  x={designPath.children[0].children[1].children[0].attrs.x}
+                  y={designPath.children[0].children[1].children[0].attrs.y}
+                />
               </Group>
-              
+
               <Image
                 image={camera}
                 width={designPath.children[0].children[2].attrs.width}
