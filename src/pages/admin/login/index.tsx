@@ -50,21 +50,29 @@ const login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const [isError,setIsError] = useState(false)
 
   const handleClickLogin = () => {
     getUserInfo(email, setUserInfo);
   };
 
+  // バリデーション
   useEffectCustom(() => {
     // console.log(userInfo);
 
-    if (password === userInfo.password) {
-      addLoginUser(userInfo.user_id);
-      router.push({ pathname: "/admin/product/" });
+    if(userInfo){
+      if (password === userInfo.password) {
+        addLoginUser(userInfo.user_id);
+        router.push({ pathname: "/admin/product/" });
+      }else{
+        setIsError(true)
+      }
     } else {
-      // console.log(password);
+      console.log("error");
+      setIsError(true)
       // console.log(userInfo.password);
     }
+    
   }, [userInfo]);
 
   return (
@@ -89,6 +97,8 @@ const login: NextPage = () => {
           fullWidth
           onChange={(e) => handleChangeInput(e.currentTarget.value, setEmail)}
           value={email}
+          error={isError}
+          helperText={"メールアドレスかパスワードが間違っています。"}
         />
       </Grid>
       <Grid item width={"30vw"} xs={2}>
@@ -102,6 +112,8 @@ const login: NextPage = () => {
             handleChangeInput(e.currentTarget.value, setPassword)
           }
           value={password}
+          error={isError}
+          helperText={"メールアドレスかパスワードが間違っています。"}
         />
       </Grid>
       <Grid>{/* <Link href=""/> */}</Grid>
