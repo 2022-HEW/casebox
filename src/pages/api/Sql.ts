@@ -38,15 +38,11 @@ export default async function handler(
   
   // price=m_product_price&&productID=product_ID&&modelID=model_id
   const flg = req.query.sql
-  const price = req.query.price
-  const productID = req.query.productID
-  const modelID = req.query.modelID
-  const stock = req.query.stock
-  const quant = req.query.quant
+  const {place,quant,stock,modelID,productID,price} = req.query
 
   // const router = useRouter()
   // let sql = router.query   
-  // //   console.log(sql);
+    console.log();
   //   const a = context.query.sql
   //   console.log(a);
   let sql = "";
