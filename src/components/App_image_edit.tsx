@@ -55,6 +55,11 @@ function App_image_edit() {
   const [original, setOriginal] = useRecoilState(originalState);
   const router = useRouter();
 
+  useEffect(()=>{
+    console.log(product);
+    
+  })
+
   const goCheckHandler = () => {
     setIsSave(true);
   };
