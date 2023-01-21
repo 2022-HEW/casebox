@@ -1,7 +1,10 @@
 import React from "react";
+import { GlobalNav } from "../../../components/admin/common/globalNav";
 
 const Product = () => {
-  return <div>index</div>;
+  return <>
+  <GlobalNav/>
+  </>;
 };
 
 export default Product
