@@ -1,4 +1,10 @@
-import { Dialog, Grid } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  Grid,
+} from "@mui/material";
 import React, { useState } from "react";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
@@ -15,19 +21,25 @@ export const GlobalNav = () => {
     ...ICON_VARIANT,
     sx: { ...ICON_VARIANT.sx, backgroundColor: "none" },
   };
-  const [isModal,setIsModal] = useState(false)
+  const [isModal, setIsModal] = useState(false);
 
-  const handleClickIcon=(pathname:string)=>{
-    router.push({pathname:pathname})
-  }
+  const handleClickIcon = (pathname: string) => {
+    router.push({ pathname: pathname });
+  };
 
-  const handleClickExit=()=>{
-    setIsModal(true)
-  }
+  const handleClickExit = () => {
+    setIsModal(true);
+  };
 
-  const handleClose=()=>{
-    setIsModal(false)
-  }
+  const handleClose = () => {
+    setIsModal(false);
+  };
+
+  const handleLogout = () => {
+    router.push({
+      pathname: "/admin/login",
+    });
+  };
 
   return (
     <Grid
@@ -41,7 +53,7 @@ export const GlobalNav = () => {
           {...(router.pathname === "/admin/product"
             ? ICON_VARIANT
             : NEW_ICON_VARIANT)}
-            onClick={()=>handleClickIcon("/admin/product")}
+          onClick={() => handleClickIcon("/admin/product")}
         />
       </Grid>
       <Grid item xs={8.75}>
@@ -49,15 +61,48 @@ export const GlobalNav = () => {
           {...(router.pathname === "/admin/chart"
             ? ICON_VARIANT
             : NEW_ICON_VARIANT)}
-            onClick={()=>handleClickIcon("/admin/chart")}
+          onClick={() => handleClickIcon("/admin/chart")}
         />
       </Grid>
 
       <Grid item>
-        <ExitToAppIcon {...NEW_ICON_VARIANT} onClick={handleClickExit}/>
+        <ExitToAppIcon {...NEW_ICON_VARIANT} onClick={handleClickExit} />
       </Grid>
       <Dialog open={isModal} onClose={handleClose}>
-
+        <DialogTitle align="center" variant="h4" mt={5}>
+          {"ログアウトしますか？"}
+          <DialogActions>
+            <Grid
+              container
+              direction={"column"}
+              gap={2}
+              alignItems={"center"}
+              sx={{ width: "60vw", height: "50vh" }}
+            >
+              <Grid xs={5} />
+              <Grid item>
+                <Button
+                  onClick={handleLogout}
+                  color={"error"}
+                  variant="contained"
+                  sx={{ fontSize: "1.3rem" ,width:"20vw"}}
+                >
+                  ログアウト
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  onClick={handleClose}
+                  variant="text"
+                  sx={{ fontSize: "1.3rem" ,width:"20vw", color: "#222" }}
+                  
+                >
+                  キャンセル
+                </Button>
+              </Grid>
+            </Grid>
+          </DialogActions>
+        </DialogTitle>
       </Dialog>
     </Grid>
   );
