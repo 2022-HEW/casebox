@@ -1,11 +1,12 @@
-import { Grid } from "@mui/material";
-import React from "react";
+import { Dialog, Grid } from "@mui/material";
+import React, { useState } from "react";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ButtonValiant from "../../../../themes/admin/ButtonValiants";
 import { useRouter } from "next/router";
+import Modal from "@mui/material/Modal";
 
 export const GlobalNav = () => {
   const router = useRouter();
@@ -14,6 +15,19 @@ export const GlobalNav = () => {
     ...ICON_VARIANT,
     sx: { ...ICON_VARIANT.sx, backgroundColor: "none" },
   };
+  const [isModal,setIsModal] = useState(false)
+
+  const handleClickIcon=(pathname:string)=>{
+    router.push({pathname:pathname})
+  }
+
+  const handleClickExit=()=>{
+    setIsModal(true)
+  }
+
+  const handleClose=()=>{
+    setIsModal(false)
+  }
 
   return (
     <Grid
@@ -27,6 +41,7 @@ export const GlobalNav = () => {
           {...(router.pathname === "/admin/product"
             ? ICON_VARIANT
             : NEW_ICON_VARIANT)}
+            onClick={()=>handleClickIcon("/admin/product")}
         />
       </Grid>
       <Grid item xs={8.75}>
@@ -34,12 +49,16 @@ export const GlobalNav = () => {
           {...(router.pathname === "/admin/chart"
             ? ICON_VARIANT
             : NEW_ICON_VARIANT)}
+            onClick={()=>handleClickIcon("/admin/chart")}
         />
       </Grid>
 
       <Grid item>
-        <ExitToAppIcon {...NEW_ICON_VARIANT} />
+        <ExitToAppIcon {...NEW_ICON_VARIANT} onClick={handleClickExit}/>
       </Grid>
+      <Dialog open={isModal} onClose={handleClose}>
+
+      </Dialog>
     </Grid>
   );
 };
