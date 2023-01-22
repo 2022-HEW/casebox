@@ -98,7 +98,7 @@ const login: NextPage = () => {
           onChange={(e) => handleChangeInput(e.currentTarget.value, setEmail)}
           value={email}
           error={isError}
-          helperText={"メールアドレスかパスワードが間違っています。"}
+          helperText={isError && "メールアドレスかパスワードが間違っています。"}
         />
       </Grid>
       <Grid item width={"30vw"} xs={2}>
@@ -113,7 +113,7 @@ const login: NextPage = () => {
           }
           value={password}
           error={isError}
-          helperText={"メールアドレスかパスワードが間違っています。"}
+          helperText={isError && "メールアドレスかパスワードが間違っています。"}
         />
       </Grid>
       <Grid>{/* <Link href=""/> */}</Grid>
