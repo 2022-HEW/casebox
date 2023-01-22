@@ -45,7 +45,7 @@ export const GlobalNav = () => {
     <Grid
       container
       direction={"column"}
-      sx={{ backgroundColor: "#1E293C", height: "100vh", width: "70px" }}
+      sx={{ backgroundColor: "#1E293C", height: "100vh", width: "5.5vw" }}
       gap={2}
     >
       <Grid item>
