@@ -1,4 +1,4 @@
-import { Dialog, Grid } from "@mui/material";
+import { Button, Dialog, Grid } from "@mui/material";
 import React, { useState } from "react";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
@@ -8,29 +8,22 @@ import ButtonValiant from "../../../../themes/admin/ButtonValiants";
 import { useRouter } from "next/router";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
-
+import { Menu } from "./Menu";
+import { NavValue } from "../../../../types/admin/Nav";
 type Nav = {
   title: string;
+  values: NavValue[];
 };
-export const Nav = ({ title }: Nav) => {
+export const Nav = ({ title, values }: Nav) => {
   const router = useRouter();
-  const ICON_VARIANT = ButtonValiant.GlobalNav;
-  let NEW_ICON_VARIANT = {
-    ...ICON_VARIANT,
-    sx: { ...ICON_VARIANT.sx, backgroundColor: "none" },
+  const BUTTON_VARIANT = ButtonValiant.Nav;
+  let NEW_BUTTON_VARIANT = {
+    ...BUTTON_VARIANT,
+    sx: { ...BUTTON_VARIANT.sx, backgroundColor: "none" },
   };
-  const [isModal, setIsModal] = useState(false);
 
-  const handleClickIcon = (pathname: string) => {
+  const handleClickButton = (pathname: string) => {
     router.push({ pathname: pathname });
-  };
-
-  const handleClickExit = () => {
-    setIsModal(true);
-  };
-
-  const handleClose = () => {
-    setIsModal(false);
   };
 
   return (
@@ -40,39 +33,34 @@ export const Nav = ({ title }: Nav) => {
       sx={{
         backgroundColor: "#EFF6FF",
         height: "100vh",
-        width: "25vw",
-        padding: "10px 40px 0 20px",
+        width: "23.2vw",
+        padding: "10px 40px 10px 20px",
       }}
-      gap={2}
+      gap={1}
     >
       <Grid item>
         <Typography
-          variant="h5"
           sx={{
-            borderBottom: "1px solid #CAC4D0",
-            flex: "none",
-            order: 0,
-            alignSelf: "stretch",
-            flexGrow: 0,
-            padding:"0 0 10px 0"
+            // padding: "5px 5px 10px 5px",
+            fontWeight:"bold",
+            fontSize:"1.4rem",
+            color:" #44474F",
           }}
         >
           {title}
         </Typography>
       </Grid>
-      <Grid item xs={8.75}>
-        <ShowChartIcon
-          {...(router.pathname === "/admin/chart"
-            ? ICON_VARIANT
-            : NEW_ICON_VARIANT)}
-          onClick={() => handleClickIcon("/admin/chart")}
-        />
-      </Grid>
-
-      <Grid item>
-        <ExitToAppIcon {...NEW_ICON_VARIANT} onClick={handleClickExit} />
-      </Grid>
-      <Dialog open={isModal} onClose={handleClose}></Dialog>
+      {values.map((value) => (
+        <Menu title={value.title} >
+          {value.value.map((value) => (
+            <Grid>
+                <Button {...(router.pathname === value.url
+            ? BUTTON_VARIANT
+            : NEW_BUTTON_VARIANT)} onClick={()=>handleClickButton(value.url)} >{value.title}</Button>
+            </Grid>
+          ))}
+        </Menu>
+      ))}
     </Grid>
   );
 };
