@@ -79,7 +79,7 @@ export const GlobalNav = () => {
               alignItems={"center"}
               sx={{ width: "60vw", height: "50vh" }}
             >
-              <Grid xs={5} />
+              <Grid xs={5} item/>
               <Grid item>
                 <Button
                   onClick={handleLogout}

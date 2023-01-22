@@ -50,13 +50,13 @@ export const Nav = ({ title, values }: Nav) => {
           {title}
         </Typography>
       </Grid>
-      {values.map((value) => (
-        <Menu title={value.title} >
-          {value.value.map((value) => (
-            <Grid>
+      {values.map((value,index) => (
+        <Menu title={value.title} key={index}>
+          {value.value.map((value,index) => (
+            <Grid key={index}>
                 <Button {...(router.pathname === value.url
             ? BUTTON_VARIANT
-            : NEW_BUTTON_VARIANT)} onClick={()=>handleClickButton(value.url)} >{value.title}</Button>
+            : NEW_BUTTON_VARIANT)} onClick={()=>handleClickButton(value.url)}>{value.title}</Button>
             </Grid>
           ))}
         </Menu>
