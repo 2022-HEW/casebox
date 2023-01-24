@@ -23,11 +23,13 @@ const Product = () => {
             height: "70%",
             marginTop: "3%",
           }}
+          justifyContent="center"
+          alignContent={"center"}
         >
           <Grid item xs={5}>
             <UploadPicture />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={5} justifyContent={"center"} alignContent={"center"}>
             <UploadDetail />
           </Grid>
         </Grid>
