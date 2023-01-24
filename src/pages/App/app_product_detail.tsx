@@ -38,6 +38,8 @@ type CheckDelete = {
 };
 const QRcode = () => {
   const { azure_path,product_place } = useRecoilValue(productState);
+  
+  
 
   return <div className={styles.qr_modal_body}>
               <QRCode value={azure_path ? azure_path : product_place}/>
@@ -81,9 +83,6 @@ const ProductMenu = () => {
   const router = useRouter();
 
   
-  useEffect(()=>{
-    console.log(product.product_situation)
-  },[])
   const MenuButton = ({ label, onClick }: MenuButton) => {
     return <button onClick={onClick}>{label}</button>;
   };
@@ -145,6 +144,7 @@ const ProductMenu = () => {
 
 const app_product_detail: NextPage = () => {
   const {
+    product_ID,
     product_place,
     product_name,
     m_product_category,
@@ -164,6 +164,11 @@ const app_product_detail: NextPage = () => {
       }
     }
   });
+
+  
+  useEffect(()=>{
+    console.log(product_ID)
+  },[])
 
   return (
     <>

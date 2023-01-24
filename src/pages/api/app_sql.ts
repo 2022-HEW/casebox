@@ -127,7 +127,7 @@ export default async function handler(
       break;
 
     case "insert_product":
-      sql = `INSERT INTO  t_products(product_name,user_id,product_place,m_product_ID,product_situation) VALUES("${product_name}","${user_id}","${product_place}",2,${product_situation})`;
+      sql = `INSERT INTO  t_products(product_name,user_id,product_created,product_place,m_product_ID,product_situation) VALUES("${product_name}","${user_id}",NOW(),"${product_place}",2,${product_situation})`;
       break;
 
     case "delete_product":

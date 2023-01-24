@@ -71,7 +71,7 @@ export const App_productBox = ({
     if (m_product_category === "user") {
       getThumbnailAzure();
     }
-    console.log(product_situation);
+    // console.log(product_situation);
     
   }, []);
 
