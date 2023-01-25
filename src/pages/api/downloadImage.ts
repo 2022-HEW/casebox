@@ -13,20 +13,24 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const form = formidable({ multiples: false, uploadDir: __dirname });
 
   form.onPart = (part) => {
+    
     // let formidable handle only non-file parts
     if (part.originalFilename === "" || !part.mimetype) {
       // used internally, please do not override!
       form._handlePart(part);
     } else if (part.originalFilename) {
       // 以下でファイルを書き出ししている
-
+      let Ext = part.mimetype.replace("image/",".")
+      if(Ext === ".jpeg"){
+        Ext = ".jpg"
+      } 
       // /public/imagesディレクトリがないと正常に動かないので作成すること
 
       // const path = "./public/product_image/" + new Date().getTime()  + `.${part.mimetype}`;
       const path =
         "./public/product_image/" +
         part.originalFilename +
-        part.mimetype.replace("image/",".");
+        Ext
       const stream = createWriteStream(path);
       
 
