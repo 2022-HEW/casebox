@@ -65,6 +65,7 @@ const Product = () => {
 
     // DB登録処理
     InsertDB("/api/admin_sql", DBBody);
+    alert("登録されました")
   };
 
   return (
