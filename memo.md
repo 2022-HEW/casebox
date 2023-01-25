@@ -152,3 +152,7 @@ npm install formidable
 npm install react-qrcode
 npm install js-sha1
 npm install recoil-persist
+<!-- npm i express -->
+<!-- npm install axios multer -->
+npm i formidable
+npm i @types/formidable
