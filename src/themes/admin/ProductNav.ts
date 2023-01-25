@@ -20,10 +20,6 @@ export const SUBTITLE = [
         title: "在庫情報",
         url: "/admin/stock",
       },
-      {
-        title: "商品一覧",
-        url: "/admin/stock/list",
-      },
     ],
   },
 ];
