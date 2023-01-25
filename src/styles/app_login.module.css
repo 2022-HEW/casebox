@@ -20,6 +20,10 @@
     text-decoration: underline!important;
 }
 
+.Container > h1{
+    margin: 0;
+}
+
 
 /* 会員登録 */
 
@@ -32,12 +36,16 @@
     gap: 8px;
 }
 
+.loginFormContainer > *{
+}
+
 /* 入力エリア */
 .loginFormContainer > .mailForm{
     width: 80%;
     height: 48px;
     max-width: 333px;
     border-radius: 10px;
+    /* background: white; */
 }
 
 .loginFormContainer > .passwordForm{
@@ -45,4 +53,5 @@
     height: 48px;
     max-width: 333px;
     border-radius: 10px;
+    /* background: white; */
 }
