@@ -6,23 +6,39 @@ import {
   MenuItem,
   Select,
   TextField,
+  Typography,
 } from "@mui/material";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { getCategory } from "../../../utils";
 
-export const UploadDetail = () => {
+
+type Props = {
+  setError: (text: string) => void;
+  handleRegister: (text: string, category: number, situation: number) => void;
+};
+export const UploadDetail = ({ handleRegister }: Props) => {
   const [text, setText] = useState("");
-  const [isError, setIsError] = useState(false);
   const [category, setCategory] = useState<number>(0);
   const [isOpen, setIsOpen] = useState(1);
+  const { categories, CatchError } = getCategory();
+
+  useEffect(() => {
+    console.log(categories);
+  }, [categories]);
+  
+
+
   const handleChangeInput = (name: string) => {
     setText(name);
   };
-  const handleClickRegister = (
+
+  const handleChangeSelect = (
     value: number,
     setState: Dispatch<SetStateAction<number>>
   ) => {
     setState(value);
   };
+
   return (
     <Grid container direction={"column"} gap={4} justifyContent="center">
       <Grid item>
@@ -32,8 +48,6 @@ export const UploadDetail = () => {
           fullWidth
           onChange={(e) => handleChangeInput(e.currentTarget.value)}
           value={text}
-          error={isError}
-          helperText={isError && "名前を入力して下さい"}
         />
       </Grid>
       <Grid item>
@@ -44,11 +58,14 @@ export const UploadDetail = () => {
             label="カテゴリー"
             fullWidth
             onChange={(e) =>
-              handleClickRegister(Number(e.target.value), setCategory)
+              handleChangeSelect(Number(e.target.value), setCategory)
             }
-            value={text}
+            defaultValue={1}
           >
-            <MenuItem value={1}>category</MenuItem>
+            
+            {categories && categories.map((value:{m_product_ID:number,m_product_category:string},index:number)=>
+                <MenuItem value={value.m_product_ID} key={index}>{value.m_product_category}</MenuItem>
+            )}
           </Select>
         </FormControl>
       </Grid>
@@ -60,9 +77,9 @@ export const UploadDetail = () => {
             label="カテゴリー"
             fullWidth
             onChange={(e) =>
-              handleClickRegister(Number(e.target.value), setIsOpen)
+              handleChangeSelect(Number(e.target.value), setIsOpen)
             }
-            value={text}
+            defaultValue={1}
           >
             <MenuItem value={1}>公開</MenuItem>
             <MenuItem value={0}>非公開</MenuItem>
@@ -70,7 +87,13 @@ export const UploadDetail = () => {
         </FormControl>
       </Grid>
       <Grid>
-        <Button variant="contained" fullWidth>商品を登録</Button>
+        <Button
+          variant="contained"
+          fullWidth
+          onClick={() => handleRegister(text, category, isOpen)}
+        >
+          商品を登録
+        </Button>
       </Grid>
     </Grid>
   );
