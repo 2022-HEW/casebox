@@ -29,7 +29,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         part.mimetype.replace("image/",".");
       const stream = createWriteStream(path);
       
-    console.log(part);
 
       part.pipe(stream);
 
