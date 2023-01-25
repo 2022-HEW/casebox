@@ -72,6 +72,10 @@ console.log("a" + req);
         sql = `INSERT INTO t_logins(user_id,login_time,administer_flg) VALUES ("${user_id}",NOW(),1) `;
         break;
 
+        case "getCategory":
+          sql = `SELECT m_product_ID,m_product_category FROM t_m_products`;
+          break;
+
     default:
       console.log("error");
   }
