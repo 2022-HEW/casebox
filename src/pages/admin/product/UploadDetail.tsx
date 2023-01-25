@@ -18,7 +18,7 @@ type Props = {
 };
 export const UploadDetail = ({ handleRegister }: Props) => {
   const [text, setText] = useState("");
-  const [category, setCategory] = useState<number>(0);
+  const [category, setCategory] = useState<number>(1);
   const [isOpen, setIsOpen] = useState(1);
   const { categories, CatchError } = getCategory();
 

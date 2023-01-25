@@ -32,57 +32,39 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const situ = req.body.situ ?? req.query.situ
-//   console.log( "situ:" + situ);
-  
-  const where = req.query?.where;
+  const situ = req.body.situ ?? req.query.situ;
+  const email = req.body.email ?? req.query.email;
+  const user_id = req.body.user_id ?? req.query.user_id;
+  const product_name = req.body.product_name;
+  const product_place = req.body.product_place;
+  const m_product_ID = req.body.m_product_ID;
+  const product_situation = req.body.product_situation;
 
-const email = req.body.email ?? req.query.email
-const user_id = req.body.user_id ?? req.query.user_id
-console.log("a" + req);
-// console.log(email);
-
-  const {
-    login,
-    loginID,
-    user_password,
-    user_name,
-    user_comment,
-    user_email,
-    user_image,
-    productID,
-    product_name,
-    product_place,
-    like,
-    filter,
-    product_situation,
-  } = req.query;
-  // const router = useRouter()
-  // let sql = router.query
-  // //   console.log(sql);
-  //   const a = context.query.sql
-//   console.log(user_id);
   let sql = "";
   switch (situ) {
     case "getUserInfo":
       sql = `SELECT user_id, password FROM t_administrators WHERE administrator_email = "${email}"`;
       break;
 
-      case "addLogin":
-        sql = `INSERT INTO t_logins(user_id,login_time,administer_flg) VALUES ("${user_id}",NOW(),1) `;
-        break;
+    case "addLogin":
+      sql = `INSERT INTO t_logins(user_id,login_time,administer_flg) VALUES ("${user_id}",NOW(),1) `;
+      break;
 
-        case "getCategory":
-          sql = `SELECT m_product_ID,m_product_category FROM t_m_products`;
-          break;
+    case "getCategory":
+      sql = `SELECT m_product_ID,m_product_category FROM t_m_products`;
+      break;
 
+    case "addProduct":
+      sql = `INSERT INTO t_products(product_name, user_id, product_created, product_place, m_product_ID, product_change_time, product_situation) 
+      VALUES ("${product_name}",${user_id},NOW(),'${product_place}',${m_product_ID},NOW(),${product_situation})`;
+      break;
     default:
       console.log("error");
   }
 
-  const result = await db.query(where ? sql + " where " + where : sql);
+  const result = await db.query(sql);
   // console.log(sql + " where " + where);
-    // console.log(result);
+  // console.log(result);
 
   return res.status(200).json(result);
 }

@@ -58,11 +58,10 @@ const Product = () => {
       situ: "addProduct",
       product_name: text,
       user_id: "1",
-      product_place: `/product_image/${text}.${ImageExt}`,
+      product_place: `${text}.${ImageExt}`,
       m_product_ID: category,
       product_situation: situation,
     };
-    console.log();
 
     // DB登録処理
     InsertDB("/api/admin_sql", DBBody);
