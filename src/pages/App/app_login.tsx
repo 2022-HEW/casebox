@@ -19,16 +19,16 @@ import { fetcher } from "../../utils";
 
 const app_login: NextPage = () => {
   return (
-    <>
+    <div className={styles.Container}>
       <App_header label="ログイン" />
       <LoginBox />
-    </>
+    </div>
   );
 };
 
 const LoginBox = ({}) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.Container}>
       <h1>CASEBOX</h1>
       <Form />
       <Link href="./app_password_reset">
@@ -96,8 +96,10 @@ const Form = () => {
 
   return (
     <>
+    <div className={styles.loginFormContainer}>
       {LoginError && <p>メールアドレス、またはパスワードが違います。</p>}
       <input
+        className={styles.mailForm}
         placeholder="メールアドレス"
         value={email}
         onChange={(e) => {
@@ -105,6 +107,7 @@ const Form = () => {
         }}
       />
       <input
+        className={styles.passwordForm}
         type={"password"}
         placeholder="パスワード"
         value={password}
@@ -113,6 +116,7 @@ const Form = () => {
         }}
       />
       <Button label="ログイン" onClick={() => setLoginflg(true)} />
+      </div>
     </>
   );
 };

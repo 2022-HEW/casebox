@@ -1,3 +1,4 @@
+import { color } from '@mui/system';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -22,7 +23,7 @@ const app_sign_up:NextPage = () => {
             <SignupBox/>
             <Form/>
             <p>
-                会員登録には、<Link href={""}>利用規約</Link>および<Link href={""}>プライバシーポリシー</Link>への同意が必要です。
+                会員登録には、<Link href={"/"}><a className={styles.underLine}>利用規約</a></Link>および<Link href={"/"}><a className={styles.underLine}>プライバシーポリシー</a></Link>への同意が必要です。
             </p>
         </div>
     )
