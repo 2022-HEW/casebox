@@ -1,8 +1,29 @@
 .name{
-    text-align: center;
-    width: 80%;
     position: relative;
 }
-.name label{
+.name .form label{
     font-size: 1.5rem;
+    z-index: 3;
+    color: aqua;
+    position: absolute;
+    width: 100%;
+}
+.name .form input{
+    height: 30px;
+    width: 60%;
+    position: absolute;
+    left: 20%;
+    top: 10px;
+}
+
+/* 入力エラーが出たときの文字のcss */
+.name .error label[for="name"]{
+    font-size: 1rem;
+    color: red;
+    padding: none;
+    position: absolute;
+}
+.nam{
+    position: relative;
+    top: 300px;
 }

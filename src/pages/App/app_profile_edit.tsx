@@ -99,14 +99,18 @@ const Profile_edit = () => {
         />
       </div>
       <div className={styles.name}>
+        <div className={styles.form}>
         <Input
-          label="あだ名"
-          placeholder={profile.user_name}
-          state={name}
-          setState={setName}
-          name="name"
-        />
-        {error !== "" && <label htmlFor="name">{error}</label>}
+            label="あだ名"
+            placeholder={profile.user_name}
+            state={name}
+            setState={setName}
+            name="name"
+          />
+        </div>
+        <div className={styles.error}>
+          {error !== "" && <label htmlFor="name">{error}</label>}
+        </div>
       </div>
       <div className={styles.nam}>
         <Input
