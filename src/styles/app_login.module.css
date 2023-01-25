@@ -2,7 +2,7 @@
 .Container{
     height: 100vh;
     width: 100vw;
-    background-color: aquamarine;
+    background-color: white;
 }
 
 .subTitle{
@@ -12,7 +12,16 @@
 }
 
 .Container > p{
-    color: red;
+    display: flex;
+    font-size: 12px;
+}
+
+.Container > .underLine{
+    text-decoration: underline!important;
+}
+
+.Container > h1{
+    margin: 0;
 }
 
 
@@ -27,12 +36,16 @@
     gap: 8px;
 }
 
+.loginFormContainer > *{
+}
+
 /* 入力エリア */
 .loginFormContainer > .mailForm{
     width: 80%;
     height: 48px;
     max-width: 333px;
     border-radius: 10px;
+    /* background: white; */
 }
 
 .loginFormContainer > .passwordForm{
@@ -40,4 +53,5 @@
     height: 48px;
     max-width: 333px;
     border-radius: 10px;
+    /* background: white; */
 }

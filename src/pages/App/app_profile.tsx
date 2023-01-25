@@ -73,9 +73,11 @@ const LoginBox = () => {
         {user_id ? user_name : "ゲスト"}
         <span className={styles.sama}>様</span>
       </h2>
-      <Link href={user_id ? "./app_mypage" : "./app_login"}>
-        <Button label={user_id ? "プロフィールを見る" : "ログイン・会員登録"} />
-      </Link>
+      <div className={styles.loginbutton}>
+        <Link href={user_id ? "./app_mypage" : "./app_login"}>
+            <Button label={user_id ? "プロフィールを見る" : "ログイン・会員登録"} />
+        </Link>
+      </div>
     </div>
   );
 };

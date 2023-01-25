@@ -99,22 +99,28 @@ const Profile_edit = () => {
         />
       </div>
       <div className={styles.name}>
+        <div className={styles.form}>
         <Input
-          label="あだ名"
-          placeholder={profile.user_name}
-          state={name}
-          setState={setName}
-          name="name"
-        />
-        {error !== "" && <label htmlFor="name">{error}</label>}
+            label="あだ名"
+            placeholder={profile.user_name}
+            state={name}
+            setState={setName}
+            name="name"
+          />
+        </div>
+        <div className={styles.error}>
+          {error !== "" && <label htmlFor="name">{error}</label>}
+        </div>
       </div>
-      <Input
-        label="プロフィール"
-        placeholder={profile.user_comment}
-        state={comment}
-        setState={setComment}
-        name="profile"
-      />
+      <div className={styles.nam}>
+        <Input
+          label="プロフィール"
+          placeholder={profile.user_comment}
+          state={comment}
+          setState={setComment}
+          name="profile"
+        />
+      </div>
       <Button
         label="保存"
         onClick={() =>

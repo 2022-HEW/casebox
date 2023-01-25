@@ -1,5 +1,8 @@
 .name{
-    padding-left: 10px;
+    padding-left: 20px;
+}
+.loginbutton{
+    text-align: center;
 }
 .sama{
     font-size: 16px;
