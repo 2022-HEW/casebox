@@ -166,7 +166,9 @@ const OriginalCheck = () => {
             ＋
           </span>
         </div>
-        <Button label={"編集へ"} situ_name={"screen"} onClick={goEdit} />
+        <div style={{position:"relative",left:"50%",top:"30px"}}>
+          <Button label={"購入へ"} situ_name={"screen"} onClick={goEdit} />
+        </div>
       </div>
     );
   };
@@ -177,7 +179,7 @@ const OriginalCheck = () => {
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
       }}
     >
       <ProductView />
