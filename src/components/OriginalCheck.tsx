@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { Stage, Layer, Line, Group } from "react-konva";
 import useImage from "use-image";
-import { Image } from "react-konva";
+import Image from "next/image";
 import { Button } from "./common/Button";
 import { designState, imageState, productState } from "../atoms/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -18,7 +18,6 @@ const OriginalCheck = () => {
   const query = router.query;
   // const [designPath,setDesignPath] = useState<any>([])
   // const [designImage,setDesignImage] = useState("")
-  const [designPath, setDesignPath] = useRecoilState<any>(designState);
   const [designImage, setDesignImage] = useRecoilState(imageState);
   const [modelName, setModelName] = useState(
     "/iPhone/iPhone7/(PRODUCT)RED.png"
@@ -69,11 +68,11 @@ const OriginalCheck = () => {
     if (router.isReady) {
       // console.log(query.productID);
       // console.log(query.json);
-      getDesign(query.productID);
+      getThumbnailAzure(query.productID);
     }
   }, [query, router]);
 
-  const getDesign = async (userID: string | string[] | undefined) => {
+  const getThumbnailAzure = async(product_place:string | string[] | undefined) => {
     try {
       await fetch(`/api/blob_strage`, {
         method: "POST",
@@ -82,22 +81,20 @@ const OriginalCheck = () => {
         },
         body: JSON.stringify({
           //  アップロード
-          situ: "create",
-          place: query.productID,
+          situ: "thumbnail",
+          place: product_place,
+          // QRcode
+          // user_id: user_id,
+          // "situ":"create",
         }),
       })
         .then((res) => {
           return res.json();
         })
         .then((data) => {
-          // Azureからbase64を取ってくる
+          //         // Azureからbase64を取ってくる
+          //         setImagePath(data[0]);
           setDesignImage(data[0]);
-          setDesignPath(JSON.parse(data[1]));
-          // setModelName(data)
-          // console.log(JSON.parse(data[1]));
-          // console.log();
-          setModelName(JSON.parse(data[1]).model_name);
-          // console.log(designPath);
         });
     } catch (e) {
       console.error(e);
@@ -116,45 +113,12 @@ const OriginalCheck = () => {
     return (
       <>
         {designImage && (
-          <Stage
-            width={designPath.attrs.width}
-            height={designPath.attrs.height}
-          >
-            <Layer>
               <Image
-                image={phone}
-                width={designPath.children[0].children[0].attrs.width}
-                height={designPath.children[0].children[0].attrs.height}
+                src={designImage}
+                width={150}
+                height={300}
+                objectFit={"cover"}
               />
-              <Group draggable={true}>
-                <Image
-                  image={design}
-                  width={
-                    designPath.children[0].children[1].children[0].attrs.width
-                  }
-                  height={
-                    designPath.children[0].children[1].children[0].attrs.height
-                  }
-                  scaleX={
-                    designPath.children[0].children[1].children[0].attrs.scaleX
-                  }
-                  scaleY={
-                    designPath.children[0].children[1].children[0].attrs.scaleY
-                  }
-                  x={designPath.children[0].children[1].children[0].attrs.x}
-                  y={designPath.children[0].children[1].children[0].attrs.y}
-                />
-              </Group>
-
-              <Image
-                image={camera}
-                width={designPath.children[0].children[2].attrs.width}
-                height={designPath.children[0].children[2].attrs.height}
-                x={designPath.children[0].children[2].attrs.x}
-                y={designPath.children[0].children[2].attrs.y}
-              />
-            </Layer>
-          </Stage>
         )}
       </>
     );
