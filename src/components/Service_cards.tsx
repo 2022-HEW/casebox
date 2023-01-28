@@ -8,7 +8,7 @@ const Service_cards = ()=> {
         {
             href: "/template_select",
             name: "テンプレートケース",
-            desc: "もう既にデザインが仕上がっているケース",
+            desc: "CASEBOXスタッフにデザインされたケース",
             imgPath: '/service_select/template_select.png',
             width:"260",
             height:"120",
@@ -16,7 +16,7 @@ const Service_cards = ()=> {
         {
             href: "/scan",
             name: "オリジナルケース",
-            desc: "写真を自由に入れることができるオリジナルのケース",
+            desc: "写真を入れて作るあなただけのケース",
             imgPath: '/service_select/original.svg',
             width:"220",
             height:"120",
@@ -24,7 +24,7 @@ const Service_cards = ()=> {
         {
             href: "/device_select",
             name: "手書きケース",
-            desc: "自販機で自分で書いたイラストをケースできる",
+            desc: "自分で書いたイラストをケースにできる",
             imgPath: '/image/illust.svg',
             width:"220",
             height:"120",
