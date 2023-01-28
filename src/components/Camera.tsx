@@ -171,14 +171,13 @@ useEffect(()=>{
 
   return (
     <div className={styles.Container}>
-      <p>QR Code Scanner</p>
       <div className={styles.CameraContainer}> {/*style={{ display: 'grid' }}*/}
         <div>
           <video
             autoPlay
             playsInline={true}
             ref={videoRef}
-            style={{ width: '20%' }}
+            style={{ width: '100%' }}
           >
             <canvas width={videoWidth} height={videoHeight} ref={canvasRef} />
           </video>
