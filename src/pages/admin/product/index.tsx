@@ -4,11 +4,12 @@ import { Box } from "../../../components/admin/common/box";
 import { GlobalNav } from "../../../components/admin/common/globalNav";
 import { Nav } from "../../../components/admin/common/nav";
 import { SUBTITLE } from "../../../themes/admin/ProductNav";
-import { UploadDetail } from "./UploadDetail";
-import { UploadPicture } from "./UploadPicture";
+import { UploadDetail } from "../../../components/admin/product/UploadDetail";
+import { UploadPicture } from "../../../components/admin/product/UploadPicture";
 import { fetcher, InsertDB } from "../../../utils";
 import { InsertAzure } from "../../../utils";
 import useSWR from "swr";
+import { Body } from "../../../components/admin/common/body";
 
 const Product = () => {
   const [error, setError] = useState("画像が選択されていません");
@@ -65,27 +66,15 @@ const Product = () => {
 
     // DB登録処理
     InsertDB("/api/admin_sql", DBBody);
-    alert("登録されました")
+    alert("登録されました");
   };
 
   return (
     <Grid container gap={0}>
       <GlobalNav />
       <Nav title={"商品情報"} values={SUBTITLE} />
-      <Box>
-        <Grid
-          container
-          sx={{
-            backgroundColor: "#fff",
-            boxShadow: "2px 2px 7px 1px rgba(0, 0, 0, 0.07)",
-            borderRadius: "9px",
-            width: "97%",
-            height: "70%",
-            marginTop: "3%",
-          }}
-          justifyContent="center"
-          alignContent={"center"}
-        >
+      <Body>
+        <Box>
           <Grid item xs={5}>
             <UploadPicture
               imagePath={imagePath}
@@ -101,8 +90,8 @@ const Product = () => {
             />
             {error && <Typography color="error">※{error}</Typography>}
           </Grid>
-        </Grid>
-      </Box>
+        </Box>
+      </Body>
     </Grid>
   );
 };
