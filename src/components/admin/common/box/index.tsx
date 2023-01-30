@@ -14,8 +14,8 @@ export const Box = ({ children }: Box) => {
         boxShadow: "2px 2px 7px 1px rgba(0, 0, 0, 0.07)",
         borderRadius: "9px",
         width: "97%",
-        height: "70%",
         marginTop: "3%",
+        padding:"5% 0"
       }}
       justifyContent="center"
       alignContent={"center"}
