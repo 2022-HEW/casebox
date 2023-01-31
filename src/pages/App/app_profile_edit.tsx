@@ -112,14 +112,16 @@ const Profile_edit = () => {
           {error !== "" && <label htmlFor="name">{error}</label>}
         </div>
       </div>
-      <div className={styles.nam}>
-        <Input
-          label="プロフィール"
-          placeholder={profile.user_comment}
-          state={comment}
-          setState={setComment}
-          name="profile"
-        />
+      <div className={styles.name}>
+        <div className={styles.form}>
+          <Input
+            label="プロフィール"
+            placeholder={profile.user_comment}
+            state={comment}
+            setState={setComment}
+            name="profile"
+          />
+        </div>
       </div>
       <Button
         label="保存"
