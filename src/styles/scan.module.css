@@ -84,7 +84,10 @@
 .Container{
   width: 50%;
   height: 100%;
-  background-color: #4CB8F4;
+  
+  display: flex;
+  justify-content:center;
+  align-items: center;
 }
 
 /* pタグの余白リセット */

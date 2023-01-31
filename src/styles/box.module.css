@@ -5,6 +5,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    display: flex;
 }
 #screen{
     width: 77vw;
@@ -18,4 +19,21 @@
     height: 708px;
     margin: 6px 0px 0 25px;
     border-radius: 12px;
+}
+#side{
+    margin-top: 100px;
+    display: flex;
+    width: 21%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+}
+#coin{
+    display: flex;
+    justify-content: center;
+    padding: -10px;
+}
+.coin_info{
+    position: relative;
+    bottom:15px;
 }

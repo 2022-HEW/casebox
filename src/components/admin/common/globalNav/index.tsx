@@ -50,7 +50,7 @@ export const GlobalNav = () => {
     >
       <Grid item>
         <LocalOfferIcon
-          {...(router.pathname === "/admin/product"
+          {...(!router.pathname.includes("/admin/chart") 
             ? ICON_VARIANT
             : NEW_ICON_VARIANT)}
           onClick={() => handleClickIcon("/admin/product")}
@@ -58,7 +58,7 @@ export const GlobalNav = () => {
       </Grid>
       <Grid item xs={8.75}>
         <ShowChartIcon
-          {...(router.pathname === "/admin/chart"
+          {...(!router.pathname.includes("/admin/product")
             ? ICON_VARIANT
             : NEW_ICON_VARIANT)}
           onClick={() => handleClickIcon("/admin/chart")}
@@ -79,13 +79,13 @@ export const GlobalNav = () => {
               alignItems={"center"}
               sx={{ width: "60vw", height: "50vh" }}
             >
-              <Grid xs={5} item/>
+              <Grid xs={5} item />
               <Grid item>
                 <Button
                   onClick={handleLogout}
                   color={"error"}
                   variant="contained"
-                  sx={{ fontSize: "1.3rem" ,width:"20vw"}}
+                  sx={{ fontSize: "1.3rem", width: "20vw" }}
                 >
                   ログアウト
                 </Button>
@@ -94,8 +94,7 @@ export const GlobalNav = () => {
                 <Button
                   onClick={handleClose}
                   variant="text"
-                  sx={{ fontSize: "1.3rem" ,width:"20vw", color: "#222" }}
-                  
+                  sx={{ fontSize: "1.3rem", width: "20vw", color: "#222" }}
                 >
                   キャンセル
                 </Button>

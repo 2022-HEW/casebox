@@ -72,12 +72,9 @@ const Product_box = ({
   useEffect(() => {
     if (case_category === "user") {
       getThumbnailAzure();
-    }
+    }  
   }, []);
-
-  useEffect(() => {
-    console.log(originalPlace);
-  });
+  
 
   // モーダルを動かして、商品IDを送る
   function Modal_toggle(e: React.MouseEvent<HTMLDivElement>) {
