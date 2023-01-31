@@ -100,9 +100,9 @@ const FilterBox=({setFilter}:Filter)=>{
             <div>
                 <div>
                     <label>
-                        {label}
+                        {label}<div id="check"></div>
                         {/* <input value="" type="checkbox" style={{display:"none"}}/> */}
-                        <input value={label} type="radio" id='filter' name='filter' onChange={(e)=>{setFilter(e.target.value)}}/>
+                        <input value={label} type="radio" id='filter' name='filter' style={{display:"none"}} onChange={(e)=>{setFilter(e.target.value)}}/>
                     </label>
                 </div>
             </div>
