@@ -20,23 +20,53 @@ export const ProductBox = ({
     getThumbnailAzure(product_place, setUserProductImage);
   }
   return (
-    <Grid container direction={"column"}>
+    <Grid container direction={"column"}
+    sx={{margin:"10px",position:"relative",top:"250px"}}
+    >
       <Grid item>
         <Image
-        // 投稿者がユーザーか運営か
-          src={m_product_category ==="user" ? userProductImage : "/product_image/" + product_place}
+          // 投稿者がユーザーか運営か
+          src={
+            m_product_category === "user"
+              ? userProductImage
+              : "/product_image/" + product_place
+          }
           width={100}
           height={100}
         />
       </Grid>
       <Grid item>
-        <Typography>{product_name}</Typography>
+        <Typography
+          sx={{
+            fontStyle: "normal",
+            fontWeight: "bold",
+            fontSize: "16px",
+            lineHeight: "30px",
+            color: "#333333",
+          }}
+        >
+          {product_name}
+        </Typography>
       </Grid>
       <Grid item>
-        <Typography>{m_product_category}</Typography>
+        <Typography
+        sx={{
+            fontStyle: "normal",
+            fontSize: "12px",
+            lineHeight: "20px",
+            color: "#888",
+          }}
+        >{m_product_category}</Typography>
       </Grid>
       <Grid item>
-        <Typography>{m_product_price}</Typography>
+        <Typography
+         sx={{
+            fontStyle: "normal",
+            fontSize: "12px",
+            lineHeight: "20px",
+            color: "#333",
+          }}
+        >￥{m_product_price.toLocaleString()}(税込)</Typography>
       </Grid>
     </Grid>
   );
