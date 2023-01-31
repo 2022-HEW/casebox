@@ -29,14 +29,16 @@ const app_login: NextPage = () => {
 const LoginBox = ({}) => {
   return (
     <div className={styles.Container}>
-      <h1>CASEBOX</h1>
+      <div className={styles.subTitle}>
+        <h1>CASEBOX</h1>
+      </div>
       <Form />
-      <Link href="./app_password_reset">
-        <p>パスワードを忘れた方</p>
-      </Link>
-      <Link href="./app_sign_up">
-        <p>新規会員登録</p>
-      </Link>
+
+        <Link href="./app_sign_up">
+          <div className={styles.signUp}>
+            <p>新規会員登録</p>
+          </div>
+        </Link>
     </div>
   );
 };
@@ -115,6 +117,11 @@ const Form = () => {
           setPassword(e.target.value);
         }}
       />
+
+      <Link href="./app_password_reset">
+        <a className={styles.passwordForget}>パスワードを忘れた方</a>
+      </Link>
+
       <Button label="ログイン" onClick={() => setLoginflg(true)} />
       </div>
     </>
