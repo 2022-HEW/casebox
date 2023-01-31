@@ -149,6 +149,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           return res.json(data);
         });
     }
+    
     if (situ === "thumbnail") {
       getThumbnailsInContainer(thumbnailContainerClient)
         .then((res) => {

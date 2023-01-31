@@ -15,7 +15,9 @@ export const Box = ({ children }: Box) => {
         borderRadius: "9px",
         width: "97%",
         marginTop: "3%",
-        padding:"5% 0"
+        padding:"5% 0",
+        maxHeight:"95vh",
+        overflowY:"scroll"
       }}
       justifyContent="center"
       alignContent={"center"}

@@ -10,7 +10,7 @@ export const Body = ({ children }: Body) => {
     <Grid
       container
       direction={"column"}
-      sx={{ width: "71.3vw", backgroundColor: "#EFF6FF" }}
+      sx={{ maxWidth: "71.3vw", backgroundColor: "#EFF6FF" }}
     >
       {children}
     </Grid>

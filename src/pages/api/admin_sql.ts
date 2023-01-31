@@ -58,6 +58,10 @@ export default async function handler(
       sql = `INSERT INTO t_products(product_name, user_id, product_created, product_place, m_product_ID, product_change_time, product_situation) 
       VALUES ("${product_name}",${user_id},NOW(),'${product_place}',${m_product_ID},NOW(),${product_situation})`;
       break;
+
+    case "getProducts":
+        sql = `SELECT tp.*,mp.* FROM t_products tp JOIN t_m_products mp ON tp.m_product_ID = mp.m_product_ID`;
+        break;
     default:
       console.log("error");
   }
