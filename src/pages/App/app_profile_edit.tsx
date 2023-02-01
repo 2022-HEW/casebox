@@ -123,6 +123,7 @@ const Profile_edit = () => {
           />
         </div>
       </div>
+      <div className={styles.hozon}>
       <Button
         label="保存"
         onClick={() =>
@@ -136,6 +137,7 @@ const Profile_edit = () => {
           )
         }
       />
+      </div>
       <Modal>
         <App_modal_body title="プロフィール画像選択">
           <IconCheck setImagePath={setImagePath}/>
