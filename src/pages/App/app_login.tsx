@@ -19,10 +19,10 @@ import { fetcher } from "../../utils";
 
 const app_login: NextPage = () => {
   return (
-    <div className={styles.Container}>
+    <>
       <App_header label="ログイン" />
       <LoginBox />
-    </div>
+    </>
   );
 };
 
