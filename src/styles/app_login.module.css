@@ -7,17 +7,23 @@
 
 .subTitle{
     display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
     /* margin: 70px auto 0px auto; */
+}
+
+.subTitle > p{
+    font-size: 10px;
 }
 
 .Container > p{
     display: flex;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .Container > .underLine{
-    text-decoration: underline!important;
+    text-decoration: solid!important;
 }
 
 .Container > h1{
@@ -57,7 +63,7 @@
 
 /* パスワード忘れた人 */
 .passwordForget{
-    font-size: 12px;
+    font-size: 10px;
     position: relative;
     left: 100px;
 }
@@ -69,5 +75,24 @@
 }
 
 .signUp > p{
-    font-size: 12px;
+    font-size: 10px;
+}
+
+
+/* パスワードリセット */
+.passwordResetContainer{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.passwordReset{
+    width: 80%;
+    height: 48px;
+    max-width: 333px;
+    border: solid 1px #dddddd;
+    border-radius: 8px;
+    background: white;
 }
