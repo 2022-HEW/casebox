@@ -15,12 +15,12 @@ const ProductList = () => {
       <GlobalNav />
       <Nav title={"商品情報"} values={SUBTITLE} />
       <Body direction="row" justifyContent="space-evenly">
-            <Box width="45%" alignContent="start" >
-              <StockTable />
-            </Box>
-            <Box width="45%" alignContent="start">
-              <StockTable />
-            </Box>
+        <Box width="45%" alignContent="start">
+          <StockTable device={"iPhone"} />
+        </Box>
+        <Box width="45%" alignContent="start">
+          <StockTable device={"Android"} />
+        </Box>
       </Body>
     </Grid>
   );

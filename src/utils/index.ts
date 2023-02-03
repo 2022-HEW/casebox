@@ -89,3 +89,11 @@ export const getProducts=()=>{
     CatchError:error
   })
 }
+
+export const getStocks=()=>{
+  const {data,error} = useSWR("/api/admin_sql?situ=getStocks",fetcher)
+  return({
+    stocks:data,
+    CatchError:error
+  })
+}

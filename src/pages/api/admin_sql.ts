@@ -60,8 +60,12 @@ export default async function handler(
       break;
 
     case "getProducts":
-        sql = `SELECT tp.*,mp.* FROM t_products tp JOIN t_m_products mp ON tp.m_product_ID = mp.m_product_ID`;
-        break;
+      sql = `SELECT tp.*,mp.* FROM t_products tp JOIN t_m_products mp ON tp.m_product_ID = mp.m_product_ID`;
+      break;
+
+    case "getStocks":
+      sql = `SELECT model_name,model_stocks,model_stock_limit,model_id,model_stock_standard FROM t_stocks`;
+      break;
     default:
       console.log("error");
   }
