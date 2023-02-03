@@ -12,7 +12,7 @@ import useSWR from "swr";
 import { Body } from "../../../components/admin/common/body";
 
 const Product = () => {
-  const [error, setError] = useState("画像が選択されていません");
+  const [error, setError] = useState("");
   const [imagePath, setImagePath] = useState<any>("/image/imageEdit.svg");
   const [imageFile, setImageFile] = useState<Blob>();
 
@@ -47,7 +47,12 @@ const Product = () => {
       return;
     }
     if (error !== "") {
-      console.log(error);
+      // console.log(error);
+      return;
+    }
+    if(!imageFile){
+      console.log();
+      setError("画像が選択されていません")
       return;
     }
     const ImageExt = imageFile?.name.substring(
