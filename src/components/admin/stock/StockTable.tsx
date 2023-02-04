@@ -13,7 +13,7 @@ import {
   TableRow,
 } from "@mui/material";
 import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
-import { getStocks } from "../../../utils";
+import { getDB } from "../../../utils";
 import { Stock } from "../../../types/admin/Stock";
 import { ModalItem } from "./ModalItem";
 import Input from "@mui/material/Input";
@@ -25,27 +25,27 @@ type StockTable = {
 };
 
 export const StockTable = ({ device }: StockTable) => {
-  const { stocks, CatchError } = getStocks();
+  const { result, CatchError } = getDB("Stocks");
   const [isOpen, setIsOpen] = useState(false);
   const [stockIndex, setStockIndex] = useState(0);
   const [addStock, setAddStock] = useState<number | undefined>();
-  const [stock,setStock] = useState(0)
+  const [stock, setStock] = useState(0);
   const [stockResult, setStockResult] = useState(0);
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
   const handleClickOrder = (index: number) => {
     handleOpen();
     setStockIndex(index);
-    setStock(stocks[index].model_stocks)
+    setStock(result[index].model_stocks);
   };
   const handleChangeAddStock = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     if (!Number.isNaN(stock + Number(e.currentTarget.value))) {
       console.log(typeof stockResult);
-      
+
       setAddStock(Number(e.target.value));
-      setStockResult(stock + Number(e.currentTarget.value))
+      setStockResult(stock + Number(e.currentTarget.value));
     } else {
       // console.log(typeof e.currentTarget.value);
     }
@@ -53,7 +53,7 @@ export const StockTable = ({ device }: StockTable) => {
 
   return (
     <>
-      {stocks && (
+      {result && (
         <>
           <TableContainer sx={{ marginTop: "-11.5%" }}>
             <Table>
@@ -78,7 +78,7 @@ export const StockTable = ({ device }: StockTable) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {stocks.map(
+                {result.map(
                   (value: Stock, index: number) =>
                     // iPhoneかつ名前にiPhoneが入っているか
                     // またはAndroidかつ名前にいiPhoneが入ってない
@@ -135,16 +135,16 @@ export const StockTable = ({ device }: StockTable) => {
                 >
                   <ModalItem
                     title={"機種名"}
-                    value={stocks[stockIndex].model_name}
+                    value={result[stockIndex].model_name}
                     positionLeft={"21%"}
                   />
                   <ModalItem
                     title={"補充前数量"}
-                    value={stocks[stockIndex].model_stocks}
+                    value={result[stockIndex].model_stocks}
                   />
                   <ModalItem
                     title={"補充水準数量"}
-                    value={stocks[stockIndex].model_stock_standard}
+                    value={result[stockIndex].model_stock_standard}
                   />
                   <ModalItem
                     title={"補充数量"}
