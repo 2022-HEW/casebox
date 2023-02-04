@@ -19,6 +19,7 @@ import { ModalItem } from "./ModalItem";
 import Input from "@mui/material/Input";
 import TextField from "@mui/material/TextField";
 import useEffectCustom from "../../common/useEffectCustom";
+import { InsertDB } from "../../../utils";
 
 type StockTable = {
   device: "iPhone" | "Android";
@@ -28,11 +29,15 @@ export const StockTable = ({ device }: StockTable) => {
   const { result, CatchError } = getDB("Stocks");
   const [isOpen, setIsOpen] = useState(false);
   const [stockIndex, setStockIndex] = useState(0);
-  const [addStock, setAddStock] = useState<number | undefined>();
+  const [addStock, setAddStock] = useState(0);
   const [stock, setStock] = useState(0);
   const [stockResult, setStockResult] = useState(0);
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
+  // 補充後数量の初期値が0にならないように
+  useEffectCustom(()=>{
+    setStockResult(stock)
+  },[stock])
   const handleClickOrder = (index: number) => {
     handleOpen();
     setStockIndex(index);
@@ -50,6 +55,25 @@ export const StockTable = ({ device }: StockTable) => {
       // console.log(typeof e.currentTarget.value);
     }
   };
+
+  const handleClickAddDB=()=>{    
+    const tradeBody = {
+      situ:"addTrade",
+      model_id:result[stockIndex].model_id,
+      add_quant:addStock,
+      transaction_cost:addStock * result[stockIndex].model_price
+    }
+    const stockBody = {
+      situ:"addStock",
+      model_quant:stockResult,
+      model_id:result[stockIndex].model_id
+    }
+    InsertDB(tradeBody)
+    InsertDB(stockBody)
+    alert("発注しました")
+    setAddStock(0)
+    handleClose()
+  }
 
   return (
     <>
@@ -136,7 +160,7 @@ export const StockTable = ({ device }: StockTable) => {
                   <ModalItem
                     title={"機種名"}
                     value={result[stockIndex].model_name}
-                    positionLeft={"21%"}
+                    positionLeft={"3.4vw"}
                   />
                   <ModalItem
                     title={"補充前数量"}
@@ -150,25 +174,30 @@ export const StockTable = ({ device }: StockTable) => {
                     title={"補充数量"}
                     isAble={true}
                     value={""}
-                    positionLeft={"5.6vw"}
+                    positionLeft={"4.92vw"}
                   >
                     <TextField
                       size={"small"}
                       sx={{ width: "100px", height: "10px" }}
-                      minRows={4}
                       onChange={handleChangeAddStock}
                       value={addStock}
                       // type={"number"}
                     />
                   </ModalItem>
                   <ModalItem title={"補充後数量"} value={stockResult} />
+                  <ModalItem
+                    title={"金額"}
+                    value={result[stockIndex].model_price * addStock}
+                    positionLeft={"-2vw"}
+
+                  />
                 </Grid>
               </Grid>
               <DialogActions>
                 <Grid container direction={"column"} gap={2}>
                   <Grid item>
                     <Button
-                      onClick={() => {}}
+                      onClick={handleClickAddDB}
                       color={"primary"}
                       variant="contained"
                       sx={{ fontSize: "2vh", width: "20vw" }}

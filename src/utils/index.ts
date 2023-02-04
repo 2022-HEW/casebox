@@ -24,8 +24,8 @@ export const fetcher = async (
   return res.json();
 };
 
-export const InsertDB = async (url: string, body?: Body) => {
-  await fetch(url, {
+export const InsertDB = async (body: Body) => {
+  await fetch(`/api/admin_sql`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -74,26 +74,10 @@ export const getThumbnailAzure = async(product_place:string | string[] | undefin
   }
 };
 
-export const getCategory = ()=>{
-  const {data,error} = useSWR("/api/admin_sql?situ=getCategory",fetcher)
+export const getDB=(option:string)=>{
+  const {data,error} = useSWR(`/api/admin_sql?situ=get${option}`,fetcher)
   return({
-    categories:data,
-    CatchError:error
-  })
-}
-
-export const getProducts=()=>{
-  const {data,error} = useSWR("/api/admin_sql?situ=getProducts",fetcher)
-  return({
-    products:data,
-    CatchError:error
-  })
-}
-
-export const getStocks=()=>{
-  const {data,error} = useSWR("/api/admin_sql?situ=getStocks",fetcher)
-  return({
-    stocks:data,
+    result:data,
     CatchError:error
   })
 }
