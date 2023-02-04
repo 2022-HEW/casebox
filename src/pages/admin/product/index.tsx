@@ -50,9 +50,9 @@ const Product = () => {
       // console.log(error);
       return;
     }
-    if(!imageFile){
+    if (!imageFile) {
       console.log();
-      setError("画像が選択されていません")
+      setError("画像が選択されていません");
       return;
     }
     const ImageExt = imageFile?.name.substring(
@@ -80,14 +80,27 @@ const Product = () => {
       <Nav title={"商品情報"} values={SUBTITLE} />
       <Body>
         <Box>
-          <Grid item xs={5}>
-            <UploadPicture
-              imagePath={imagePath}
-              setImagePath={setImagePath}
-              setError={handleSetError}
-              setImageFile={setImageFile}
-            />
+          <Grid item xs={5} container direction={"column"}>
+            <Grid item>
+              <UploadPicture
+                title={"サムネイル"}
+                imagePath={imagePath}
+                setImagePath={setImagePath}
+                setError={handleSetError}
+                setImageFile={setImageFile}
+              />
+            </Grid>
+            <Grid item>
+              <UploadPicture
+                title={"デザインイメージ"}
+                imagePath={imagePath}
+                setImagePath={setImagePath}
+                setError={handleSetError}
+                setImageFile={setImageFile}
+              />
+            </Grid>
           </Grid>
+
           <Grid item xs={5} justifyContent={"center"} alignContent={"center"}>
             <UploadDetail
               setError={handleSetError}

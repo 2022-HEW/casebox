@@ -11,13 +11,20 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { File } from "formidable";
 
 type Props = {
+  title: string;
   imagePath: string;
   setError: (text: string) => void;
   setImagePath: Dispatch<SetStateAction<any>>;
-  setImageFile: Dispatch<SetStateAction<Blob|undefined>>;
+  setImageFile: Dispatch<SetStateAction<Blob | undefined>>;
 };
 
-export const UploadPicture = ({ setError, imagePath, setImagePath,setImageFile }: Props) => {
+export const UploadPicture = ({
+  title,
+  setError,
+  imagePath,
+  setImagePath,
+  setImageFile,
+}: Props) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const handleClickImage = () => {
@@ -25,7 +32,7 @@ export const UploadPicture = ({ setError, imagePath, setImagePath,setImageFile }
   };
 
   const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0];
     // 何も選択されなかったら処理中断
     if (e.target.files?.length === 0) {
       setError("画像が選択されていません");
@@ -35,8 +42,8 @@ export const UploadPicture = ({ setError, imagePath, setImagePath,setImageFile }
       setError("画像ファイルを選択してください");
       return;
     }
-    if(file){
-        setImageFile(file)
+    if (file) {
+      setImageFile(file);
     }
 
     // FileReaderクラスのインスタンスを取得
@@ -55,8 +62,8 @@ export const UploadPicture = ({ setError, imagePath, setImagePath,setImageFile }
   };
 
   return (
-    <Grid container direction="column" gap={3}>
-      <Grid item>商品画像</Grid>
+    <Grid container direction="column" gap={2}>
+      <Grid item>{title}</Grid>
       <Grid item>
         <Image
           width={225}

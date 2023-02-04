@@ -40,7 +40,7 @@ export const UploadDetail = ({ handleRegister }: Props) => {
   };
 
   return (
-    <Grid container direction={"column"} gap={4} justifyContent="center">
+    <Grid container direction={"column"} gap={7} justifyContent="center">
       <Grid item>
         <TextField
           label="商品名"
