@@ -32,7 +32,7 @@ const addLoginUser = async (userID: string) => {
     situ: "addLogin",
     user_id: userID,
   };
-  InsertDB("/api/admin_sql", body);
+  InsertDB(body);
 };
 
 const handleChangeInput = (
