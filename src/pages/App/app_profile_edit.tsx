@@ -90,7 +90,7 @@ const Profile_edit = () => {
 
   return (
     <div>
-      <div>
+      <div className={styles.picture}>
         <Image
           src={imagePath}
           width={100}
