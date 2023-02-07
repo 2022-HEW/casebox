@@ -9,30 +9,26 @@ export const config = {
 };
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") return;
+  const { path } = req.query;
 
   const form = formidable({ multiples: false, uploadDir: __dirname });
 
   form.onPart = (part) => {
-    
     // let formidable handle only non-file parts
     if (part.originalFilename === "" || !part.mimetype) {
       // used internally, please do not override!
       form._handlePart(part);
     } else if (part.originalFilename) {
       // 以下でファイルを書き出ししている
-      let Ext = part.mimetype.replace("image/",".")
-      if(Ext === ".jpeg"){
-        Ext = ".jpg"
-      } 
+      let Ext = part.mimetype.replace("image/", ".");
+      if (Ext === ".jpeg") {
+        Ext = ".jpg";
+      }
       // /public/imagesディレクトリがないと正常に動かないので作成すること
 
       // const path = "./public/product_image/" + new Date().getTime()  + `.${part.mimetype}`;
-      const path =
-        "./public/product_image/" +
-        part.originalFilename +
-        Ext
-      const stream = createWriteStream(path);
-      
+      const downloadPath = path + part.originalFilename + Ext;
+      const stream = createWriteStream(downloadPath);
 
       part.pipe(stream);
 

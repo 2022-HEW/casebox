@@ -58,7 +58,7 @@ export const GlobalNav = () => {
       </Grid>
       <Grid item xs={8.75}>
         <ShowChartIcon
-          {...(!router.pathname.includes("/admin/product")
+          {...(router.pathname.includes("/admin/chart")
             ? ICON_VARIANT
             : NEW_ICON_VARIANT)}
           onClick={() => handleClickIcon("/admin/chart")}

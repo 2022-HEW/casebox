@@ -12,23 +12,26 @@ import useSWR from "swr";
 import { Body } from "../../../components/admin/common/body";
 
 const Product = () => {
-  const [error, setError] = useState("画像が選択されていません");
-  const [imagePath, setImagePath] = useState<any>("/image/imageEdit.svg");
-  const [imageFile, setImageFile] = useState<Blob>();
+  const [error, setError] = useState("");
+  const [thumbnailPath, setThumbnailPath] = useState<any>("/image/imageEdit.svg");
+  const [thumbnailFile, setThumbnailFile] = useState<Blob>();
+  const [designPath,setDesignPath] = useState<any>("/image/imageEdit.svg");
+  const [designFile, setDesignFile] = useState<Blob>();
+
 
   const handleSetError = (text: string) => {
     setError(text);
   };
 
-  const SetFormData = async (name: string) => {
+  const SetFormData = async (name: string,file:Blob,path:string) => {
     const formData = new FormData();
-    if (imageFile) {
-      const blob = imageFile.slice(0, imageFile.size, imageFile.type);
+    if (file) {
+      const blob = file.slice(0, file.size, file.type);
       // ファイル名称変更後のファイルオブジェクト
-      const renamedFile = new File([blob], name, { type: imageFile.type });
+      const renamedFile = new File([blob], name, { type: file.type });
       formData.append("files", renamedFile);
 
-      const post = await fetch(`/api/downloadImage`, {
+      const post = await fetch(`/api/downloadImage?path=${path}`, {
         method: "POST",
         body: formData,
       });
@@ -47,14 +50,23 @@ const Product = () => {
       return;
     }
     if (error !== "") {
-      console.log(error);
+      // console.log(error);
       return;
     }
-    const ImageExt = imageFile?.name.substring(
-      imageFile?.name.lastIndexOf(".") + 1
+    if (!thumbnailFile || !designFile) {
+      setError("画像が選択されていません");
+      console.log(thumbnailFile);
+      console.log(designFile);
+      
+      return;
+    }
+    const ImageExt = thumbnailFile?.name.substring(
+      thumbnailFile?.name.lastIndexOf(".") + 1
     );
+// 画像保存
+    SetFormData(text,thumbnailFile,"./public/product_image/");
+    SetFormData(text,designFile,"./public/design/");
 
-    SetFormData(text);
     const DBBody = {
       situ: "addProduct",
       product_name: text,
@@ -64,8 +76,8 @@ const Product = () => {
       product_situation: situation,
     };
 
-    // DB登録処理
-    InsertDB("/api/admin_sql", DBBody);
+    // DB登録処理：名前さえ入っていればどっちも取れる
+    InsertDB(DBBody);
     alert("登録されました");
   };
 
@@ -75,14 +87,27 @@ const Product = () => {
       <Nav title={"商品情報"} values={SUBTITLE} />
       <Body>
         <Box>
-          <Grid item xs={5}>
-            <UploadPicture
-              imagePath={imagePath}
-              setImagePath={setImagePath}
-              setError={handleSetError}
-              setImageFile={setImageFile}
-            />
+          <Grid item xs={5} container direction={"column"}>
+            <Grid item>
+              <UploadPicture
+                title={"サムネイル"}
+                imagePath={thumbnailPath}
+                setImagePath={setThumbnailPath}
+                setError={handleSetError}
+                setImageFile={setThumbnailFile}
+              />
+            </Grid>
+            <Grid item>
+              <UploadPicture
+                title={"デザインイメージ"}
+                imagePath={designPath}
+                setImagePath={setDesignPath}
+                setError={handleSetError}
+                setImageFile={setDesignFile}
+              />
+            </Grid>
           </Grid>
+
           <Grid item xs={5} justifyContent={"center"} alignContent={"center"}>
             <UploadDetail
               setError={handleSetError}

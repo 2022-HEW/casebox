@@ -39,6 +39,10 @@ export default async function handler(
   const product_place = req.body.product_place;
   const m_product_ID = req.body.m_product_ID;
   const product_situation = req.body.product_situation;
+  const model_id = req.body.model_id
+  const add_quant = req.body.add_quant
+  const transaction_cost = req.body.transaction_cost
+  const model_quant = req.body.model_quant
 
   let sql = "";
   switch (situ) {
@@ -60,8 +64,18 @@ export default async function handler(
       break;
 
     case "getProducts":
-        sql = `SELECT tp.*,mp.* FROM t_products tp JOIN t_m_products mp ON tp.m_product_ID = mp.m_product_ID`;
-        break;
+      sql = `SELECT tp.*,mp.* FROM t_products tp JOIN t_m_products mp ON tp.m_product_ID = mp.m_product_ID`;
+      break;
+
+    case "getStocks":
+      sql = `SELECT model_name,model_stocks,model_stock_limit,model_id,model_stock_standard,model_price FROM t_stocks`;
+      break;
+    case "addTrade":
+      sql = `INSERT INTO t_trades(model_id,transaction_date,model_quant,transaction_cost) VALUES (${model_id},NOW(),${add_quant},${transaction_cost})`
+      break;
+    case "addStock":
+        sql = `UPDATE t_stocks SET model_stocks = ${model_quant} WHERE model_id = ${model_id}`
+      break;
     default:
       console.log("error");
   }

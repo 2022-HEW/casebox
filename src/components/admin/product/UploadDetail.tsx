@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { getCategory } from "../../../utils";
+import { getDB } from "../../../utils";
 
 
 type Props = {
@@ -20,11 +20,11 @@ export const UploadDetail = ({ handleRegister }: Props) => {
   const [text, setText] = useState("");
   const [category, setCategory] = useState<number>(1);
   const [isOpen, setIsOpen] = useState(1);
-  const { categories, CatchError } = getCategory();
+  const { result, CatchError } = getDB("Category");
 
-  useEffect(() => {
-    console.log(categories);
-  }, [categories]);
+  // useEffect(() => {
+  //   console.log(result);
+  // }, [result]);
   
 
 
@@ -40,7 +40,7 @@ export const UploadDetail = ({ handleRegister }: Props) => {
   };
 
   return (
-    <Grid container direction={"column"} gap={4} justifyContent="center">
+    <Grid container direction={"column"} gap={7} justifyContent="center">
       <Grid item>
         <TextField
           label="商品名"
@@ -63,7 +63,7 @@ export const UploadDetail = ({ handleRegister }: Props) => {
             defaultValue={1}
           >
             
-            {categories && categories.map((value:{m_product_ID:number,m_product_category:string},index:number)=>
+            {result && result.map((value:{m_product_ID:number,m_product_category:string},index:number)=>
                 <MenuItem value={value.m_product_ID} key={index}>{value.m_product_category}</MenuItem>
             )}
           </Select>
