@@ -6,6 +6,8 @@ import useSWR from "swr";
 import { fetcher, InsertDB } from "../../../utils";
 import useEffectCustom from "../../../components/common/useEffectCustom";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { productState } from "../../../atoms/admin_atoms";
 
 type UserInfo = {
   user_id: string;
@@ -21,7 +23,7 @@ const getUserInfo = async (
       return res.json();
     })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
 
       setState(data[0]);
     });
@@ -51,6 +53,7 @@ const login: NextPage = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const [isError,setIsError] = useState(false)
+  const [user,setUser] = useRecoilState(productState)
 
   const handleClickLogin = () => {
     getUserInfo(email, setUserInfo);
@@ -63,6 +66,7 @@ const login: NextPage = () => {
     if(userInfo){
       if (password === userInfo.password) {
         addLoginUser(userInfo.user_id);
+        setUser({userID:userInfo.user_id})
         router.push({ pathname: "/admin/product/" });
       }else{
         setIsError(true)
