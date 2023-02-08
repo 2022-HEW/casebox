@@ -101,11 +101,13 @@
   .radio:checked + .check {
     display: inline-block;
     content: '';
-    width: 10px;
-    height: 5px;
-    border-left: 2px solid #039;
-    border-bottom: 2px solid #039;
+    width: 15px;
+    height: 10px;
+    border-left: 2px solid #4C85F4;
+    border-bottom: 2px solid #4C85F4;
     transform: rotate(-45deg);
+    position: absolute;
+    left: 350px;
   }
 
   .option{
