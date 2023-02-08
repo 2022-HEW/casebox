@@ -13,7 +13,7 @@ import useSWR from "swr";
 import { profileState } from "../../atoms/app_atoms";
 import { Button } from "../../components/common/App_button";
 import App_header from "../../components/common/App_header";
-import styles from "../../styles/app_login.module.css";
+import styles from "../../styles/app_login.module.scss";
 import { fetcher } from "../../utils";
 
 
@@ -102,16 +102,18 @@ const Form = () => {
       <div className={styles.loginErrMsg}>
         {LoginError && <p className={styles.loginErr}>メールアドレス、またはパスワードが違います。</p>}
       </div>
+
       <input
-        className={styles.mailForm}
+        className={LoginError ? styles.milFromError : styles.mailForm}
         placeholder="メールアドレス"
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);
         }}
       />
+
       <input
-        className={styles.passwordForm}
+        className={LoginError ? styles.passwordFromError : styles.passwordForm}
         type={"password"}
         placeholder="パスワード"
         value={password}
