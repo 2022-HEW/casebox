@@ -15,15 +15,18 @@
 
 .subTitle > p{
     font-size: 10px;
+    margin: 3px 0;
 }
 
 .Container > p{
     display: flex;
     font-size: 10px;
+    justify-content: center;
+    /* margin: 0; */
 }
 
-.Container > .underLine{
-    text-decoration: solid!important;
+.Container p > .underLine{
+    text-decoration: underline!important;
 }
 
 .Container > h1{
@@ -50,6 +53,7 @@
     border: solid 1px #dddddd;
     border-radius: 8px;
     background: white;
+    color: black;
 }
 
 .loginFormContainer > .passwordForm{
@@ -59,6 +63,7 @@
     border: solid 1px #dddddd;
     border-radius: 8px;
     background: white;
+    color: black;
 }
 
 /* パスワード忘れた人 */
@@ -82,10 +87,11 @@
 /* パスワードリセット */
 .passwordResetContainer{
     width: 100vw;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
 }
 
 .passwordReset{
@@ -95,4 +101,17 @@
     border: solid 1px #dddddd;
     border-radius: 8px;
     background: white;
+}
+
+/* ログインエラーメッセージ */
+.loginErrMsg{
+    width: 80vw;
+    display: flex;
+    justify-content: left;
+}
+
+.loginErrMsg > .loginErr{
+    color: #E55C5C;
+    font-size: 10px;
+    margin: 0;
 }

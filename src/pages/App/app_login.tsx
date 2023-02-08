@@ -99,7 +99,9 @@ const Form = () => {
   return (
     <>
     <div className={styles.loginFormContainer}>
-      {LoginError && <p>メールアドレス、またはパスワードが違います。</p>}
+      <div className={styles.loginErrMsg}>
+        {LoginError && <p className={styles.loginErr}>メールアドレス、またはパスワードが違います。</p>}
+      </div>
       <input
         className={styles.mailForm}
         placeholder="メールアドレス"
