@@ -31,8 +31,10 @@ type Props={
 const SearchHeader = ({text,setText}:Props) =>{
     return(
         <header className={styles.header}>
-            <Image width={10} height={10} src={"/image/search.svg"}/>
+            <div className={styles.search}>
+            <Image width={15} height={10} src={"/image/search.svg"}/>
             <input type="text" name="search" value={text} placeholder="探す" onChange={(e)=>{setText && setText(e.target.value)}}/>
+            </div>
         </header>
     )
 }

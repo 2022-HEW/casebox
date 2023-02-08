@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import React, { useState } from 'react'
 import { Button } from '../../components/common/App_button'
 import App_header from '../../components/common/App_header'
-import styles from '../../styles/app_login.module.css';
+import styles from '../../styles/app_login.module.scss';
 
 const app_password_reset:NextPage = () => {
 
@@ -34,7 +34,7 @@ const Form=()=>{
     }
     return(
         <div className={styles.passwordResetContainer}>
-            <input className={styles.passwordReset} type={"text"} value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <input className={styles.passwordReset} type={"text"} placeholder="メールアドレス" value={email} onChange={(e)=>setEmail(e.target.value)}/>
             <Button label='送信する' onClick={Sendmail}/>
         </div>
     )
