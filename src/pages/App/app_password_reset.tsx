@@ -34,7 +34,7 @@ const Form=()=>{
     }
     return(
         <div className={styles.passwordResetContainer}>
-            <input className={styles.passwordReset} type={"text"} value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <input className={styles.passwordReset} type={"text"} placeholder="メールアドレス" value={email} onChange={(e)=>setEmail(e.target.value)}/>
             <Button label='送信する' onClick={Sendmail}/>
         </div>
     )
