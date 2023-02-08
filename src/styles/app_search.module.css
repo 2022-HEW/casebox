@@ -87,5 +87,33 @@
   .cancel{
     position: relative;
     top: 1em;
-    left: 10em;
+    left: 7em;
+  }
+
+  .radio{
+    display: none;
+  }
+
+  .radio:checked{
+    display: none;
+  }
+
+  .radio:checked + .check {
+    display: inline-block;
+    content: '';
+    width: 10px;
+    height: 5px;
+    border-left: 2px solid #039;
+    border-bottom: 2px solid #039;
+    transform: rotate(-45deg);
+  }
+
+  .option{
+    margin-left: 50px;
+    margin-right: 30px;
+  }
+
+  .option p{
+    padding: 5px 5px 15px 5px;
+    border-bottom: #777777 solid 1px;
   }
