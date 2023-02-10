@@ -39,10 +39,11 @@ export default async function handler(
   const product_place = req.body.product_place;
   const m_product_ID = req.body.m_product_ID;
   const product_situation = req.body.product_situation;
-  const model_id = req.body.model_id
-  const add_quant = req.body.add_quant
-  const transaction_cost = req.body.transaction_cost
-  const model_quant = req.body.model_quant
+  const model_id = req.body.model_id;
+  const add_quant = req.body.add_quant;
+  const transaction_cost = req.body.transaction_cost;
+  const model_quant = req.body.model_quant;
+  const year = req.body.year;
 
   let sql = "";
   switch (situ) {
@@ -70,12 +71,20 @@ export default async function handler(
     case "getStocks":
       sql = `SELECT model_name,model_stocks,model_stock_limit,model_id,model_stock_standard,model_price FROM t_stocks`;
       break;
+
     case "addTrade":
-      sql = `INSERT INTO t_trades(model_id,transaction_date,model_quant,transaction_cost) VALUES (${model_id},NOW(),${add_quant},${transaction_cost})`
+      sql = `INSERT INTO t_trades(model_id,transaction_date,model_quant,transaction_cost) VALUES (${model_id},NOW(),${add_quant},${transaction_cost})`;
       break;
+
     case "addStock":
-        sql = `UPDATE t_stocks SET model_stocks = ${model_quant} WHERE model_id = ${model_id}`
+      sql = `UPDATE t_stocks SET model_stocks = ${model_quant} WHERE model_id = ${model_id}`;
       break;
+
+    case "getBuys":
+      sql = `SELECT  b.buy_money,b.buy_created,s.model_name, b.quant FROM t_buys b JOIN t_stocks s ON b.model_id = s.model_id 
+      WHERE b.buy_created > "${year}-01-01"`;
+      break;
+
     default:
       console.log("error");
   }

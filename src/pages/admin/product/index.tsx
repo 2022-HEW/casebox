@@ -11,7 +11,9 @@ import { InsertAzure } from "../../../utils";
 import useSWR from "swr";
 import { Body } from "../../../components/admin/common/body";
 import { getDB } from "../../../utils";
-const Product = () => {
+import { NextPage } from "next";
+
+const Product:NextPage = () => {
   const [error, setError] = useState("");
   const [thumbnailPath, setThumbnailPath] = useState<any>("/image/imageEdit.svg");
   const [thumbnailFile, setThumbnailFile] = useState<Blob>();
