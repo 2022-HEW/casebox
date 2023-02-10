@@ -4,7 +4,7 @@ export const SUBTITLE = [
       value: [
         {
           title: "商品売上グラフ",
-          url: "/admin/chart/",
+          url: "/admin/chart",
         },
         {
           title: "利用者グラフ",
