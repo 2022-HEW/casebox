@@ -23,13 +23,15 @@ export const Chart = ({ data }: Chart) => {
       <XAxis dataKey={"month"} />
       <YAxis />
       <Legend />
-      <Bar dataKey="TotalPrice" fill="#82ca9d" label="g"/>
+      <Bar dataKey="TotalPrice" fill="#82ca9d" label="g" />
     </BarChart>
   );
 };
 
 const SeparateMonth = (data: Buys[]): SeparateMonth[] => {
   const returnData = [];
+  const STR_MONTHS = [];
+  const strMonths = [];
   let thisMonthTradePrices = [data[0].buy_money];
 
   for (let i = 1; i < data.length; i++) {
@@ -41,35 +43,49 @@ const SeparateMonth = (data: Buys[]): SeparateMonth[] => {
     });
     // 月が変わったとき
     if (numLastMonth !== numThisMonth) {
-      
       // 一月分追加
       returnData.push({
         TotalPrice: totalPrice,
         month: ChangeStrMonth(Number(numLastMonth)),
       });
+      strMonths.push(ChangeStrMonth(Number(numLastMonth)));
       // 最後かつまだ入っていないとき
-      if (i === data.length - 1&& totalPrice !== 0) {
+      if (i === data.length - 1 && totalPrice !== 0) {
         returnData.push({
           TotalPrice: tradePrice,
           month: ChangeStrMonth(Number(numThisMonth)),
         });
+        strMonths.push(ChangeStrMonth(Number(numThisMonth)));
       }
       // 初期化
       thisMonthTradePrices = [];
-    }else{
+    } else {
       if (i === data.length - 1 && totalPrice !== 0) {
         returnData.push({
           TotalPrice: totalPrice + tradePrice,
           month: ChangeStrMonth(Number(numThisMonth)),
         });
+        strMonths.push(ChangeStrMonth(Number(numThisMonth)));
       }
     }
     // 同月を一つの配列についか
     thisMonthTradePrices.push(tradePrice);
   }
-  console.log(returnData);
-  
-  return returnData;
+  // console.log(returnData);
+
+  // データがない付きの選択肢を追加する
+  for (let i = 1; i <= 12; i++) {
+    STR_MONTHS.push({ month: ChangeStrMonth(i), TotalPrice: 0 });
+  }
+  for (let i = 0; STR_MONTHS.length > i; i++) {
+    for(const value of returnData){
+      if (STR_MONTHS[i].month === value.month) {
+        STR_MONTHS[i].TotalPrice = value.TotalPrice;
+      }
+    }
+  }
+
+  return STR_MONTHS;
 };
 
 const ChangeStrMonth = (numMonth: number) => {
