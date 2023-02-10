@@ -90,7 +90,7 @@ const Profile_edit = () => {
 
   return (
     <div>
-      <div>
+      <div className={styles.picture}>
         <Image
           src={imagePath}
           width={100}
@@ -138,11 +138,13 @@ const Profile_edit = () => {
         }
       />
       </div>
+      <div className={styles.modal}>
       <Modal>
         <App_modal_body title="プロフィール画像選択">
           <IconCheck setImagePath={setImagePath}/>
         </App_modal_body>
       </Modal>
+      </div>
     </div>
   );
 };

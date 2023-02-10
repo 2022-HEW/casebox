@@ -1,5 +1,7 @@
+
 .name{
     padding-left: 20px;
+    padding-top: 50px;
 }
 .loginbutton{
     text-align: center;
@@ -15,7 +17,8 @@
 .guidelink{
     display: flex;
     background-color: #ffffff;
-    border: 1px dotted #bbb;
+    border-top: 1px dotted #bbb;
+    border-bottom: 1px dotted #bbb;
     height: 60px;
 }
 .date{
@@ -35,5 +38,6 @@
 .SupportTitle{
     padding-left: 15px;
     background-color: #ffffff;
-    border: 1px dotted #bbb;
+    border-top: 1px dotted #bbb;
+    border-bottom: 1px dotted #bbb;
 }

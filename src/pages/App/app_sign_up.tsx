@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import useSWR from 'swr';
 import { Button } from '../../components/common/App_button'
 import App_header from '../../components/common/App_header'
-import styles from '../../styles/app_login.module.css'
+import styles from '../../styles/app_login.module.scss'
 
 
 
@@ -127,13 +127,15 @@ const Form = ()=>{
     
     return(
         <div className={styles.loginFormContainer}>
-            <input className={styles.mailForm} placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}}/>
-            <input className={styles.passwordForm} placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/>
+            <input className={styles.mailForm} placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} />
+            <input className={styles.passwordForm} placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
             <Button label='同意して会員登録' onClick={SignupHandler} disabled={(duplication || EmailRegex ||PassRegex) && true}/>
+
+            {/*<input className={styles.mailForm} placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}} />*/}
+            {/* <input className={styles.passwordForm} placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/> */}
         </div>
     )
 }
 
 
 export default app_sign_up
-
