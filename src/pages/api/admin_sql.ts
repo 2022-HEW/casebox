@@ -82,7 +82,7 @@ export default async function handler(
 
     case "getBuys":
       sql = `SELECT  b.buy_money,b.buy_created,s.model_name, b.quant FROM t_buys b JOIN t_stocks s ON b.model_id = s.model_id 
-      WHERE b.buy_created > "${year}-01-01"`;
+      WHERE b.buy_created > "${year}-01-01" ORDER BY b.buy_created`;
       break;
 
     default:

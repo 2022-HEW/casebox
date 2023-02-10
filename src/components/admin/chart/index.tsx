@@ -36,18 +36,6 @@ export const ChartBox = () => {
     value.buy_created.includes(`${SearchYear - 1}`)
   );
 
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-    },
-  ];
   return (
     <Grid container gap={0}>
       <GlobalNav />
@@ -57,7 +45,7 @@ export const ChartBox = () => {
           <Chart data={thisYear} />
         </Box>
         <Box>
-          <Grid item>a</Grid>
+          <Chart data={lastYear} />
         </Box>
       </Body>
     </Grid>

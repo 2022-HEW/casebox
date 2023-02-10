@@ -8,7 +8,7 @@ type Chart = {
 };
 
 type SeparateMonth = {
-  totalPrice: number;
+  TotalPrice: number;
   month: string;
 };
 export const Chart = ({ data }: Chart) => {
@@ -18,64 +18,57 @@ export const Chart = ({ data }: Chart) => {
   }, []);
 
   return (
-    <BarChart width={730} height={250} data={ChartData}>
+    <BarChart width={730} height={200} data={ChartData}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey={"month"} />
       <YAxis />
       <Legend />
-      <Bar dataKey="pv" fill="#8884d8" />
-      <Bar dataKey="uv" fill="#82ca9d" />
+      <Bar dataKey="TotalPrice" fill="#82ca9d" label="g"/>
     </BarChart>
   );
 };
 
 const SeparateMonth = (data: Buys[]): SeparateMonth[] => {
   const returnData = [];
-  let thisMonthTradePrices = [];
+  let thisMonthTradePrices = [data[0].buy_money];
 
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 1; i < data.length; i++) {
     const numThisMonth = data[i].buy_created.split("-")[1];
+    const numLastMonth = data[i - 1].buy_created.split("-")[1];
     const tradePrice = data[i].buy_money;
-    if (i > 0) {
-      // 最後
-      if (i == data.length - 1) {
-  
-        const totalPrice = thisMonthTradePrices.reduce((a, b) => {
-          return a + b;
-        });
-  
+    const totalPrice = thisMonthTradePrices.reduce((a, b) => {
+      return a + b;
+    });
+    // 月が変わったとき
+    if (numLastMonth !== numThisMonth) {
+      
+      // 一月分追加
+      returnData.push({
+        TotalPrice: totalPrice,
+        month: ChangeStrMonth(Number(numLastMonth)),
+      });
+      // 最後かつまだ入っていないとき
+      if (i === data.length - 1&& totalPrice !== 0) {
         returnData.push({
-          totalPrice: totalPrice,
+          TotalPrice: tradePrice,
           month: ChangeStrMonth(Number(numThisMonth)),
         });
-        return returnData;
       }
-
-      const numLastMonth = data[i - 1].buy_created.split("-")[1];
-      // 月が変わったとき
-      if (numLastMonth !== numThisMonth) {
-        // console.log(thisMonthTradePrices);
-
-        const totalPrice = thisMonthTradePrices.reduce((a, b) => {
-          return a + b;
-        });
-        // const totalPrice = 0
-        // 一月分追加
+      // 初期化
+      thisMonthTradePrices = [];
+    }else{
+      if (i === data.length - 1 && totalPrice !== 0) {
         returnData.push({
-          totalPrice: totalPrice,
-          month: ChangeStrMonth(Number(numLastMonth)),
+          TotalPrice: totalPrice + tradePrice,
+          month: ChangeStrMonth(Number(numThisMonth)),
         });
-        // 初期化
-        thisMonthTradePrices = [];
       }
-      thisMonthTradePrices.push(tradePrice);
-    } else {
-      // 初回
-      thisMonthTradePrices.push(tradePrice);
     }
+    // 同月を一つの配列についか
+    thisMonthTradePrices.push(tradePrice);
   }
   console.log(returnData);
-
+  
   return returnData;
 };
 
