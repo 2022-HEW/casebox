@@ -1,6 +1,6 @@
 import React from 'react'
-import Box from '../components/common/Box'
-import Nav from '../components/common/Nav'
+import Box from '../components/main/common/Box'
+import Nav from '../components/main/common/Nav'
 import styles from "../styles/help.module.css"
 import Image from 'next/image'
 import { NextPage } from 'next'

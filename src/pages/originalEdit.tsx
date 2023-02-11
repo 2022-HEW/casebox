@@ -2,9 +2,9 @@ import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React from 'react'
-import Box from '../components/common/Box'
+import Box from '../components/main/common/Box'
 import { Button } from '../components/common/Button'
-import Nav from '../components/common/Nav'
+import Nav from '../components/main/common/Nav'
 import styles from "../styles/draw.module.css"
 
 // import OriginalView from '../components/OriginalView'

@@ -1,6 +1,6 @@
 import styles from '../styles/device_select.module.css';
-import Box from '../components/common/Box';
-import Nav from '../components/common/Nav';
+import Box from '../components/main/common/Box';
+import Nav from '../components/main/common/Nav';
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Case_view from '../components/Case_view';
 import Case_edit from '../components/Case_edit';

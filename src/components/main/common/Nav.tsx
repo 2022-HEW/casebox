@@ -1,13 +1,13 @@
-import styles from "../../styles/nav.module.css"
+import styles from "../../../styles/nav.module.css"
 import { useRouter } from'next/router'
 import Link from "next/link"
 import { ReactNode, useState,useMemo, useRef, Dispatch,} from 'react';
 import { SetterOrUpdater, useRecoilState,useRecoilValue } from "recoil";
-import { productState,tabState,stepState,modalState,designState,imageState } from '../../atoms/atoms';
+import { productState,tabState,stepState,modalState,designState,imageState } from '../../../atoms/atoms';
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
-import { Button } from "./Button";
+import { Button } from "../../common/Button";
 
 
 

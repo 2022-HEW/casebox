@@ -1,5 +1,5 @@
-import Nav from "../components/common/Nav";
-import Box from "../components/common/Box";
+import Nav from "../components/main/common/Nav";
+import Box from "../components/main/common/Box";
 import styles from "../styles/pay.module.css";
 import Image from "next/image";
 import Cash from "../../public/image/money.svg";

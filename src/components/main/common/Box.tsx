@@ -1,8 +1,8 @@
-import styles from "../../styles/box.module.css";
+import styles from "../../../styles/box.module.css";
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { modalState } from "../../atoms/atoms";
+import { modalState } from "../../../atoms/atoms";
 import Image from "next/image";
 
 const Box = ({ children }: { children: ReactNode }) => {

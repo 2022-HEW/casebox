@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import useSWR from 'swr';
-import Box from '../components/common/Box'
-import Nav from '../components/common/Nav'
+import Box from '../components/main/common/Box'
+import Nav from '../components/main/common/Nav'
 import { useRecoilValue } from 'recoil';
 import { productState,stockState } from '../atoms/atoms';
 import { NextPage } from 'next';

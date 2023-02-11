@@ -1,6 +1,6 @@
 import styles from "../styles/template_select.module.css";
-import Nav from "../components/common/Nav";
-import Box from "../components/common/Box";
+import Nav from "../components/main/common/Nav";
+import Box from "../components/main/common/Box";
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Modal from "../components/common/Modal";
