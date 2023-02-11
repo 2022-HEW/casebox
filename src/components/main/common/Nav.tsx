@@ -108,32 +108,32 @@ const Nav = ({ children }: Props) => {
           <div id={styles.disp}>{children}</div>
           <div id={styles.service_select}>
             <Tab
-              site_link={"./service_select"}
+              site_link={"/main/service_select"}
               site_name={"トップ"}
               setModal={setModal}
             />
             <Tab
-              site_link={"./template_select"}
+              site_link={"/main/template_select"}
               site_name={"テンプレ"}
               setModal={setModal}
             />
             <Tab
-              site_link={"./scan"}
+              site_link={"/main/scan"}
               site_name={"オリジナル"}
               setModal={setModal}
             />
             <Tab
-              site_link={"./device_select"}
+              site_link={"/main/device_select"}
               site_name={"手書き"}
               setModal={setModal}
             />
             <Tab
-              site_link={"./site"}
+              site_link={"/main/site"}
               site_name={"公式サイト"}
               setModal={setModal}
             />
             <Tab
-              site_link={"./help"}
+              site_link={"/main/help"}
               site_name={"ヘルプ"}
               setModal={setModal}
             />

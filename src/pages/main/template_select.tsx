@@ -1,17 +1,17 @@
-import styles from "../styles/template_select.module.css";
-import Nav from "../components/main/common/Nav";
-import Box from "../components/main/common/Box";
+import styles from "../../styles/template_select.module.css";
+import Nav from "../../components/main/common/Nav";
+import Box from "../../components/main/common/Box";
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
-import Modal from "../components/common/Modal";
+import Modal from "../../components/common/Modal";
 // import { forwardRef } from "react";
-import Product_check from "../components/Product_check";
+import Product_check from "../../components/Product_check";
 import { useRecoilState } from "recoil";
-import { modalState } from "../atoms/atoms";
+import { modalState } from "../../atoms/atoms";
 import useSWR from "swr";
 import Image from "next/image";
 import { NextPage } from "next";
-import { fetcher } from "../utils";
+import { fetcher } from "../../utils";
 
 /**
  * 商品情報を表示する
