@@ -43,7 +43,7 @@ export default async function handler(
   const add_quant = req.body.add_quant;
   const transaction_cost = req.body.transaction_cost;
   const model_quant = req.body.model_quant;
-  const year = req.body.year;
+  const year = req.query.year;
 
   let sql = "";
   switch (situ) {
@@ -81,10 +81,8 @@ export default async function handler(
       break;
 
     case "getBuys":
-      sql = `SELECT  b.buy_money,b.buy_created,s.model_name, b.quant FROM t_buys b JOIN t_stocks s ON b.model_id = s.model_id 
-      WHERE b.buy_created > "${year}-01-01" ORDER BY b.buy_created`;
+      sql = `SELECT  b.buy_money,b.buy_created,s.model_name, b.quant FROM t_buys b JOIN t_stocks s ON b.model_id = s.model_id WHERE b.buy_created BETWEEN  "${Number(year) - 1}-01-01" AND "${Number(year) + 1}-01-01" ORDER BY b.buy_created`;
       break;
-
     default:
       console.log("error");
   }

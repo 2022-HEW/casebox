@@ -10,26 +10,27 @@ import { Box } from "../common/box";
 import { GlobalNav } from "../common/globalNav";
 import { Nav } from "../common/nav";
 import { Chart } from "./Chart";
-
-export const ChartBox = () => {
+type ChartBox = {
+  xAxis: "quant" | "buy_money";
+};
+export const ChartBox = ({ xAxis }: ChartBox) => {
   const [situation, setSituation] = useState<"month" | "date" | "year">("year");
+  const [buys, setBuys] = useState([]);
   // const day =
   const SearchYear = new Date().getFullYear();
   const body = {
     option: `Buys&year=${SearchYear}`,
   };
+  const { result } = getDB(body.option);
 
-  const buys = getDB(body.option).result;
+  useEffect(() => {
+    setBuys(result);
+  }, [result]);
 
   if (!buys) return <></>;
 
-  //   useEffect(() => {
-  //     console.log(buys);
-  //     console.log(thisYear);
-  //   });
-
-  const thisYear = buys.filter(
-    (value: Buys) => value.buy_created.includes(`${SearchYear}`)
+  const thisYear = buys.filter((value: Buys) =>
+    value.buy_created.includes(`${SearchYear}`)
   );
 
   const lastYear = buys.filter((value: Buys) =>
@@ -42,10 +43,10 @@ export const ChartBox = () => {
       <Nav title={"商品売上"} values={SUBTITLE} />
       <Body>
         <Box>
-          <Chart data={thisYear} />
+          <Chart data={thisYear} xAxis={xAxis} />
         </Box>
         <Box>
-          <Chart data={lastYear} />
+          <Chart data={lastYear} xAxis={xAxis} />
         </Box>
       </Body>
     </Grid>

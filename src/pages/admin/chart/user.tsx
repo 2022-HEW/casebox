@@ -3,6 +3,6 @@ import React from "react";
 import { ChartBox } from "../../../components/admin/chart";
 
 const user: NextPage = () => {
-  return <ChartBox></ChartBox>;
+  return <ChartBox xAxis="quant"></ChartBox>;
 };
 export default user;
