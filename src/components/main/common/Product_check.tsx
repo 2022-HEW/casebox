@@ -1,8 +1,8 @@
-import styles from "../styles/product_check.module.css";
-import { Button } from "./common/Button";
+import styles from "../../../styles/product_check.module.css";
+import { Button } from "../../common/Button";
 import { useRouter } from'next/router'
 import { useRecoilState } from "recoil";
-import { productState } from '../atoms/atoms';
+import { productState } from '../../../atoms/atoms';
 import Image from "next/image"
 type Props = {
     // product:[],
@@ -31,7 +31,7 @@ const Product_check = ({product}:Props) => {
                 product_name:product.product_name
             }));
             router.push({
-                pathname:"/device_select",
+                pathname:"/main/device_select",
             })
         }
         
