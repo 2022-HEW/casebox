@@ -2,7 +2,7 @@
 // slick入れる
 import Box from '../../components/main/common/Box';
 import Nav from '../../components/main/common/Nav';
-import Service_cards from '../../components/Service_cards';
+import Service_cards from '../../components/main/service_select/Service_cards';
 import SlideShow from '../../components/main/service_select/SlideShow';
 import { NextPage } from 'next';
 

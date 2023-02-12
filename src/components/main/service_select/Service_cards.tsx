@@ -2,8 +2,8 @@ import { ImageType } from "@azure/cognitiveservices-computervision/esm/models/ma
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "../styles/service_select.module.css";
-import { bound } from "../themes/animation/indicate";
+import styles from "../../styles/service_select.module.css";
+import { bound } from "../../../themes/animation/indicate";
 
 const Service_cards = () => {
   const CARD_ITEM = [
