@@ -6,7 +6,7 @@ import styles from "../../styles/slideShow.module.css";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { transition } from "../../themes/animetion/indicate";
+import { transition } from "../../themes/animation/indicate";
 
 // Imageの型定義
 type imageType = {

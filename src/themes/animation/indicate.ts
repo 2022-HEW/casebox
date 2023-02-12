@@ -21,3 +21,31 @@ export const bound = {
     },
   },
 };
+
+export const slideLeft = {
+  animate: {
+    x: [500, 0],
+  },
+  transition: {
+    duration: 0.5,
+  },
+};
+
+export const slideRight = {
+  animate: {
+    x: [-500, 0],
+  },
+  transition: {
+    duration: 0.5,
+  },
+};
+
+export const slideModal = {
+  initial: { y: 150,},
+  animate: { y: 0,scale:[0,0,1]},
+  exit: { y: 150 },
+  transition: {
+    duration: 0.4,
+    times:[0,0,0.4]
+  },
+};

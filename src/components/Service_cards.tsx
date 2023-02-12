@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/service_select.module.css";
-import { bound } from "../themes/animetion/indicate";
+import { bound } from "../themes/animation/indicate";
 
 const Service_cards = () => {
   const CARD_ITEM = [
@@ -36,8 +36,12 @@ const Service_cards = () => {
   return (
     <div className={styles.Container}>
       {/* 配列の内容で繰り返し表示 */}
-      {CARD_ITEM.map((item,index) => ( 
-    <motion.div {...bound} transition={{...bound.transition,delay:index/5}} whileTap={{ scale: 0.6 }}>
+      {CARD_ITEM.map((item, index) => (
+        <motion.div
+          {...bound}
+          transition={{ ...bound.transition, delay: index / 5 }}
+          whileTap={{ scale: 0.6 }}
+        >
           <Link key={item.href} href={item.href}>
             <a className={styles.cards}>
               <figure className={styles.cardImg}>

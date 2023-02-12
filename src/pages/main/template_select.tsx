@@ -2,16 +2,17 @@ import styles from "../../styles/template_select.module.css";
 import Nav from "../../components/main/common/Nav";
 import Box from "../../components/main/common/Box";
 import React, { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/router";
 import Modal from "../../components/common/Modal";
 // import { forwardRef } from "react";
-import Product_check from "../../components/Product_check";
+import Product_check from "../../components/main/common/Product_check";
 import { useRecoilState } from "recoil";
 import { modalState } from "../../atoms/atoms";
 import useSWR from "swr";
 import Image from "next/image";
 import { NextPage } from "next";
 import { fetcher } from "../../utils";
+import { motion } from "framer-motion";
+import { slideLeft, slideRight } from "../../themes/animation/indicate";
 
 /**
  * 商品情報を表示する
@@ -72,15 +73,14 @@ const Product_box = ({
   useEffect(() => {
     if (case_category === "user") {
       getThumbnailAzure();
-    }  
+    }
   }, []);
-  
 
   // モーダルを動かして、商品IDを送る
-  function Modal_toggle(e: React.MouseEvent<HTMLDivElement>) {
+  const Modal_toggle = () => {
     setModal(!modal);
     setProduct_ID(id);
-  }
+  };
 
   return (
     // <div className={styles.product_box} ref={ref} >
@@ -149,15 +149,17 @@ const Template: NextPage = () => {
             {product.map(
               (product: Product, index: number) =>
                 index % 2 === 0 && (
-                  <Product_box
-                    image_path={product.product_place}
-                    case_name={product.product_name}
-                    case_category={product.m_product_category}
-                    case_price={product.m_product_price}
-                    key={product.product_ID}
-                    id={index}
-                    setProduct_ID={setProduct_ID}
-                  />
+                  <motion.div {...slideLeft} whileTap={{ scale: 0.6 }}>
+                    <Product_box
+                      image_path={product.product_place}
+                      case_name={product.product_name}
+                      case_category={product.m_product_category}
+                      case_price={product.m_product_price}
+                      key={product.product_ID}
+                      id={index}
+                      setProduct_ID={setProduct_ID}
+                    />
+                  </motion.div>
                 )
             )}
           </div>
@@ -166,15 +168,20 @@ const Template: NextPage = () => {
             {product.map(
               (product: Product, index: number) =>
                 index % 2 === 1 && (
-                  <Product_box
-                    image_path={product.product_place}
-                    case_name={product.product_name}
-                    case_category={product.m_product_category}
-                    case_price={product.m_product_price}
+                  <motion.div
+                    {...slideRight}
+                    whileTap={{ scale: 0.6 }}
                     key={product.product_ID}
-                    id={index}
-                    setProduct_ID={setProduct_ID}
-                  />
+                  >
+                    <Product_box
+                      image_path={product.product_place}
+                      case_name={product.product_name}
+                      case_category={product.m_product_category}
+                      case_price={product.m_product_price}
+                      id={index}
+                      setProduct_ID={setProduct_ID}
+                    />
+                  </motion.div>
                 )
             )}
           </div>
