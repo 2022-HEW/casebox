@@ -13,8 +13,10 @@ import {
 } from "../../../atoms/atoms";
 import React from "react";
 import { useRouter } from "next/router";
-import { Button } from "../../common/Button";
+import { Button } from "../common/Button";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { bound } from "../../../themes/animation/indicate";
 
 // import { useRouter } from'next/router'
 
@@ -84,10 +86,14 @@ const Case_edit = ({
       <div>
         <p>デバイスをお選びください</p>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-          <label htmlFor="Android" className={styles.type}>
+          <motion.label
+            htmlFor="Android"
+            className={styles.type}
+            whileTap={{ scale: 0.6 }}
+          >
             <Image src={"/image/android.svg"} width={150} height={150} />
             <span className={styles.type_name}>Android</span>
-          </label>
+          </motion.label>
           <input
             type="radio"
             value="Android"
@@ -95,10 +101,14 @@ const Case_edit = ({
             id="Android"
             onChange={(e) => setDevice(e.target.value)}
           />
-          <label htmlFor="iPhone" className={styles.type}>
+          <motion.label
+            htmlFor="iPhone"
+            className={styles.type}
+            whileTap={{ scale: 0.6 }}
+          >
             <Image src={"/image/android.svg"} width={150} height={150} />
             <span className={styles.type_name}>iPhone</span>
-          </label>
+          </motion.label>
           <input
             type="radio"
             value="iPhone"
