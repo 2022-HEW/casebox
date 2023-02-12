@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { productState, stepState, downloadState } from "../../../atoms/atoms";
 import Image from "next/image";
-import Modal from "../../common/Modal";
+import Modal from "../common/Modal";
 import Product_buy_check from "../../Product_buy_check";
 import dynamic from "next/dynamic";
 // CSRに変更

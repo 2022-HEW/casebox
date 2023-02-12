@@ -13,7 +13,7 @@ import { useRecoilValue,useRecoilState } from "recoil";
 import { productState,modalState } from '../atoms/atoms';
 import { useEffect, useState } from "react";
 import React from "react";
-import Modal from "../components/common/Modal";
+import Modal from "../components/main/common/Modal";
 import Other from "../components/Other";
 import Touch from "../components/Touch";
 import { useRouter } from "next/router";

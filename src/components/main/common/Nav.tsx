@@ -14,7 +14,7 @@ import {
 import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
-import { Button } from "../../common/Button";
+import { Button } from "./Button";
 
 type Props = {
   children: ReactNode;

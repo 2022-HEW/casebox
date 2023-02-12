@@ -2,11 +2,11 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
-import styles from "../../styles/slideShow.module.css";
+import styles from "../../../styles/slideShow.module.css";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { transition } from "../../themes/animation/indicate";
+import { transition } from "../../../themes/animation/indicate";
 
 // Imageの型定義
 type imageType = {

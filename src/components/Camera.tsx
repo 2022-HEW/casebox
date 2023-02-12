@@ -3,7 +3,7 @@ import jsQR from 'jsqr';
 import { Stream } from 'stream';
 import { log } from 'console';
 import { useRouter } from 'next/router';
-import Modal from './common/Modal';
+import Modal from './main/common/Modal';
 import { useRecoilState } from "recoil";
 import { modalState } from '../atoms/atoms';
 import dynamic from 'next/dynamic';

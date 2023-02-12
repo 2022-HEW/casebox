@@ -1,5 +1,5 @@
 import styles from "../../../styles/product_check.module.css";
-import { Button } from "../../common/Button";
+import { Button } from "./Button";
 import { useRouter } from'next/router'
 import { useRecoilState } from "recoil";
 import { productState } from '../../../atoms/atoms';

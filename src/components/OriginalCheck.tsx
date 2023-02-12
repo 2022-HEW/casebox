@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Stage, Layer, Line, Group } from "react-konva";
 import useImage from "use-image";
 import Image from "next/image";
-import { Button } from "./common/Button";
+import { Button } from "./main/common/Button";
 import { designState, imageState, productState } from "../atoms/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { fetcher } from "../utils";

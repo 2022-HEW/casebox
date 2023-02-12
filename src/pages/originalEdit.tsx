@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Box from '../components/main/common/Box'
-import { Button } from '../components/common/Button'
+import { Button } from '../components/main/common/Button'
 import Nav from '../components/main/common/Nav'
 import styles from "../styles/draw.module.css"
 

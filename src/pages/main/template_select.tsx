@@ -2,7 +2,7 @@ import styles from "../../styles/template_select.module.css";
 import Nav from "../../components/main/common/Nav";
 import Box from "../../components/main/common/Box";
 import React, { useEffect, useState, useRef } from "react";
-import Modal from "../../components/common/Modal";
+import Modal from "../../components/main/common/Modal";
 // import { forwardRef } from "react";
 import Product_check from "../../components/main/common/Product_check";
 import { useRecoilState } from "recoil";

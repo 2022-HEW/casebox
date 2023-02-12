@@ -1,10 +1,10 @@
-import styles from "../../styles/modal.module.css";
+import styles from "../../../styles/modal.module.css";
 import { ReactNode, useEffect, useState } from "react";
 import { log } from "console";
 import { useRecoilState } from "recoil";
-import { modalState } from "../../atoms/atoms";
+import { modalState } from "../../../atoms/atoms";
 import { animate, AnimatePresence, motion, useAnimation } from "framer-motion";
-import { slideModal } from "../../themes/animation/indicate";
+import { slideModal } from "../../../themes/animation/indicate";
 
 type Props = {
   children?: ReactNode;
