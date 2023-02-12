@@ -1,6 +1,6 @@
-import styles from "../styles/device_select.module.css";
+import styles from "../../../styles/device_select.module.css";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { tabState } from "../atoms/atoms";
+import { tabState } from "../../../atoms/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   productState,
@@ -10,10 +10,10 @@ import {
   sizeState,
   colorState,
   downloadState,
-} from "../atoms/atoms";
+} from "../../../atoms/atoms";
 import React from "react";
 import { useRouter } from "next/router";
-import { Button } from "./common/Button";
+import { Button } from "../../common/Button";
 import Image from "next/image";
 
 // import { useRouter } from'next/router'
