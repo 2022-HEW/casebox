@@ -21,7 +21,7 @@ export const Button= ({ label, onClick, situ_name }:Props) => {
         situ_name === 'nav' ? styles.nav : styles.screen
       }`}
       onClick={onClick}
-      whileTap={{ scale: 0.6 }}
+      whileTap={{ scale: 0.9 }}
     >
       {label}
     </motion.button>
