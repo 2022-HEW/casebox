@@ -49,3 +49,18 @@ export const slideModal = {
     times:[0,0,0.4]
   },
 };
+
+export const caseEdit={
+  init:{
+    x: 0
+  },
+  animate: {
+    x: [300,0]
+  },
+  exit:{
+    x: 300,opacity:0.6
+  },
+  transition: {
+    duration: 0.2,
+  },
+}

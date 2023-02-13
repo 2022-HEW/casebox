@@ -28,6 +28,8 @@ const Modal = ({ children }: Props) => {
       )}
 
       <motion.div
+
+      key={"1"}
         className={styles.modal_box}
         style={modal ? {} : { display: "none" }}
         {...(modal ? slideModal : {})}

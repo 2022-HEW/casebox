@@ -15,8 +15,12 @@ import React from "react";
 import { useRouter } from "next/router";
 import { Button } from "../common/Button";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { bound } from "../../../themes/animation/indicate";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import {
+  bound,
+  caseEdit,
+  slideLeft,
+} from "../../../themes/animation/indicate";
 
 // import { useRouter } from'next/router'
 
@@ -62,19 +66,20 @@ const Case_edit = ({
     product_place: "",
     user_name: "",
   };
+  const fadeIn = useAnimation();
+  const fadeOut = useAnimation();
   // 機種を入れる
   useEffect(() => {
     setProduct((before) => ({
       ...before,
       model_id: model_colors[model_names[type_index] + "_id"],
     }));
-    console.log(model_colors);
   }, [model_names[type_index]]);
+
   /**
    * step1
    * @returns
    */
-  console.log(product.model_id);
 
   const Device = () => {
     //戻るボタンの耐対策
@@ -83,7 +88,11 @@ const Case_edit = ({
     //     console.log("type_index" +  type_index);
     // }
     return (
-      <div>
+      <>
+        <h1>商品</h1>
+        <div className={styles.tryangle}>
+          <Image src={"/image/tryangle.svg"} width={50} height={50} />
+        </div>
         <p>デバイスをお選びください</p>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
           <motion.label
@@ -118,9 +127,15 @@ const Case_edit = ({
           />
         </div>
         <div className={styles.button}>
-          <Button onClick={() => setStep(2)} label="次へ" situ_name="screen" />
+          <Button
+            onClick={() => {
+              setStep(2);
+            }}
+            label="次へ"
+            situ_name="screen"
+          />
         </div>
-      </div>
+      </>
     );
   };
 
@@ -130,16 +145,25 @@ const Case_edit = ({
    */
   const Type = () => {
     // console.log(select_device);
-    if (color_index) {
-      console.log("color_index:" + color_index);
-    }
     return (
       <>
+        <h1>商品</h1>
+        <div className={styles.tryangle}>
+          <Image src={"/image/tryangle.svg"} width={50} height={50} />
+        </div>
         <p>機種をお選びください</p>
         {model_names.map((value, index) => {
           return (
             <div key={index} className={styles.list}>
-              <label htmlFor={value}>{value}</label>
+              <motion.label
+                htmlFor={value}
+                whileTap={{
+                  // backgroundColor: ['hsl(0, 100, 50)', 'hsl(-120, 100, 50)']
+                  color: "hsl(255, 0, 255)",
+                }}
+              >
+                {value}
+              </motion.label>
               <input
                 type="radio"
                 value={index}
@@ -164,6 +188,10 @@ const Case_edit = ({
   const Color = () => {
     return (
       <>
+        <h1>商品</h1>
+        <div className={styles.tryangle}>
+          <Image src={"/image/tryangle.svg"} width={50} height={50} />
+        </div>
         <p>カラーをお選びください</p>
         <div
           style={{
@@ -183,8 +211,6 @@ const Case_edit = ({
               value.includes(`${model_names[type_index]}(`) &&
               !value.includes("_code")
             ) {
-              console.log(model_colors);
-
               return (
                 <>
                   <div key={value} className={styles.color_select}>
@@ -238,14 +264,15 @@ const Case_edit = ({
    * step4
    */
   const Draw_edit = () => {
-    const ToolDetail = () => {
-      return <></>;
-    };
-
     return (
-      <div className={styles.draw_edit_box}>
-        <div className={styles.tool_box}>
-          {/* <button
+      <>
+        <h1>商品</h1>
+        <div className={styles.tryangle}>
+          <Image src={"/image/tryangle.svg"} width={50} height={50} />
+        </div>
+        <div className={styles.draw_edit_box}>
+          <div className={styles.tool_box}>
+            {/* <button
                 onClick={() => {
                   let lastLine = lines[lines.length - 1];
                   setLines([
@@ -255,95 +282,96 @@ const Case_edit = ({
               >
                 reset
               </button> */}
-          <div
-            className={styles.color_frame}
-            style={{ display: "flex" }}
-            onClick={() => {
-              setColorPallet(!colorPallet);
-            }}
-          >
-            <div className={styles.color_trigger}></div>
-            <p className={styles.serv_guide}>カラー</p>
-          </div>
-          <div className={styles.color_frame} style={{ display: "flex" }}>
-            <label className={styles.label1}>
-              <input
-                type="radio"
-                id="small"
-                name="weight"
-                className={styles.weight}
-                value={10}
-                onChange={(e) => {
-                  setSize(Number(e.target.value));
-                }}
-              />
-            </label>
-            <label className={styles.label2}>
-              <input
-                type="radio"
-                id="normal"
-                name="weight"
-                className={styles.weight}
-                value={20}
-                onChange={(e) => {
-                  setSize(Number(e.target.value));
-                }}
-              />
-            </label>
-            <label className={styles.label3}>
-              <input
-                type="radio"
-                id="bold"
-                name="weight"
-                className={styles.weight}
-                value={30}
-                onChange={(e) => {
-                  setSize(Number(e.target.value));
-                }}
-              />
-            </label>
-            <p className={styles.serv_guide}>太さ</p>
-          </div>
-          <div className={styles.line}></div>
+            <div
+              className={styles.color_frame}
+              style={{ display: "flex" }}
+              onClick={() => {
+                setColorPallet(!colorPallet);
+              }}
+            >
+              <div className={styles.color_trigger}></div>
+              <p className={styles.serv_guide}>カラー</p>
+            </div>
+            <div className={styles.color_frame} style={{ display: "flex" }}>
+              <label className={styles.label1}>
+                <input
+                  type="radio"
+                  id="small"
+                  name="weight"
+                  className={styles.weight}
+                  value={10}
+                  onChange={(e) => {
+                    setSize(Number(e.target.value));
+                  }}
+                />
+              </label>
+              <label className={styles.label2}>
+                <input
+                  type="radio"
+                  id="normal"
+                  name="weight"
+                  className={styles.weight}
+                  value={20}
+                  onChange={(e) => {
+                    setSize(Number(e.target.value));
+                  }}
+                />
+              </label>
+              <label className={styles.label3}>
+                <input
+                  type="radio"
+                  id="bold"
+                  name="weight"
+                  className={styles.weight}
+                  value={30}
+                  onChange={(e) => {
+                    setSize(Number(e.target.value));
+                  }}
+                />
+              </label>
+              <p className={styles.serv_guide}>太さ</p>
+            </div>
+            <div className={styles.line}></div>
 
-          <div
-            onClick={() => {
-              setTool("pen");
-            }}
-            className={styles.color_frame}
-            style={{ display: "flex" }}
-          >
-            <img
-              src="/material_provision/pencil_select.png"
-              alt=""
-              className={styles.pencil_select_img}
-            />
-            <p className={styles.serv_guide}>えんぴつ</p>
+            <div
+              onClick={() => {
+                setTool("pen");
+              }}
+              className={styles.color_frame}
+              style={{ display: "flex" }}
+            >
+              <img
+                src="/material_provision/pencil_select.png"
+                alt=""
+                className={styles.pencil_select_img}
+              />
+              <p className={styles.serv_guide}>えんぴつ</p>
+            </div>
+            <div
+              onClick={() => {
+                setTool("eraser");
+              }}
+              className={styles.color_frame}
+              style={{ display: "flex" }}
+            >
+              <img
+                src="/material_provision/eraser.png"
+                alt=""
+                className={styles.pencil_select_img}
+              />
+              <p className={styles.serv_guide}>消しゴム</p>
+            </div>
           </div>
-          <div
-            onClick={() => {
-              setTool("eraser");
-            }}
-            className={styles.color_frame}
-            style={{ display: "flex" }}
-          >
-            <img
-              src="/material_provision/eraser.png"
-              alt=""
-              className={styles.pencil_select_img}
+          <ColorPallet />
+          <div className={styles.button}>
+            <Button
+              onClick={() => setDownload(true)}
+              label="次へ"
+              situ_name="screen"
             />
-            <p className={styles.serv_guide}>消しゴム</p>
           </div>
         </div>
-        <ColorPallet />
-        <div className={styles.button}>
-          <Button
-            onClick={() => setDownload(true)}
-            label="次へ"
-            situ_name="screen"
-          />
-        </div>
-      </div>
+      </>
     );
   };
 
@@ -397,22 +425,25 @@ const Case_edit = ({
 
   return (
     //  デバイスを選択するエリア(コンポーネントに分ける)
-    <div id={styles.case_edit}>
-      <h1>商品</h1>
-      <div className={styles.tryangle}>
-        <Image src={"/image/tryangle.svg"} width={50} height={50} />
-      </div>
-
+    <AnimatePresence >
       {step === 1 ? (
-        <Device />
+        <motion.div key="device" {...caseEdit} id={styles.case_edit}>
+          <Device />
+        </motion.div>
       ) : step === 2 ? (
-        <Type />
+        <motion.div key="type" {...caseEdit} id={styles.case_edit}>
+          <Type />
+        </motion.div>
       ) : step === 3 ? (
-        <Color />
+        <motion.div key="color" {...caseEdit} id={styles.case_edit}>
+          <Color />
+        </motion.div>
       ) : (
-        <Draw_edit />
+        <motion.div key="draw" {...caseEdit} id={styles.case_edit}>
+          <Draw_edit />
+        </motion.div>
       )}
-    </div>
+    </AnimatePresence>
   );
 };
 

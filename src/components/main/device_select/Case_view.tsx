@@ -13,6 +13,8 @@ import Image from "next/image";
 import Modal from "../common/Modal";
 import Product_buy_check from "../../Product_buy_check";
 import dynamic from "next/dynamic";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { transition } from "../../../themes/animation/indicate";
 // CSRに変更
 const Draw = dynamic(() => import("../../Draw"), { ssr: false });
 
@@ -41,6 +43,7 @@ const Case_view = ({
   const step = useRecoilValue(stepState);
   const download = useRecoilValue(downloadState);
   const [downloadPath, setDownloadPath] = useState("");
+  const control = useAnimation()
 
   useEffect(() => {
     setColor(model_colors[model_names[type_index] + "(1)"]);
@@ -50,37 +53,42 @@ const Case_view = ({
   // console.log(product_info);
   // console.log(iPhone_colors);
   // console.log(types);
+  useEffect(()=>{
+    control.start({width:"36.6vw"})
+  },[step])
 
   return (
     //  ケース表示のエリア
     <div id={styles.case_view}>
-      {/* 手書きかどうか */}
-      {step === 4 ? (
-        <Draw
-          setDownloadPath={setDownloadPath}
-          image_path={`/${select_device}/${model_names[type_index]}/${color_index}.png`}
-        />
-      ) : (
-        <Image
-          src={`/${select_device}/${model_names[type_index]}/${color_index}.png`}
-          alt="スマホ"
-          width={500}
-          height={579}
-          objectFit="contain"
-        />
-      )}
-      {/* デザインが選ばれているとき */}
-      {product_info.product_place && (
-        <div className={styles.design}>
-          <Image
-            src={`/design/${product_info.product_place}`}
-            alt="スマホ"
-            width={500}
-            height={579}
-          />
-        </div>
-      )}
-
+          {/* 手書きかどうか */}
+          {step === 4 ? (
+            <Draw
+              setDownloadPath={setDownloadPath}
+              image_path={`/${select_device}/${model_names[type_index]}/${color_index}.png`}
+            />
+          ) : (
+            <motion.div animate={control} key={"view"}>
+            <Image
+              src={`/${select_device}/${model_names[type_index]}/${color_index}.png`}
+              alt="スマホ"
+              width={500}
+              height={579}
+              objectFit="contain"
+              key={step}
+            />
+          </motion.div>
+          )}
+          {/* デザインが選ばれているとき */}
+          {product_info.product_place && (
+            <div className={styles.design}>
+              <Image
+                src={`/design/${product_info.product_place}`}
+                alt="スマホ"
+                width={500}
+                height={579}
+              />
+            </div>
+          )}
       <Modal>
         <Product_buy_check
           image_path={
