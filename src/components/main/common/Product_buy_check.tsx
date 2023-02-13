@@ -1,11 +1,11 @@
 import { type } from 'os'
 import React, { useState } from 'react'
 import Image from "next/image"
-import styles from '../styles/device_select.module.css';
-import { Button } from './main/common/Button';
+import styles from '../../../styles/device_select.module.css';
+import { Button } from './Button';
 import { useRouter } from 'next/router';
 import { useRecoilState } from "recoil";
-import { productState } from '../atoms/atoms';
+import { productState } from '../../../atoms/atoms';
 
 type Props = {
     image_path: string

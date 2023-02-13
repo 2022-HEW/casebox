@@ -11,7 +11,7 @@ import { useRecoilValue } from "recoil";
 import { productState, stepState, downloadState } from "../../../atoms/atoms";
 import Image from "next/image";
 import Modal from "../common/Modal";
-import Product_buy_check from "../../Product_buy_check";
+import Product_buy_check from "../common/Product_buy_check";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { transition } from "../../../themes/animation/indicate";
