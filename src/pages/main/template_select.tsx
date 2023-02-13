@@ -149,13 +149,16 @@ const Template: NextPage = () => {
             {product.map(
               (product: Product, index: number) =>
                 index % 2 === 0 && (
-                  <motion.div {...slideLeft} whileTap={{ scale: 0.6 }}>
+                  <motion.div
+                    {...slideLeft}
+                    whileTap={{ scale: 0.6 }}
+                    key={product.product_ID}
+                  >
                     <Product_box
                       image_path={product.product_place}
                       case_name={product.product_name}
                       case_category={product.m_product_category}
                       case_price={product.m_product_price}
-                      key={product.product_ID}
                       id={index}
                       setProduct_ID={setProduct_ID}
                     />

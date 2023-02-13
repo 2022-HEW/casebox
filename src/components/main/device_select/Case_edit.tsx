@@ -212,8 +212,8 @@ const Case_edit = ({
               !value.includes("_code")
             ) {
               return (
-                <>
-                  <div key={value} className={styles.color_select}>
+                <div key={value} >
+                  <div className={styles.color_select}>
                     <label
                       htmlFor={value}
                       style={{
@@ -243,7 +243,7 @@ const Case_edit = ({
                   {index % 2 === 0 && index != 0 && (
                     <div style={{ width: "100%" }} id={`${index}`}></div>
                   )}
-                </>
+                </div>
               );
             }
           })}
