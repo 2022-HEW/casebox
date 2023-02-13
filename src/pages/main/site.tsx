@@ -1,8 +1,8 @@
 import React from 'react'
-import Box from '../components/main/common/Box';
-import Nav from '../components/main/common/Nav';
-import Movie from '../components/main/index/Movie';
-import styles from "../styles/site.module.css";
+import Box from '../../components/main/common/Box';
+import Nav from '../../components/main/common/Nav';
+import Movie from '../../components/main/index/Movie';
+import styles from "../../styles/site.module.css";
 import Image from 'next/image';
 import { NextPage } from 'next';
 
