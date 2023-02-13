@@ -5,14 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import { Stage, Layer, Group } from "react-konva";
 import { Image } from "react-konva";
 import useImage from "use-image";
-import styles from "../styles/app_original.module.css";
+import styles from "../../../styles/app_original.module.css";
 import { QRCode } from "react-qrcode";
 import useSWR from "swr";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { originalState, productState } from "../atoms/app_atoms";
+import { originalState, productState } from "../../atoms/app_atoms";
 import { useRouter } from "next/router";
-import useEffectCustom from "./common/useEffectCustom";
+import useEffectCustom from "../common/useEffectCustom";
 import { parse } from "path";
 
 // import MyLargeComponent from './thingToRenderOnStage';

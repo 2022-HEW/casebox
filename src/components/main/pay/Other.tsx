@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilValue,useRecoilState } from "recoil";
-import { productState,modalState } from '../atoms/atoms';
-import styles from "../styles/pay.module.css"
+import { productState,modalState } from '../../../atoms/atoms';
+import styles from "../../../styles/pay.module.css"
 
 type Props={
     children:Array<JSX.Element>

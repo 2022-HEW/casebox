@@ -1,6 +1,6 @@
-import Nav from "../components/main/common/Nav";
-import Box from "../components/main/common/Box";
-import styles from "../styles/pay.module.css";
+import Nav from "../../components/main/common/Nav";
+import Box from "../../components/main/common/Box";
+import styles from "../../styles/pay.module.css";
 import Image from "next/image";
 import Cash from "../../public/image/money.svg";
 import trafic from "../../public/image/t_money.svg";
@@ -10,12 +10,12 @@ import ID from "../../public/image/ID.svg";
 import QuicPay from "../../public/image/QuicPay.svg";
 import Edy from "../../public/image/Edy.svg";
 import { useRecoilValue,useRecoilState } from "recoil";
-import { productState,modalState } from '../atoms/atoms';
+import { productState,modalState } from '../../atoms/atoms';
 import { useEffect, useState } from "react";
 import React from "react";
-import Modal from "../components/main/common/Modal";
-import Other from "../components/Other";
-import Touch from "../components/Touch";
+import Modal from "../../components/main/common/Modal";
+import Other from "../../components/main/pay/Other";
+import Touch from "../../components/main/pay/Touch";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '../../components/main/common/Box';
 import Nav from '../../components/main/common/Nav';
-import Camera from '../../components/Camera';
+import Camera from '../../components/main/Original/Camera';
 import Movie from '../../components/main/index/Movie';
 import styles from "../../styles/scan.module.css";
 import { NextPage } from 'next';

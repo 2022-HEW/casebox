@@ -16,7 +16,7 @@ import dynamic from "next/dynamic";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { transition } from "../../../themes/animation/indicate";
 // CSRに変更
-const Draw = dynamic(() => import("../../Draw"), { ssr: false });
+const Draw = dynamic(() => import("./Draw"), { ssr: false });
 
 type Props = {
   model_names: string[];

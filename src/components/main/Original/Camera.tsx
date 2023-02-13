@@ -3,12 +3,12 @@ import jsQR from 'jsqr';
 import { Stream } from 'stream';
 import { log } from 'console';
 import { useRouter } from 'next/router';
-import Modal from './main/common/Modal';
+import Modal from '../common/Modal';
 import { useRecoilState } from "recoil";
-import { modalState } from '../atoms/atoms';
+import { modalState } from '../../../atoms/atoms';
 import dynamic from 'next/dynamic';
 
-import styles from "../styles/scan.module.css";
+import styles from "../../../styles/scan.module.css";
 // import OriginalCheck from './OriginalCheck';
 const OriginalCheck = dynamic(() => import('./OriginalCheck'), { ssr: false })
 

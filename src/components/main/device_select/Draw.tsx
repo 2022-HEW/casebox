@@ -3,9 +3,9 @@ import { Stage, Layer, Line } from "react-konva";
 import useImage from 'use-image'
 import { Image } from 'react-konva';
 import { TouchEvent } from "react";
-import styles from "../styles/draw.module.css"
+import styles from "../../../styles/draw.module.css"
 import { useRecoilState,useRecoilValue } from "recoil";
-import { toolState,sizeState,colorState,downloadState,modalState } from '../atoms/atoms';
+import { toolState,sizeState,colorState,downloadState,modalState } from '../../../atoms/atoms';
 import { forwardRef } from "react";
 
 type Props={
