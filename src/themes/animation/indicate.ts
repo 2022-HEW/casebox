@@ -52,15 +52,17 @@ export const slideModal = {
 
 export const caseEdit={
   init:{
-    x: 0
+    x: 0,
+    opacity:0,
+
   },
   animate: {
-    x: [300,0]
+    x: [480,0],
   },
   exit:{
-    x: 300,opacity:0.6
+    x: 480,opacity:0.6
   },
   transition: {
-    duration: 0.2,
+    duration: 0.25,
   },
 }

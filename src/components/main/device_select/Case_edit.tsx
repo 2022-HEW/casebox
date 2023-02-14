@@ -425,7 +425,7 @@ const Case_edit = ({
 
   return (
     //  デバイスを選択するエリア(コンポーネントに分ける)
-    <AnimatePresence >
+    <AnimatePresence mode="wait">
       {step === 1 ? (
         <motion.div key="device" {...caseEdit} id={styles.case_edit}>
           <Device />
