@@ -31,7 +31,7 @@ const Product_buy_check = ({
   const go_pay_select = () => {
     setProduct((before) => ({ ...before, quant: count }));
     router.push({
-      pathname: "/pay",
+      pathname: "/main/pay",
     });
   };
 
