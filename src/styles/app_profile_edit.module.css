@@ -40,12 +40,14 @@
 }
 
 /* modalのcss */
-.modal{
-    background-color: aqua;
+.modal h3{
+    position: absolute;
 }
-.modal_body{
-    background-color: aquamarine;
+.modal setImagePath{
+    position: absolute;
 }
-.app_modal_modal_header__XKlyk h3{
-    font-size: 4rem;
+.label{
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -20px;
 }
