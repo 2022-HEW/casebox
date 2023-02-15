@@ -20,5 +20,6 @@
 }
 
 .labelContainer > p{
+    font-size: 14px!important;
     margin-top: 12px;
 }

@@ -151,7 +151,7 @@ const Profile_edit = () => {
 
 const Input = ({ label, placeholder, state, setState, name }: Input) => {
   return (
-    <label>
+    <label className={styles.label}>
       {label}
       <input
         type="text"

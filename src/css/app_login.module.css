@@ -12,7 +12,8 @@
   flex-direction: column;
 }
 .Container .subTitle h1 {
-  margin: 0;
+  font-size: 24px;
+  margin: 48px 0 24px 0;
 }
 .Container .subTitle p {
   font-size: 10px;
@@ -25,6 +26,7 @@
   /* margin: 0; */
 }
 .Container p .underLine {
+  font-weight: bold;
   text-decoration: underline !important;
 }
 
@@ -38,7 +40,7 @@
   gap: 16px;
   /* パスワード忘れた人リンク */
 }
-.loginFormContainer .mailForm, .loginFormContainer .mailFormError, .loginFormContainer .passwordFormError, .loginFormContainer .passwordForm {
+.loginFormContainer .mailForm, .loginFormContainer input, .loginFormContainer .passwordForm {
   width: 80%;
   height: 48px;
   max-width: 333px;
@@ -47,8 +49,9 @@
   background: white;
   color: black;
 }
-.loginFormContainer .mailFormError, .loginFormContainer .passwordFormError {
+.loginFormContainer input {
   border: solid 1px #E55C5C;
+  background: rgba(255, 0, 0, 0.1);
 }
 .loginFormContainer .passwordForget {
   font-size: 10px;
@@ -94,4 +97,8 @@
   color: #E55C5C;
   font-size: 10px;
   margin: 0;
+}
+
+.Container .textContainer {
+  width: 80%;
 }
