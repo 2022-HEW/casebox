@@ -9,7 +9,7 @@ const app_password_reset:NextPage = () => {
 
     return (
         <div className={styles.Container}>
-            <App_header label='会員登録'/>
+            <App_header label='パスワードリセット'/>
             <Reset_box/>
         </div>
     )
