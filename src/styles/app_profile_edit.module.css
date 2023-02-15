@@ -38,3 +38,14 @@
     height: 50px;
     text-align: center;
 }
+
+/* modalのcss */
+.modal{
+    background-color: aqua;
+}
+.modal_body{
+    background-color: aquamarine;
+}
+.app_modal_modal_header__XKlyk h3{
+    font-size: 4rem;
+}

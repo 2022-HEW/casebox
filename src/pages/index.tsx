@@ -3,10 +3,10 @@ import Head from 'next/head'
 import styles from '../styles/wait.module.css'
 import mysql from "serverless-mysql"
 import { log } from 'console'
-import Nav from '../components/common/Nav'
-import Box from '../components/common/Box'
+import Nav from '../components/main/common/Nav'
+import Box from '../components/main/common/Box'
 import Link from 'next/link'
-import Movie from '../components/common/Movie'
+import Movie from '../components/main/index/Movie'
 
 
 
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 const Wait=()=>{
     
   return(
-      <Link href={"/service_select"}>
+      <Link href={"/main/service_select"}>
           <div className={styles.movie_area}>
             <Movie movieUrl='./movie/top.mov'></Movie>
           </div>

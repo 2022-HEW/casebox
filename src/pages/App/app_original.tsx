@@ -7,7 +7,7 @@ import { productState } from "../../atoms/app_atoms";
 import App_header from "../../components/common/App_header";
 import styles from "../../styles/app_original.module.css";
 const App_image_edit = dynamic(
-  () => import("../../components/App_image_edit"),
+  () => import("../../components/app/App_image_edit"),
   { ssr: false }
 );
 

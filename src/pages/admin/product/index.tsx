@@ -10,14 +10,17 @@ import { fetcher, InsertDB } from "../../../utils";
 import { InsertAzure } from "../../../utils";
 import useSWR from "swr";
 import { Body } from "../../../components/admin/common/body";
+import { getDB } from "../../../utils";
+import { NextPage } from "next";
 
-const Product = () => {
+const Product:NextPage = () => {
   const [error, setError] = useState("");
   const [thumbnailPath, setThumbnailPath] = useState<any>("/image/imageEdit.svg");
   const [thumbnailFile, setThumbnailFile] = useState<Blob>();
   const [designPath,setDesignPath] = useState<any>("/image/imageEdit.svg");
   const [designFile, setDesignFile] = useState<Blob>();
 
+  const {result} = getDB("Products")
 
   const handleSetError = (text: string) => {
     setError(text);
@@ -45,10 +48,21 @@ const Product = () => {
     category: number,
     situation: number
   ) => {
+    setError("")
+    // error check
+    for(const value of result){
+      if(text === value.product_name){
+        setError("商品名が既に登録されています")
+        return;
+      }
+    }
+    
     if (!text) {
       setError("商品名が入力されていません");
       return;
     }
+
+
     if (error !== "") {
       // console.log(error);
       return;

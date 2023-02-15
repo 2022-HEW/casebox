@@ -1,22 +1,22 @@
 #wrap {
     width: 100%;
     height: 100%;
+    overflow: hidden;
     display: flex;
 }
 
 #case_view {
-    width: 50%;
-    height: 100%;
-    display: inline-block;
+    width: 36.6vw;
     margin: 0;
 }
 
 #case_edit {
-    width: 50%;
+    width: 36.6vw;
     height: 100%;
     background-color: #fff;
     border-left: 1px solid #666;
     border-radius: 0 0 10px 0;
+    overflow: hidden;
 }
 
 #case_edit h1 {

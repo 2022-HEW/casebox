@@ -5,7 +5,7 @@ import {
   DialogTitle,
   Grid,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -13,6 +13,8 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ButtonValiant from "../../../../themes/admin/ButtonValiants";
 import { useRouter } from "next/router";
 import Modal from "@mui/material/Modal";
+import { useRecoilValue } from "recoil";
+import { productState } from "../../../../atoms/admin_atoms";
 
 export const GlobalNav = () => {
   const router = useRouter();
@@ -22,10 +24,20 @@ export const GlobalNav = () => {
     sx: { ...ICON_VARIANT.sx, backgroundColor: "none" },
   };
   const [isModal, setIsModal] = useState(false);
-
+  const {userID} = useRecoilValue(productState)
+  // logout
+  useEffect(() => {
+    if(!userID){
+      router.push({
+        pathname:"/admin/login"
+      })      
+    }
+  },[]);
+  
   const handleClickIcon = (pathname: string) => {
     router.push({ pathname: pathname });
   };
+
 
   const handleClickExit = () => {
     setIsModal(true);

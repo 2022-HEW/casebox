@@ -63,7 +63,7 @@ export default async function handler(
   let sql = "";
   switch (flg) {
     case "template":
-      sql = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.user_id,p.product_situation, u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID`;
+      sql = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.user_id,p.product_situation, u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID `;
       break;
 
     case "login":
@@ -111,7 +111,7 @@ export default async function handler(
       break;
 
     case "filter":
-      sql = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.product_situation,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID  WHERE p.product_situation=1 ORDER BY ${filter}`;
+      sql = `SELECT p.product_ID,p.product_name,p.product_liked,p.product_place,p.product_change_time,p.product_situation,p.user_id,u.user_name,mp.m_product_price,mp.m_product_category FROM t_products p JOIN t_users u ON p.user_id = u.user_id JOIN t_m_products mp ON p.m_product_ID = mp.m_product_ID  WHERE p.product_situation=1 AND u.user_id = "1" ORDER BY ${filter}`;
       break;
 
     case "favorite":

@@ -2,14 +2,14 @@ import { NextPage } from 'next'
 import React, { useState } from 'react'
 import { Button } from '../../components/common/App_button'
 import App_header from '../../components/common/App_header'
-import styles from '../../styles/app_login.module.css';
+import styles from '../../styles/app_login.module.scss';
 
 const app_password_reset:NextPage = () => {
 
 
     return (
         <div className={styles.Container}>
-            <App_header label='会員登録'/>
+            <App_header label='パスワードリセット'/>
             <Reset_box/>
         </div>
     )

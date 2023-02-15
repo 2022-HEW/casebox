@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 import useSWR from 'swr';
 import { Button } from '../../components/common/App_button'
 import App_header from '../../components/common/App_header'
-import styles from '../../styles/app_login.module.css'
+import styles from '../../styles/app_login.module.scss'
 
 
 

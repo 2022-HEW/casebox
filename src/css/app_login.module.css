@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/* 共通 */
+.Container {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+}
+.Container .subTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.Container .subTitle h1 {
+  font-size: 24px;
+  margin: 48px 0 24px 0;
+}
+.Container .subTitle p {
+  font-size: 10px;
+  margin: 3px 0;
+}
+.Container p {
+  display: flex;
+  font-size: 10px;
+  justify-content: center;
+  /* margin: 0; */
+}
+.Container p .underLine {
+  font-weight: bold;
+  text-decoration: underline !important;
+}
+
+/* 会員登録 */
+/* 全体のコンテナ― */
+.loginFormContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 16px;
+  /* パスワード忘れた人リンク */
+}
+.loginFormContainer .mailForm, .loginFormContainer input, .loginFormContainer .passwordForm {
+  width: 80%;
+  height: 48px;
+  max-width: 333px;
+  border: solid 1px #dddddd;
+  border-radius: 8px;
+  background: white;
+  color: black;
+}
+.loginFormContainer input {
+  border: solid 1px #E55C5C;
+  background: rgba(255, 0, 0, 0.1);
+}
+.loginFormContainer .passwordForget {
+  font-size: 10px;
+  position: relative;
+  left: 100px;
+}
+
+/* 新規会員登録リンク */
+.signUp {
+  display: flex;
+  justify-content: center;
+}
+.signUp p {
+  font-size: 10px;
+}
+
+/* パスワードリセット */
+.passwordResetContainer {
+  width: 100vw;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.passwordResetContainer .passwordReset {
+  width: 80%;
+  height: 48px;
+  max-width: 333px;
+  border: solid 1px #dddddd;
+  border-radius: 8px;
+  background: white;
+}
+
+/* ログインエラーメッセージ */
+.loginErrMsg {
+  width: 80vw;
+  display: flex;
+  justify-content: left;
+}
+
+.loginErrMsg > .loginErr {
+  color: #E55C5C;
+  font-size: 10px;
+  margin: 0;
+}

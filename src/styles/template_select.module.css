@@ -4,6 +4,7 @@
   height: 50%;
   /* float: left; */
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 .top_line::-webkit-scrollbar {  
   display: none; /*Google Chrome、Safari、Microsoft Edge対応のスクロールバー非表示コード*/
