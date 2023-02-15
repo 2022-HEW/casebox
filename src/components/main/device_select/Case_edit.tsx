@@ -66,8 +66,7 @@ const Case_edit = ({
     product_place: "",
     user_name: "",
   };
-  const fadeIn = useAnimation();
-  const fadeOut = useAnimation();
+ 
   // 機種を入れる
   useEffect(() => {
     setProduct((before) => ({
