@@ -13,28 +13,34 @@
   background-color: #fff;
     border:none;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 14px;
+    position: relative;
+    right: 30px;
 }
 .search input{
     background-color: #fff;
     color: #000;
     border:none;
+    width: 251px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 14px;
     padding: 10px 50px 10px 0px;
 }
 
 .result_box{
-    width: 100%;
+    width: 94%;
     height: 82.5%;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 .result_line{
-    width: 100%;
+    width: 414px;
     display: flex;
     margin-top: 15px;
     margin-left: -20px;
+}
+.product{
+  width: 100%;
 }
 .result_header{
     width: 100%;
@@ -68,8 +74,8 @@
   
   .like{        
         background: #FFFFFF;
-        border: 0.1px solid #777777;
-        border-radius: 10px;
+        border: 0.1px solid #ccc;
+        border-radius: 4px;
         display: inline-block;
         /* padding: 10px; */
         color: #BF2213;
@@ -78,7 +84,7 @@
         left: 130px;
         z-index: 2;
         width: 59px;
-        height: 31px;
+        height: 26px;
   }
   .liked{        
     background: #e85143;
