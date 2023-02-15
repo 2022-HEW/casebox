@@ -3,6 +3,7 @@ $backColor: white;
 $fontColor: black;
 $borderSet: solid 1px #dddddd;
 $borderErr: solid 1px #E55C5C;
+$backgroundErr: rgba(255, 0, 0, 0.1);
 
 // 全体のコンテナ
 .Container{
@@ -18,7 +19,8 @@ $borderErr: solid 1px #E55C5C;
             flex-direction: column;
 
         h1{
-            margin: 0;
+            font-size: 24px;
+            margin: 48px 0 24px 0;
         }
 
         p{
@@ -27,7 +29,7 @@ $borderErr: solid 1px #E55C5C;
         }
     }
 
-// プライバシーポリシー
+// プライバシーポリシーリンク
     p{
         display: flex;
         font-size: 10px;
@@ -35,6 +37,7 @@ $borderErr: solid 1px #E55C5C;
         /* margin: 0; */
 
         .underLine{
+            font-weight: bold;
             text-decoration: underline!important;
         }
     }
@@ -66,14 +69,12 @@ $borderErr: solid 1px #E55C5C;
     }
 
     // ログインエラー時のスタイル
-    .mailFormError{
+    input{
         @extend .mailForm;
         border: $borderErr;
+        background: $backgroundErr;
     }
 
-    .passwordFormError{
-        @extend .mailFormError;
-    }
 
     
     /* パスワード忘れた人リンク */
@@ -128,4 +129,13 @@ $borderErr: solid 1px #E55C5C;
     color: #E55C5C;
     font-size: 10px;
     margin: 0;
+}
+
+
+// 利用規約
+.Container{
+    // 本文
+    .textContainer{
+        width: 80%;
+    }
 }

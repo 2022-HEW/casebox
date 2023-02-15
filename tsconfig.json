@@ -15,6 +15,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/common/SlideShow.jsx", "src/components/common/SlideShow.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/common/SlideShow.jsx",
+    "src/components/common/SlideShow.jsx"
+  ],
   "exclude": ["node_modules"]
 }
