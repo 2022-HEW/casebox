@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Box from "../../components/main/common/Box";
 import Nav from "../../components/main/common/Nav";
 import styles from "../../styles/help.module.css";
@@ -37,6 +37,14 @@ const Help: NextPage = () => {
 
   const [userChat, setUserChat] = useState<string[]>();
   const [staffChat, setStaffChat] = useState([ANSWER[0]]);
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if(ref && ref.current){
+      ref.current.scrollIntoView();
+    }
+  },[staffChat]);
+  
 
   const handleClickQuestion = (index: number) => {
     // 質問を追加
@@ -62,6 +70,7 @@ const Help: NextPage = () => {
             </div>
           ))}
           <Questions handleClickQuestion={handleClickQuestion} />
+          <div  ref={ref}/>
         </div>
       </Nav>
     </Box>
