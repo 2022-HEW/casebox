@@ -212,7 +212,7 @@ const Case_edit = ({
             ) {
               return (
                 <div key={value} >
-                  <div className={styles.color_select}>
+                  <motion.div className={styles.color_select} whileTap={{scale:0.9}}>
                     <label
                       htmlFor={value}
                       style={{
@@ -237,7 +237,7 @@ const Case_edit = ({
                       id={value}
                       onChange={(e) => setColor(e.target.value)}
                     />
-                  </div>
+                  </motion.div>
                   {/* 改行 */}
                   {index % 2 === 0 && index != 0 && (
                     <div style={{ width: "100%" }} id={`${index}`}></div>
