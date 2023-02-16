@@ -97,7 +97,7 @@ const Case_edit = ({
           <motion.label
             htmlFor="Android"
             className={styles.type}
-            whileTap={{ scale: 0.6 }}
+            whileTap={{ scale: 0.9 }}
           >
             <Image src={"/image/android.svg"} width={150} height={150} />
             <span className={styles.type_name}>Android</span>
@@ -112,7 +112,7 @@ const Case_edit = ({
           <motion.label
             htmlFor="iPhone"
             className={styles.type}
-            whileTap={{ scale: 0.6 }}
+            whileTap={{ scale: 0.9 }}
           >
             <Image src={"/image/android.svg"} width={150} height={150} />
             <span className={styles.type_name}>iPhone</span>
