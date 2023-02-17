@@ -16,11 +16,7 @@ import { useRouter } from "next/router";
 import { Button } from "../common/Button";
 import Image from "next/image";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import {
-  bound,
-  caseEdit,
-  slideLeft,
-} from "../../../themes/animation/indicate";
+import { bound, caseEdit, slideLeft } from "../../../themes/animation/indicate";
 
 // import { useRouter } from'next/router'
 
@@ -49,7 +45,6 @@ const Case_edit = ({
 }: Props) => {
   // const router = useRouter()
   const [step, setStep] = useRecoilState(stepState);
-  const tab = useRecoilValue(tabState);
   const [product, setProduct] = useRecoilState(productState);
   const [modal, setModal] = useRecoilState(modalState);
   const [tool, setTool] = useRecoilState(toolState);
@@ -57,16 +52,9 @@ const Case_edit = ({
   const [drawcolor, setDrawcolor] = useRecoilState(colorState);
   const [download, setDownload] = useRecoilState(downloadState);
   const [colorPallet, setColorPallet] = useState(false);
-  const reset = {
-    m_product_category: "",
-    m_product_price: 1500,
-    product_ID: 0,
-    product_liked: 0,
-    product_name: "",
-    product_place: "",
-    user_name: "",
-  };
- 
+  const pencil = useAnimation()
+  const eraser = useAnimation()
+
   // 機種を入れる
   useEffect(() => {
     setProduct((before) => ({
@@ -74,6 +62,16 @@ const Case_edit = ({
       model_id: model_colors[model_names[type_index] + "_id"],
     }));
   }, [model_names[type_index]]);
+
+  // 鉛筆と消しゴムが切り替わったとき
+  useEffect(()=>{
+    if(tool === "eraser"){
+      eraser.start({x:20})
+      pencil.start({x:-20})
+    }else{
+      eraser.start({x:-20})
+    }
+  },[tool])
 
   /**
    * step1
@@ -211,8 +209,11 @@ const Case_edit = ({
               !value.includes("_code")
             ) {
               return (
-                <div key={value} >
-                  <motion.div className={styles.color_select} whileTap={{scale:0.9}}>
+                <div key={value}>
+                  <motion.div
+                    className={styles.color_select}
+                    whileTap={{ scale: 0.9 }}
+                  >
                     <label
                       htmlFor={value}
                       style={{
@@ -271,16 +272,6 @@ const Case_edit = ({
         </div>
         <div className={styles.draw_edit_box}>
           <div className={styles.tool_box}>
-            {/* <button
-                onClick={() => {
-                  let lastLine = lines[lines.length - 1];
-                  setLines([
-                      {position:lastLine}
-                  ]);
-                      }}
-              >
-                reset
-              </button> */}
             <div
               className={styles.color_frame}
               style={{ display: "flex" }}
@@ -288,11 +279,11 @@ const Case_edit = ({
                 setColorPallet(!colorPallet);
               }}
             >
-              <div className={styles.color_trigger}></div>
+              <div className={styles.color_trigger} style={{background:drawcolor}}></div>
               <p className={styles.serv_guide}>カラー</p>
             </div>
             <div className={styles.color_frame} style={{ display: "flex" }}>
-              <label className={styles.label1}>
+              <label className={styles.label1} style={size === 10 ? {background:"#777"}:{}}>
                 <input
                   type="radio"
                   id="small"
@@ -302,9 +293,10 @@ const Case_edit = ({
                   onChange={(e) => {
                     setSize(Number(e.target.value));
                   }}
+                  
                 />
               </label>
-              <label className={styles.label2}>
+              <label className={styles.label2} style={size === 20 ? {background:"#777"}:{}}>
                 <input
                   type="radio"
                   id="normal"
@@ -316,7 +308,7 @@ const Case_edit = ({
                   }}
                 />
               </label>
-              <label className={styles.label3}>
+              <label className={styles.label3} style={size === 30 ? {background:"#777"}:{}}>
                 <input
                   type="radio"
                   id="bold"
@@ -339,10 +331,11 @@ const Case_edit = ({
               className={styles.color_frame}
               style={{ display: "flex" }}
             >
-              <img
+              <motion.img
                 src="/material_provision/pencil_select.png"
-                alt=""
+                alt="鉛筆"
                 className={styles.pencil_select_img}
+                animate={pencil}
               />
               <p className={styles.serv_guide}>えんぴつ</p>
             </div>
@@ -353,10 +346,11 @@ const Case_edit = ({
               className={styles.color_frame}
               style={{ display: "flex" }}
             >
-              <img
+              <motion.img
                 src="/material_provision/eraser.png"
-                alt=""
-                className={styles.pencil_select_img}
+                alt="消しゴム"
+                className={styles.eraser_select_img}
+                animate={eraser}
               />
               <p className={styles.serv_guide}>消しゴム</p>
             </div>

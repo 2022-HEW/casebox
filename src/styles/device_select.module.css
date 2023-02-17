@@ -117,6 +117,7 @@
     position: absolute;
     top: 110px;
     right: 130px;
+    overflow: hidden;
 }
 
 .color_frame:first-child {
@@ -173,25 +174,34 @@
     width: 70%;
     border-top: 1px solid #666;
 }
-.weight:checked+.label {
-    background-color: pink;
+#bold:checked+.label2 {
+    background-color: #000;
 }
 
 .color_trigger {
     width: 100px;
     height: 7px;
-    background: #4CB8F4;
+    background: #000;
     border-radius: 10px;
     margin: 10px 0 0 33px;
 }
 
 .pencil_select_img {
-    left: 0;
+    position: relative;
+    right: 40px;
     height: 50px;
     margin-top: -13px;
     width: 135px;
 }
 
+
+.eraser_select_img {
+    position: relative;
+    right: 20px;
+    height: 50px;
+    margin-top: -13px;
+    width: 135px;
+}
 .color_pallet {
     box-sizing: border-box;
     background: #FFFFFF;
