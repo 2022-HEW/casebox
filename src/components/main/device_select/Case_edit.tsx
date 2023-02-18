@@ -71,7 +71,7 @@ const Case_edit = ({
     }else{
       eraser.start({x:-20})
     }
-  },[tool])
+  })
 
   /**
    * step1
