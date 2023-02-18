@@ -151,7 +151,7 @@ useEffect(()=>{
         setIsContinue(false);
         setModal(true);
         router.push({
-            pathname:"/scan",
+            pathname:"/main/scan",
             query:{
               "productID":qrCodeData
             }
@@ -170,26 +170,19 @@ useEffect(()=>{
 // }, []);
 
   return (
-    <div className={styles.Container}>
-      <div className={styles.CameraContainer}> {/*style={{ display: 'grid' }}*/}
-        <div>
+      <div style={{width:"50%"}}> {/*style={{ display: 'grid' }}*/}
           <video
             autoPlay
             playsInline={true}
             ref={videoRef}
-            style={{ width: '100%' }}
+            style={{ width: '70%' ,margin:"25% 15%"}}
           >
             <canvas width={videoWidth} height={videoHeight} ref={canvasRef} />
           </video>
-        </div>
-        <div>
-          <p>{qrCodeData.join('\n')}</p>
-        </div>
         <Modal>
           <OriginalCheck/>
         </Modal>
       </div>
-    </div>
   );
 };
 
