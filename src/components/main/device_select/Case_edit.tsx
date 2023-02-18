@@ -52,8 +52,8 @@ const Case_edit = ({
   const [drawcolor, setDrawcolor] = useRecoilState(colorState);
   const [download, setDownload] = useRecoilState(downloadState);
   const [colorPallet, setColorPallet] = useState(false);
-  const pencil = useAnimation()
-  const eraser = useAnimation()
+  const pencil = useAnimation();
+  const eraser = useAnimation();
 
   // 機種を入れる
   useEffect(() => {
@@ -64,14 +64,14 @@ const Case_edit = ({
   }, [model_names[type_index]]);
 
   // 鉛筆と消しゴムが切り替わったとき
-  useEffect(()=>{
-    if(tool === "eraser"){
-      eraser.start({x:20})
-      pencil.start({x:-20})
-    }else{
-      eraser.start({x:-20})
+  useEffect(() => {
+    if (tool === "eraser") {
+      eraser.start({ x: 20 });
+      pencil.start({ x: -20 });
+    } else {
+      eraser.start({ x: -20 });
     }
-  })
+  });
 
   /**
    * step1
@@ -279,11 +279,17 @@ const Case_edit = ({
                 setColorPallet(!colorPallet);
               }}
             >
-              <div className={styles.color_trigger} style={{background:drawcolor}}></div>
+              <div
+                className={styles.color_trigger}
+                style={{ background: drawcolor }}
+              ></div>
               <p className={styles.serv_guide}>カラー</p>
             </div>
             <div className={styles.color_frame} style={{ display: "flex" }}>
-              <label className={styles.label1} style={size === 10 ? {background:"#777"}:{}}>
+              <label
+                className={styles.label1}
+                style={size === 10 ? { background: "#777" } : {}}
+              >
                 <input
                   type="radio"
                   id="small"
@@ -293,10 +299,12 @@ const Case_edit = ({
                   onChange={(e) => {
                     setSize(Number(e.target.value));
                   }}
-                  
                 />
               </label>
-              <label className={styles.label2} style={size === 20 ? {background:"#777"}:{}}>
+              <label
+                className={styles.label2}
+                style={size === 20 ? { background: "#777" } : {}}
+              >
                 <input
                   type="radio"
                   id="normal"
@@ -308,7 +316,10 @@ const Case_edit = ({
                   }}
                 />
               </label>
-              <label className={styles.label3} style={size === 30 ? {background:"#777"}:{}}>
+              <label
+                className={styles.label3}
+                style={size === 30 ? { background: "#777" } : {}}
+              >
                 <input
                   type="radio"
                   id="bold"
