@@ -44,7 +44,10 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
     const img = new window.Image();
     img.src = image_path;
     img.onload = () => {
-      setImageSize({ width: img.width, height: img.height });
+      setImageSize({
+        width: (542 * img.width) / img.height,
+        height: img.height,
+      });
     };
   }, [image_path]);
 
@@ -114,7 +117,7 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
       <div>
         <div className={styles.view_box}>
           <Stage
-            width={imageSize.width}
+            width={468}
             height={542}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -122,7 +125,13 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
             ref={stageRef}
           >
             <Layer>
-              <Image image={image} width={imageSize.width} height={542} />
+              <Image
+                image={image}
+                width={imageSize.width}
+                height={542}
+                x={243 - imageSize.width / 2}
+                y={0}
+              />
             </Layer>
             <Layer>
               {lines.map((line, i) => (
@@ -141,7 +150,7 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
               ))}
               <Image
                 image={camera}
-                x={0}
+                x={243 - imageSize.width / 2}
                 y={0}
                 width={imageSize.width}
                 height={542}
