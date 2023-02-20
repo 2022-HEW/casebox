@@ -99,6 +99,8 @@ const ProductDetail = () => {
     const reader = new FileReader();
     reader.onload = async () => {
       // Azureに入れる
+      // console.log(reader.result);
+      // return;
       try {
         await fetch(`/api/blob_strage`, {
           method: "POST",
@@ -131,6 +133,12 @@ const ProductDetail = () => {
     };
 
     if (file) {
+    // if (file.type === 'image/heif' || file.type === 'image/heic') {
+    //   const outputBlob = await heic2any({
+    //     blob: imageFile,
+    //     toType: 'image/jpeg',
+    //   });
+
       reader.readAsDataURL(file);
     }
   };

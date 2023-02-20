@@ -11,6 +11,7 @@ import useSWR from "swr";
 import useEffectCustom from "../../common/useEffectCustom";
 import styles from "../../../styles/device_select.module.css";
 import { motion } from "framer-motion";
+import { getThumbnailAzure } from "../../../utils";
 
 const OriginalCheck = () => {
   // console.log(qrCodeData);
@@ -69,41 +70,11 @@ const OriginalCheck = () => {
     if (router.isReady) {
       // console.log(query.productID);
       // console.log(query.json);
-      getThumbnailAzure(query.productID);
+      getThumbnailAzure(query.productID,setDesignImage);
     }
   }, [query, router]);
 
-  const getThumbnailAzure = async (
-    product_place: string | string[] | undefined
-  ) => {
-    try {
-      await fetch(`/api/blob_strage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          //  アップロード
-          situ: "thumbnail",
-          place: product_place,
-          // QRcode
-          // user_id: user_id,
-          // "situ":"create",
-        }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          //         // Azureからbase64を取ってくる
-          //         setImagePath(data[0]);
-          setDesignImage(data[0]);
-        });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
+ 
   // useEffect(() => {
   //   if (m_product_category === "user") {
   //     getThumbnailAzure();
