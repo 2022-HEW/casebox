@@ -15,6 +15,7 @@ import styles from "../../styles/app_search.module.css";
 import useEffectCustom from "./useEffectCustom";
 import { Product } from "../../types";
 import { fetcher } from "../../utils";
+import { getThumbnailAzure } from "../../utils";
 
 type Thumbnails = {
   [key: string]: string;
@@ -38,41 +39,11 @@ export const App_productBox = ({
   // console.log(product_user_id);
   // console.log(product_situation);
 
-  const getThumbnailAzure = async () => {
-    try {
-      await fetch(`/api/blob_strage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          //  アップロード
-          situ: "thumbnail",
-          place: product_place,
-          // QRcode
-          // user_id: user_id,
-          // "situ":"create",
-        }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          //         // Azureからbase64を取ってくる
-          //         setImagePath(data[0]);
-          setOriginalPlace(data[0]);
-        });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   useEffect(() => {
     if (m_product_category === "user") {
-      getThumbnailAzure();
+      getThumbnailAzure(product_place, setOriginalPlace);
     }
     // console.log(product_situation);
-    
   }, []);
 
   const useUserLike = () => {
@@ -134,7 +105,7 @@ export const App_productBox = ({
       m_product_price: m_product_price,
       product_ID: product_ID,
       product_name: product_name,
-      azure_path:product_place,
+      azure_path: product_place,
       product_place:
         m_product_category === "user"
           ? originalPlace
