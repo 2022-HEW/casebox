@@ -156,6 +156,6 @@ npm install recoil-persist
 <!-- npm install axios multer -->
 npm i formidable
 npm i @types/formidable
-npm install sharp
+<!-- npm install sharp -->
 
 npm install sass
