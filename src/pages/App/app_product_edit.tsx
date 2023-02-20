@@ -99,8 +99,7 @@ const ProductDetail = () => {
     const reader = new FileReader();
     reader.onload = async () => {
       // Azureに入れる
-      // console.log(reader.result);
-      // return;
+      
       try {
         await fetch(`/api/blob_strage`, {
           method: "POST",
@@ -144,11 +143,18 @@ const ProductDetail = () => {
   };
 
   const insertProductDB = async () => {
+    console.log(name);
+    console.log(user_id);
+    console.log(productPlace);
+    console.log(situation);
+
     await fetch(
       `/api/app_sql?sql=insert_product&product_name=${name}&user_id=${user_id}&product_place=${productPlace}&product_situation=${situation}`
     )
       .then((res) => {
-        return res.json();
+        console.log(res);
+        return res.json(); 
+        
       })
       .then(() => {
         router.push({ pathname: "./app_service_select" });
@@ -156,6 +162,7 @@ const ProductDetail = () => {
   };
 
   const updateProductDB = async () => {
+    
     await fetch(
       `/api/app_sql?sql=update_product&productID=${product_ID}&product_name=${name}&product_situation=${situation}`
     )
