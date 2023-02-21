@@ -1,67 +1,71 @@
-import React from 'react'
-import App_nav from '../../components/common/App_nav'
-import Image from 'next/image'
-import styles from "../../styles/app_service_select.module.css"
-import Link from 'next/link'
-import { NextPage } from 'next'
+import React from "react";
+import App_nav from "../../components/common/App_nav";
+import Image from "next/image";
+import styles from "../../styles/app_service_select.module.css";
+import Link from "next/link";
+import { NextPage } from "next";
 
-const app_service_select:NextPage = () => {
-
+const app_service_select: NextPage = () => {
   return (
-
     <div className={styles.container}>
-        <App_nav/>
-        <div className={styles.event}>
-            <Image src="/image/app_event.svg"  width={300}  height={300}/>
-        </div>
-        <Column title={"CASEBOXについて"} flg={"info"}/>
-        <Footer/>
+      <div style={{position:"relative",right:"20px"}}>
+        <App_nav />
+      </div>
+      <div className={styles.event}>
+        <Image src="/image/app_event.svg" width={500} height={500} />
+      </div>
+      <Column title={"CASEBOXについて"} />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
 type Column = {
-    title:string
-    flg:"service" | "info"
-}
+  title: string;
+};
 type Card = {
-    title:string,
-    src:string,
-    url:string
-    flg:"service" | "info"
-}
-const Column = ({title,flg}:Column) =>{
-    return(
-        <div className={styles.box}>
-            <h2>{title}</h2>       
-                <div>
-                    <Card title={"アプリについて"} src={""} url={"app_app_info"} flg={flg}/>
-                    <Card title={"自販機について"} src={""} url={"app_casebox_info"} flg={flg}/>
-                </div>
-        </div>
-    )
-}
+  title: string;
+  src: string;
+  url: string;
+};
+const Column = ({ title }: Column) => {
+  return (
+    <div className={styles.box}>
+      <h3>{title}</h3>
+      <div className={styles.cards}>
+        <Card
+          title={"アプリについて"}
+          src={"/app/service_select/logo.png"}
+          url={"app_app_info"}
+        />
+        <Card
+          title={"自販機について"}
+          src={"/app/service_select/box.png"}
+          url={"app_casebox_info"}
+        />
+      </div>
+    </div>
+  );
+};
 
-const Card =({title,src,url,flg}:Card)=>{
-    return(
-        <Link href={url}>
-            <div className={flg=== "service" ?styles.service_card:styles.info_card}>
-                <Image src={src}/>
-                <p>{title}</p>
-            </div>
-        </Link>
+const Card = ({ title, src, url }: Card) => {
+  return (
+    <Link href={url}>
+      <div className={styles.service_card}>
+        <Image src={src} width={60} height={60} />
+        <p>{title}</p>
+      </div>
+    </Link>
+  );
+};
 
-    )
-}
-
-const Footer = () =>{
-    return(
-        <footer>
-            <Link href={""}>利用規約</Link>
-            <span>|</span>
-            <Link href={""}>プライバシーポリシー</Link>
-        </footer>
-    )
-
-}
-export default app_service_select
+const Footer = () => {
+  return (
+    <footer className={styles.footer}>
+      <Link href={"/App/app_terms"}>利用規約</Link>
+      <span>|</span>
+      <Link href={"/App/app_privacy_policy"}>プライバシーポリシー</Link>
+    </footer>
+  );
+};
+export default app_service_select;
