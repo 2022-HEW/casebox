@@ -12,7 +12,7 @@ const app_service_select: NextPage = () => {
         <App_nav pageName="home"/>
       </div>
       <div className={styles.event}>
-        <Image src="/image/app_event.svg" width={500} height={500} />
+        <Image src="/app/service_select/event.svg" width={500} height={500} />
       </div>
       <Column title={"CASEBOXについて"} />
       <Footer />
