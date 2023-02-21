@@ -9,7 +9,7 @@ const app_service_select: NextPage = () => {
   return (
     <div className={styles.container}>
       <div style={{position:"relative",right:"20px"}}>
-        <App_nav />
+        <App_nav pageName="home"/>
       </div>
       <div className={styles.event}>
         <Image src="/image/app_event.svg" width={500} height={500} />

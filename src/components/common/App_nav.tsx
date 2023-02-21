@@ -1,22 +1,40 @@
 import React from "react";
 import styles from "../../styles/app_nav.module.css";
 import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
-const App_nav = () => {
+type nav={
+  pageName?:string
+}
+const App_nav = ({pageName}:nav) => {
+
   return (
     <nav className={styles.nav}>
       {/* navの色を変える処理が必要 */}
       <Link href="./app_service_select">
-        <p>ホーム</p>
+        <div>
+          <Image src={pageName==="home"?"/app/nav/selected_home.png":"/app/nav/home.png"} width={30} height={30} objectFit="contain"/>
+          <p>ホーム</p>
+        </div>
       </Link>
       <Link href="./app_search">
-        <p>検索</p>
+        <div>
+          <Image src={pageName==="search"?"/app/nav/selected_search.png":"/app/nav/search.png"} width={30} height={30} objectFit="contain"/>
+          <p>検索</p>
+        </div>
       </Link>
       <Link href="./app_category">
-        <p>カテゴリ</p>
+        <div>
+          <Image src={pageName==="category"?"/app/nav/selected_category.png":"/app/nav/category.png"} width={30} height={30} objectFit="contain"/>
+          <p>カテゴリ</p>
+        </div>
       </Link>
       <Link href="./app_profile">
-        <p>マイページ</p>
+        <div>
+          <Image src={pageName==="mypage"?"/app/nav/selected_mypage.png":"/app/nav/mypage.png"} width={30} height={30} objectFit="contain"/>
+          <p>マイページ</p>
+        </div>
       </Link>
     </nav>
   );
