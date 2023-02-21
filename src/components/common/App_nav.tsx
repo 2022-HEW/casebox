@@ -15,25 +15,25 @@ const App_nav = ({pageName}:nav) => {
       <Link href="./app_service_select">
         <div>
           <Image src={pageName==="home"?"/app/nav/selected_home.png":"/app/nav/home.png"} width={30} height={30} objectFit="contain"/>
-          <p>ホーム</p>
+          <p style={pageName==="home"? {fontWeight:"bold"}:{}}>ホーム</p>
         </div>
       </Link>
       <Link href="./app_search">
         <div>
           <Image src={pageName==="search"?"/app/nav/selected_search.png":"/app/nav/search.png"} width={30} height={30} objectFit="contain"/>
-          <p>検索</p>
+          <p style={pageName==="search"? {fontWeight:"bold"}:{}}>検索</p>
         </div>
       </Link>
       <Link href="./app_category">
         <div>
           <Image src={pageName==="category"?"/app/nav/selected_category.png":"/app/nav/category.png"} width={30} height={30} objectFit="contain"/>
-          <p>カテゴリ</p>
+          <p style={pageName==="category"? {fontWeight:"bold"}:{}}>カテゴリ</p>
         </div>
       </Link>
       <Link href="./app_profile">
         <div>
           <Image src={pageName==="mypage"?"/app/nav/selected_mypage.png":"/app/nav/mypage.png"} width={30} height={30} objectFit="contain"/>
-          <p>マイページ</p>
+          <p style={pageName==="myPage"? {fontWeight:"bold"}:{}}>マイページ</p>
         </div>
       </Link>
     </nav>

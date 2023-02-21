@@ -17,7 +17,7 @@ const app_search:NextPage = () => {
     return (
         <div className={styles.container}>
             <SearchHeader setText={setText} text={text}/>
-            <App_nav/>
+            <App_nav pageName='search'/>
             <SearchResult text={text}/>
         </div>
     )
