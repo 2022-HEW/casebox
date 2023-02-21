@@ -45,7 +45,10 @@ export const InsertAzure = async (body: Body) => {
   });
 };
 
-export const getThumbnailAzure = async(product_place:string | string[] | undefined,setDesignImage:Dispatch<SetStateAction<string>>) => {
+export const getThumbnailAzure = async (
+  product_place: string | string[] | undefined,
+  setDesignImage: Dispatch<SetStateAction<string>>
+) => {
   try {
     await fetch(`/api/blob_strage`, {
       method: "POST",
@@ -74,10 +77,38 @@ export const getThumbnailAzure = async(product_place:string | string[] | undefin
   }
 };
 
-export const getDB=(option:string)=>{
-  const {data,error} = useSWR(`/api/admin_sql?situ=get${option}`,fetcher)
-  return({
-    result:data,
-    CatchError:error
-  })
-}
+export const getDB = (option: string) => {
+  const { data, error } = useSWR(`/api/admin_sql?situ=get${option}`, fetcher);
+  return {
+    result: data,
+    CatchError: error,
+  };
+};
+
+export const resizeImage = async(img:HTMLImageElement,size:number):Promise<Blob> => {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+    // console.log(img);
+    let width = img.width;
+    let height = img.height;
+    if (width > height) {
+      if (width > size) {
+        height *= size / width;
+        width = size;
+      }
+    } else {
+      if (height > size) {
+        width *= size / height;
+        height = size;
+      }
+    }
+    canvas.width = width;
+    canvas.height = height;
+    ctx?.drawImage(img, 0, 0, width, height);
+
+    const resizedImageBlob = await new Promise<Blob>(resolve => canvas.toBlob(blob => resolve(blob!)));
+  
+  return  resizedImageBlob;
+  // 画像の取得と変換
+};

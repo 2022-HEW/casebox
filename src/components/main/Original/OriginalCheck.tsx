@@ -10,6 +10,8 @@ import { fetcher } from "../../../utils";
 import useSWR from "swr";
 import useEffectCustom from "../../common/useEffectCustom";
 import styles from "../../../styles/device_select.module.css";
+import { motion } from "framer-motion";
+import { getThumbnailAzure } from "../../../utils";
 
 const OriginalCheck = () => {
   // console.log(qrCodeData);
@@ -68,39 +70,11 @@ const OriginalCheck = () => {
     if (router.isReady) {
       // console.log(query.productID);
       // console.log(query.json);
-      getThumbnailAzure(query.productID);
+      getThumbnailAzure(query.productID,setDesignImage);
     }
   }, [query, router]);
 
-  const getThumbnailAzure = async(product_place:string | string[] | undefined) => {
-    try {
-      await fetch(`/api/blob_strage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          //  アップロード
-          situ: "thumbnail",
-          place: product_place,
-          // QRcode
-          // user_id: user_id,
-          // "situ":"create",
-        }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          //         // Azureからbase64を取ってくる
-          //         setImagePath(data[0]);
-          setDesignImage(data[0]);
-        });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
+ 
   // useEffect(() => {
   //   if (m_product_category === "user") {
   //     getThumbnailAzure();
@@ -113,12 +87,12 @@ const OriginalCheck = () => {
     return (
       <>
         {designImage && (
-              <Image
-                src={designImage}
-                width={150}
-                height={300}
-                objectFit={"cover"}
-              />
+          <Image
+            src={designImage}
+            width={150}
+            height={300}
+            objectFit={"cover"}
+          />
         )}
       </>
     );
@@ -128,7 +102,7 @@ const OriginalCheck = () => {
     const goEdit = () => {
       setProduct((prevState) => ({ ...prevState, quant: quant }));
       router.push({
-        pathname: "/pay",
+        pathname: "/main/pay",
       });
     };
 
@@ -143,32 +117,36 @@ const OriginalCheck = () => {
 
         <h2 className={styles.price}>&yen;{product.m_product_price}円(税込)</h2>
         <div className={styles.choseQuantity}>
-          <span
+          <motion.span
             className={styles.count}
             onClick={() => {
               quant > 1 && setQuant(quant - 1);
             }}
+            whileTap={{ scale: 0.9 }}
           >
             －
-          </span>
+          </motion.span>
           <div className={styles.quantity}>
             <p className={styles.quantity_text}>
               {quant}
               <span>こ</span>
             </p>
           </div>
-          <span
+          <motion.span
             className={styles.count}
             onClick={() => {
               quant < 6 && setQuant(quant + 1);
             }}
+            whileTap={{ scale: 0.9 }}
           >
             ＋
-          </span>
+          </motion.span>
         </div>
-        <div style={{position:"relative",left:"50%",top:"30px"}}>
+        <motion.div style={{ position: "relative", left: "50%", top: "30px" }} 
+        whileTap={{scale:0.9}}
+        >
           <Button label={"購入へ"} situ_name={"screen"} onClick={goEdit} />
-        </div>
+        </motion.div>
       </div>
     );
   };

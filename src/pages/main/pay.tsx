@@ -44,7 +44,7 @@ const pay:NextPage = () => {
         if(pay!="その他"){
             // console.log("a");
             router.push({
-                pathname:"/thankyou"
+                pathname:"/main/thankyou"
             })
         }
       },5000)

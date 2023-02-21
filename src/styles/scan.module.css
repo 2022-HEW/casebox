@@ -95,9 +95,8 @@
   margin: 0;
 }
 
-.CameraContainer > div:nth-child(1){
-  width: 300px;
-  height: 285px;
+.CameraContainer{
+  width: 50%;
+  height: 50%;
   background-color: #ccc;
-  margin: auto;
 }

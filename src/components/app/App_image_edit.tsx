@@ -14,6 +14,7 @@ import { originalState, productState } from "../../atoms/app_atoms";
 import { useRouter } from "next/router";
 import useEffectCustom from "../common/useEffectCustom";
 import { parse } from "path";
+import { resizeImage } from "../../utils";
 
 // import MyLargeComponent from './thingToRenderOnStage';
 
@@ -55,11 +56,6 @@ function App_image_edit() {
   const [original, setOriginal] = useRecoilState(originalState);
   const router = useRouter();
 
-  useEffect(()=>{
-    console.log(product);
-    
-  })
-
   const goCheckHandler = () => {
     setIsSave(true);
   };
@@ -80,18 +76,39 @@ function App_image_edit() {
       }),
       image: images ? images : null,
     }));
-
+    
     router.push({ pathname: "./app_product_edit" });
   }, [isSave]);
   // console.log(product);
 
   const uploadToClient = (event: { target: HTMLInputElement }) => {
     if (event.target.files) {
-      console.log("event.target.files", event.target.files[0]);
+      // console.log("event.target.files", event.target.files[0]);
       const file = event.target.files[0];
-      // console.log(file);
+      console.log(file);
+
+      const reader = new FileReader();
+      reader.onload = async () => {
+
+
+        // 1MB以上のとき
+  
+        if (file.size >= 1000000) {
+          const image = new window.Image();
+          image.onload = async () => {
+            const resizedImageBlob = await resizeImage(image,100);
+            console.log(resizedImageBlob);
+            setImage(resizedImageBlob);
+            setCreateObjectURL(URL.createObjectURL(resizedImageBlob));
+            return;
+          };
+          image.src = reader.result as string;
+          // const newImage = resizeImage(reader.result,100);
+        }
+      };
+      reader.readAsDataURL(file);
+
       setImage(file);
-      // console.log(list);
       setCreateObjectURL(URL.createObjectURL(file));
     }
   };

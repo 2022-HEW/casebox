@@ -1,322 +1,331 @@
 #wrap {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
 }
 
 #case_view {
-    width: 36.6vw;
-    margin: 0;
+  width: 36.6vw;
+  margin: 0;
 }
 
 #case_edit {
-    width: 36.6vw;
-    height: 100%;
-    background-color: #fff;
-    border-left: 1px solid #666;
-    border-radius: 0 0 10px 0;
-    overflow: hidden;
+  width: 36.6vw;
+  height: 100%;
+  background-color: #fff;
+  border-left: 1px solid #666;
+  border-radius: 0 0 10px 0;
+  overflow: hidden;
 }
 
 #case_edit h1 {
-    background: #666;
-    color: #FFFFFF;
-    height: 70px;
-    margin: -1px;
-    padding-top: 15px;
-    font-family: 'Noto Sans JP';
-    font-style: normal;
-    font-weight: 100;
-    text-align: center;
-    font-size: 30px;
-    border-radius: 0 5px 0 0;
+  background: #666;
+  color: #ffffff;
+  height: 70px;
+  margin: -1px;
+  padding-top: 15px;
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 0 5px 0 0;
 }
 
 #case_edit p {
-    text-align: center;
-    background-color: #F1F1F1;
-    position: relative;
-    bottom: 70px;
-    padding: 20px 0;
+  text-align: center;
+  background-color: #f1f1f1;
+  position: relative;
+  bottom: 70px;
+  padding: 20px 0;
 }
 
 #case_edit input {
-    display: none;
+  display: none;
 }
 
 .tryangle {
-    position: relative;
-    text-align: center;
-    bottom: 25px;
-    z-index: 2;
+  position: relative;
+  text-align: center;
+  bottom: 25px;
+  z-index: 2;
 }
-.color_select {}
+.color_select {
+}
 .color_select label {
-    display: inline-block;
-    width: 150px;
-    height: 90px;
-    border: 1px solid #AAAAAA;
-    border-radius: 6px;
+  display: inline-block;
+  width: 150px;
+  height: 90px;
+  border: 1px solid #aaaaaa;
+  border-radius: 6px;
 }
 .type {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 160px;
 }
 
 .type_name {
-    position: relative;
-    bottom: 20px;
+  position: relative;
+  bottom: 20px;
 }
 
 .list {
-    position: relative;
-    bottom: 85px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    height: 70px;
-    padding: 20px 0 0 30px;
+  position: relative;
+  bottom: 85px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 70px;
 }
 
 .list label {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  padding: 20px 0 0 30px;
+
 }
-
-
 
 .design {
-    width: 400px;
-    height: 541px;
-    position: absolute;
-    top: 0px;
-    left: 30px;
+  width: 400px;
+  position: absolute;
+  top: 0px;
+  left: 30px;
 }
 
-
-
 .draw_edit_box {
-    width: 100%;
-    height: 83%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 100%;
+  height: 83%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .tool_box {
-    box-sizing: border-box;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
-    border-radius: 17px;
-    width: 25%;
-    padding-top: 10px;
-    height: 55%;
-    position: absolute;
-    top: 110px;
-    right: 130px;
+  box-sizing: border-box;
+  background: #ffffff;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 17px;
+  width: 25%;
+  padding-top: 10px;
+  height: 55%;
+  position: absolute;
+  top: 110px;
+  right: 130px;
+  overflow: hidden;
 }
 
 .color_frame:first-child {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 .color_frame:last-child {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .color_frame {
-    position: relative;
-    width: 100%;
-    height: 25%;
+  position: relative;
+  width: 100%;
+  height: 25%;
 }
 
 .serv_guide {
-    width: 30%;
-    background-color: transparent !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    bottom: 0 !important;
+  width: 30%;
+  background-color: transparent !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  bottom: 0 !important;
 }
-.label1{
-    cursor: pointer;
-    width: 15px;
-    height: 15px;
-    margin: auto;
-    transform: translate(0,-30px);
-    border-radius: 50%;
-    border: solid #777;
+.label1 {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin: auto;
+  transform: translate(0, -30px);
+  border-radius: 50%;
+  border: solid #777;
 }
-.label2{
-    cursor: pointer;
-    width: 23px;
-    height: 23px;
-    margin: auto;
-    transform: translate(0,-30px);
-    border-radius: 50%;
-    border: solid #777;
+.label2 {
+  cursor: pointer;
+  width: 23px;
+  height: 23px;
+  margin: auto;
+  transform: translate(0, -30px);
+  border-radius: 50%;
+  border: solid #777;
 }
-.label3{
-    cursor: pointer;
-    width: 31px;
-    height: 31px;
-    margin: auto;
-    transform: translate(0,-30px);
-    border-radius: 50%;
-    border: solid #777;
+.label3 {
+  cursor: pointer;
+  width: 31px;
+  height: 31px;
+  margin: auto;
+  transform: translate(0, -30px);
+  border-radius: 50%;
+  border: solid #777;
 }
-.line{
-    position: absolute;
-    top: 50%;
-    left: 15%;
-    width: 70%;
-    border-top: 1px solid #666;
+.line {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 70%;
+  border-top: 1px solid #666;
 }
-.weight:checked+.label {
-    background-color: pink;
+#bold:checked + .label2 {
+  background-color: #000;
 }
 
 .color_trigger {
-    width: 100px;
-    height: 7px;
-    background: #4CB8F4;
-    border-radius: 10px;
-    margin: 10px 0 0 33px;
+  width: 100px;
+  height: 7px;
+  background: #000;
+  border-radius: 10px;
+  margin: 10px 0 0 33px;
 }
 
 .pencil_select_img {
-    left: 0;
-    height: 50px;
-    margin-top: -13px;
-    width: 135px;
+  position: relative;
+  right: 40px;
+  height: 50px;
+  margin-top: -13px;
+  width: 135px;
 }
 
+.eraser_select_img {
+  position: relative;
+  right: 20px;
+  height: 50px;
+  margin-top: -13px;
+  width: 135px;
+}
 .color_pallet {
-    box-sizing: border-box;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.15);
-    border-radius: 17px 0 0 17px;
-    padding-top: 10px;
-    width: 10%;
-    height: 55%;
-    position: absolute;
-    top: 110px;
-    right: 0px;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
+  box-sizing: border-box;
+  background: #ffffff;
+  box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 17px 0 0 17px;
+  padding-top: 10px;
+  width: 10%;
+  height: 55%;
+  position: absolute;
+  top: 110px;
+  right: 0px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .color_category {
-    height: 10%;
-    width: 15%;
-    padding-left: 5px;
-    margin-left: 15px;
-    border-radius: 50%;
-    position: relative;
+  height: 10%;
+  width: 15%;
+  padding-left: 5px;
+  margin-left: 15px;
+  border-radius: 50%;
+  position: relative;
 }
 
 .color_category input {
-    display: none;
+  display: none;
 }
 
 .button {
-    position: absolute;
-    bottom: 25px;
-    right: 25px;
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
 }
 .color_view {
-    height: 25px;
-    width: 60px;
-    margin: 0 0 10px 0;
-    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
+  height: 25px;
+  width: 60px;
+  margin: 0 0 10px 0;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.15);
 }
-.step3button {}
-.wrapper{
-    zoom: 90%;
-    position: relative;
-    top: 30px;
-    left: 20px;
+.step3button {
+}
+.wrapper {
+  zoom: 90%;
+  position: relative;
+  top: 30px;
+  left: 20px;
 }
 
 .product_info {
-    zoom: 110%;
-    position: relative;
-    vertical-align: top;
-    top: 6px;
-    right: 90px;
-    display: inline-block;
+  zoom: 110%;
+  position: relative;
+  vertical-align: top;
+  top: 6px;
+  right: 90px;
+  display: inline-block;
 }
-
-
 
 .productDesc {
-    position: relative;
-    left: 50%;
-    bottom: 50%;
-    line-height: 5px;
+  position: relative;
+  left: 50%;
+  bottom: 50%;
+  line-height: 5px;
 }
 .productColor {
-    color: #888888;
+  color: #888888;
 }
 
 .price {
-    position: relative;
-    left: 50%;
-    bottom: 50%;
-    font-weight: 400;
-    line-height: 100px;
-    font-weight: normal;
+  position: relative;
+  left: 50%;
+  bottom: 50%;
+  font-weight: 400;
+  line-height: 100px;
+  font-weight: normal;
 }
 .choseQuantity {
-    position: relative;
-    left: 50%;
-    bottom: 50%;
-    font-weight: 400;
-    line-height: 100px;
-    display: flex;
-    gap: 25px;
+  position: relative;
+  left: 50%;
+  bottom: 50%;
+  font-weight: 400;
+  line-height: 100px;
+  display: flex;
+  gap: 25px;
 }
 .count {
-    display: inline-block;
-    width: 45px;
-    height: 45px;
-    color: #fff;
-    line-height: 33px;
-    text-align: center;
-    background: #AAAAAA;
-    border: 2px solid #666666;
-    box-shadow: inset 2px 5px 2px rgba(255, 255, 255, 0.65), inset -2px -5px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 58px;
-    font-size: 32px;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  color: #fff;
+  line-height: 33px;
+  text-align: center;
+  background: #aaaaaa;
+  border: 2px solid #666666;
+  box-shadow: inset 2px 5px 2px rgba(255, 255, 255, 0.65),
+    inset -2px -5px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 58px;
+  font-size: 32px;
 }
 .quantity {
-    border: #999 solid;
-    display: inline-block;
-    width: 126px;
-    height: 65px;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 89px;
-    
-    position: relative;
-    bottom: 10px;
+  border: #999 solid;
+  display: inline-block;
+  width: 126px;
+  height: 65px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 89px;
+
+  position: relative;
+  bottom: 10px;
 }
 
-.quantity_text{
-    font-size: 38px;
-    position: relative;
-    bottom: 58px;
-    left: 15px;
+.quantity_text {
+  font-size: 38px;
+  position: relative;
+  bottom: 58px;
+  left: 15px;
 }
 
-.quantity_text span{
-    margin-left: 15px;
-    font-size: 18px;
+.quantity_text span {
+  margin-left: 15px;
+  font-size: 18px;
 }
 
 .go_pay {
-    position: relative;
-    left: 120px;
-    top: 40px;
+  position: relative;
+  left: 120px;
+  top: 40px;
 }

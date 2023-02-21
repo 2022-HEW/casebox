@@ -7,8 +7,6 @@ import { SUBTITLE } from "../../../themes/admin/ProductNav";
 import { UploadDetail } from "../../../components/admin/product/UploadDetail";
 import { UploadPicture } from "../../../components/admin/product/UploadPicture";
 import { fetcher, InsertDB } from "../../../utils";
-import { InsertAzure } from "../../../utils";
-import useSWR from "swr";
 import { Body } from "../../../components/admin/common/body";
 import { getDB } from "../../../utils";
 import { NextPage } from "next";

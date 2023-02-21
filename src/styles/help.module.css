@@ -1,40 +1,76 @@
-.header{
-    height: 70px;
-    width: 100.2%;
-    background-color: #555555;
-    border-radius: 10px 10px 0 0;
-    position: relative;
-    top: -1px;
-    right: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.header {
+  height: 70px;
+  width: 100.2%;
+  background-color: #555555;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  top: -1px;
+  right: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.header p{
-    color: white;
-    margin: 0;
-    font-size: 20px;
-    font-weight: bold;
+.header p {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
-.answer{
-    padding: 20px 0 0 29px;
-    display: flex;
+.answer {
+  padding: 20px 0 0 29px;
+  display: flex;
 }
-.answer  p{
-    border: 1px solid #6F6F6F;
-    border-radius: 12px;
-    display: inline-block;
-    width: 33%;
-    padding: 20px;
-    font-family: 'Noto Sans';
-    margin-left: 20px;
+.answer p {
+  border: 1px solid #6f6f6f;
+  border-radius: 12px;
+  display: inline-block;
+  width: 33%;
+  padding: 20px;
+  font-family: "Noto Sans";
+  margin-left: 20px;
 }
-.question span{
-    background: #F3F3F3;
-    border-radius: 28px;
-    padding: 10px;
-    position: relative;
-    left: 20px;
-    top: 160px;
+.question span {
+  background: #f3f3f3;
+  border-radius: 28px;
+  padding: 10px;
+
+  font-size: 15px;
+  margin: 0 4px;
+}
+.questions {
+  display: flex;
+  position: absolute;
+  top: 477px;
+  background-color: #fff;
+  /* height: 35px; */
+  padding: 20px 0;
+  border-radius: 10px;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+.chat_box {
+  width: 100%;
+  height: 471px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 0 50px 0;
+}
+.chat_box::-webkit-scrollbar {
+  display: none; /*Google Chrome、Safari、Microsoft Edge対応のスクロールバー非表示コード*/
+}
+.user_chat {
+  position: relative;
+  left: 550px;
+}
+.user_chat p {
+  border: 1px solid #6f6f6f;
+  border-radius: 12px;
+  display: inline-block;
+  width: 33%;
+  padding: 20px;
+  font-family: "Noto Sans";
+  margin-left: 20px;
+  background-color: #efefef;
 }
