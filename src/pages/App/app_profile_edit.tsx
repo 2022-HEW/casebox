@@ -43,19 +43,139 @@ const IconCheck = ({setImagePath}:IconCheck) => {
   }
 
   return (
-    <div>
-      {icons.map((value: { id: number; name: string; src: string; }) => {
-        return (
-          <div onClick={()=>{handleClickIcon(value.src)}}>
-            <Image
-              width={150}
-              height={150}
-              src={"/icon/avocado.svg"}
-              alt="アイコン"
-            />
-          </div>
-        );
-      })}
+    <div className={styles.modal_picture_box}>
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
     </div>
   );
 };
