@@ -40,13 +40,6 @@
 }
 
 /* modalのcss */
-.modal h3{
-}
-.modal setImagePath{
-}
-.label{
-}
-
 .modal_picture_box{
     display: flex;
     flex-wrap: wrap; /* 折返し可 */ 

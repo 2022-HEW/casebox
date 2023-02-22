@@ -90,6 +90,27 @@ const News = () => {
         <NewsRecord
           date={"2002.11.11"}
           category={"カテゴリ"}
+          title={"タイトルタイトルタイトルタイトルタイトルタイトル"}
+        />
+      </div>
+      <div className={styles.guidelink}>
+        <NewsRecord
+          date={"2002.11.11"}
+          category={"カテゴリ"}
+          title={"タイトル"}
+        />
+      </div>
+      <div className={styles.guidelink}>
+        <NewsRecord
+          date={"2002.11.11"}
+          category={"カテゴリ"}
+          title={"タイトル"}
+        />
+      </div>
+      <div className={styles.guidelink}>
+        <NewsRecord
+          date={"2002.11.11"}
+          category={"カテゴリ"}
           title={"タイトル"}
         />
       </div>
