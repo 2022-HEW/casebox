@@ -1,19 +1,15 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../../components/common/App_button";
 import App_nav from "../../components/common/App_nav";
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState, productState } from "../../atoms/app_atoms";
-import { NextPage } from "next";
-import { App_productBox } from "../../components/common/App_product_box";
 import useSWR from "swr";
-import useEffectCustom from "../../components/common/useEffectCustom";
 import { useRouter } from "next/router";
-import { Product } from "../../types";
 import { fetcher } from "../../utils";
-import App_header from "../../components/common/App_header";
 import styles from "../../styles/app_profile.module.css";
+
 type NewsRecord = {
   date: string;
   category: string;
@@ -26,8 +22,6 @@ type SupportRecord = {
 };
 
 const app_profile = () => {
-  // console.log(user_id);
-  const router = useRouter();
   const { user_id } = useRecoilValue(profileState);
   const [profile, setProfile] = useRecoilState(profileState);
   const [mounted, setMounted] = useState(false);
@@ -39,32 +33,25 @@ const app_profile = () => {
     `/api/app_sql?sql=logintime&&user_id=${profile.user_id}`,
     fetcher
   );
-  useEffect(() => {
-    if(data){
-        console.log(data);
-        console.log(data[0]["MAX(loginID)"]);
-    }
-  }, [data]);
   if (!data) return <></>;
- 
+
   const handleClickLogout = async () => {
     setProfile({});
     await fetch(`/api/app_sql?sql=logout&&loginID=${data[0]["MAX(loginID)"]}`);
   };
   return (
     mounted && (
-      <>
+      <div className={styles.container}>
         <LoginBox />
         <News />
         <Support />
         {user_id && <Button label="ログアウト" onClick={handleClickLogout} />}
         <App_nav />
-      </>
+      </div>
     )
   );
 };
 
-// 非ログイン時
 const LoginBox = () => {
   const { user_id, user_name } = useRecoilValue(profileState);
   return (
@@ -75,7 +62,9 @@ const LoginBox = () => {
       </h2>
       <div className={styles.loginbutton}>
         <Link href={user_id ? "./app_mypage" : "./app_login"}>
-            <Button label={user_id ? "プロフィールを見る" : "ログイン・会員登録"} />
+          <Button
+            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
+          />
         </Link>
       </div>
     </div>

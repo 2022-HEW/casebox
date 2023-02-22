@@ -1,4 +1,6 @@
-
+.container{
+    background: #f6f6f6;
+}
 .name{
     padding-left: 20px;
     padding-top: 50px;
