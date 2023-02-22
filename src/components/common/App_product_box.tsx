@@ -175,8 +175,8 @@ export const App_productBox = ({
                 : "/product_image/" + product_place
             }
             alt="商品の画像"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             id={styles.product_image}
           />
         )}
