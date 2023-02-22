@@ -43,6 +43,7 @@ const IconCheck = ({setImagePath}:IconCheck) => {
   }
 
   return (
+<<<<<<< HEAD
     <div className={styles.modal_picture_box}>
     {icons.map((value: { id: number; name: string; src: string; }) => {
       return (
@@ -56,6 +57,21 @@ const IconCheck = ({setImagePath}:IconCheck) => {
         </div>
       );
     })}
+=======
+    <div>
+      {icons.map((value: { id: number; name: string; src: string; }) => {
+        return (
+          <div onClick={()=>{handleClickIcon(value.src)}}>
+            <Image
+              width={150}
+              height={150}
+              src={"/icon/avocado.svg"}
+              alt="アイコン"
+            />
+          </div>
+        );
+      })}
+>>>>>>> 25045247e016ba6ae3c43f33b0efe13d699257fc
     </div>
   );
 };

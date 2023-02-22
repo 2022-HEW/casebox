@@ -40,6 +40,7 @@
 }
 
 /* modalのcss */
+<<<<<<< HEAD
 .modal_picture_box{
     display: flex;
     flex-wrap: wrap; /* 折返し可 */ 
@@ -58,4 +59,16 @@
     content: "";
     display:block;
     width:33%; /* 子要素と同じ幅 */
+=======
+.modal h3{
+    position: absolute;
+}
+.modal setImagePath{
+    position: absolute;
+}
+.label{
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -20px;
+>>>>>>> 25045247e016ba6ae3c43f33b0efe13d699257fc
 }
