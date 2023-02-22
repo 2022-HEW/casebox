@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import App_nav from "../../components/common/App_nav";
+import styles from "../../styles/app/app_category.module.css"
 
 type Card = {
   href: string;
@@ -13,22 +14,22 @@ type Card = {
 
 const app_category: NextPage = () => {
   return (
-    <div>
-      <App_nav />
+    <div className={styles.container}>
+      <App_nav pageName="category"/>
       <Card
-        imagePath={"/service_select/template_select.png"}
+        imagePath={"/common/template_select.png"}
         title={"テンプレートケース"}
         text={"デザインが既に完成しているケースです。"}
         href={"./app_template"}
       />
       <Card
-        imagePath={"/service_select/template_select.png"}
+        imagePath={"/common/original.png"}
         title={"オリジナルケース"}
-        text={"写真を自由に入れ、オリジナルのケースを作ることができます"}
+        text={"写真を自由に入れ、オリジナルのケースを作ることができます。"}
         href={"./app_select_type"}
       />
       <Card
-        imagePath={"/service_select/template_select.png"}
+        imagePath={"/common/illust.png"}
         title={"手書きケース"}
         text={"自販機で自分が書いたイラストをケースにすることができます。"}
         href={"./app_draw"}
@@ -40,8 +41,8 @@ const app_category: NextPage = () => {
 const Card = ({ href, imagePath, title, text }: Card) => {
   return (
     <Link href={href}>
-      <div>
-        <Image width={"100px"} height={"100px"} alt={title} src={imagePath} />
+      <div className={styles.card}>
+        <Image width={"400px"} height={"130px"} alt={title} src={imagePath} objectFit="cover" />
         <div>
           <h3>{title}</h3>
           <p>{text}</p>
