@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import App_nav from "../../components/common/App_nav";
+import App_nav from "../../components/app/common/App_nav";
 import styles from "../../styles/app/app_category.module.css"
 
 type Card = {

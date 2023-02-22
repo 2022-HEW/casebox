@@ -6,7 +6,7 @@ import Image from "next/image";
 import styles from "../../styles/app_product_detail.module.css";
 import ModalStyles from "../../styles/app_search.module.css";
 
-import App_nav from "../../components/common/App_nav";
+import App_nav from "../../components/app/common/App_nav";
 import Modal from "../../components/common/App_modal";
 import { Button } from "../../components/common/App_button";
 import { NextPage } from "next";

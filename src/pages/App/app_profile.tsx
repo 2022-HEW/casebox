@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../../components/common/App_button";
-import App_nav from "../../components/common/App_nav";
+import App_nav from "../../components/app/common/App_nav";
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -9,6 +9,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { fetcher } from "../../utils";
 import styles from "../../styles/app_profile.module.css";
+import { NextPage } from "next";
 
 type NewsRecord = {
   date: string;
@@ -21,7 +22,7 @@ type SupportRecord = {
   href: string;
 };
 
-const app_profile = () => {
+const app_profile:NextPage = () => {
   const { user_id } = useRecoilValue(profileState);
   const [profile, setProfile] = useRecoilState(profileState);
   const [mounted, setMounted] = useState(false);
@@ -40,22 +41,22 @@ const app_profile = () => {
     await fetch(`/api/app_sql?sql=logout&&loginID=${data[0]["MAX(loginID)"]}`);
   };
   return (
-    mounted && (
+    mounted ? (
       <div className={styles.container}>
         <LoginBox />
         <News />
         <Support />
         {user_id && <Button label="ログアウト" onClick={handleClickLogout} />}
-        <App_nav />
+        <App_nav pageName="mypage"/>
       </div>
-    )
+    ):<></>
   );
 };
 
 const LoginBox = () => {
   const { user_id, user_name } = useRecoilValue(profileState);
   return (
-    <div>
+    <div className={styles.login_box}>
       <h2 className={styles.name}>
         {user_id ? user_name : "ゲスト"}
         <span className={styles.sama}>様</span>

@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "../../styles/app_search.module.css";
 import Image from "next/image";
-import App_nav from "../../components/common/App_nav";
+import App_nav from "../../components/app/common/App_nav";
 import useSWR from "swr";
 import { NextRouter, useRouter } from "next/router";
 import { useRecoilState } from "recoil";

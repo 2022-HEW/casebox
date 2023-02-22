@@ -6,7 +6,7 @@ import { App_productBox } from "../../components/common/App_product_box";
 import Image from "next/image";
 import styles from "../../styles/app_search.module.css";
 import App_header from "../../components/common/App_header";
-import App_nav from "../../components/common/App_nav";
+import App_nav from "../../components/app/common/App_nav";
 import { App_product_filter } from "../../components/common/App_product_filter";
 import { Product } from "../../types";
 const App_template: NextPage = () => {
