@@ -161,7 +161,7 @@ export const App_productBox = ({
     <div className={styles.thisProduct}>
       <button
         className={liked ? styles.liked : styles.like}
-        onClick={() => likehandler()}
+        onClick={() => user_id ? likehandler():{}}
         disabled={
           (user_id === product_user_id || user_id === undefined) && true
         }
