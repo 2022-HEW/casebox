@@ -15,7 +15,7 @@ import { fetcher } from '../../utils'
 const app_search:NextPage = () => {    
     const [text,setText] = useState("")
     return (
-        <div className={styles.searchContainer}>
+        <div className={styles.container}>
             <SearchHeader setText={setText} text={text}/>
             <App_nav/>
             <SearchResult text={text}/>
