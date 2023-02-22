@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "../../styles/app_nav.module.css";
+import styles from "../../../styles/app_nav.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 
 type nav={
   pageName?:string
@@ -33,7 +32,7 @@ const App_nav = ({pageName}:nav) => {
       <Link href="./app_profile">
         <div>
           <Image src={pageName==="mypage"?"/app/nav/selected_mypage.png":"/app/nav/mypage.png"} width={30} height={30} objectFit="contain"/>
-          <p style={pageName==="myPage"? {fontWeight:"bold"}:{}}>マイページ</p>
+          <p style={pageName==="mypage"? {fontWeight:"bold"}:{}}>マイページ</p>
         </div>
       </Link>
     </nav>
