@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Button } from "../../components/common/App_button";
-import App_nav from "../../components/common/App_nav";
+import App_nav from "../../components/app/common/App_nav";
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";

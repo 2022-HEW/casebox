@@ -46,3 +46,6 @@
   border-top: 1px dotted #bbb;
   border-bottom: 1px dotted #bbb;
 }
+.title span{
+    display: inline-block;
+}

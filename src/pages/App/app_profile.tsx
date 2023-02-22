@@ -78,30 +78,30 @@ const News = () => {
       <h3 className={styles.guide}>お知らせ</h3>
       <div className={styles.guidelink}>
         <NewsRecord
-          date={"2002.11.11"}
+          date={"2023.02.23"}
           category={"カテゴリ"}
-          title={"タイトルタイトルタイトルタイトルタイトルタイトル"}
+          title={"BTSコラボを開始しました。"}
         />
       </div>
       <div className={styles.guidelink}>
         <NewsRecord
-          date={"2002.11.11"}
+          date={"2023.01.10"}
           category={"カテゴリ"}
-          title={"タイトル"}
+          title={"不具合のお知らせ。"}
         />
       </div>
       <div className={styles.guidelink}>
         <NewsRecord
-          date={"2002.11.11"}
+          date={"2022.12.30"}
           category={"カテゴリ"}
-          title={"タイトル"}
+          title={"10%OFFキャンペーンについて。"}
         />
       </div>
       <div className={styles.guidelink}>
         <NewsRecord
-          date={"2002.11.11"}
+          date={"2022.12.11"}
           category={"カテゴリ"}
-          title={"タイトル"}
+          title={"CASEBOXがリリースされました！"}
         />
       </div>
     </div>
@@ -126,7 +126,7 @@ const NewsRecord = ({ date, category, title }: NewsRecord) => {
     <div>
       <li className={styles.date}>{date}</li>
       <li className={styles.category}>{category}</li>
-      <li className={styles.title}>{title}</li>
+      <li className={styles.title}><span>{title}</span></li>
       <Image src={""} width={10} height={10} />
     </div>
   );
