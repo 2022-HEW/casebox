@@ -41,13 +41,28 @@
 
 /* modalのcss */
 .modal h3{
-    position: absolute;
 }
 .modal setImagePath{
-    position: absolute;
 }
 .label{
-	display: flex;
-	flex-wrap: wrap;
-	margin-left: -20px;
+}
+
+.modal_picture_box{
+    display: flex;
+    flex-wrap: wrap; /* 折返し可 */ 
+    justify-content: space-between;
+    width: 100%;
+    padding:0 10% 0 10%;
+}
+.modal_picture{
+    width: 33% ; /* 親要素の1/3より小さい値 */
+
+}
+.modal_picture img{
+    border-radius: 10px;
+}
+.modal_picture_box::after{
+    content: "";
+    display:block;
+    width:33%; /* 子要素と同じ幅 */
 }
