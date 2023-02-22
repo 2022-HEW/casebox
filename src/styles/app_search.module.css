@@ -35,14 +35,16 @@
   overflow-y: scroll;
 }
 .result_line {
-  margin-top: 15px;
+  width: 414px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .thisProduct{
   width: 50%;
   display: inline-block;
 }
 .product {
-  width: 100%;
+  width: 50%;
 }
 .result_header {
   width: 100%;
