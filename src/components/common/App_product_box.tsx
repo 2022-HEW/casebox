@@ -158,7 +158,7 @@ export const App_productBox = ({
   }, [newLiked]);
 
   return (
-    <>
+    <div className={styles.thisProduct}>
       <button
         className={liked ? styles.liked : styles.like}
         onClick={() => likehandler()}
@@ -188,6 +188,6 @@ export const App_productBox = ({
           ￥{m_product_price.toLocaleString()}(税込)
         </p>
       </div>
-    </>
+    </div>
   );
 };
