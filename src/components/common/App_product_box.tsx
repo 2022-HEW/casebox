@@ -17,9 +17,9 @@ import { Product } from "../../types";
 import { fetcher } from "../../utils";
 import { getThumbnailAzure } from "../../utils";
 
-type Thumbnails = {
-  [key: string]: string;
-};
+// type Thumbnails = {
+//   [key: string]: string;
+// };
 // export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_liked}:Product)=> {
 export const App_productBox = ({
   product_place,
@@ -162,7 +162,9 @@ export const App_productBox = ({
       <button
         className={liked ? styles.liked : styles.like}
         onClick={() => likehandler()}
-        disabled={user_id === product_user_id && true}
+        disabled={
+          (user_id === product_user_id || user_id === undefined) && true
+        }
       >
         ❤{newLiked < 0 ? 0 : newLiked}
       </button>
