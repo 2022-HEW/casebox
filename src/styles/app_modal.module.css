@@ -32,13 +32,11 @@
     justify-content: center;
   }
 .modal_header{
-<<<<<<< HEAD
     text-align: center;
     position: static;
-=======
+
     display: flex;
     height: 50px;
->>>>>>> 25045247e016ba6ae3c43f33b0efe13d699257fc
 }
 .cancel{
     position: relative;
