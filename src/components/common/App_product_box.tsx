@@ -159,6 +159,8 @@ export const App_productBox = ({
 
   return (
     <>
+      
+      <div className={styles.product} onClick={goDetail}>
       <button
         className={liked ? styles.liked : styles.like}
         onClick={() => likehandler()}
@@ -166,7 +168,6 @@ export const App_productBox = ({
       >
         ❤{newLiked < 0 ? 0 : newLiked}
       </button>
-      <div className={styles.product} onClick={goDetail}>
         {product_place && (
           <Image
             src={
