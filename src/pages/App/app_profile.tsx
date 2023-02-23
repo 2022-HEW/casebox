@@ -113,9 +113,9 @@ const Support = () => {
     <div>
       <h3 className={styles.guide}>サポート</h3>
       <div>
-        <SupportRecord title={"ヘルプ・よくある質問"} href={""} />
-        <SupportRecord title={"利用規約"} href={""} />
-        <SupportRecord title={"プライバシーポリシー"} href={""} />
+        <SupportRecord title={"ヘルプ・よくある質問"} href={"./app_help"} />
+        <SupportRecord title={"利用規約"} href={"./app_terms"} />
+        <SupportRecord title={"プライバシーポリシー"} href={"./app_ privacy_policy"} />
       </div>
     </div>
   );
