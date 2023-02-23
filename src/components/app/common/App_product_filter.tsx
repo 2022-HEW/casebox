@@ -1,5 +1,5 @@
 import React,{Dispatch, SetStateAction, useEffect, useLayoutEffect, useReducer, useState} from 'react'
-import styles from "../../styles/app_search.module.css"
+import styles from "../../../styles/app_search.module.css"
 import Image from 'next/image'
 import Modal from './App_modal'
 import { useRecoilState } from 'recoil'
