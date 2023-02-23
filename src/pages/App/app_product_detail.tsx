@@ -1,17 +1,17 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, productState, profileState } from "../../atoms/app_atoms";
-import App_header from "../../components/common/App_header";
+import App_header from "../../components/app/common/App_header";
 import Image from "next/image";
 import styles from "../../styles/app_product_detail.module.css";
 import ModalStyles from "../../styles/app_search.module.css";
 
 import App_nav from "../../components/app/common/App_nav";
-import Modal from "../../components/common/App_modal";
-import { Button } from "../../components/common/App_button";
+import Modal from "../../components/app/common/App_modal";
+import { Button } from "../../components/app/common/App_button";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { App_product_view } from "../../components/common/App_product_view";
+import { App_product_view } from "../../components/app/common/App_product_view";
 import { QRCode } from "react-qrcode";
 
 

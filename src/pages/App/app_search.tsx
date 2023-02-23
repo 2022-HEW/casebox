@@ -7,8 +7,8 @@ import { NextRouter, useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { productState } from "../../atoms/app_atoms";
 import { NextPage } from "next";
-import { App_productBox } from "../../components/common/App_product_box";
-import { App_product_filter } from "../../components/common/App_product_filter";
+import { App_productBox } from "../../components/app/common/App_product_box";
+import { App_product_filter } from "../../components/app/common/App_product_filter";
 import { Product } from "../../types";
 import { fetcher } from "../../utils";
 

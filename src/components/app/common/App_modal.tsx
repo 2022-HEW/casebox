@@ -1,8 +1,8 @@
-import styles from "../../styles/app_modal.module.css"
+import styles from "../../../styles/app_modal.module.css"
 import { ReactNode,useState } from "react"
 import { log } from "console"
 import { useRecoilState } from "recoil";
-import { modalState } from '../../atoms/atoms';
+import { modalState } from '../../../atoms/atoms';
 
 type Props ={
     children?:ReactNode,

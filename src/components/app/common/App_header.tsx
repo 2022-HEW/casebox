@@ -1,6 +1,6 @@
 import { type } from 'os'
 import React from 'react'
-import styles from "../../styles/app_header.module.css"
+import styles from "../../../styles/app_header.module.css"
 import Image from "next/image"
 import { useRouter } from 'next/router'
 type Props ={

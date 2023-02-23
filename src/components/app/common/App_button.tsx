@@ -1,5 +1,5 @@
 import { ComponentProps, CSSProperties } from "react";
-import styles from "../../styles/app_button.module.css";
+import styles from "../../../styles/app_button.module.css";
 
 // type Props = {
 //   label: string;

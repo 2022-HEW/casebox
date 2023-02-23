@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { productState } from "../../atoms/app_atoms";
+import { productState } from "../../../atoms/app_atoms";
 import Image from "next/image";
 export const App_product_view = ({width=200,height=200}) => {
     const { product_place } = useRecoilValue(productState);

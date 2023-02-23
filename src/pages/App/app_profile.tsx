@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "../../components/common/App_button";
+import { Button } from "../../components/app/common/App_button";
 import App_nav from "../../components/app/common/App_nav";
 import Image from "next/image";
 import Link from "next/link";

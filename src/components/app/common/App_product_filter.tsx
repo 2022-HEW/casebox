@@ -3,10 +3,10 @@ import styles from "../../styles/app_search.module.css"
 import Image from 'next/image'
 import Modal from './App_modal'
 import { useRecoilState } from 'recoil'
-import { modalState } from '../../atoms/app_atoms'
+import { modalState } from '../../../atoms/app_atoms'
 import { log } from 'console'
 import useSWR from 'swr'
-import useEffectCustom from './useEffectCustom'
+import useEffectCustom from '../../../Hooks/common/useEffectCustom'
 
 
 type Product ={

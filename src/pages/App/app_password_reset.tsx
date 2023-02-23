@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import React, { useState } from 'react'
-import { Button } from '../../components/common/App_button'
-import App_header from '../../components/common/App_header'
+import { Button } from '../../components/app/common/App_button'
+import App_header from '../../components/app/common/App_header'
 import styles from '../../styles/app_login.module.scss';
 
 const app_password_reset:NextPage = () => {

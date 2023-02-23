@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import React, { useState } from "react";
-import App_header from "../../components/common/App_header";
+import App_header from "../../components/app/common/App_header";
 import styles from "../../styles/app/common/app_text.module.css";
 
 const app_terms: NextPage = () => {

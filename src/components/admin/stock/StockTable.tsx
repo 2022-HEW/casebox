@@ -18,7 +18,7 @@ import { Stock } from "../../../types/admin/Stock";
 import { ModalItem } from "./ModalItem";
 import Input from "@mui/material/Input";
 import TextField from "@mui/material/TextField";
-import useEffectCustom from "../../common/useEffectCustom";
+import useEffectCustom from "../../../Hooks/common/useEffectCustom";
 import { InsertDB } from "../../../utils";
 
 type StockTable = {
@@ -35,9 +35,9 @@ export const StockTable = ({ device }: StockTable) => {
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
   // 補充後数量の初期値が0にならないように
-  useEffectCustom(()=>{
-    setStockResult(stock)
-  },[stock])
+  useEffectCustom(() => {
+    setStockResult(stock);
+  }, [stock]);
   const handleClickOrder = (index: number) => {
     handleOpen();
     setStockIndex(index);
@@ -56,24 +56,24 @@ export const StockTable = ({ device }: StockTable) => {
     }
   };
 
-  const handleClickAddDB=()=>{    
+  const handleClickAddDB = () => {
     const tradeBody = {
-      situ:"addTrade",
-      model_id:result[stockIndex].model_id,
-      add_quant:addStock,
-      transaction_cost:addStock * result[stockIndex].model_price
-    }
+      situ: "addTrade",
+      model_id: result[stockIndex].model_id,
+      add_quant: addStock,
+      transaction_cost: addStock * result[stockIndex].model_price,
+    };
     const stockBody = {
-      situ:"addStock",
-      model_quant:stockResult,
-      model_id:result[stockIndex].model_id
-    }
-    InsertDB(tradeBody)
-    InsertDB(stockBody)
-    alert("発注しました")
-    setAddStock(0)
-    handleClose()
-  }
+      situ: "addStock",
+      model_quant: stockResult,
+      model_id: result[stockIndex].model_id,
+    };
+    InsertDB(tradeBody);
+    InsertDB(stockBody);
+    alert("発注しました");
+    setAddStock(0);
+    handleClose();
+  };
 
   return (
     <>
@@ -189,7 +189,6 @@ export const StockTable = ({ device }: StockTable) => {
                     title={"金額"}
                     value={result[stockIndex].model_price * addStock}
                     positionLeft={"-2vw"}
-
                   />
                 </Grid>
               </Grid>

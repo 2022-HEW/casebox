@@ -1,14 +1,14 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Button } from "../../components/common/App_button";
+import { Button } from "../../components/app/common/App_button";
 import App_nav from "../../components/app/common/App_nav";
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilValue } from "recoil";
 import { profileState, productState } from "../../atoms/app_atoms";
 import { NextPage } from "next";
-import { App_productBox } from "../../components/common/App_product_box";
+import { App_productBox } from "../../components/app/common/App_product_box";
 import useSWR from "swr";
-import useEffectCustom from "../../components/common/useEffectCustom";
+import useEffectCustom from "../../Hooks/common/useEffectCustom";
 import { useRouter } from "next/router";
 import { Product } from "../../types";
 import { fetcher } from "../../utils";

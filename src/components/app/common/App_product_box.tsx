@@ -9,13 +9,13 @@ import Image from "next/image";
 import useSWR from "swr";
 import { NextRouter, useRouter } from "next/router";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { productState, profileState } from "../../atoms/app_atoms";
+import { productState, profileState } from "../../../atoms/app_atoms";
 import { NextPage } from "next";
-import styles from "../../styles/app_search.module.css";
-import useEffectCustom from "./useEffectCustom";
-import { Product } from "../../types";
-import { fetcher } from "../../utils";
-import { getThumbnailAzure } from "../../utils";
+import styles from "../../../styles/app_search.module.css";
+import useEffectCustom from "../../../Hooks/common/useEffectCustom";
+import { Product } from "../../../types";
+import { fetcher } from "../../../utils";
+import { getThumbnailAzure } from "../../../utils";
 
 // type Thumbnails = {
 //   [key: string]: string;
@@ -161,7 +161,7 @@ export const App_productBox = ({
     <div className={styles.thisProduct}>
       <button
         className={liked ? styles.liked : styles.like}
-        onClick={() => user_id ? likehandler():{}}
+        onClick={() => (user_id ? likehandler() : {})}
         disabled={
           (user_id === product_user_id || user_id === undefined) && true
         }

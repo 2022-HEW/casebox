@@ -2,7 +2,7 @@ import { width } from "@mui/system";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React from "react";
-import App_header from "../../components/common/App_header";
+import App_header from "../../components/app/common/App_header";
 import styles from"../../styles/app/app_tutorial.module.css"
 
 const tutorial: NextPage = () => {
