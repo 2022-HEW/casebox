@@ -81,6 +81,7 @@ const SearchResult = ({ text }: Props) => {
                   product_user_id={product.user_id}
                   user_name={product.user_name}
                   product_situation={product.product_situation}
+                  product_liked={product.product_liked}
                   //   setProduct_ID={setProduct_ID}
                 />
               )

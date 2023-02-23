@@ -112,9 +112,9 @@ const FilterBox=({setFilter}:Filter)=>{
 
     return(
         <div className={styles.modal}>
-            <p className={styles.title}><h2>並び替え</h2>
+            <div className={styles.title}><h2>並び替え</h2>
             <div className={styles.cancel}><Image width={35} height={35} src="/image/cancel.svg" onClick={()=>setModal(false)}/></div>
-            </p>
+            </div>
             <div className={styles.option}>
                 <p><Select label="人気順"/></p>
                 <p><Select label="新着順"/></p>

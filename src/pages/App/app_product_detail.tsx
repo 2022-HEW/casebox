@@ -24,6 +24,7 @@ type Product = {
   name: string;
   category: string;
   price: number;
+  product_liked:number
   setModalBody: Dispatch<SetStateAction<"QRcode" | "ProductMenu">>;
 };
 
@@ -149,7 +150,7 @@ const app_product_detail: NextPage = () => {
     product_name,
     m_product_category,
     m_product_price,
-    product_user_id,
+    product_liked
   } = useRecoilValue(productState);
   const router = useRouter();
 
@@ -167,11 +168,11 @@ const app_product_detail: NextPage = () => {
 
   
   useEffect(()=>{
-    console.log(product_ID)
+    console.log(product_liked)
   },[])
 
   return (
-    <>
+    <div className={styles.container}>
       <App_header />
       <App_product_view  />
       <ProductInfo
@@ -179,16 +180,17 @@ const app_product_detail: NextPage = () => {
         category={m_product_category}
         price={m_product_price}
         setModalBody={setModalBody}
+        product_liked={product_liked}
       />
       <QRButton setModalBody={setModalBody} />
       <App_nav />
       <Modal>{ModalBody === "QRcode" ? <QRcode /> : <ProductMenu />}</Modal>
-    </>
+    </div>
   );
 };
 
 
-const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
+const ProductInfo = ({ name, category, price, setModalBody,product_liked }: Product) => {
   const { user_id } = useRecoilValue(profileState);
   const { product_user_id } = useRecoilValue(productState);
   const [modal, setModal] = useRecoilState(modalState);
@@ -206,6 +208,8 @@ const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
       <p className={styles.case_name}>{name}</p>
       <p className={styles.case_category}>{category}</p>
       <p className={styles.case_price}>￥{price.toLocaleString()}<span>税込</span></p>
+      <p>❤</p>
+      <p>{product_liked}</p>
     </div>
   );
 };

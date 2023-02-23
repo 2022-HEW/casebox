@@ -30,6 +30,7 @@ export const App_productBox = ({
   product_user_id,
   product_situation,
   user_name,
+  product_liked
 }: Product) => {
   const [product, setProduct] = useRecoilState(productState);
   const { user_id } = useRecoilValue(profileState);
@@ -43,7 +44,7 @@ export const App_productBox = ({
     if (m_product_category === "user") {
       getThumbnailAzure(product_place, setOriginalPlace);
     }
-    // console.log(product_situation);
+
   }, []);
 
   const useUserLike = () => {
@@ -98,7 +99,7 @@ export const App_productBox = ({
   }, [user_like]);
 
   const goDetail = () => {
-    // console.log(product_place);
+    console.log(product_liked);
 
     setProduct((before) => ({
       ...before,
@@ -113,6 +114,7 @@ export const App_productBox = ({
       m_product_category: m_product_category,
       product_user_id: product_user_id,
       product_situation: product_situation,
+      product_liked:product_liked!
     }));
     router.push({
       pathname: "./app_product_detail",

@@ -27,8 +27,8 @@ const App_template: NextPage = () => {
     if (data) {
       setProduct(data);
     }
-    // console.log(data);
   }, [data]);
+  
 
   // 取得するまで
   //   if(!data) return (<Box><Nav><></></Nav></Box>)
@@ -49,6 +49,7 @@ const App_template: NextPage = () => {
               product_user_id={product.user_id}
               user_name={product.user_name}
               product_situation={product.product_situation}
+              product_liked={product.product_liked}
               //   setProduct_ID={setProduct_ID}
             />
           ))}
