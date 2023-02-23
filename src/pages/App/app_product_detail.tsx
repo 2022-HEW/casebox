@@ -13,6 +13,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { App_product_view } from "../../components/app/common/App_product_view";
 import { QRCode } from "react-qrcode";
+import { style } from "@mui/system";
 
 
 type QRButton = {
@@ -208,8 +209,8 @@ const ProductInfo = ({ name, category, price, setModalBody,product_liked }: Prod
       <p className={styles.case_name}>{name}</p>
       <p className={styles.case_category}>{category}</p>
       <p className={styles.case_price}>￥{price.toLocaleString()}<span>税込</span></p>
-      <p>❤</p>
-      <p>{product_liked}</p>
+      <p className={styles.favorite}>❤</p>
+      <p className={styles.product_liked}>{product_liked}</p>
     </div>
   );
 };
