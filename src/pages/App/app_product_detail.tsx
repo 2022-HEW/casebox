@@ -205,7 +205,7 @@ const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
       )}
       <p className={styles.case_name}>{name}</p>
       <p className={styles.case_category}>{category}</p>
-      <p className={styles.case_price}>￥{price.toLocaleString()}(税込)</p>
+      <p className={styles.case_price}>￥{price.toLocaleString()}<span>税込</span></p>
     </div>
   );
 };
