@@ -36,12 +36,12 @@ const Column = ({ title }: Column) => {
         <Card
           title={"アプリについて"}
           src={"/app/service_select/logo.png"}
-          url={"app_app_info"}
+          url={"./app_tutorial?app"}
         />
         <Card
           title={"自販機について"}
           src={"/app/service_select/box.png"}
-          url={"app_casebox_info"}
+          url={"./app_tutorial?box"}
         />
       </div>
     </div>
