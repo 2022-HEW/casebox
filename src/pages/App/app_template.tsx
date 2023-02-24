@@ -1,9 +1,7 @@
 import { NextPage } from "next";
 import React, { useEffect, useReducer, useState } from "react";
-import { text } from "stream/consumers";
 import useSWR from "swr";
 import { App_productBox } from "../../components/app/common/App_product_box";
-import Image from "next/image";
 import styles from "../../styles/app_search.module.css";
 import App_header from "../../components/app/common/App_header";
 import App_nav from "../../components/app/common/App_nav";
@@ -35,9 +33,9 @@ const App_template: NextPage = () => {
   return (
     <div className={styles.container}>
       <App_header label="テンプレート" />
-      <App_product_filter product={product} setProduct={setProduct} />
+      <App_product_filter product={product} setProduct={setProduct} style={{position:"relative",top:"0"}}/>
       <div className={styles.result_box}>
-        <div className={styles.result_line}>
+        <div className={styles.result_line} style={{padding:"0 0 15vh 0"}}>
           {product.map((product: Product, index: number) => (
             <App_productBox
               product_place={product.product_place}

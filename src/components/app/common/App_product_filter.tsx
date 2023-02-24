@@ -7,22 +7,15 @@ import { modalState } from '../../../atoms/app_atoms'
 import { log } from 'console'
 import useSWR from 'swr'
 import useEffectCustom from '../../../Hooks/common/useEffectCustom'
+import { CSSProperties } from 'react'
 
-
-type Product ={
-    product_ID:number,
-    product_name:string,
-    product_liked:number,
-    product_place:string,
-    m_product_category:string,
-    m_product_price:number,
-}
 type Props={
     product:never[]
     setProduct:Dispatch<SetStateAction<never[]>>
+    style?:CSSProperties
 }
 
-export const App_product_filter = ({product,setProduct}:Props) => {
+export const App_product_filter = ({product,setProduct,style}:Props) => {
     // const a = [...product]
     
     const [filter,setFilter] = useState("");
@@ -76,7 +69,7 @@ export const App_product_filter = ({product,setProduct}:Props) => {
     },[filter])
   return (
     <>
-        <div className={styles.result_header}>
+        <div className={styles.result_header} style={style}>
             <p>人気順</p>
             <Image width={15} height={15} src={"/image/filter.svg"} onClick={()=>setModal(true)}/>
         </div>

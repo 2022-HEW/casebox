@@ -7,6 +7,7 @@ import Nav from '../components/main/common/Nav'
 import Box from '../components/main/common/Box'
 import Link from 'next/link'
 import Movie from '../components/main/index/Movie'
+import React from 'react'
 
 
 

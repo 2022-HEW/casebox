@@ -1,10 +1,12 @@
-.button{
-    background: #555;
-    border-radius: 28px;
-    color: #fff;
-    width: 100vw;
-    /* margin:0 0 0 10%; */
-    padding: 10px 0;
-    height: 50px;
-    max-width: 333px;
+.button {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: #555;
+  border-radius: 50px;
+  color: #fff;
+  width: 100vw;
+  /* margin: 0 0 0 10%; */
+  padding: 10px 0;
+  height: 65px;
+  max-width: 360px;
 }

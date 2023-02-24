@@ -10,6 +10,7 @@ import useEffectCustom from "../../Hooks/common/useEffectCustom";
 import { profile } from "console";
 import { Button } from "../../components/app/common/App_button";
 import { useRouter } from "next/router";
+import styles from "../../styles/app_select_type.module.css";
 interface Device {
   model_name: string;
 }
@@ -177,10 +178,10 @@ const app_select_type = () => {
 
   return (
     mounted && (
-      <div>
+      <div className={styles.container}>
         <App_header label="オリジナル" />
-        <App_product_view width={100} />
-        <div>
+        <App_product_view />
+        <div className={styles.selects}>
           <Select
             label={"デバイス"}
             device={MODEL}
@@ -200,7 +201,9 @@ const app_select_type = () => {
             index={2}
           />
           <ProductInfo />
-          <Button label={"デザインをはじめる"} onClick={handleClickStart} />
+        </div>
+        <div className={styles.button}>
+          <Button label={"デザインをはじめる"} onClick={handleClickStart} style={{background: "rgba(35, 171, 221, 1)"}}/>
         </div>
       </div>
     )
@@ -209,12 +212,13 @@ const app_select_type = () => {
 
 const Select = ({ label, device, handleChangeSituation, index }: Select) => {
   return (
-    <div>
-      {label}{" "}
+    <div className={styles.select}>
+      <span className={styles.select_name}>{label}</span>
       <select
         onChange={(e) => {
           handleChangeSituation(e.currentTarget.value, index);
         }}
+        className={styles.select_value}
       >
         {device &&
           device.map((value: string, index) => {
@@ -234,9 +238,12 @@ const ProductInfo = () => {
   const { m_product_price } = useRecoilValue(productState);
   return (
     <div>
-      <h3>オリジナルデザインケース</h3>
+      <h3 className={styles.case_name}>オリジナルデザインケース</h3>
       <p>{user_name}</p>
-      <p>&yen;{m_product_price.toLocaleString()}税込</p>
+      <p className={styles.case_price}>
+        &yen;{m_product_price.toLocaleString()}
+        <span>税込</span>
+      </p>
     </div>
   );
 };
