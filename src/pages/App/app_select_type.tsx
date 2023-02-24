@@ -201,7 +201,9 @@ const app_select_type = () => {
             index={2}
           />
           <ProductInfo />
-          <Button label={"デザインをはじめる"} onClick={handleClickStart} />
+        </div>
+        <div className={styles.button}>
+          <Button label={"デザインをはじめる"} onClick={handleClickStart} style={{background: "rgba(35, 171, 221, 1)"}}/>
         </div>
       </div>
     )
@@ -216,12 +218,12 @@ const Select = ({ label, device, handleChangeSituation, index }: Select) => {
         onChange={(e) => {
           handleChangeSituation(e.currentTarget.value, index);
         }}
-        className={styles.select}
+        className={styles.select_value}
       >
         {device &&
           device.map((value: string, index) => {
             return (
-              <option key={index} value={value} >
+              <option key={index} value={value}>
                 {value}
               </option>
             );
@@ -236,9 +238,12 @@ const ProductInfo = () => {
   const { m_product_price } = useRecoilValue(productState);
   return (
     <div>
-      <h3>オリジナルデザインケース</h3>
+      <h3 className={styles.case_name}>オリジナルデザインケース</h3>
       <p>{user_name}</p>
-      <p>&yen;{m_product_price.toLocaleString()}税込</p>
+      <p className={styles.case_price}>
+        &yen;{m_product_price.toLocaleString()}
+        <span>税込</span>
+      </p>
     </div>
   );
 };

@@ -4,18 +4,41 @@
 }
 
 .selects {
+  border: 1px solid rgba(224, 224, 224, 0.48);
   display: flex;
   flex-direction: column;
-  padding: 2px 0 0 20px;
+  padding: 20px 0 0 20px;
 }
 .select {
   display: flex;
-  gap: 20px;
-  font-size: 19px;
-  width: 85vw;
+  margin: 5px 0;
 }
-.select_name{
-    width: 30vw;
-    height: 6vh;
-    padding: 1vh 0 0 0;
+.select_name {
+  width: 26vw;
+  height: 6vh;
+  font-size: 1.2rem;
+  padding: 1.5vh 0 0 3.1vw;
+  font-weight: bold;
+}
+.select_value {
+  border: 0.5px solid rgba(0, 0, 0, 0.22);
+  font-size: 19px;
+  width: 59vw;
+  border-radius: 6px;
+  padding: 0px 0 0 15px;
+}
+.case_name {
+  font-size: 1.25rem;
+}
+.case_price {
+  font-size: 1.75rem;
+  margin: 20px 0;
+}
+.case_price span {
+  font-size: 1rem;
+  margin: 0 0 0 5px;
+  color: #666;
+}
+.button {
+  margin: 14px 0 0 6vw;
 }
