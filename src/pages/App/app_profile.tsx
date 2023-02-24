@@ -63,10 +63,14 @@ const LoginBox = () => {
       </h2>
       <div className={styles.loginbutton}>
         <Link href={user_id ? "./app_mypage" : "./app_login"}>
-          <Button
-            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
-            style={user_id ? { background: "#23ABDD" } : { background: "#666" }}
-          />
+          <>
+            <Button
+              label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
+              style={
+                user_id ? { background: "#23ABDD" } : { background: "#666" }
+              }
+            />
+          </>
         </Link>
       </div>
     </div>
@@ -132,8 +136,15 @@ const NewsRecord = ({ date, category, title }: NewsRecord) => {
       <li className={styles.category}>{category}</li>
       <li className={styles.title}>
         <span className={styles.notice_detail}>{title}</span>
+        <span className={styles.right}>
+          <Image
+            src={"/common/right.png"}
+            width={15}
+            height={15}
+            objectFit="contain"
+          />
+        </span>
       </li>
-      <Image src={""} width={10} height={10} />
     </div>
   );
 };
@@ -142,7 +153,17 @@ const SupportRecord = ({ title, href }: SupportRecord) => {
   return (
     <div className={styles.SupportTitle}>
       <Link href={href}>
-        <p>{title}</p>
+        <>
+          <span className={styles.notice_detail}>{title}</span>
+          <span className={styles.right}>
+            <Image
+              src={"/common/right.png"}
+              width={15}
+              height={15}
+              objectFit="contain"
+            />
+          </span>
+        </>
       </Link>
     </div>
   );
