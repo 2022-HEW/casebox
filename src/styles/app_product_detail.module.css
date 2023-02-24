@@ -69,18 +69,18 @@
   top: 0;
   left: 0;
 }
-.qr_code{
+.qr_code {
 }
-.qr_body{
-    position: absolute;
-    top: 25vh;
-    left:5vw;
-    width: 90vw;
+.qr_body {
+  position: absolute;
+  top: 25vh;
+  left: 5vw;
+  width: 90vw;
 }
-.qr_value{
-    position: absolute;
-    top: 27.5vh;
-    left:17.5vw;
+.qr_value {
+  position: absolute;
+  top: 27.5vh;
+  left: 17.5vw;
 }
 .button_area {
   width: 100%;
@@ -90,8 +90,8 @@
   position: absolute;
   bottom: 12%;
 }
-.modal_cancel{
-    position: absolute;
-    top: 25vh;
-    left: 79vw;
+.modal_cancel {
+  position: absolute;
+  top: 25vh;
+  left: 79vw;
 }
