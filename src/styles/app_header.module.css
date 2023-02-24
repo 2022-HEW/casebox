@@ -1,5 +1,5 @@
 .header{
-    height: 50px;
+    height: 60px;
     background-color: #fff;
     border-bottom: 0.5px solid #DDDDDD;
     margin: 0;
@@ -9,7 +9,7 @@
 
 .back{
     position: absolute;
-    top: 12px;
+       top: 20px;
     margin: 0 0 0 10px;
 }
 
@@ -20,6 +20,7 @@
 }
 
 .labelContainer > p{
-    font-size: 14px!important;
-    margin-top: 12px;
+   font-size: 20px!important;
+    margin-top: 15px;
+    font-weight: bold;
 }
