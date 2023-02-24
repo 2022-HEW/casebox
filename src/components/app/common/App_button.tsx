@@ -8,12 +8,12 @@ import styles from "../../../styles/app_button.module.css";
 //   situ_name: 'nav' | 'screen';
 // };
 type Props = {
-  label: string,
-  style?:CSSProperties
-  id?:string
-}&ComponentProps<"button">;
+  label: string;
+  style?: CSSProperties;
+  id?: string;
+} & ComponentProps<"button">;
 
-export const Button= ({ label, onClick,disabled,style,id}:Props) => {
+export const Button = ({ label, onClick, disabled, style, id }: Props) => {
   return (
     <button
       // sizeが'small'の時: styles.buttonとstyles.smallが適用される

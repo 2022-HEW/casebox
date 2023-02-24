@@ -185,7 +185,7 @@ const app_product_detail: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <App_header />
+      <App_header label="ケース"/>
       <App_product_view />
       <ProductInfo
         name={product_name}

@@ -5,14 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0;
+  margin: 23px 0;
 }
 .product_info {
   width: 100%;
   border-top: 0.5px solid #aaa;
   border-bottom: 0.5px solid #aaa;
   padding: 0 0 0 30px;
-  height: 28%;
+  height: 26.5vh;
 }
 .case_name {
   font-weight: bold;

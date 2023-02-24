@@ -15,11 +15,11 @@ export const App_product_view = ({ width = 1000, height = 1000 }: Props) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        margin: "23px 0 0 0",
+        margin: "23px 0",
       }}
     >
       {product_place && (
-        <div style={{ width: "100vw" }}>
+        <div style={{ width: "85vw" }}>
           <Image
             width={width}
             height={height}
