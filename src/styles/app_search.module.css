@@ -12,7 +12,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 998;
 }
 .search {
   background-color: #fff;
@@ -59,7 +59,7 @@
   padding: 0 10px;
   position: fixed;
   top: 10%;
-  z-index: 999;
+  z-index: 998;
   background-color: #ffffff;
 }
 .case_name {
