@@ -64,7 +64,7 @@ const LoginBox = () => {
       <div className={styles.loginbutton}>
         <Link href={user_id ? "./app_mypage" : "./app_login"}>
           <Button
-            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
+            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"} style={user_id?{background:"#23ABDD"}:{background:"#666"}}
           />
         </Link>
       </div>

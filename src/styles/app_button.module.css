@@ -2,8 +2,9 @@
     background: #555;
     border-radius: 28px;
     color: #fff;
-    width: 80%;
+    width: 100vw;
     /* margin:0 0 0 10%; */
     padding: 10px 0;
+    height: 50px;
     max-width: 333px;
 }
