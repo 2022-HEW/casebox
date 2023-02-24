@@ -2,6 +2,7 @@
 .screen{
         box-sizing: border-box;
         min-width: 112px;
+        padding: 0 30px;
         height: 53px;
         background: #4CB8F4;
         border: 2px solid #666666;
@@ -15,6 +16,7 @@
         letter-spacing: 3px;
         padding-bottom: 4px;
 }
+
 .nav{
         /* Rectangle 143 */
         box-sizing: border-box;
