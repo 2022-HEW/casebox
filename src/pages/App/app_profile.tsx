@@ -30,6 +30,7 @@ const app_profile: NextPage = () => {
     setMounted(true);
   }, []);
 
+
   const { data, error } = useSWR<any>(
     `/api/app_sql?sql=logintime&&user_id=${profile.user_id}`,
     fetcher
@@ -55,6 +56,19 @@ const app_profile: NextPage = () => {
 
 const LoginBox = () => {
   const { user_id, user_name } = useRecoilValue(profileState);
+  const router = useRouter();
+
+  const handleClickButton = () => {
+    if (user_id) {
+      router.push({
+        pathname: "./app_mypage",
+      });
+    } else {
+      router.push({
+        pathname: "./app_login",
+      });
+    }
+  };
   return (
     <div className={styles.login_box}>
       <h2 className={styles.name}>
@@ -62,16 +76,11 @@ const LoginBox = () => {
         <span className={styles.sama}>様</span>
       </h2>
       <div className={styles.loginbutton}>
-        <Link href={user_id ? "./app_mypage" : "./app_login"}>
-          <>
-            <Button
-              label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
-              style={
-                user_id ? { background: "#23ABDD" } : { background: "#666" }
-              }
-            />
-          </>
-        </Link>
+          <Button
+            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
+            style={user_id ? { background: "#23ABDD" } : { background: "#666" }}
+            onClick={handleClickButton}
+          />
       </div>
     </div>
   );
