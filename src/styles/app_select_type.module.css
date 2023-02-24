@@ -1,0 +1,21 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.selects {
+  display: flex;
+  flex-direction: column;
+  padding: 2px 0 0 20px;
+}
+.select {
+  display: flex;
+  gap: 20px;
+  font-size: 19px;
+  width: 85vw;
+}
+.select_name{
+    width: 30vw;
+    height: 6vh;
+    padding: 1vh 0 0 0;
+}

@@ -10,6 +10,7 @@ import useEffectCustom from "../../Hooks/common/useEffectCustom";
 import { profile } from "console";
 import { Button } from "../../components/app/common/App_button";
 import { useRouter } from "next/router";
+import styles from "../../styles/app_select_type.module.css";
 interface Device {
   model_name: string;
 }
@@ -177,10 +178,10 @@ const app_select_type = () => {
 
   return (
     mounted && (
-      <div>
+      <div className={styles.container}>
         <App_header label="オリジナル" />
-        <App_product_view width={100} />
-        <div>
+        <App_product_view />
+        <div className={styles.selects}>
           <Select
             label={"デバイス"}
             device={MODEL}
@@ -209,17 +210,18 @@ const app_select_type = () => {
 
 const Select = ({ label, device, handleChangeSituation, index }: Select) => {
   return (
-    <div>
-      {label}{" "}
+    <div className={styles.select}>
+      <span className={styles.select_name}>{label}</span>
       <select
         onChange={(e) => {
           handleChangeSituation(e.currentTarget.value, index);
         }}
+        className={styles.select}
       >
         {device &&
           device.map((value: string, index) => {
             return (
-              <option key={index} value={value}>
+              <option key={index} value={value} >
                 {value}
               </option>
             );
