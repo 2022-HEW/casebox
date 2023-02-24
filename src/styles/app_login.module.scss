@@ -1,15 +1,16 @@
 /* 共通 */
-$backColor: white;
+$backColor: #ffffff;
+$bacColor: #FAFAFA;
 $fontColor: black;
 $borderSet: solid 1px #dddddd;
 $borderErr: solid 1px #e55c5c;
 $backgroundErr: rgba(255, 0, 0, 0.1);
 
 // 全体のコンテナ
-.Container {
-  height: 100vh;
-  width: 100vw;
-  background-color: $backColor;
+.Container{
+    height: 100vh;
+    width: 100vw;
+    background-color: $bacColor;
 
   // h1表示位置
   .subTitle {
@@ -53,15 +54,16 @@ $backgroundErr: rgba(255, 0, 0, 0.1);
   justify-content: space-evenly;
   gap: 16px;
 
-  .mailForm {
-    width: 80%;
-    height: 48px;
-    max-width: 333px;
-    border: $borderSet;
-    border-radius: 8px;
-    background: $backColor;
-    color: $fontColor;
-  }
+    .mailForm{
+        width: 80%;
+        height: 48px;
+        max-width: 333px;
+        border: $borderSet;
+        border-radius: 8px;
+        background: $backColor;
+        color: $fontColor;
+        padding-left: 14px;
+    }
 
   .passwordForm {
     @extend .mailForm;

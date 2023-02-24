@@ -12,8 +12,12 @@
 .loginbutton {
   text-align: center;
 }
-.sama {
-  font-size: 16px;
+.guidelink{
+    display: flex;
+    background-color: #ffffff;
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #fafafa;
+    height: 60px;
 }
 .guide {
   font-size: 1rem;
@@ -31,10 +35,11 @@
   float: left;
   padding-left: 15px;
 }
-.guidelink .category {
-  color: red;
-  font-size: small;
-  padding-left: 20px;
+.SupportTitle{
+    padding-left: 15px;
+    background-color: #ffffff;
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #fafafa;
   float: left;
 }
 .guidelink .title {
