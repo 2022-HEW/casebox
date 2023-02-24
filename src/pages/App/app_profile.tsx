@@ -22,7 +22,7 @@ type SupportRecord = {
   href: string;
 };
 
-const app_profile:NextPage = () => {
+const app_profile: NextPage = () => {
   const { user_id } = useRecoilValue(profileState);
   const [profile, setProfile] = useRecoilState(profileState);
   const [mounted, setMounted] = useState(false);
@@ -40,16 +40,16 @@ const app_profile:NextPage = () => {
     setProfile({});
     await fetch(`/api/app_sql?sql=logout&&loginID=${data[0]["MAX(loginID)"]}`);
   };
-  return (
-    mounted ? (
-      <div className={styles.container}>
-        <LoginBox />
-        <News />
-        <Support />
-        {user_id && <Button label="ログアウト" onClick={handleClickLogout} />}
-        <App_nav pageName="mypage"/>
-      </div>
-    ):<></>
+  return mounted ? (
+    <div className={styles.container}>
+      <LoginBox />
+      <News />
+      <Support />
+      {user_id && <Button label="ログアウト" onClick={handleClickLogout} />}
+      <App_nav pageName="mypage" />
+    </div>
+  ) : (
+    <></>
   );
 };
 
@@ -64,7 +64,8 @@ const LoginBox = () => {
       <div className={styles.loginbutton}>
         <Link href={user_id ? "./app_mypage" : "./app_login"}>
           <Button
-            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"} style={user_id?{background:"#23ABDD"}:{background:"#666"}}
+            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
+            style={user_id ? { background: "#23ABDD" } : { background: "#666" }}
           />
         </Link>
       </div>
@@ -115,7 +116,10 @@ const Support = () => {
       <div>
         <SupportRecord title={"ヘルプ・よくある質問"} href={"./app_help"} />
         <SupportRecord title={"利用規約"} href={"./app_terms"} />
-        <SupportRecord title={"プライバシーポリシー"} href={"./app_ privacy_policy"} />
+        <SupportRecord
+          title={"プライバシーポリシー"}
+          href={"./app_ privacy_policy"}
+        />
       </div>
     </div>
   );
@@ -126,7 +130,9 @@ const NewsRecord = ({ date, category, title }: NewsRecord) => {
     <div>
       <li className={styles.date}>{date}</li>
       <li className={styles.category}>{category}</li>
-      <li className={styles.title}><span>{title}</span></li>
+      <li className={styles.title}>
+        <span className={styles.notice_detail}>{title}</span>
+      </li>
       <Image src={""} width={10} height={10} />
     </div>
   );

@@ -12,12 +12,8 @@
 .loginbutton {
   text-align: center;
 }
-.guidelink{
-    display: flex;
-    background-color: #ffffff;
-    border-top: 1px solid #fafafa;
-    border-bottom: 1px solid #fafafa;
-    height: 60px;
+.sama {
+  font-size: 16px;
 }
 .guide {
   font-size: 1rem;
@@ -27,19 +23,19 @@
 .guidelink {
   display: flex;
   background-color: #ffffff;
-  border: 0.5px dotted rgb(219, 218, 218);
-  height: 60px;
+  border: 0.5px solid #eee;
+  height: 80px;
+  padding: 16px 5px;
 }
 .guidelink .date {
   font-size: small;
   float: left;
   padding-left: 15px;
 }
-.SupportTitle{
-    padding-left: 15px;
-    background-color: #ffffff;
-    border-top: 1px solid #fafafa;
-    border-bottom: 1px solid #fafafa;
+.guidelink .category {
+  color: red;
+  font-size: small;
+  padding-left: 20px;
   float: left;
 }
 .guidelink .title {
@@ -48,9 +44,16 @@
 .SupportTitle {
   padding-left: 15px;
   background-color: #ffffff;
-  border-top: 1px dotted #bbb;
-  border-bottom: 1px dotted #bbb;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  height: 70px;
+}
+.SupportTitle p{
+
 }
 .title span{
     display: inline-block;
+}
+.notice_detail{
+  padding-top: 8px;
 }
