@@ -9,17 +9,17 @@ import Image from "next/image";
 import useSWR from "swr";
 import { NextRouter, useRouter } from "next/router";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { productState, profileState } from "../../atoms/app_atoms";
+import { productState, profileState } from "../../../atoms/app_atoms";
 import { NextPage } from "next";
-import styles from "../../styles/app_search.module.css";
-import useEffectCustom from "./useEffectCustom";
-import { Product } from "../../types";
-import { fetcher } from "../../utils";
-import { getThumbnailAzure } from "../../utils";
+import styles from "../../../styles/app_search.module.css";
+import useEffectCustom from "../../../Hooks/common/useEffectCustom";
+import { Product } from "../../../types";
+import { fetcher } from "../../../utils";
+import { getThumbnailAzure } from "../../../utils";
 
-type Thumbnails = {
-  [key: string]: string;
-};
+// type Thumbnails = {
+//   [key: string]: string;
+// };
 // export const App_productBox = ({product_place,product_name,m_product_category,m_product_price,product_ID,product_liked}:Product)=> {
 export const App_productBox = ({
   product_place,
@@ -30,6 +30,7 @@ export const App_productBox = ({
   product_user_id,
   product_situation,
   user_name,
+  product_liked
 }: Product) => {
   const [product, setProduct] = useRecoilState(productState);
   const { user_id } = useRecoilValue(profileState);
@@ -43,7 +44,7 @@ export const App_productBox = ({
     if (m_product_category === "user") {
       getThumbnailAzure(product_place, setOriginalPlace);
     }
-    // console.log(product_situation);
+
   }, []);
 
   const useUserLike = () => {
@@ -98,7 +99,7 @@ export const App_productBox = ({
   }, [user_like]);
 
   const goDetail = () => {
-    // console.log(product_place);
+    console.log(product_liked);
 
     setProduct((before) => ({
       ...before,
@@ -113,6 +114,7 @@ export const App_productBox = ({
       m_product_category: m_product_category,
       product_user_id: product_user_id,
       product_situation: product_situation,
+      product_liked:product_liked!
     }));
     router.push({
       pathname: "./app_product_detail",
@@ -158,11 +160,13 @@ export const App_productBox = ({
   }, [newLiked]);
 
   return (
-    <>
+    <div className={styles.thisProduct}>
       <button
         className={liked ? styles.liked : styles.like}
-        onClick={() => likehandler()}
-        disabled={user_id === product_user_id && true}
+        onClick={() => (user_id ? likehandler() : {})}
+        disabled={
+          (user_id === product_user_id || user_id === undefined) && true
+        }
       >
         ❤{newLiked < 0 ? 0 : newLiked}
       </button>
@@ -175,8 +179,8 @@ export const App_productBox = ({
                 : "/product_image/" + product_place
             }
             alt="商品の画像"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             id={styles.product_image}
           />
         )}
@@ -188,6 +192,6 @@ export const App_productBox = ({
           ￥{m_product_price.toLocaleString()}(税込)
         </p>
       </div>
-    </>
+    </div>
   );
 };

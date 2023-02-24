@@ -12,7 +12,7 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { originalState, productState } from "../../atoms/app_atoms";
 import { useRouter } from "next/router";
-import useEffectCustom from "../common/useEffectCustom";
+import useEffectCustom from "../../Hooks/common/useEffectCustom";
 import { parse } from "path";
 import { resizeImage } from "../../utils";
 
@@ -76,7 +76,7 @@ function App_image_edit() {
       }),
       image: images ? images : null,
     }));
-    
+
     router.push({ pathname: "./app_product_edit" });
   }, [isSave]);
   // console.log(product);
@@ -89,14 +89,12 @@ function App_image_edit() {
 
       const reader = new FileReader();
       reader.onload = async () => {
-
-
         // 1MB以上のとき
-  
+
         if (file.size >= 1000000) {
           const image = new window.Image();
           image.onload = async () => {
-            const resizedImageBlob = await resizeImage(image,100);
+            const resizedImageBlob = await resizeImage(image, 100);
             console.log(resizedImageBlob);
             setImage(resizedImageBlob);
             setCreateObjectURL(URL.createObjectURL(resizedImageBlob));

@@ -1,14 +1,14 @@
 import { NextPage } from "next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import App_header from "../../components/common/App_header";
+import App_header from "../../components/app/common/App_header";
 import Image from "next/image";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 import { modalState, profileState } from "../../atoms/app_atoms";
 import { type } from "os";
-import { Button } from "../../components/common/App_button";
-import useEffectCustom from "../../components/common/useEffectCustom";
-import Modal from "../../components/common/App_modal";
-import { App_modal_body } from "../../components/common/App_modal_body";
+import { Button } from "../../components/app/common/App_button";
+import useEffectCustom from "../../Hooks/common/useEffectCustom";
+import Modal from "../../components/app/common/App_modal";
+import { App_modal_body } from "../../components/app/common/App_modal_body";
 import icon from "../../icon.json";
 import styles from "../../styles/app_profile_edit.module.css";
 
@@ -30,152 +30,37 @@ type Register = {
   id: string;
   setProfile: SetterOrUpdater<Profile>;
 };
-type IconCheck={
-  setImagePath:Dispatch<SetStateAction<string>>
-}
+type IconCheck = {
+  setImagePath: Dispatch<SetStateAction<string>>;
+};
 
-const IconCheck = ({setImagePath}:IconCheck) => {
+const IconCheck = ({ setImagePath }: IconCheck) => {
   const icons = icon.icon;
   console.log(icon);
 
-  const handleClickIcon=(src:string)=>{
-    setImagePath(src)
-  }
+  const handleClickIcon = (src: string) => {
+    setImagePath(src);
+  };
 
   return (
     <div className={styles.modal_picture_box}>
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
-    {icons.map((value: { id: number; name: string; src: string; }) => {
-      return (
-        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
-          <Image
-            width={150}
-            height={150}
-            src={"/icon/avocado.svg"}
-            alt="アイコン"
-          />
-        </div>
-      );
-    })}
+      {icons.map((value: { id: number; name: string; src: string }) => {
+        return (
+          <div
+            className={styles.modal_picture}
+            onClick={() => {
+              handleClickIcon(value.src);
+            }}
+          >
+            <Image
+              width={150}
+              height={150}
+              src={"/icon/avocado.svg"}
+              alt="アイコン"
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -220,7 +105,7 @@ const Profile_edit = () => {
       </div>
       <div className={styles.name}>
         <div className={styles.form}>
-        <Input
+          <Input
             label="あだ名"
             placeholder={profile.user_name}
             state={name}
@@ -244,26 +129,26 @@ const Profile_edit = () => {
         </div>
       </div>
       <div className={styles.hozon}>
-      <Button
-        label="保存"
-        onClick={() =>
-          register(
-            name,
-            comment,
-            imagePath,
-            profile.user_id,
-            setProfile,
-            setError
-          )
-        }
-      />
+        <Button
+          label="保存"
+          onClick={() =>
+            register(
+              name,
+              comment,
+              imagePath,
+              profile.user_id,
+              setProfile,
+              setError
+            )
+          }
+        />
       </div>
       <div className={styles.modal}>
-      <Modal>
-        <App_modal_body title="プロフィール画像選択">
-          <IconCheck setImagePath={setImagePath}/>
-        </App_modal_body>
-      </Modal>
+        <Modal>
+          <App_modal_body title="プロフィール画像選択">
+            <IconCheck setImagePath={setImagePath} />
+          </App_modal_body>
+        </Modal>
       </div>
     </div>
   );
@@ -305,12 +190,12 @@ const register = async (
         console.log(data);
       });
 
-    setProfile((before)=>({
+    setProfile((before) => ({
       ...before,
-      user_name:name,
-      user_comment:comment,
-      user_image:imagePath
-    }))
+      user_name: name,
+      user_comment: comment,
+      user_image: imagePath,
+    }));
     setError("");
   } else {
     setError("文字を入力してください。");

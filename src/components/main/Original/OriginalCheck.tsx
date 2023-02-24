@@ -8,7 +8,7 @@ import { designState, imageState, productState } from "../../../atoms/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { fetcher } from "../../../utils";
 import useSWR from "swr";
-import useEffectCustom from "../../common/useEffectCustom";
+import useEffectCustom from "../../../Hooks/common/useEffectCustom";
 import styles from "../../../styles/device_select.module.css";
 import { motion } from "framer-motion";
 import { getThumbnailAzure } from "../../../utils";
@@ -70,11 +70,10 @@ const OriginalCheck = () => {
     if (router.isReady) {
       // console.log(query.productID);
       // console.log(query.json);
-      getThumbnailAzure(query.productID,setDesignImage);
+      getThumbnailAzure(query.productID, setDesignImage);
     }
   }, [query, router]);
 
- 
   // useEffect(() => {
   //   if (m_product_category === "user") {
   //     getThumbnailAzure();
@@ -142,8 +141,9 @@ const OriginalCheck = () => {
             ＋
           </motion.span>
         </div>
-        <motion.div style={{ position: "relative", left: "50%", top: "30px" }} 
-        whileTap={{scale:0.9}}
+        <motion.div
+          style={{ position: "relative", left: "50%", top: "30px" }}
+          whileTap={{ scale: 0.9 }}
         >
           <Button label={"購入へ"} situ_name={"screen"} onClick={goEdit} />
         </motion.div>

@@ -10,11 +10,11 @@ import {
   originalState,
   profileState,
 } from "../../atoms/app_atoms";
-import { Button } from "../../components/common/App_button";
-import App_header from "../../components/common/App_header";
-import { IOSSwitch } from "../../components/common/App_iosswitch";
-import { App_product_view } from "../../components/common/App_product_view";
-import useEffectCustom from "../../components/common/useEffectCustom";
+import { Button } from "../../components/app/common/App_button";
+import App_header from "../../components/app/common/App_header";
+import { IOSSwitch } from "../../themes/app/Switch";
+import { App_product_view } from "../../components/app/common/App_product_view";
+import useEffectCustom from "../../Hooks/common/useEffectCustom";
 import { fetcher } from "../../utils";
 
 const app_product_edit: NextPage = () => {
@@ -59,7 +59,7 @@ const ProductDetail = () => {
     model_color,
     m_product_category,
     product_situation,
-    product_place
+    product_place,
   } = useRecoilValue(productState);
   const { user_id } = useRecoilValue(profileState);
   const [name, setName] = useState("");
@@ -73,7 +73,7 @@ const ProductDetail = () => {
   );
 
   useEffect(() => {
-    if(data){
+    if (data) {
       setProductPlace(user_id + data.length);
     }
   }, [data]);
@@ -99,7 +99,7 @@ const ProductDetail = () => {
     const reader = new FileReader();
     reader.onload = async () => {
       // Azureに入れる
-      
+
       try {
         await fetch(`/api/blob_strage`, {
           method: "POST",
@@ -111,8 +111,8 @@ const ProductDetail = () => {
             image: reader.result,
             situ: "add",
             place: imagePosition,
-            name:productPlace,
-            thumbnail:product_place
+            name: productPlace,
+            thumbnail: product_place,
             // QRcode
             // user_id: user_id,
             // "situ":"create",
@@ -132,11 +132,11 @@ const ProductDetail = () => {
     };
 
     if (file) {
-    // if (file.type === 'image/heif' || file.type === 'image/heic') {
-    //   const outputBlob = await heic2any({
-    //     blob: imageFile,
-    //     toType: 'image/jpeg',
-    //   });
+      // if (file.type === 'image/heif' || file.type === 'image/heic') {
+      //   const outputBlob = await heic2any({
+      //     blob: imageFile,
+      //     toType: 'image/jpeg',
+      //   });
 
       reader.readAsDataURL(file);
     }
@@ -153,8 +153,7 @@ const ProductDetail = () => {
     )
       .then((res) => {
         console.log(res);
-        return res.json(); 
-        
+        return res.json();
       })
       .then(() => {
         router.push({ pathname: "./app_service_select" });
@@ -162,7 +161,6 @@ const ProductDetail = () => {
   };
 
   const updateProductDB = async () => {
-    
     await fetch(
       `/api/app_sql?sql=update_product&productID=${product_ID}&product_name=${name}&product_situation=${situation}`
     )

@@ -1,18 +1,19 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState, productState, profileState } from "../../atoms/app_atoms";
-import App_header from "../../components/common/App_header";
+import App_header from "../../components/app/common/App_header";
 import Image from "next/image";
 import styles from "../../styles/app_product_detail.module.css";
 import ModalStyles from "../../styles/app_search.module.css";
 
-import App_nav from "../../components/common/App_nav";
-import Modal from "../../components/common/App_modal";
-import { Button } from "../../components/common/App_button";
+import App_nav from "../../components/app/common/App_nav";
+import Modal from "../../components/app/common/App_modal";
+import { Button } from "../../components/app/common/App_button";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { App_product_view } from "../../components/common/App_product_view";
+import { App_product_view } from "../../components/app/common/App_product_view";
 import { QRCode } from "react-qrcode";
+import { style } from "@mui/system";
 
 
 type QRButton = {
@@ -24,6 +25,7 @@ type Product = {
   name: string;
   category: string;
   price: number;
+  product_liked:number
   setModalBody: Dispatch<SetStateAction<"QRcode" | "ProductMenu">>;
 };
 
@@ -149,7 +151,7 @@ const app_product_detail: NextPage = () => {
     product_name,
     m_product_category,
     m_product_price,
-    product_user_id,
+    product_liked
   } = useRecoilValue(productState);
   const router = useRouter();
 
@@ -167,11 +169,11 @@ const app_product_detail: NextPage = () => {
 
   
   useEffect(()=>{
-    console.log(product_ID)
+    console.log(product_liked)
   },[])
 
   return (
-    <>
+    <div className={styles.container}>
       <App_header />
       <App_product_view  />
       <ProductInfo
@@ -179,16 +181,17 @@ const app_product_detail: NextPage = () => {
         category={m_product_category}
         price={m_product_price}
         setModalBody={setModalBody}
+        product_liked={product_liked}
       />
       <QRButton setModalBody={setModalBody} />
       <App_nav />
       <Modal>{ModalBody === "QRcode" ? <QRcode /> : <ProductMenu />}</Modal>
-    </>
+    </div>
   );
 };
 
 
-const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
+const ProductInfo = ({ name, category, price, setModalBody,product_liked }: Product) => {
   const { user_id } = useRecoilValue(profileState);
   const { product_user_id } = useRecoilValue(productState);
   const [modal, setModal] = useRecoilState(modalState);
@@ -205,7 +208,9 @@ const ProductInfo = ({ name, category, price, setModalBody }: Product) => {
       )}
       <p className={styles.case_name}>{name}</p>
       <p className={styles.case_category}>{category}</p>
-      <p className={styles.case_price}>￥{price.toLocaleString()}(税込)</p>
+      <p className={styles.case_price}>￥{price.toLocaleString()}<span>税込</span></p>
+      <p className={styles.favorite}>❤</p>
+      <p className={styles.product_liked}>{product_liked}</p>
     </div>
   );
 };

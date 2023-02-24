@@ -1,6 +1,6 @@
 import { type } from "os";
 import React, { ReactNode } from "react";
-import styles from "../../styles/app_modal.module.css";
+import styles from "../../../styles/app_modal.module.css";
 import Image from "next/image";
 type Modal = {
   title: string;

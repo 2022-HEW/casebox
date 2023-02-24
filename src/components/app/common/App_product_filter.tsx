@@ -1,12 +1,12 @@
 import React,{Dispatch, SetStateAction, useEffect, useLayoutEffect, useReducer, useState} from 'react'
-import styles from "../../styles/app_search.module.css"
+import styles from "../../../styles/app_search.module.css"
 import Image from 'next/image'
 import Modal from './App_modal'
 import { useRecoilState } from 'recoil'
-import { modalState } from '../../atoms/app_atoms'
+import { modalState } from '../../../atoms/app_atoms'
 import { log } from 'console'
 import useSWR from 'swr'
-import useEffectCustom from './useEffectCustom'
+import useEffectCustom from '../../../Hooks/common/useEffectCustom'
 
 
 type Product ={
@@ -112,9 +112,9 @@ const FilterBox=({setFilter}:Filter)=>{
 
     return(
         <div className={styles.modal}>
-            <p className={styles.title}><h2>並び替え</h2>
+            <div className={styles.title}><h2>並び替え</h2>
             <div className={styles.cancel}><Image width={35} height={35} src="/image/cancel.svg" onClick={()=>setModal(false)}/></div>
-            </p>
+            </div>
             <div className={styles.option}>
                 <p><Select label="人気順"/></p>
                 <p><Select label="新着順"/></p>

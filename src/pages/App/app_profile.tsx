@@ -1,19 +1,16 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Button } from "../../components/common/App_button";
-import App_nav from "../../components/common/App_nav";
+import React, { useEffect, useState } from "react";
+import { Button } from "../../components/app/common/App_button";
+import App_nav from "../../components/app/common/App_nav";
 import Image from "next/image";
 import Link from "next/link";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState, productState } from "../../atoms/app_atoms";
-import { NextPage } from "next";
-import { App_productBox } from "../../components/common/App_product_box";
 import useSWR from "swr";
-import useEffectCustom from "../../components/common/useEffectCustom";
 import { useRouter } from "next/router";
-import { Product } from "../../types";
 import { fetcher } from "../../utils";
-import App_header from "../../components/common/App_header";
 import styles from "../../styles/app_profile.module.css";
+import { NextPage } from "next";
+
 type NewsRecord = {
   date: string;
   category: string;
@@ -25,9 +22,7 @@ type SupportRecord = {
   href: string;
 };
 
-const app_profile = () => {
-  // console.log(user_id);
-  const router = useRouter();
+const app_profile:NextPage = () => {
   const { user_id } = useRecoilValue(profileState);
   const [profile, setProfile] = useRecoilState(profileState);
   const [mounted, setMounted] = useState(false);
@@ -39,43 +34,38 @@ const app_profile = () => {
     `/api/app_sql?sql=logintime&&user_id=${profile.user_id}`,
     fetcher
   );
-  useEffect(() => {
-    if(data){
-        console.log(data);
-        console.log(data[0]["MAX(loginID)"]);
-    }
-  }, [data]);
   if (!data) return <></>;
- 
+
   const handleClickLogout = async () => {
     setProfile({});
     await fetch(`/api/app_sql?sql=logout&&loginID=${data[0]["MAX(loginID)"]}`);
   };
   return (
-    mounted && (
-      <>
+    mounted ? (
+      <div className={styles.container}>
         <LoginBox />
         <News />
         <Support />
         {user_id && <Button label="ログアウト" onClick={handleClickLogout} />}
-        <App_nav />
-      </>
-    )
+        <App_nav pageName="mypage"/>
+      </div>
+    ):<></>
   );
 };
 
-// 非ログイン時
 const LoginBox = () => {
   const { user_id, user_name } = useRecoilValue(profileState);
   return (
-    <div>
+    <div className={styles.login_box}>
       <h2 className={styles.name}>
         {user_id ? user_name : "ゲスト"}
         <span className={styles.sama}>様</span>
       </h2>
       <div className={styles.loginbutton}>
         <Link href={user_id ? "./app_mypage" : "./app_login"}>
-            <Button label={user_id ? "プロフィールを見る" : "ログイン・会員登録"} />
+          <Button
+            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
+          />
         </Link>
       </div>
     </div>
@@ -88,9 +78,30 @@ const News = () => {
       <h3 className={styles.guide}>お知らせ</h3>
       <div className={styles.guidelink}>
         <NewsRecord
-          date={"2002.11.11"}
+          date={"2023.02.23"}
           category={"カテゴリ"}
-          title={"タイトル"}
+          title={"BTSコラボを開始しました。"}
+        />
+      </div>
+      <div className={styles.guidelink}>
+        <NewsRecord
+          date={"2023.01.10"}
+          category={"カテゴリ"}
+          title={"不具合のお知らせ。"}
+        />
+      </div>
+      <div className={styles.guidelink}>
+        <NewsRecord
+          date={"2022.12.30"}
+          category={"カテゴリ"}
+          title={"10%OFFキャンペーンについて。"}
+        />
+      </div>
+      <div className={styles.guidelink}>
+        <NewsRecord
+          date={"2022.12.11"}
+          category={"カテゴリ"}
+          title={"CASEBOXがリリースされました！"}
         />
       </div>
     </div>
@@ -102,9 +113,9 @@ const Support = () => {
     <div>
       <h3 className={styles.guide}>サポート</h3>
       <div>
-        <SupportRecord title={"ヘルプ・よくある質問"} href={""} />
-        <SupportRecord title={"利用規約"} href={""} />
-        <SupportRecord title={"プライバシーポリシー"} href={""} />
+        <SupportRecord title={"ヘルプ・よくある質問"} href={"./app_help"} />
+        <SupportRecord title={"利用規約"} href={"./app_terms"} />
+        <SupportRecord title={"プライバシーポリシー"} href={"./app_ privacy_policy"} />
       </div>
     </div>
   );
@@ -115,7 +126,7 @@ const NewsRecord = ({ date, category, title }: NewsRecord) => {
     <div>
       <li className={styles.date}>{date}</li>
       <li className={styles.category}>{category}</li>
-      <li className={styles.title}>{title}</li>
+      <li className={styles.title}><span>{title}</span></li>
       <Image src={""} width={10} height={10} />
     </div>
   );
