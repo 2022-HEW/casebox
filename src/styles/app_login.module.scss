@@ -1,5 +1,6 @@
 /* 共通 */
-$backColor: white;
+$backColor: #ffffff;
+$bacColor: #FAFAFA;
 $fontColor: black;
 $borderSet: solid 1px #dddddd;
 $borderErr: solid 1px #E55C5C;
@@ -9,7 +10,7 @@ $backgroundErr: rgba(255, 0, 0, 0.1);
 .Container{
     height: 100vh;
     width: 100vw;
-    background-color: $backColor;
+    background-color: $bacColor;
 
 // h1表示位置
     .subTitle{
@@ -62,6 +63,7 @@ $backgroundErr: rgba(255, 0, 0, 0.1);
         border-radius: 8px;
         background: $backColor;
         color: $fontColor;
+        padding-left: 14px;
     }
 
     .passwordForm{

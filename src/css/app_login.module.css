@@ -3,7 +3,7 @@
 .Container {
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: #FAFAFA;
 }
 .Container .subTitle {
   display: flex;
@@ -46,8 +46,9 @@
   max-width: 333px;
   border: solid 1px #dddddd;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
   color: black;
+  padding-left: 14px;
 }
 .loginFormContainer input {
   border: solid 1px #E55C5C;
@@ -83,7 +84,7 @@
   max-width: 333px;
   border: solid 1px #dddddd;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
 }
 
 /* ログインエラーメッセージ */
@@ -102,3 +103,4 @@
 .Container .textContainer {
   width: 80%;
 }
+/*# sourceMappingURL=app_login.module.css.map */

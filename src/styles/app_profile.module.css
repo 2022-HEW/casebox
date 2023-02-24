@@ -17,8 +17,8 @@
 .guidelink{
     display: flex;
     background-color: #ffffff;
-    border-top: 1px dotted #bbb;
-    border-bottom: 1px dotted #bbb;
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #fafafa;
     height: 60px;
 }
 .date{
@@ -38,6 +38,6 @@
 .SupportTitle{
     padding-left: 15px;
     background-color: #ffffff;
-    border-top: 1px dotted #bbb;
-    border-bottom: 1px dotted #bbb;
+    border-top: 1px solid #fafafa;
+    border-bottom: 1px solid #fafafa;
 }
