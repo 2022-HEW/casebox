@@ -13,8 +13,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { App_product_view } from "../../components/app/common/App_product_view";
 import { QRCode } from "react-qrcode";
-import { style } from "@mui/system";
-
 
 type QRButton = {
   // label:string
@@ -25,7 +23,7 @@ type Product = {
   name: string;
   category: string;
   price: number;
-  product_liked:number
+  product_liked: number;
   setModalBody: Dispatch<SetStateAction<"QRcode" | "ProductMenu">>;
 };
 
@@ -39,13 +37,28 @@ type CheckDelete = {
   product_ID: number | null;
 };
 const QRcode = () => {
-  const { azure_path,product_place } = useRecoilValue(productState);
-  
-  
+  const { azure_path, product_place } = useRecoilValue(productState);
+  const [modal,setModal] = useRecoilState(modalState)
 
-  return <div className={styles.qr_modal_body}>
-              <QRCode value={azure_path ? azure_path : product_place}/>
-        </div>;
+  const handleClose=()=>{
+    setModal(false)
+  }
+
+  return (
+    <div className={styles.qr_modal_body} onClick={handleClose}>
+      <div className={styles.qr_code}>
+        <div className={styles.qr_body}>
+          <Image width={1000} height={1000} src="/app/common/QRcode.png" alt="QRcode" objectFit="contain"/>
+        </div>
+        <div className={styles.qr_value}>
+          <QRCode value={azure_path ? azure_path : product_place} style={{width:"64vw"}}/>
+        </div>
+        <div className={styles.modal_cancel}>
+          <Image width={40} height={40} src="/app/common/modal_cancel.svg"/>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
@@ -56,7 +69,7 @@ const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
     setModal(false);
     setCheckDelete(false);
   };
-  const productDelete = async() => {
+  const productDelete = async () => {
     await fetch(`/api/app_sql?sql=delete_product&productID=${product_ID}`)
       .then((res) => {
         return res.json;
@@ -84,7 +97,6 @@ const ProductMenu = () => {
 
   const router = useRouter();
 
-  
   const MenuButton = ({ label, onClick }: MenuButton) => {
     return <button onClick={onClick}>{label}</button>;
   };
@@ -151,7 +163,7 @@ const app_product_detail: NextPage = () => {
     product_name,
     m_product_category,
     m_product_price,
-    product_liked
+    product_liked,
   } = useRecoilValue(productState);
   const router = useRouter();
 
@@ -167,15 +179,14 @@ const app_product_detail: NextPage = () => {
     }
   });
 
-  
-  useEffect(()=>{
-    console.log(product_liked)
-  },[])
+  useEffect(() => {
+    console.log(product_liked);
+  }, []);
 
   return (
     <div className={styles.container}>
       <App_header />
-      <App_product_view  />
+      <App_product_view />
       <ProductInfo
         name={product_name}
         category={m_product_category}
@@ -190,8 +201,13 @@ const app_product_detail: NextPage = () => {
   );
 };
 
-
-const ProductInfo = ({ name, category, price, setModalBody,product_liked }: Product) => {
+const ProductInfo = ({
+  name,
+  category,
+  price,
+  setModalBody,
+  product_liked,
+}: Product) => {
   const { user_id } = useRecoilValue(profileState);
   const { product_user_id } = useRecoilValue(productState);
   const [modal, setModal] = useRecoilState(modalState);
@@ -208,7 +224,10 @@ const ProductInfo = ({ name, category, price, setModalBody,product_liked }: Prod
       )}
       <p className={styles.case_name}>{name}</p>
       <p className={styles.case_category}>{category}</p>
-      <p className={styles.case_price}>￥{price.toLocaleString()}<span>税込</span></p>
+      <p className={styles.case_price}>
+        ￥{price.toLocaleString()}
+        <span>税込</span>
+      </p>
       <p className={styles.favorite}>❤</p>
       <p className={styles.product_liked}>{product_liked}</p>
     </div>
@@ -221,6 +240,10 @@ const QRButton = ({ setModalBody }: QRButton) => {
     setModal(true);
     setModalBody("QRcode");
   };
-  return <Button label="QRコードを表示" onClick={handleQRcode} />;
+  return (
+    <div className={styles.button_area}>
+      <Button label="QRコードを表示" onClick={handleQRcode} style={{background:"#23ABDD"}}/>
+    </div>
+  );
 };
 export default app_product_detail;
