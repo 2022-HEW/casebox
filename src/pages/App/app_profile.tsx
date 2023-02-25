@@ -30,7 +30,6 @@ const app_profile: NextPage = () => {
     setMounted(true);
   }, []);
 
-
   const { data, error } = useSWR<any>(
     `/api/app_sql?sql=logintime&&user_id=${profile.user_id}`,
     fetcher
@@ -76,11 +75,15 @@ const LoginBox = () => {
         <span className={styles.sama}>様</span>
       </h2>
       <div className={styles.loginbutton}>
-          <Button
-            label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
-            style={user_id ? { background: "#23ABDD" } : { background: "#666" }}
-            onClick={handleClickButton}
-          />
+        <Button
+          label={user_id ? "プロフィールを見る" : "ログイン・会員登録"}
+          style={
+            user_id
+              ? { background: "#23ABDD", fontSize: "1.05rem", height: "53px" }
+              : { background: "#666", fontSize: "1.05rem", height: "53px" }
+          }
+          onClick={handleClickButton}
+        />
       </div>
     </div>
   );
@@ -126,7 +129,7 @@ const Support = () => {
   return (
     <div>
       <h3 className={styles.guide}>サポート</h3>
-      <div>
+      <div className={styles.support_records}>
         <SupportRecord title={"ヘルプ・よくある質問"} href={"./app_help"} />
         <SupportRecord title={"利用規約"} href={"./app_terms"} />
         <SupportRecord
@@ -145,7 +148,7 @@ const NewsRecord = ({ date, category, title }: NewsRecord) => {
       <li className={styles.category}>{category}</li>
       <li className={styles.title}>
         <span className={styles.notice_detail}>{title}</span>
-        <span className={styles.right}>
+        <span className={styles.right} id={styles.news}>
           <Image
             src={"/common/right.png"}
             width={15}
