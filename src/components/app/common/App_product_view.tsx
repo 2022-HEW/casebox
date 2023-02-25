@@ -16,7 +16,7 @@ export const App_product_view = ({ width = 1000, height = 1000 }: Props) => {
         display: "flex",
         justifyContent: "center",
         padding: "23px 0",
-        background:"#f5f5f5"
+        background:"#fafafa"
       }}
     >
       {product_place && (

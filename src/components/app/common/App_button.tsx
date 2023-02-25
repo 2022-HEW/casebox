@@ -21,7 +21,7 @@ export const Button = ({ label, onClick, disabled, style, id }: Props) => {
       className={styles.button}
       onClick={onClick}
       disabled={disabled}
-      style={style}
+      style={disabled ? {...style,opacity:0.4}:style}
       id={id}
     >
       {label}
