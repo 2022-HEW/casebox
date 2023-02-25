@@ -8,9 +8,6 @@ import NEWS from "../../themes/app/news.json";
 const app_news: NextPage = () => {
   const router = useRouter();
   const theNEWS = NEWS[Number(router.query.id)];
-  useEffect(() => {
-    console.log(theNEWS);
-  }, []);
 
   return (
     <div className={styles.container}>
