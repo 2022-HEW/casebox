@@ -47,7 +47,11 @@ const app_profile: NextPage = () => {
       <LoginBox />
       <News />
       <Support />
-      {user_id && <Button label="ログアウト" onClick={handleClickLogout} />}
+      {user_id && (
+        <div className={styles.logoutbutton}>
+          <Button label="ログアウト" onClick={handleClickLogout} />
+        </div>
+      )}
       <App_nav pageName="mypage" />
     </div>
   ) : (
