@@ -10,11 +10,13 @@ import { useRouter } from "next/router";
 import { fetcher } from "../../utils";
 import styles from "../../styles/app_profile.module.css";
 import { NextPage } from "next";
+import NEWS from "../../themes/app/news.json";
 
 type NewsRecord = {
   date: string;
   category: string;
   title: string;
+  href: number;
 };
 
 type SupportRecord = {
@@ -93,34 +95,16 @@ const News = () => {
   return (
     <div>
       <h3 className={styles.guide}>お知らせ</h3>
-      <div className={styles.guidelink}>
-        <NewsRecord
-          date={"2023.02.23"}
-          category={"カテゴリ"}
-          title={"BTSコラボを開始しました。"}
-        />
-      </div>
-      <div className={styles.guidelink}>
-        <NewsRecord
-          date={"2023.01.10"}
-          category={"カテゴリ"}
-          title={"不具合のお知らせ。"}
-        />
-      </div>
-      <div className={styles.guidelink}>
-        <NewsRecord
-          date={"2022.12.30"}
-          category={"カテゴリ"}
-          title={"10%OFFキャンペーンについて。"}
-        />
-      </div>
-      <div className={styles.guidelink}>
-        <NewsRecord
-          date={"2022.12.11"}
-          category={"カテゴリ"}
-          title={"CASEBOXがリリースされました！"}
-        />
-      </div>
+      {NEWS.map((value, index) => (
+        <div className={styles.guidelink} key={index}>
+          <NewsRecord
+            date={value.date}
+            category={value.category}
+            title={value.title}
+            href={index}
+          />
+        </div>
+      ))}
     </div>
   );
 };
@@ -141,30 +125,32 @@ const Support = () => {
   );
 };
 
-const NewsRecord = ({ date, category, title }: NewsRecord) => {
+const NewsRecord = ({ date, category, title, href }: NewsRecord) => {
   return (
-    <div>
-      <li className={styles.date}>{date}</li>
-      <li className={styles.category}>{category}</li>
-      <li className={styles.title}>
-        <span className={styles.notice_detail}>{title}</span>
-        <span className={styles.right} id={styles.news}>
-          <Image
-            src={"/common/right.png"}
-            width={15}
-            height={15}
-            objectFit="contain"
-          />
-        </span>
-      </li>
-    </div>
+    <Link href={`/App/app_news?id=${href}`}>
+      <div>
+        <li className={styles.date}>{date}</li>
+        <li className={styles.category}>{category}</li>
+        <li className={styles.title}>
+          <span className={styles.notice_detail}>{title}</span>
+          <span className={styles.right} id={styles.news}>
+            <Image
+              src={"/common/right.png"}
+              width={15}
+              height={15}
+              objectFit="contain"
+            />
+          </span>
+        </li>
+      </div>
+    </Link>
   );
 };
 
 const SupportRecord = ({ title, href }: SupportRecord) => {
   return (
-    <div className={styles.SupportTitle}>
-      <Link href={href}>
+    <Link href={href}>
+      <div className={styles.SupportTitle}>
         <>
           <span className={styles.notice_detail}>{title}</span>
           <span className={styles.right}>
@@ -176,8 +162,8 @@ const SupportRecord = ({ title, href }: SupportRecord) => {
             />
           </span>
         </>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 export default app_profile;
