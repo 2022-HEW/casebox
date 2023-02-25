@@ -32,7 +32,7 @@ const app_category: NextPage = () => {
         imagePath={"/common/illust.png"}
         title={"手書きケース"}
         text={"自販機で自分が書いたイラストをケースにすることができます。"}
-        href={"./app_draw"}
+        href={"./app_tutorial"}
       />
     </div>
   );
