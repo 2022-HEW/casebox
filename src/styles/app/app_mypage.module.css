@@ -9,27 +9,34 @@
   align-items: flex-start;
 }
 .icon {
-  width: 35vw;
+  width: 22vw;
+  margin: 2.4vh 1vw 0px 0;
 }
-.edit{
-    position: absolute;
-    z-index: 2;
-    top: 10vh;
-    left: 30.5vw;
+.edit {
+  position: absolute;
+  z-index: 2;
+  top: 9vh;
+  left: 30vw;
 }
 .text_info {
   width: 50%;
+  position: relative;
+  left: 5%;
 }
 .text_info h2 {
   margin: 25px 0 0 0;
+  font-size: 1.3rem;
 }
 .text_info p {
   margin: 5px 0 20px 0;
+  font-size: 0.9rem;
+  padding: 0 20px 0 0px;
 }
 .btn_container {
   display: flex;
   justify-content: center;
+  padding: 20px 0;
 }
-.spacer{
-    margin: 0px 7px;
+.spacer {
+  margin: 0px 7px;
 }

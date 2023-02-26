@@ -96,18 +96,18 @@ const ProfileHeader = () => {
       <ProfileInfo />
       <ProfileButton select={select} setSelect={setSelect} />
       {product.map((product: Product, index: number) => (
-          <App_productBox
-            product_place={product.product_place}
-            product_name={product.product_name}
-            m_product_category={product.m_product_category}
-            m_product_price={product.m_product_price}
-            key={product.product_ID}
-            product_ID={product.product_ID}
-            product_user_id={product.user_id}
-            product_situation={product.product_situation}
-            user_name={product.user_name}
-            product_liked={product.product_liked}
-          />
+        <App_productBox
+          product_place={product.product_place}
+          product_name={product.product_name}
+          m_product_category={product.m_product_category}
+          m_product_price={product.m_product_price}
+          key={product.product_ID}
+          product_ID={product.product_ID}
+          product_user_id={product.user_id}
+          product_situation={product.product_situation}
+          user_name={product.user_name}
+          product_liked={product.product_liked}
+        />
       ))}
     </>
   );
