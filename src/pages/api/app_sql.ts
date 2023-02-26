@@ -87,7 +87,7 @@ export default async function handler(
       break;
 
     case "signup":
-      sql = `INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/image/user_icon.svg',NOW())`;
+      sql = `INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/app/mypage/icon/default.svg',NOW())`;
       break;
 
     case "likecount":

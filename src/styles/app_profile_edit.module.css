@@ -1,68 +1,74 @@
-/* 縦100×横100 */
-.picture{
-    text-align: center;
+.container {
+  width: 100vw;
+  background-color: #f6f6f6;
 }
 
-.name .form label{
-    display: inline-block;
-    font-size: 1.2rem;
-    color: gray;
-    width: 90%;
-    position: relative;
-    left: 5%;
-    z-index: 10;
-    padding-bottom: 30px;
+/* 縦100×横100 */
+.picture {
+  padding: 4vh 0 0 0;
+  text-align: center;
 }
-.name .form input{
-    position: relative;
-    width: 100%;
-    height: 40px;
-    font-size: 1.1rem;
-    border-radius: 7px;    
-    border-width: 1.5px;
-    border-style: inset;
-    border-color: #666666;
+
+.name .form label {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: gray;
+  width: 90%;
+  position: relative;
+  left: 5%;
+  z-index: 10;
+  padding-bottom: 30px;
+}
+.name .form textarea {
+  position: relative;
+  width: 100%;
+  font-size: 1.1rem;
+  padding: 20px 0 0 25px;
+  border: 0.5px solid #dddddd;
+  border-radius: 8px;
+  font-family: "Noto Sans JP", sans-serif;
+  overflow: hidden;
+}
+.name .form textarea[name="profile"] {
+  height: 200px;
 }
 
 /* 名前が空欄の時に出るエラー分のcss */
-.name .error label[for="name"]{
-    font-size: 1rem;
-    color: red;
-    padding: none;
-    padding-left: 20px;
-    position: relative;
-    bottom: 20px;
+.name .error label[for="name"] {
+  font-size: 1rem;
+  color: red;
+  padding: none;
+  padding-left: 20px;
+  position: relative;
+  bottom: 20px;
 }
-.hozon{
-    width: 100%;
-    height: 50px;
-    text-align: center;
-}
-
-/* modalのcss */
-.modal h3{
-}
-.modal setImagePath{
-}
-.label{
+.hozon {
+  width: 100%;
+  height: 50px;
+  text-align: center;
 }
 
-.modal_picture_box{
-    display: flex;
-    flex-wrap: wrap; /* 折返し可 */ 
-    justify-content: space-between;
-    width: 100%;
-    padding:0 10% 0 10%;
+.modal_picture_box {
+  display: flex;
+  flex-wrap: wrap; /* 折返し可 */
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 5% 0 5%;
 }
-.modal_picture{
-    width: 33% ; /* 親要素の1/3より小さい値 */
-
+.modal_picture {
+  width: 33%; /* 親要素の1/3より小さい値 */
 }
-.modal_picture img{
-    border-radius: 10px;
+.modal_picture img {
+  border-radius: 10px;
 }
-.modal_picture_box::after{
-    content: "";
-    display:block;
-    width:33%; /* 子要素と同じ幅 */
+.modal_picture_box::after {
+  content: "";
+  display: block;
+  width: 33%; /* 子要素と同じ幅 */
+}
+.edit {
+  position: absolute;
+  right: 37vw;
+  z-index: 2;
+  top: 11.5vh;
 }

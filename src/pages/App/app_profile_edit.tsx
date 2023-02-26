@@ -11,6 +11,7 @@ import Modal from "../../components/app/common/App_modal";
 import { App_modal_body } from "../../components/app/common/App_modal_body";
 import icon from "../../icon.json";
 import styles from "../../styles/app_profile_edit.module.css";
+import { useRouter } from "next/router";
 
 type Input = {
   label: string;
@@ -23,20 +24,13 @@ type Input = {
 type Profile = {
   [key: string]: string;
 };
-type Register = {
-  name: string;
-  comment: string;
-  imagePath: string;
-  id: string;
-  setProfile: SetterOrUpdater<Profile>;
-};
+
 type IconCheck = {
   setImagePath: Dispatch<SetStateAction<string>>;
 };
 
 const IconCheck = ({ setImagePath }: IconCheck) => {
   const icons = icon.icon;
-  console.log(icon);
 
   const handleClickIcon = (src: string) => {
     setImagePath(src);
@@ -44,19 +38,20 @@ const IconCheck = ({ setImagePath }: IconCheck) => {
 
   return (
     <div className={styles.modal_picture_box}>
-      {icons.map((value: { id: number; name: string; src: string }) => {
+      {icons.map((value,index) => {
         return (
           <div
             className={styles.modal_picture}
             onClick={() => {
               handleClickIcon(value.src);
             }}
+            key={index}
           >
             <Image
-              width={150}
-              height={150}
-              src={"/icon/avocado.svg"}
-              alt="アイコン"
+              width={200}
+              height={200}
+              src={value.src}
+              alt={value.name}
             />
           </div>
         );
@@ -65,37 +60,61 @@ const IconCheck = ({ setImagePath }: IconCheck) => {
   );
 };
 
-const App_profile_edit = () => {
+const app_profile_edit:NextPage = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
   return (
-    mounted && (
+    mounted ? (
       <>
-        <App_header label="プロフィール編集" />
+        <App_header label="プロフィール変更" />
         <Profile_edit />
       </>
-    )
+    ):<></>
   );
 };
 
 const Profile_edit = () => {
   const [profile, setProfile] = useRecoilState(profileState);
-  const [name, setName] = useState("");
-  const [comment, setComment] = useState("");
+  const [name, setName] = useState(profile.user_name);
+  const [comment, setComment] = useState(profile.user_comment);
   const [imagePath, setImagePath] = useState(profile.user_image);
   const [error, setError] = useState("");
   const [modal, setModal] = useRecoilState(modalState);
+  const router = useRouter()
 
   const handleClickIcon = () => {
     setModal(true);
   };
 
+  const handleClickSave=()=>{
+    register(
+      name,
+      comment,
+      imagePath,
+      profile.user_id,
+      setProfile,
+      setError
+    )
+    router.push({
+      pathname:"./app_mypage"
+    })
+  }
+
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.picture}>
+        <div className={styles.edit}>
+
+      <Image
+              width={30}
+              height={30}
+              src={"/app/mypage/edit.svg"}
+              alt="アイコン"
+              />
+              </div>
         <Image
           src={imagePath}
           width={100}
@@ -131,16 +150,8 @@ const Profile_edit = () => {
       <div className={styles.hozon}>
         <Button
           label="保存"
-          onClick={() =>
-            register(
-              name,
-              comment,
-              imagePath,
-              profile.user_id,
-              setProfile,
-              setError
-            )
-          }
+          onClick={handleClickSave}
+          style={{height:"55px"}}
         />
       </div>
       <div className={styles.modal}>
@@ -158,8 +169,7 @@ const Input = ({ label, placeholder, state, setState, name }: Input) => {
   return (
     <label className={styles.label}>
       {label}
-      <input
-        type="text"
+      <textarea
         placeholder={placeholder}
         value={state}
         onChange={(e) => setState(e.currentTarget.value)}
@@ -202,4 +212,4 @@ const register = async (
   }
 };
 
-export default App_profile_edit;
+export default app_profile_edit;
