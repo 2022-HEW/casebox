@@ -54,6 +54,7 @@ export default async function handler(
     like,
     filter,
     product_situation,
+    email
   } = req.query;
   // const router = useRouter()
   // let sql = router.query
@@ -83,7 +84,7 @@ export default async function handler(
       break;
 
     case "signup_check":
-      sql = `SELECT user_id,user_email from t_users`;
+      sql = `SELECT user_id,user_email from t_users where user_email ="${email}"`;
       break;
 
     case "signup":

@@ -1,8 +1,10 @@
 import { NextPage } from 'next'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import useSWR from 'swr';
 import { Button } from '../../components/app/common/App_button'
 import App_header from '../../components/app/common/App_header'
 import styles from '../../styles/app_login.module.scss';
+import { fetcher } from '../../utils';
 
 const app_password_reset:NextPage = () => {
 
@@ -29,9 +31,15 @@ const Reset_box = ()=>{
 
 const Form=()=>{
     const[email,setEmail] = useState("")
+    const[isCheck,setIsCheck] = useState(false)
+
+    const { data,error } = useSWR<any>(isCheck && `/api/app_sql?sql=signup_check`,fetcher)
     const Sendmail=()=>{
-        console.log("a");
+        setIsCheck(true)
     }
+    useEffect(()=>{
+        console.log(data);
+    },[data])
     return(
         <div className={styles.passwordResetContainer}>
             <input className={styles.passwordReset} type={"text"} placeholder="メールアドレス" value={email} onChange={(e)=>setEmail(e.target.value)}/>
