@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router';
+import React, { useEffect, useRef, useState } from 'react'
 import useSWR from 'swr';
 import { Button } from '../../components/app/common/App_button'
 import App_header from '../../components/app/common/App_header'
@@ -30,19 +31,17 @@ const Reset_box = ()=>{
 }
 
 const Form=()=>{
-    const[email,setEmail] = useState("")
-    const[isCheck,setIsCheck] = useState(false)
-
-    const { data,error } = useSWR<any>(isCheck && `/api/app_sql?sql=signup_check`,fetcher)
+    const router =useRouter()
+    
     const Sendmail=()=>{
-        setIsCheck(true)
+        alert("送信されました");
+        router.push({
+            pathname:"./app_service_select"
+        })
     }
-    useEffect(()=>{
-        console.log(data);
-    },[data])
     return(
         <div className={styles.passwordResetContainer}>
-            <input className={styles.passwordReset} type={"text"} placeholder="メールアドレス" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <input className={styles.passwordReset} type={"text"} placeholder="メールアドレス" />
             <Button label='送信する' onClick={Sendmail}/>
         </div>
     )
