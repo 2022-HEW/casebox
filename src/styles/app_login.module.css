@@ -3,7 +3,7 @@
 .Container {
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: #fafafa;
 }
 .Container .subTitle {
   display: flex;
@@ -18,6 +18,7 @@
 .Container .subTitle p {
   font-size: 10px;
   margin: 3px 0;
+  color: #777777;
 }
 .Container p {
   display: flex;
@@ -46,8 +47,9 @@
   max-width: 333px;
   border: solid 1px #dddddd;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
   color: black;
+  padding-left: 14px;
 }
 .loginFormContainer input {
   border: solid 1px #e55c5c;
@@ -83,7 +85,8 @@
   max-width: 333px;
   border: solid 1px #dddddd;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
+  padding-left: 14px;
 }
 
 /* ログインエラーメッセージ */
