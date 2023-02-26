@@ -53,9 +53,16 @@ const app_select_type = () => {
   const [color, setColor] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
+  const { user_id } = useRecoilValue(profileState);
 
   useEffect(() => {
     setMounted(true);
+      if (!user_id) {
+        alert("ログインが必要です");
+        router.push({
+          pathname: "./app_category",
+        });
+      }
   }, []);
 
   const handleChangeSituation = (value: string, index: number) => {
@@ -203,7 +210,11 @@ const app_select_type = () => {
           <ProductInfo />
         </div>
         <div className={styles.button}>
-          <Button label={"デザインをはじめる"} onClick={handleClickStart} style={{background: "rgba(35, 171, 221, 1)"}}/>
+          <Button
+            label={"デザインをはじめる"}
+            onClick={handleClickStart}
+            style={{ background: "rgba(35, 171, 221, 1)" }}
+          />
         </div>
       </div>
     )
