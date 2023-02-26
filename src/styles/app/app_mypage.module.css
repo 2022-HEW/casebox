@@ -1,0 +1,35 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 0 25vh 0;
+}
+.info_container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.icon {
+  width: 35vw;
+}
+.edit{
+    position: absolute;
+    z-index: 2;
+    top: 10vh;
+    left: 30.5vw;
+}
+.text_info {
+  width: 50%;
+}
+.text_info h2 {
+  margin: 25px 0 0 0;
+}
+.text_info p {
+  margin: 5px 0 20px 0;
+}
+.btn_container {
+  display: flex;
+  justify-content: center;
+}
+.spacer{
+    margin: 0px 7px;
+}

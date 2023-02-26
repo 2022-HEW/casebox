@@ -1,6 +1,6 @@
 .button {
   font-size: 1.2rem;
-  background: #555;
+  background: #666;
   border-radius: 50px;
   color: #fff;
   width: 100vw;
@@ -8,4 +8,5 @@
   padding: 10px 0;
   height: 65px;
   max-width: 360px;
+  border: none;
 }

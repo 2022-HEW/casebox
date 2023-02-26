@@ -30,7 +30,7 @@ export const App_productBox = ({
   product_user_id,
   product_situation,
   user_name,
-  product_liked
+  product_liked,
 }: Product) => {
   const [product, setProduct] = useRecoilState(productState);
   const { user_id } = useRecoilValue(profileState);
@@ -44,7 +44,6 @@ export const App_productBox = ({
     if (m_product_category === "user") {
       getThumbnailAzure(product_place, setOriginalPlace);
     }
-
   }, []);
 
   const useUserLike = () => {
@@ -114,7 +113,7 @@ export const App_productBox = ({
       m_product_category: m_product_category,
       product_user_id: product_user_id,
       product_situation: product_situation,
-      product_liked:product_liked!
+      product_liked: product_liked!,
     }));
     router.push({
       pathname: "./app_product_detail",
@@ -174,23 +173,25 @@ export const App_productBox = ({
         {product_place && (
           <Image
             src={
-              m_product_category === "user"
+              m_product_category === "user" && originalPlace
                 ? originalPlace
                 : "/product_image/" + product_place
             }
             alt="商品の画像"
             width={300}
             height={300}
-            id={styles.product_image}
+            objectFit={"contain"}
           />
         )}
-        <p className={styles.case_name}>{product_name}</p>
-        <p className={styles.case_category}>
-          {m_product_category === "user" ? user_name : m_product_category}
-        </p>
-        <p className={styles.case_price}>
-          ￥{m_product_price.toLocaleString()}(税込)
-        </p>
+        <div className={styles.case_info}>
+          <p className={styles.case_name}>{product_name}</p>
+          <p className={styles.case_category}>
+            {m_product_category === "user" ? user_name : m_product_category}
+          </p>
+          <p className={styles.case_price}>
+            ￥{m_product_price.toLocaleString()}(税込)
+          </p>
+        </div>
       </div>
     </div>
   );
