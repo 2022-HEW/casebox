@@ -3,20 +3,16 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { type } from "os";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import { Button } from "../../components/app/common/App_button";
 import App_header from "../../components/app/common/App_header";
 import useEffectCustom from "../../Hooks/common/useEffectCustom";
 import styles from "../../styles/app_login.module.scss";
 
-async function fetcher(url: string): Promise<boolean | null> {
-  const response = await fetch(url);
-  return response.json();
-}
-type Data={
-    [key:string]:string
-}
+type Data = {
+  [key: string]: string;
+};
 const app_sign_up: NextPage = () => {
   return (
     <div className={styles.Container}>
@@ -25,11 +21,11 @@ const app_sign_up: NextPage = () => {
       <Form />
       <p>
         会員登録には、
-        <Link href={"/"}>
+        <Link href={"./app_terms"}>
           <a className={styles.underLine}>利用規約</a>
         </Link>
         および
-        <Link href={"/"}>
+        <Link href={"./app_privacy_policy"}>
           <a className={styles.underLine}>プライバシーポリシー</a>
         </Link>
         への同意が必要です。
@@ -47,24 +43,49 @@ const SignupBox = () => {
 };
 
 const Form = () => {
-  const [email, setEmail] = useState("");
+  const InputRef = useRef<HTMLInputElement>(null);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [UserID, setUserID] = useState("");
   const sha1 = require("js-sha1");
   const router = useRouter();
 
+  // 会員登録処理
+  const insertDB = async (UserID: string, email: string) => {
+    console.log("aaaa");
+
+    await fetch(
+      `/api/app_sql?sql=signup&&user_id=${UserID}&&user_email=${email}&&user_password=${sha1(
+        password
+      )}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then(
+        (data) =>
+          data &&
+          router.push({
+            pathname: "/App/app_login",
+          })
+      );
+  };
+
   const handleClickSignUp = async () => {
-    await fetch(`/api/app_sql?sql=signup_check&email=${email}`)
+    const email = InputRef.current?.value;
+    await fetch(`/api/app_sql?sql=signup_check&email=${email?.trim()}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        handleValidation(data);
+        if (data[0]) {
+          setError("メールアドレスが重複しています");
+        } else {
+          handleValidation(data, email!);
+        }
       });
   };
 
-  const SignupHandler = (data:Data[]) => {
+  const SignupHandler = (data: Data[], email: string) => {
     const SELECT =
       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     const N = 9;
@@ -78,33 +99,11 @@ const Form = () => {
     };
 
     const new_user_id = createUserID();
-    // console.log(new_user_id);
-    // 重複チェック
-    data.map((value: Profile) => {
-      if (value.user_id === new_user_id) {
-        console.log("同じ");
-        SignupHandler(data);
-      } else {
-        insertDB(UserID);
-      }
-    });
+    insertDB(new_user_id, email);
   };
-  type Profile = {
-    [key: string]: string;
-  };
+
   // validation
-  const handleValidation = (data:Data[]) => {
-    setError("");
-    if (data) {
-      data.map((value: Profile) => {
-        // 重複時エラーを出す
-        if (value.user_email === email.trim()) {
-          setError("メールアドレスが重複しています。");
-          return;
-          
-        }
-      });
-    }
+  const handleValidation = (data: Data[], email: string) => {
     // 正しい書式かどうか
     if (
       !email.match(
@@ -118,25 +117,13 @@ const Form = () => {
       setError("パスワードは半角英数字8桁以上です。");
       return;
     }
-    if(error===""){
-        SignupHandler(data);
+    if (error === "") {
+      console.log(error);
+      SignupHandler(data, email);
+    } else {
+      console.log(error);
     }
   };
-
-  // 会員登録処理
-    const insertDB = async (UserID: string) => {
-      await fetch(
-        `/api/app_sql?sql=signup&&user_id=${UserID}&&user_email=${email}&&user_password=${sha1(
-          password
-        )}`
-      ).then((res) => {
-        return res.json();
-      })
-      .then((data)=> data && router.push({
-        pathname: "/App/app_login",
-      }))
-    };
-     
 
   // console.log(email);
 
@@ -148,10 +135,8 @@ const Form = () => {
       <input
         className={styles.mailForm}
         placeholder="メールアドレス"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
+        ref={InputRef}
+        onChange={() => setError("")}
       />
       <input
         className={styles.passwordForm}
@@ -161,7 +146,12 @@ const Form = () => {
           setPassword(e.target.value);
         }}
       />
-      <Button label="同意して会員登録" onClick={handleClickSignUp} />
+      <Button
+        label="同意して会員登録"
+        onClick={() => {
+          handleClickSignUp();
+        }}
+      />
 
       {/*<input className={styles.mailForm} placeholder='メールアドレス' value={email} onChange={(e)=>{setEmail(e.target.value)}} style={(duplication || EmailRegex && email!=="") ?{background:"red"}:{background:"white"}} />*/}
       {/* <input className={styles.passwordForm} placeholder='パスワード' value={password} onChange={(e)=>{setPassword(e.target.value)}} style={(PassRegex &&password!=="") ?{background:"red"}:{background:"white"}}/> */}
