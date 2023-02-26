@@ -50,14 +50,37 @@
 }
 .delete_check {
   z-index: 999;
-  width: 261px;
-  height: 233px;
+  width: 70vw;
+  height: 32vh;
   background: #ffffff;
   border-radius: 15px;
   position: absolute;
-  top: 30%;
-  left: 15%;
+  top: 35vh;
+  left: 15vw;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+.delete_check h3{
+  margin: 30px;
+    font-size: 1rem;
+    color: #000;
+}
+.delete_check p{
+  margin: 0px 20px 30px 20px;
+  color: #616161;
+  text-align: center;
+}
+ .delete_check button{
+  width: 100%;
+  background: #fff;
+  border: none;
+  border-top: 0.5px solid #CCCCCC;
+  font-size: 1rem;
+  padding: 20px;
+  font-weight: bold;
+ }
+
 .qr_modal_body {
   display: flex;
   justify-content: center;
@@ -69,8 +92,7 @@
   top: 0;
   left: 0;
 }
-.qr_code {
-}
+
 .qr_body {
   position: absolute;
   top: 25vh;

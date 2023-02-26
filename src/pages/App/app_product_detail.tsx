@@ -94,9 +94,11 @@ const DeleteCheck = ({ setCheckDelete, product_ID }: CheckDelete) => {
   return (
     <div className={styles.delete_check}>
       <h3>商品を削除しますか？</h3>
-      <p>商品は完全に削除され、もとに戻すことは出来ません</p>
-      <button onClick={productDelete}>削除</button>
-      <button onClick={deleteCancel}>キャンセル</button>
+      <p>商品は完全に削除され、元に戻すことはできません。</p>
+      <button onClick={productDelete} style={{ color: "#F21938" }}>
+        削除
+      </button>
+      <button onClick={deleteCancel} style={{ color: "#000",borderRadius:"15px" }}>キャンセル</button>
     </div>
   );
 };
@@ -112,7 +114,7 @@ const ProductMenu = () => {
   const MenuButton = ({ label, onClick, style, src }: MenuButton) => {
     return (
       <button onClick={onClick} className={styles.menu_btn} style={style}>
-        <div style={{margin:"0 20px"}}>
+        <div style={{ margin: "0 20px" }}>
           <Image width={30} height={30} alt={"アイコン"} src={src} />
         </div>
         {label}
