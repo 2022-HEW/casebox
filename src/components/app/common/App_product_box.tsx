@@ -78,7 +78,7 @@ export const App_productBox = ({
     product_id: number;
   };
 
-  useEffectCustom(() => {
+  useEffect(() => {
     if (product_count) {
       setNewLiked(product_count[0]["COUNT(product_ID)"]);
     }
