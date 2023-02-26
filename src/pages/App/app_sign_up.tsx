@@ -114,7 +114,7 @@ const Form = ()=>{
         if(UserID!==""){
             insertDB(UserID)
             router.push({
-                pathname:"/app_login"
+                pathname:"/App/app_login"
             })
         }
     },[UserID])
