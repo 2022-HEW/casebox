@@ -5,7 +5,6 @@ import App_header from "../../components/app/common/App_header";
 import Image from "next/image";
 import styles from "../../styles/app_product_detail.module.css";
 import ModalStyles from "../../styles/app_search.module.css";
-
 import App_nav from "../../components/app/common/App_nav";
 import Modal from "../../components/app/common/App_modal";
 import { Button } from "../../components/app/common/App_button";
@@ -13,6 +12,8 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { App_product_view } from "../../components/app/common/App_product_view";
 import { QRCode } from "react-qrcode";
+import { CSSProperties } from "react";
+import { margin } from "@mui/system";
 
 type QRButton = {
   // label:string
@@ -30,6 +31,8 @@ type Product = {
 type MenuButton = {
   label: string;
   onClick: () => void;
+  style?: CSSProperties;
+  src: string;
 };
 
 type CheckDelete = {
@@ -38,23 +41,32 @@ type CheckDelete = {
 };
 const QRcode = () => {
   const { azure_path, product_place } = useRecoilValue(productState);
-  const [modal,setModal] = useRecoilState(modalState)
+  const [modal, setModal] = useRecoilState(modalState);
 
-  const handleClose=()=>{
-    setModal(false)
-  }
+  const handleClose = () => {
+    setModal(false);
+  };
 
   return (
     <div className={styles.qr_modal_body} onClick={handleClose}>
       <div className={styles.qr_code}>
         <div className={styles.qr_body}>
-          <Image width={1000} height={1000} src="/app/common/QRcode.png" alt="QRcode" objectFit="contain"/>
+          <Image
+            width={1000}
+            height={1000}
+            src="/app/common/QRcode.png"
+            alt="QRcode"
+            objectFit="contain"
+          />
         </div>
         <div className={styles.qr_value}>
-          <QRCode value={azure_path ? azure_path : product_place} style={{width:"64vw"}}/>
+          <QRCode
+            value={azure_path ? azure_path : product_place}
+            style={{ width: "64vw" }}
+          />
         </div>
         <div className={styles.modal_cancel}>
-          <Image width={40} height={40} src="/app/common/modal_cancel.svg"/>
+          <Image width={40} height={40} src="/app/common/modal_cancel.svg" />
         </div>
       </div>
     </div>
@@ -97,8 +109,15 @@ const ProductMenu = () => {
 
   const router = useRouter();
 
-  const MenuButton = ({ label, onClick }: MenuButton) => {
-    return <button onClick={onClick}>{label}</button>;
+  const MenuButton = ({ label, onClick, style, src }: MenuButton) => {
+    return (
+      <button onClick={onClick} className={styles.menu_btn} style={style}>
+        <div style={{margin:"0 20px"}}>
+          <Image width={30} height={30} alt={"アイコン"} src={src} />
+        </div>
+        {label}
+      </button>
+    );
   };
   const handleClickCancel = () => {
     setModal(false);
@@ -134,13 +153,15 @@ const ProductMenu = () => {
     </>
   ) : (
     <div className={ModalStyles.modal}>
-      <div>
-        <Image
-          src={"/image/cancel.svg"}
-          width={20}
-          height={20}
-          onClick={handleClickCancel}
-        />
+      <div className={styles.modal_body}>
+        <div className={styles.my_product_modal_cancel}>
+          <Image
+            src={"/image/cancel.svg"}
+            width={30}
+            height={30}
+            onClick={handleClickCancel}
+          />
+        </div>
         <MenuButton
           label={
             product.product_situation
@@ -148,9 +169,24 @@ const ProductMenu = () => {
               : "デザインを公開にする"
           }
           onClick={handleClickSituation}
+          style={{
+            borderRadius: "12px 12px 0 0",
+            borderBottom: "0.5px solid #CCCCCC",
+          }}
+          src="/app/product_detail/open.svg"
         />
-        <MenuButton label="編集" onClick={handleClickEditProduct} />
-        <MenuButton label="削除" onClick={handleClickDeleteProduct} />
+        <MenuButton
+          label="編集"
+          onClick={handleClickEditProduct}
+          style={{ borderRadius: "0 0 12px 12px" }}
+          src="/app/product_detail/edit.svg"
+        />
+        <MenuButton
+          label="削除"
+          onClick={handleClickDeleteProduct}
+          style={{ margin: "5vh 0 0 0", color: "#F21938" }}
+          src="/app/product_detail/delete.svg"
+        />
       </div>
     </div>
   );
@@ -185,7 +221,7 @@ const app_product_detail: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <App_header label="ケース"/>
+      <App_header label="ケース" />
       <App_product_view />
       <ProductInfo
         name={product_name}
@@ -219,10 +255,14 @@ const ProductInfo = ({
 
   return (
     <div className={styles.product_info}>
-      {user_id === product_user_id && (
-        <button onClick={handleClickMenu}>...</button>
-      )}
-      <p className={styles.case_name}>{name}</p>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <p className={styles.case_name}>{name}</p>
+        {user_id === product_user_id && (
+          <button className={styles.menu_open_btn} onClick={handleClickMenu}>
+            ...
+          </button>
+        )}
+      </div>
       <p className={styles.case_category}>{category}</p>
       <p className={styles.case_price}>
         ￥{price.toLocaleString()}
@@ -242,7 +282,11 @@ const QRButton = ({ setModalBody }: QRButton) => {
   };
   return (
     <div className={styles.button_area}>
-      <Button label="QRコードを表示" onClick={handleQRcode} style={{background:"#23ABDD"}}/>
+      <Button
+        label="QRコードを表示"
+        onClick={handleQRcode}
+        style={{ background: "#23ABDD" }}
+      />
     </div>
   );
 };

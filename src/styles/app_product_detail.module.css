@@ -10,7 +10,7 @@
 .product_info {
   width: 100%;
   border-top: 1px solid rgba(224, 224, 224, 0.48);
-  border-bottom:1px solid rgba(224, 224, 224, 0.48);
+  border-bottom: 1px solid rgba(224, 224, 224, 0.48);
   padding: 0 0 0 30px;
   height: 26.5vh;
 }
@@ -27,7 +27,7 @@
 }
 .case_price {
   line-height: 30px;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   margin: 0;
   color: #333;
@@ -46,7 +46,7 @@
 .product_liked {
   font-size: 25px;
   color: #333;
-  margin: 5px 0 0 10px;
+  margin: 8px 0 0 10px;
 }
 .delete_check {
   z-index: 999;
@@ -94,4 +94,34 @@
   position: absolute;
   top: 25vh;
   left: 79vw;
+}
+.menu_open_btn {
+  border: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  background: #fafafa;
+  top: 5px;
+  right: 20px;
+}
+.modal_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.my_product_modal_cancel {
+  position: relative;
+  left: 41vw;
+  margin: 3vh 0;
+}
+.menu_btn {
+  background: #efefef;
+  border-radius: 12px;
+  border: none;
+  font-size: 1.2rem;
+  padding: 15px 0;
+  width: 90%;
+  font-weight: bold;
+  display: flex;
 }
