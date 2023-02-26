@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Stage, Layer, Line, Group } from "react-konva";
 import useImage from "use-image";
 import Image from "next/image";
@@ -13,6 +13,12 @@ import styles from "../../../styles/device_select.module.css";
 import { motion } from "framer-motion";
 import { getThumbnailAzure } from "../../../utils";
 
+type ProductInfo = {
+  name: string;
+  sub: string;
+  price: number;
+  buttonLabel: string;
+};
 const OriginalCheck = () => {
   // console.log(qrCodeData);
 
@@ -30,10 +36,12 @@ const OriginalCheck = () => {
   const [camera] = useImage(camera_image_path + "_camera.png");
   const [design] = useImage(designImage);
   const [quant, setQuant] = useState(1);
+  const [nextURL, setNextURL] = useState("");
 
   const getProductID = () => {
     const { data, error } = useSWR(
-      query.productID && `/api/Sql?sql=getProductID&&place=${query.productID}`,
+      !query.productID?.includes(".") &&
+        `/api/Sql?sql=getProductID&&place=${query.productID}`,
       fetcher
     );
     return {
@@ -43,7 +51,7 @@ const OriginalCheck = () => {
 
   const getModelID = () => {
     const { data, error } = useSWR(
-      query.productID &&
+      !query.productID?.includes(".") &&
         `/api/Sql?sql=getModelID&&name=${modelName.split("/")[2]}`,
       fetcher
     );
@@ -51,36 +59,67 @@ const OriginalCheck = () => {
       model: data,
     };
   };
+
+  const getProductInfo = () => {
+    const { data } = useSWR(
+      query.productID?.includes(".") &&
+        `/api/Sql?sql=getProductFromCamera&product_place=${query.productID}`,
+      fetcher
+    );
+    return {
+      productInfo: data,
+    };
+  };
   const { productID } = getProductID();
   const { model } = getModelID();
+  const { productInfo } = getProductInfo();
 
   useEffectCustom(() => {
-    // console.log(productID);
-    // console.log(model);
     if (productID && model) {
       setProduct((prevState) => ({
         ...prevState,
         product_ID: productID[0]["product_ID"],
         model_id: model[0]["model_id"],
       }));
+      return;
     }
-  }, [productID, model]);
+    if (productInfo) {
+      setProduct((before) => ({
+        ...before,
+        product_ID: productInfo[0].product_ID,
+        m_product_price: productInfo[0].m_product_price,
+        product_place: query.productID as string,
+        product_name: productInfo[0].product_name,
+        m_product_category:productInfo[0].m_product_category
+      }));
+    }
+    console.log(productInfo);
+    console.log(product);
+  }, [productID, model, productInfo]);
   // 読み取れたら
-  useEffect(() => {
+  useEffectCustom(() => {
     if (router.isReady) {
       // console.log(query.productID);
       // console.log(query.json);
-      getThumbnailAzure(query.productID, setDesignImage);
+      // 公式
+      if (query.productID?.includes(".")) {
+        setDesignImage(`/product_image/${query.productID}`);
+        setNextURL("/main/device_select");
+        // オリジナル
+      } else {
+        getThumbnailAzure(query.productID, setDesignImage);
+        setNextURL("/main/pay");
+      }
     }
   }, [query, router]);
 
-  // useEffect(() => {
-  //   if (m_product_category === "user") {
-  //     getThumbnailAzure();
-  //   }
-  //   console.log(product_situation);
-
-  // }, []);
+  useEffect(() => {
+    // if (m_product_category === "user") {
+    //   getThumbnailAzure();
+    // }
+    // console.log(product_situation);
+    setDesignImage("");
+  }, []);
 
   const ProductView = () => {
     return (
@@ -97,55 +136,55 @@ const OriginalCheck = () => {
     );
   };
 
-  const ProductInfo = () => {
+  const ProductInfo = ({ buttonLabel, name, price, sub }: ProductInfo) => {
     const goEdit = () => {
       setProduct((prevState) => ({ ...prevState, quant: quant }));
       router.push({
-        pathname: "/main/pay",
+        pathname: nextURL,
       });
     };
 
     return (
       <div className={styles.product_info}>
         <div className={styles.productDesc}>
-          <h2 className={styles.productName}>{modelName.split("/")[2]}</h2>
-          <p className={styles.productColor}>
-            {modelName.split("/")[3].split(".")[0]}
-          </p>
+          <h2 className={styles.productName}>{name}</h2>
+          <p className={styles.productColor}>{sub}</p>
         </div>
 
-        <h2 className={styles.price}>&yen;{product.m_product_price}円(税込)</h2>
-        <div className={styles.choseQuantity}>
-          <motion.span
-            className={styles.count}
-            onClick={() => {
-              quant > 1 && setQuant(quant - 1);
-            }}
-            whileTap={{ scale: 0.9 }}
-          >
-            －
-          </motion.span>
-          <div className={styles.quantity}>
-            <p className={styles.quantity_text}>
-              {quant}
-              <span>こ</span>
-            </p>
+        <h2 className={styles.price}>&yen;{price}円(税込)</h2>
+        {query.productID?.includes(".") || (
+          <div className={styles.choseQuantity}>
+            <motion.span
+              className={styles.count}
+              onClick={() => {
+                quant > 1 && setQuant(quant - 1);
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              －
+            </motion.span>
+            <div className={styles.quantity}>
+              <p className={styles.quantity_text}>
+                {quant}
+                <span>こ</span>
+              </p>
+            </div>
+            <motion.span
+              className={styles.count}
+              onClick={() => {
+                quant < 6 && setQuant(quant + 1);
+              }}
+              whileTap={{ scale: 0.9 }}
+            >
+              ＋
+            </motion.span>
           </div>
-          <motion.span
-            className={styles.count}
-            onClick={() => {
-              quant < 6 && setQuant(quant + 1);
-            }}
-            whileTap={{ scale: 0.9 }}
-          >
-            ＋
-          </motion.span>
-        </div>
+        )}
         <motion.div
           style={{ position: "relative", left: "50%", top: "30px" }}
           whileTap={{ scale: 0.9 }}
         >
-          <Button label={"購入へ"} situ_name={"screen"} onClick={goEdit} />
+          <Button label={buttonLabel} situ_name={"screen"} onClick={goEdit} />
         </motion.div>
       </div>
     );
@@ -161,7 +200,24 @@ const OriginalCheck = () => {
       }}
     >
       <ProductView />
-      <ProductInfo />
+      {(productInfo || product) && (
+        <ProductInfo
+          name={
+            query.productID?.includes(".")
+              ? product.product_name
+              : modelName.split("/")[2]
+          }
+          buttonLabel={query.productID?.includes(".") ? "機種選択へ" : "購入へ"}
+          price={
+             product.m_product_price
+          }
+          sub={
+            query.productID?.includes(".")
+              ? product.m_product_category
+              : modelName.split("/")[3].split(".")[0]
+          }
+        />
+      )}
     </div>
   );
 };
