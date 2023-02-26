@@ -131,15 +131,17 @@ const Form = () => {
 
   return (
     <div className={styles.loginFormContainer}>
-      {error !== "" && <p>{error}</p>}
+       <div className={styles.loginErrMsg}>
+        {error && <p className={styles.loginErr}>{error}</p>}
+      </div>
       <input
-        className={styles.mailForm}
+        className={error ? styles.milFromError : styles.mailForm}
         placeholder="メールアドレス"
         ref={InputRef}
         onChange={() => setError("")}
       />
       <input
-        className={styles.passwordForm}
+        className={error ? styles.passwordFromError : styles.passwordForm}
         placeholder="パスワード"
         value={password}
         onChange={(e) => {
