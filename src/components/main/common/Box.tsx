@@ -8,6 +8,11 @@ import Image from "next/image";
 const Box = ({ children }: { children: ReactNode }) => {
   // 開きっぱなしのモーダルを閉じる
   const [modal, setModal] = useRecoilState(modalState);
+  const handleTap=()=>{
+    const audio = new Audio("/audio/tap.mp3")
+    audio.play()
+    // audio.currentTime = 50 // 経過時間を50秒にする
+  }
   useEffect(() => {
     if (modal) {
       setModal(false);
@@ -16,7 +21,7 @@ const Box = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <div id={styles.box}>
+      <div id={styles.box} onTouchStart={handleTap}>
         <div id={styles.screen_on}>{children}</div>
         <div id={styles.side}>
           <Image
