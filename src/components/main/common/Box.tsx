@@ -21,7 +21,7 @@ const Box = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <div id={styles.box} onTouchStart={handleTap}>
+      <div id={styles.box} onTouchEnd={handleTap}>
         <div id={styles.screen_on}>{children}</div>
         <div id={styles.side}>
           <Image
