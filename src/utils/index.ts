@@ -1,5 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 import useSWR from "swr";
+// import { SpeechSynthesisConfig, SpeechSynthesisOutputFormat } from "microsoft-cognitiveservices-speech-sdk";
+import {
+  PropertyId,
+  SpeechConfig,
+  SpeechSynthesisOutputFormat,
+  SpeechSynthesizer,
+} from "microsoft-cognitiveservices-speech-sdk";
 
 type Body = {
   [key: string]: string | number;
@@ -85,30 +92,61 @@ export const getDB = (option: string) => {
   };
 };
 
-export const resizeImage = async(img:HTMLImageElement,size:number):Promise<Blob> => {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
+export const resizeImage = async (
+  img: HTMLImageElement,
+  size: number
+): Promise<Blob> => {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
-    // console.log(img);
-    let width = img.width;
-    let height = img.height;
-    if (width > height) {
-      if (width > size) {
-        height *= size / width;
-        width = size;
-      }
-    } else {
-      if (height > size) {
-        width *= size / height;
-        height = size;
-      }
+  // console.log(img);
+  let width = img.width;
+  let height = img.height;
+  if (width > height) {
+    if (width > size) {
+      height *= size / width;
+      width = size;
     }
-    canvas.width = width;
-    canvas.height = height;
-    ctx?.drawImage(img, 0, 0, width, height);
+  } else {
+    if (height > size) {
+      width *= size / height;
+      height = size;
+    }
+  }
+  canvas.width = width;
+  canvas.height = height;
+  ctx?.drawImage(img, 0, 0, width, height);
 
-    const resizedImageBlob = await new Promise<Blob>(resolve => canvas.toBlob(blob => resolve(blob!)));
-  
-  return  resizedImageBlob;
+  const resizedImageBlob = await new Promise<Blob>((resolve) =>
+    canvas.toBlob((blob) => resolve(blob!))
+  );
+
+  return resizedImageBlob;
   // 画像の取得と変換
 };
+
+
+export const handleSpeech=(text:string)=> {
+  // const keyText = document.getElementById("keyText").value,
+      // regionText = document.getElementById("regionText").value,
+      // phraseText = document.getElementById("phraseText").value;
+    const ssml =`<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US"><voice name="ja-JP-NanamiNeural"><mstts:express-as style="customerservice" ><prosody rate="0%" pitch="0%">${text}</prosody></mstts:express-as></voice></speak>`
+      const speechConfig = SpeechConfig.fromSubscription(
+        process.env.SPEECH_SERVICE_SUBSCRIPTION_KEY as string,
+        process.env.SPEECH_SERVICE_ENDPOINT as string
+      );
+  speechConfig.speechSynthesisLanguage = "ja-JP";
+  speechConfig.speechSynthesisVoiceName = "ja-JP-NanamiNeural";
+
+  let synthesizer = new SpeechSynthesizer(speechConfig);
+  synthesizer.speakSsmlAsync(
+      ssml,
+      function (result) {
+          console.log(result);
+          synthesizer.close();
+      }, function (err) {
+          console.log(err);
+          synthesizer.close();
+      }
+  )
+}
