@@ -117,12 +117,14 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
       <div>
         <div className={styles.view_box}>
           <Stage
-            width={468}
+            width={imageSize.width}
             height={542}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             ref={stageRef}
+            x={-(243 - imageSize.width / 2)}
+                y={0}
           >
             <Layer>
               <Image
@@ -142,6 +144,7 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
                   stroke={line.color}
                   strokeWidth={line.size}
                   tension={0.5}
+                  x={243 - imageSize.width / 2}
                   lineCap="round"
                   globalCompositeOperation={
                     line.tool === "eraser" ? "destination-out" : "source-over"
