@@ -30,6 +30,7 @@ const pay: NextPage = () => {
   const [modal, setModal] = useRecoilState(modalState);
   const { m_product_price, product_ID } = useRecoilValue(productState);
   const [coins, setCoins] = useState(0);
+  const router = useRouter();
 
   const handlePay = (name: string) => {
     setPay(name);
@@ -38,7 +39,14 @@ const pay: NextPage = () => {
     }
   };
 
-  const router = useRouter();
+  useEffect(()=>{
+if(!product_ID){
+router.push({
+    pathname:"./service_select"
+})
+}
+  },[])
+
   useEffect(() => {
     if (!modal) {
       setPay("");
