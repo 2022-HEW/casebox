@@ -29,7 +29,7 @@ const Product_buy_check = ({
   const [product, setProduct] = useRecoilState(productState);
 
   const go_pay_select = () => {
-    setProduct((before) => ({ ...before, quant: count }));
+    setProduct((before) => ({ ...before, m_product_price: count*before.m_product_price }));
     router.push({
       pathname: "/main/pay",
     });

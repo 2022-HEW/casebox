@@ -19,6 +19,7 @@ import Touch from "../../components/main/pay/Touch";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { handleSpeech } from "../../utils";
+import { Button } from "../../components/main/common/Button";
 
 const pay: NextPage = () => {
   // 今までの情報をリセット
@@ -29,10 +30,10 @@ const pay: NextPage = () => {
   }
   const [pay, setPay] = useState("");
   const [modal, setModal] = useRecoilState(modalState);
-  const { m_product_price, product_ID } = useRecoilValue(productState);
+  const { m_product_price, } = useRecoilValue(productState);
   const [coins, setCoins] = useState(0);
   const router = useRouter();
-  const [download,setDownload] = useRecoilState(downloadState)
+  const [download, setDownload] = useRecoilState(downloadState);
 
   const handlePay = (name: string) => {
     setPay(name);
@@ -42,13 +43,12 @@ const pay: NextPage = () => {
   };
 
   useEffect(() => {
-    if (!m_product_price) {
+    if (!download) {
       router.push({
         pathname: "./service_select",
       });
     }
-    setDownload(false)
-    
+    setDownload(false);
   }, []);
 
   useEffect(() => {
@@ -157,8 +157,12 @@ const pay: NextPage = () => {
             price={m_product_price}
           />
           <Price_result id={styles.payed} write="投入額" price={coins} />
-          <Price_result id={styles.back} write="おつり" price={0} />
-
+          <Price_result id={styles.back} write="おつり" price={coins - m_product_price>0?coins - m_product_price:0} />
+          <div className={styles.calculate}>
+            {coins -m_product_price >=0 &&
+            <Button label="支払確定" situ_name="" style={{width:"200px"}}/>
+            }
+          </div>
           <div className={styles.buttons}>
             <Buttons imgPath={Cash} name="現金" />
             <Buttons imgPath={trafic} name="クレジットカード" />

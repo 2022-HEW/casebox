@@ -196,3 +196,9 @@
     align-items: center;
     margin: 30px 0 0 0;
 }
+.calculate{
+    position: absolute;
+    top: 200px;
+    width: 200px;
+    right: 30px;
+}
