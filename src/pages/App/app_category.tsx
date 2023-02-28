@@ -18,7 +18,7 @@ const app_category: NextPage = () => {
     <div className={styles.container}>
       <App_nav pageName="category"/>
       <Card
-        imagePath={"/common/tempSelect.png"}
+        imagePath={"/common/tempSelectfeat.png"}
         title={"テンプレートケース"}
         text={"デザインが既に完成しているケースです。"}
         href={"./app_template"}
