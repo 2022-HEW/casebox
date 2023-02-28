@@ -35,6 +35,7 @@
     font-size: small;
     display: inline-block;
     vertical-align: top;
+    /* 上に合わせる */
     width: 70%;
 }
 .guidelink .title{
