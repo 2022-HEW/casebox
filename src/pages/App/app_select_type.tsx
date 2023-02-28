@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/app_select_type.module.css";
 import dynamic from "next/dynamic";
 
-const App_product_view = dynamic(() => import("../../components/app/common/App_product_view"), { ssr: false });
+const App_select_type = dynamic(() => import("../../components/app/App_select_type"), { ssr: false });
 interface Device {
   model_name: string;
 }
@@ -190,7 +190,7 @@ const app_select_type = () => {
     mounted && (
       <div className={styles.container}>
         <App_header label="オリジナル" />
-        <App_product_view />
+        <App_select_type />
         <div className={styles.selects}>
           <Select
             label={"デバイス"}
