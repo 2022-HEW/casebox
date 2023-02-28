@@ -10,7 +10,7 @@ const Service_cards = () => {
       href: "/main/template_select",
       name: "テンプレートケース",
       desc: "CASEBOXスタッフにデザインされたケース",
-      imgPath: "/service_select/template_select.png",
+      imgPath: "/common/tempSelect.png",
       width: "260",
       height: "120",
     },
@@ -18,7 +18,7 @@ const Service_cards = () => {
       href: "/main/scan",
       name: "オリジナルケース",
       desc: "写真を入れて作るあなただけのケース",
-      imgPath: "/service_select/original.svg",
+      imgPath: "/common/original.png",
       width: "220",
       height: "120",
     },
@@ -26,7 +26,7 @@ const Service_cards = () => {
       href: "/main/device_select",
       name: "手書きケース",
       desc: "自分で書いたイラストをケースにできる",
-      imgPath: "/image/illust.svg",
+      imgPath: "/common/illust.png",
       width: "220",
       height: "120",
     },
@@ -41,23 +41,25 @@ const Service_cards = () => {
           transition={{ ...bound.transition, delay: index / 5 }}
           whileTap={{ scale: 0.6 }}
         >
-          <Link key={item.href} href={item.href}>
-            <a className={styles.cards}>
-              <figure className={styles.cardImg}>
-                <Image
-                  src={item.imgPath}
-                  alt={item.name}
-                  width={item.width}
-                  height={item.height}
-                  objectFit={"cover"}
-                />
-              </figure>
-              <div className={styles.content}>
-                <h3>{item.name}</h3>
-                <p>{item.desc}</p>
-              </div>
-            </a>
-          </Link>
+          <div className={styles.ContainerInside}>
+            <Link key={item.href} href={item.href}>
+              <a className={styles.cards}>
+                <figure className={styles.cardImg}>
+                  <Image
+                    src={item.imgPath}
+                    alt={item.name}
+                    width={item.width}
+                    height={item.height}
+                    objectFit={"cover"}
+                  />
+                </figure>
+                <div className={styles.content}>
+                  <h3>{item.name}</h3>
+                  <p>{item.desc}</p>
+                </div>
+              </a>
+            </Link>
+          </div>
         </motion.div>
       ))}
     </div>

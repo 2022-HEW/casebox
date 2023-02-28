@@ -1,11 +1,21 @@
-.nav{
-    height: 75px;
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
-    background-color: #fff;
+.nav {
+  height: 10%;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  z-index: 998;
+}
+.nav div {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  align-items: center;
+}
+.nav p {
+  margin: 5px 0 0 0;
 }

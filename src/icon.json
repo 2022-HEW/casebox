@@ -1,9 +1,28 @@
 {
     "icon":[
             {
-                "id":1,
-                "name":"アボカド",
-                "src":"/icon/avocado.svg"
+                "name":"デフォルトアイコン",
+                "src":"/app/mypage/icon/default.svg"
+            },
+            {
+                "name":"うさぎ",
+                "src":"/app/mypage/icon/rabbit.svg"
+            },
+            {
+                "name":"ペンギン",
+                "src":"/app/mypage/icon/pengin.svg"
+            },
+            {
+                "name":"ねこ",
+                "src":"/app/mypage/icon/cat.svg"
+            },
+            {
+                "name":"いぬ",
+                "src":"/app/mypage/icon/dog.svg"
+            },
+            {
+                "name":"とら",
+                "src":"/app/mypage/icon/tiger.svg"
             }
         ]
 

@@ -1,13 +1,11 @@
 import { NextPage } from "next";
 import React, { useEffect, useReducer, useState } from "react";
-import { text } from "stream/consumers";
 import useSWR from "swr";
-import { App_productBox } from "../../components/common/App_product_box";
-import Image from "next/image";
+import { App_productBox } from "../../components/app/common/App_product_box";
 import styles from "../../styles/app_search.module.css";
-import App_header from "../../components/common/App_header";
-import App_nav from "../../components/common/App_nav";
-import { App_product_filter } from "../../components/common/App_product_filter";
+import App_header from "../../components/app/common/App_header";
+import App_nav from "../../components/app/common/App_nav";
+import { App_product_filter } from "../../components/app/common/App_product_filter";
 import { Product } from "../../types";
 const App_template: NextPage = () => {
 
@@ -27,17 +25,17 @@ const App_template: NextPage = () => {
     if (data) {
       setProduct(data);
     }
-    // console.log(data);
   }, [data]);
+  
 
   // 取得するまで
   //   if(!data) return (<Box><Nav><></></Nav></Box>)
   return (
     <div className={styles.container}>
       <App_header label="テンプレート" />
-      <App_product_filter product={product} setProduct={setProduct} />
+      <App_product_filter product={product} setProduct={setProduct} style={{position:"relative",top:"0"}}/>
       <div className={styles.result_box}>
-        <div className={styles.result_line}>
+        <div className={styles.result_line} style={{padding:"0 0 15vh 0"}}>
           {product.map((product: Product, index: number) => (
             <App_productBox
               product_place={product.product_place}
@@ -49,6 +47,7 @@ const App_template: NextPage = () => {
               product_user_id={product.user_id}
               user_name={product.user_name}
               product_situation={product.product_situation}
+              product_liked={product.product_liked}
               //   setProduct_ID={setProduct_ID}
             />
           ))}

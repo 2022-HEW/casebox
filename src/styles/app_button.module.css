@@ -1,9 +1,12 @@
-.button{
-    background: #555;
-    border-radius: 28px;
-    color: #fff;
-    width: 80%;
-    /* margin:0 0 0 10%; */
-    padding: 10px 0;
-    max-width: 333px;
+.button {
+  font-size: 1.2rem;
+  background: #666;
+  border-radius: 50px;
+  color: #fff;
+  width: 100vw;
+  /* margin: 0 0 0 10%; */
+  padding: 10px 0;
+  height: 50px;
+  max-width: 360px;
+  border: none;
 }

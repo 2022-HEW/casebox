@@ -6,7 +6,6 @@
     background: #555;
     top: 0px;
     left: 0px;
-    border-radius: 13px;
     opacity: 0.5;
 }
 .modal_box{
@@ -30,11 +29,17 @@
     border-radius: 20px 20px 0px 0px;
 }
 .modal_header{
-    position: static;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 5vh 0;
+}
+.modal_header h3{
+    margin: 25px 0 0 0;
 }
 .cancel{
-    position: absolute;
-    top: 25px;
-    right: 35px;
+    position: relative;
+    position: relative;
+    top: 1.6vh;
+    left: 19.5vw;
 }

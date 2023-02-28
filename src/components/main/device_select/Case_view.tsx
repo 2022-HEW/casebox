@@ -58,6 +58,8 @@ const Case_view = ({
     control.start({ width: "36.6vw" });
   }, [step]);
 
+  
+
   return (
     //  ケース表示のエリア
     <div id={styles.case_view}>
@@ -70,6 +72,7 @@ const Case_view = ({
       ) : (
         <motion.div animate={control} key={"view"}>
           <TemplateView
+            setDownloadPath={setDownloadPath}
             devicePath={`/${select_device}/${model_names[type_index]}/${color_index}.png`}
             texturePath={`/design/${product_info.product_place}`}
           />
@@ -77,11 +80,7 @@ const Case_view = ({
       )}
       <Modal>
         <Product_buy_check
-          image_path={
-            download
-              ? downloadPath
-              : `/${select_device}/${model_names[type_index]}/${color_index}.png`
-          }
+          image_path={downloadPath}
           design_path={`/design/${product_info.product_place}`}
           type_name={model_names[type_index]}
           color_name={color_index}

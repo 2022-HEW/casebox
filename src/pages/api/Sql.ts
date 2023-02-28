@@ -34,7 +34,7 @@ export default async function handler(
 ) {
   // price=m_product_price&&productID=product_ID&&modelID=model_id
   const flg = req.query.sql;
-  const { place, quant, stock, modelID, productID, price, name } = req.query;
+  const { place, quant, stock, modelID, productID, price, name,product_place } = req.query;
 
   // const router = useRouter()
   // let sql = router.query
@@ -76,7 +76,11 @@ export default async function handler(
       sql = `SELECT model_id from t_stocks where model_name = "${name}"`;
       break;
 
-    default:
+      case "getProductFromCamera":
+        sql = `SELECT p.product_ID,p.product_name,m.m_product_price, m.m_product_category from t_products p JOIN t_m_products m ON p.m_product_ID = m.m_product_ID where p.product_place = "${product_place}"`;
+        break;
+  
+      default:
       console.log("error");
   }
 

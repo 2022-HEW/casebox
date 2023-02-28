@@ -3,7 +3,7 @@
 .Container {
   height: 100vh;
   width: 100vw;
-  background-color: white;
+  background-color: #FAFAFA;
 }
 .Container .subTitle {
   display: flex;
@@ -12,7 +12,7 @@
   flex-direction: column;
 }
 .Container .subTitle h1 {
-  font-size: 24px;
+  font-size: 1.6rem;
   margin: 48px 0 24px 0;
 }
 .Container .subTitle p {
@@ -46,11 +46,12 @@
   max-width: 333px;
   border: solid 1px #dddddd;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
   color: black;
+  padding-left: 14px;
 }
 .loginFormContainer input {
-  border: solid 1px #E55C5C;
+  border: solid 1px #e55c5c;
   background: rgba(255, 0, 0, 0.1);
 }
 .loginFormContainer .passwordForget {
@@ -83,7 +84,7 @@
   max-width: 333px;
   border: solid 1px #dddddd;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
 }
 
 /* ログインエラーメッセージ */
@@ -94,7 +95,7 @@
 }
 
 .loginErrMsg > .loginErr {
-  color: #E55C5C;
+  color: #e55c5c;
   font-size: 10px;
   margin: 0;
 }
@@ -102,3 +103,4 @@
 .Container .textContainer {
   width: 80%;
 }
+/*# sourceMappingURL=app_login.module.css.map */

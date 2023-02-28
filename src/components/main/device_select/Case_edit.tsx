@@ -251,7 +251,7 @@ const Case_edit = ({
         <div className={styles.button}>
           <Button
             onClick={() => {
-              product.product_place === "" ? setStep(4) : setModal(true);
+              product.product_place === "" ? setStep(4) : setDownload(true);
             }}
             label="次へ"
             situ_name="screen"

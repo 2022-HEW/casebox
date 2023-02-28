@@ -40,7 +40,7 @@
     width: 99.5%;
     height: 90%;
     background: #FFFFFF;
-    border: 5px solid #858585;
+    border: 5px solid #666;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
     z-index: 2;
@@ -71,10 +71,10 @@
   #display_box #select {
     position: absolute;
     width: 12%;
-    height: 56px;
+    height: 60px;
     left: 10%;
-    background: #858585;
-    border: solid 5px #858585;
+    background: #666;
+    border: solid 5px #666;
     border-radius: 0px 0px 15px 15px;
     z-index: 999;
     color: #fff;
@@ -82,14 +82,16 @@
   
   #display_box #btn{
     display: inline-grid;
-    width: 12%;
-    height: 57px;
+    width: 12.2%;
+    height: 60px;
     background: #fff;
-    border: solid 5px #858585;
+    border: solid 4px #888;
     border-radius: 0px 0px 15px 15px;
     justify-content: center;
     align-content: center;
     margin: 0 15px 0 0;
+    color: #777;
+    font-weight: 600;
   }
   #back{
     /* Rectangle 143 */
@@ -107,8 +109,9 @@
   }
 
   .select{    
-    background: #858585!important;
-    color: white;
+    background: #666!important;
+    color: #ffffff!important;
+    border: solid 5px #666!important;
     position: relative;
     z-index: 2;
   }

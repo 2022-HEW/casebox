@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
-import { Blob } from "buffer";
-import { time } from "console";
-import { useState } from "react";
+
 
 const imgContainerName = `product`;
 const placeContainerName = `place`;

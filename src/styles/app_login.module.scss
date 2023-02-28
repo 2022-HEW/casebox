@@ -1,141 +1,137 @@
 /* 共通 */
-$backColor: white;
+$backColor: #ffffff;
+$bacColor: #fafafa;
 $fontColor: black;
 $borderSet: solid 1px #dddddd;
-$borderErr: solid 1px #E55C5C;
+$borderErr: solid 1px #e55c5c;
 $backgroundErr: rgba(255, 0, 0, 0.1);
 
 // 全体のコンテナ
-.Container{
-    height: 100vh;
-    width: 100vw;
-    background-color: $backColor;
+.Container {
+  height: 100vh;
+  width: 100vw;
+  background-color: $bacColor;
 
-// h1表示位置
-    .subTitle{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
+  // h1表示位置
+  .subTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
-        h1{
-            font-size: 24px;
-            margin: 48px 0 24px 0;
-        }
-
-        p{
-            font-size: 10px;
-            margin: 3px 0;
-        }
+    h1 {
+      font-size: 1.6rem;
+      margin: 48px 0 24px 0;
     }
 
-// プライバシーポリシーリンク
-    p{
-        display: flex;
-        font-size: 10px;
-        justify-content: center;
-        /* margin: 0; */
-
-        .underLine{
-            font-weight: bold;
-            text-decoration: underline!important;
-        }
+    p {
+      font-size: 10px;
+      margin: 3px 0;
+      color: #777777;
     }
+  }
+
+  // プライバシーポリシーリンク
+  p {
+    display: flex;
+    font-size: 10px;
+    justify-content: center;
+    /* margin: 0; */
+
+    .underLine {
+      font-weight: bold;
+      text-decoration: underline !important;
+    }
+  }
 }
-
 
 /* 会員登録 */
 
 /* 全体のコンテナ― */
-.loginFormContainer{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 16px;
+.loginFormContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 16px;
 
-    .mailForm{
-        width: 80%;
-        height: 48px;
-        max-width: 333px;
-        border: $borderSet;
-        border-radius: 8px;
-        background: $backColor;
-        color: $fontColor;
-    }
+  .mailForm {
+    width: 80%;
+    height: 48px;
+    max-width: 333px;
+    border: $borderSet;
+    border-radius: 8px;
+    background: $backColor;
+    color: $fontColor;
+    padding-left: 14px;
+  }
 
-    .passwordForm{
-        @extend .mailForm;
-    }
+  .passwordForm {
+    @extend .mailForm;
+  }
 
-    // ログインエラー時のスタイル
-    input{
-        @extend .mailForm;
-        border: $borderErr;
-        background: $backgroundErr;
-    }
+  // ログインエラー時のスタイル
+  input {
+    @extend .mailForm;
+    border: $borderErr;
+    background: $backgroundErr;
+  }
 
-
-    
-    /* パスワード忘れた人リンク */
-    .passwordForget{
-        font-size: 10px;
-        position: relative;
-        left: 100px;
-    }
-
+  /* パスワード忘れた人リンク */
+  .passwordForget {
+    font-size: 10px;
+    position: relative;
+    left: 100px;
+  }
 }
-
 
 /* 新規会員登録リンク */
-.signUp{
-    display: flex;
-    justify-content: center;
+.signUp {
+  display: flex;
+  justify-content: center;
 
-    p{
-        font-size: 10px;
-    }
+  p {
+    font-size: 10px;
+  }
 }
 
-
-    
 /* パスワードリセット */
-.passwordResetContainer{
-    width: 100vw;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
+.passwordResetContainer {
+  width: 100vw;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
 
-    .passwordReset{
-        width: 80%;
-        height: 48px;
-        max-width: 333px;
-        border: $borderSet;
-        border-radius: 8px;
-        background: $backColor;
-    }
+  .passwordReset {
+    width: 80%;
+    height: 48px;
+    max-width: 333px;
+    border: $borderSet;
+    border-radius: 8px;
+    background: $backColor;
+    padding-left: 14px;
+  }
 }
 
 /* ログインエラーメッセージ */
-.loginErrMsg{
-    width: 80vw;
-    display: flex;
-    justify-content: left;
+.loginErrMsg {
+  width: 80vw;
+  display: flex;
+  justify-content: left;
 }
 
-.loginErrMsg > .loginErr{
-    color: #E55C5C;
-    font-size: 10px;
-    margin: 0;
+.loginErrMsg > .loginErr {
+  color: #e55c5c;
+  font-size: 10px;
+  margin: 0;
 }
-
 
 // 利用規約
-.Container{
-    // 本文
-    .textContainer{
-        width: 80%;
-    }
+.Container {
+  // 本文
+  .textContainer {
+    width: 80%;
+  }
 }
