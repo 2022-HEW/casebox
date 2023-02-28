@@ -90,13 +90,13 @@ const News = () => {
         <NewsRecord
           date={"2002.11.11"}
           category={"カテゴリ"}
-          title={"タイトルタイトルタイトルタイトルタイトルタイトル"}
+          title={"タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル"}
         />
       </div>
       <div className={styles.guidelink}>
         <NewsRecord
           date={"2002.11.11"}
-          category={"カテゴリ"}
+          category={"カテゴリカテゴリカテゴリカテゴリカテゴリカテゴリ"}
           title={"タイトル"}
         />
       </div>
@@ -122,7 +122,7 @@ const Support = () => {
   return (
     <div>
       <h3 className={styles.guide}>サポート</h3>
-      <div>
+      <div className={styles.SupportLink}>
         <SupportRecord title={"ヘルプ・よくある質問"} href={""} />
         <SupportRecord title={"利用規約"} href={""} />
         <SupportRecord title={"プライバシーポリシー"} href={""} />

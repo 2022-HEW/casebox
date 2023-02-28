@@ -1,4 +1,3 @@
-
 .name{
     padding-left: 20px;
     padding-top: 50px;
@@ -15,28 +14,36 @@
     padding-left: 15px;
 }
 .guidelink{
-    display: flex;
+    margin: 0;
+    padding: 0;
     background-color: #ffffff;
     border: 0.5px dotted rgb(219, 218, 218);
-    height: 60px;
+    height: auto;
+    width: 100%;
+    background-color: #F5F5F5;
 }
 .guidelink .date{
     font-size: small;
-    float: left;
-    padding-left: 15px;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    padding-right: 10%;
+    padding-left: 10px;
 }
 .guidelink .category{
     color: red;
     font-size: small;
-    padding-left: 20px;
-    float: left;
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
 }
 .guidelink .title{
-    padding-left: 15px;
+    width: 100%;
+    padding-left: 10px;
 }
 .SupportTitle{
     padding-left: 15px;
-    background-color: #ffffff;
+    background-color: #F5F5F5;
     border-top: 1px dotted #bbb;
     border-bottom: 1px dotted #bbb;
 }
