@@ -1,131 +1,93 @@
-import Konva from "konva";
+import styles from "../../../styles/device_select.module.css";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/router";
-import React, { useRef, useEffect, useState, Dispatch, SetStateAction } from "react";
-import { Image, Stage, Layer, KonvaNodeComponent, Rect } from "react-konva";
-import { useRecoilState, useRecoilValue } from "recoil";
-import useImage from "use-image";
-import { downloadState, modalState } from "../../../atoms/app_atoms";
-import { tabState } from "../../../atoms/atoms";
-type TemplateView = {
-  devicePath: string;
-  texturePath: string;
-  setDownloadPath: Dispatch<SetStateAction<string>>
+import { useRecoilValue } from "recoil";
+import { productState, stepState, downloadState } from "../../../atoms/atoms";
+import Image from "next/image";
+import Modal from "../common/Modal";
+import Product_buy_check from "../common/Product_buy_check";
+import dynamic from "next/dynamic";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { transition } from "../../../themes/animation/indicate";
+// CSRに変更
+const Draw = dynamic(() => import("./Draw"), { ssr: false });
+const TemplateView = dynamic(() => import("./TemplateView"), { ssr: false });
 
+type Props = {
+  model_names: string[];
+  model_colors: {
+    [props: string]: any;
+  };
+  type_index: number;
+  select_device: string;
+  color_index: string;
+  setColor: Dispatch<SetStateAction<string>>;
 };
 
-const TemplateView = ({ devicePath, texturePath,setDownloadPath }: TemplateView) => {
-  const [deviceSize, setDeviceSize] = useState({ width: 0, height: 0 });
-  const [textureInfo, setTextureInfo] = useState({
-    width: 0,
-    height: 0,
-    x: 0,
-    y: 0,
-  });
-  const [deviceSrc] = useImage(devicePath);
-  const [textureSrc] = useImage(texturePath);
+const Case_view = ({
+  model_names,
+  select_device,
+  type_index,
+  model_colors,
+  color_index,
+  setColor,
+}: Props) => {
   const router = useRouter();
-  const camera_image_path = devicePath.replace(".png", "_camera.png");
-  const [camera] = useImage(camera_image_path);
-  const stageRef = React.useRef<any>();
-  const [modal,setModal]= useRecoilState(modalState)
-  const download = useRecoilValue(downloadState)
-
-  // デバイスの画像を作る
-  useEffect(() => {
-    const img = new window.Image();
-    img.src = devicePath;
-    img.onload = () => {
-      setDeviceSize({
-        width: (542 * img.width) / img.height,
-        height: img.height,
-      });
-    };
-  }, [devicePath, router.pathname]);
+  //値段だけでいいかも
+  const product_info = useRecoilValue(productState);
+  const step = useRecoilValue(stepState);
+  const download = useRecoilValue(downloadState);
+  const [downloadPath, setDownloadPath] = useState("");
+  const control = useAnimation();
 
   useEffect(() => {
-    function downloadURI(uri: string) {
-      setDownloadPath(uri);
-      setModal(true);
-    }
-    if (download) {
-      downloadURI(
-        stageRef.current
-          .getStage()
-          .toDataURL({ mimeType: "image/png", quality: 1.0 })
-      );
-    } else {
-      return;
-    }
-  }, [download]);
-
-
-  // テクスチャの画像を作る
+    setColor(model_colors[model_names[type_index] + "(1)"]);
+    // console.log(model_colors);
+    // console.log(model_names);
+  }, [type_index, select_device]);
+  // console.log(product_info);
+  // console.log(iPhone_colors);
+  // console.log(types);
   useEffect(() => {
-    const img = new window.Image();
-    img.src = texturePath;
-    img.onload = () => {
-      setTextureInfo({
-        // width: deviceSize.width,
-        width: (530 * img.width) / img.height,
-        // height: (deviceSize.width * img.height) / img.width,
-        height: 530,
-        x: 246 - deviceSize.width / 2,
-        // y:-(542-img.height),
-        // x:0,
-        y: 0,
-        // x:542 = img.width:img.height
-      });
-    };
-  }, [deviceSize]);
+    control.start({ width: "36.6vw" });
+  }, [step]);
+
+  
 
   return (
-    <Stage width={468} height={542} ref={stageRef}>
-      <Layer>
-        <Image
-          width={deviceSize.width}
-          height={542}
-          x={243 - deviceSize.width / 2}
-          y={0}
-          image={deviceSrc}
+    //  ケース表示のエリア
+    <div id={styles.case_view}>
+      {/* 手書きかどうか */}
+      {step === 4 ? (
+        <Draw
+          setDownloadPath={setDownloadPath}
+          image_path={`/${select_device}/${model_names[type_index]}/${color_index}.png`}
         />
-        {textureSrc && (
-          <>
-            <Image
-              {...textureInfo}
-              width={textureInfo.width}
-              image={textureSrc}
-            />
-            {/* <Rect
-              width={textureInfo.width < 0 ? 0 : textureInfo.width}
-              x={textureInfo.x}
-              height={100}
-              y={0}
-              fill="rgba(254, 220, 0, 1)"
-              
-              cornerRadius={[40, 40, 0, 0]}
-            /> */}
-            {/* <Rect
-              width={textureInfo.width < 0 ? 0 : textureInfo.width}
-              x={textureInfo.x}
-              height={
-                510 - textureInfo.height < 0 ? 0 : 520 - textureInfo.height
-              }
-              y={510 - textureInfo.y}
-              fill="rgba(254, 220, 0, 1)"
-              cornerRadius={[0, 0, 40, 40]}
-            /> */}
-          </>
-        )}
-        <Image
-          width={deviceSize.width}
-          height={542}
-          x={243 - deviceSize.width / 2}
-          y={0}
-          image={camera}
+      ) : (
+        <motion.div animate={control} key={"view"}>
+          <TemplateView
+            setDownloadPath={setDownloadPath}
+            devicePath={`/${select_device}/${model_names[type_index]}/${color_index}.png`}
+            texturePath={`/design/${product_info.product_place}`}
+          />
+        </motion.div>
+      )}
+      <Modal>
+        <Product_buy_check
+          image_path={downloadPath}
+          design_path={`/design/${product_info.product_place}`}
+          type_name={model_names[type_index]}
+          color_name={color_index}
+          product_price={product_info.m_product_price}
         />
-      </Layer>
-    </Stage>
+      </Modal>
+    </div>
   );
 };
-
-export default TemplateView;
+export default React.memo(Case_view);
