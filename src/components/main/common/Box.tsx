@@ -2,7 +2,7 @@ import styles from "../../../styles/box.module.css";
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
-import { modalState } from "../../../atoms/atoms";
+import { downloadState, modalState } from "../../../atoms/atoms";
 import Image from "next/image";
 
 type Box = {
@@ -13,6 +13,7 @@ type Box = {
 const Box = ({ children, pay }: Box) => {
   // 開きっぱなしのモーダルを閉じる
   const [modal, setModal] = useRecoilState(modalState);
+  const [download, setDownload] = useRecoilState(downloadState);
   const handleTap = () => {
     const audio = new Audio("/audio/tap.mp3");
     audio.play();
