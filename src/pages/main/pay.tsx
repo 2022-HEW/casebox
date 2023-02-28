@@ -145,7 +145,7 @@ const pay: NextPage = () => {
   };
 
   return (
-    <Box>
+    <Box pay={pay}>
       <Nav>
         <div id={styles.wrap}>
           <Price_result
