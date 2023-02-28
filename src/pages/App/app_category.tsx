@@ -22,7 +22,6 @@ const app_category: NextPage = () => {
         title={"テンプレートケース"}
         text={"デザインが既に完成しているケースです。"}
         href={"./app_template"}
-        objectFit="cover"
       />
       <Card
         imagePath={"/common/original.png"}
@@ -40,11 +39,11 @@ const app_category: NextPage = () => {
   );
 };
 
-const Card = ({ href, imagePath, title, text,objectFit="contain" }: Card) => {
+const Card = ({ href, imagePath, title, text }: Card) => {
   return (
     <Link href={href}>
       <div className={styles.card}>
-        <Image width={"400px"} height={"130px"} alt={title} src={imagePath} objectFit={objectFit} />
+        <Image width={"400px"} height={"150px"} alt={title} src={imagePath} objectFit="contain" />
         <div>
           <h3>{title}</h3>
           <p>{text}</p>
