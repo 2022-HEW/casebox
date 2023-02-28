@@ -9,8 +9,9 @@ const tutorial: NextPage = () => {
   const router = useRouter();
 
   return (
+    <>
+    <App_header label="チュートリアル" />
     <div className={styles.container}>
-      <App_header label="手書きチュートリアル" />
       <div>
         <video
           className={styles.video}
@@ -20,10 +21,11 @@ const tutorial: NextPage = () => {
               : `/movie/app_draw_tutorial.mp4`
           }
           controls
-          style={{ width: "100%" }}
+          style={ router.query.situ?{bottom:"25vh"}:{bottom:"0px"}}
         />
       </div>
     </div>
+    </>
   );
 };
 export default tutorial;
