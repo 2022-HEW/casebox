@@ -19,7 +19,6 @@ import Touch from "../../components/main/pay/Touch";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import { handleSpeech } from "../../utils";
-import { Button } from "../../components/main/common/Button";
 
 const pay: NextPage = () => {
   // 今までの情報をリセット
@@ -146,7 +145,7 @@ const pay: NextPage = () => {
   };
 
   return (
-    <Box  pay={pay}>
+    <Box pay={pay}>
       <Nav>
         <div id={styles.wrap}>
           <Price_result
@@ -156,8 +155,6 @@ const pay: NextPage = () => {
           />
           <Price_result id={styles.payed} write="投入額" price={coins} />
           <Price_result id={styles.back} write="おつり" price={0} />
-
-          <Button label="支払確定" situ_name=""/>
 
           <div className={styles.buttons}>
             <Buttons imgPath={Cash} name="現金" />
