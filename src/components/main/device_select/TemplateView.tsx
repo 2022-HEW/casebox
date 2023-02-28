@@ -1,16 +1,19 @@
 import Konva from "konva";
 import { useRouter } from "next/router";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, Dispatch, SetStateAction } from "react";
 import { Image, Stage, Layer, KonvaNodeComponent, Rect } from "react-konva";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import useImage from "use-image";
+import { downloadState, modalState } from "../../../atoms/app_atoms";
 import { tabState } from "../../../atoms/atoms";
 type TemplateView = {
   devicePath: string;
   texturePath: string;
+  setDownloadPath: Dispatch<SetStateAction<string>>
+
 };
 
-const TemplateView = ({ devicePath, texturePath }: TemplateView) => {
+const TemplateView = ({ devicePath, texturePath,setDownloadPath }: TemplateView) => {
   const [deviceSize, setDeviceSize] = useState({ width: 0, height: 0 });
   const [textureInfo, setTextureInfo] = useState({
     width: 0,
@@ -20,9 +23,12 @@ const TemplateView = ({ devicePath, texturePath }: TemplateView) => {
   });
   const [deviceSrc] = useImage(devicePath);
   const [textureSrc] = useImage(texturePath);
-  const router = useRouter()
+  const router = useRouter();
   const camera_image_path = devicePath.replace(".png", "_camera.png");
   const [camera] = useImage(camera_image_path);
+  const stageRef = React.useRef<any>();
+  const [modal,setModal]= useRecoilState(modalState)
+  const download = useRecoilValue(downloadState)
 
   // デバイスの画像を作る
   useEffect(() => {
@@ -36,6 +42,23 @@ const TemplateView = ({ devicePath, texturePath }: TemplateView) => {
     };
   }, [devicePath, router.pathname]);
 
+  useEffect(() => {
+    function downloadURI(uri: string) {
+      setDownloadPath(uri);
+      setModal(true);
+    }
+    if (download) {
+      downloadURI(
+        stageRef.current
+          .getStage()
+          .toDataURL({ mimeType: "image/png", quality: 1.0 })
+      );
+    } else {
+      return;
+    }
+  }, [download]);
+
+
   // テクスチャの画像を作る
   useEffect(() => {
     const img = new window.Image();
@@ -43,20 +66,20 @@ const TemplateView = ({ devicePath, texturePath }: TemplateView) => {
     img.onload = () => {
       setTextureInfo({
         // width: deviceSize.width,
-        width: 530 * img.width/img.height,
+        width: (530 * img.width) / img.height,
         // height: (deviceSize.width * img.height) / img.width,
-        height:530,
+        height: 530,
         x: 246 - deviceSize.width / 2,
         // y:-(542-img.height),
         // x:0,
-        y:0
+        y: 0,
         // x:542 = img.width:img.height
       });
     };
   }, [deviceSize]);
 
   return (
-    <Stage width={468} height={542}>
+    <Stage width={468} height={542} ref={stageRef}>
       <Layer>
         <Image
           width={deviceSize.width}
@@ -71,7 +94,6 @@ const TemplateView = ({ devicePath, texturePath }: TemplateView) => {
               {...textureInfo}
               width={textureInfo.width}
               image={textureSrc}
-              
             />
             {/* <Rect
               width={textureInfo.width < 0 ? 0 : textureInfo.width}
@@ -92,15 +114,15 @@ const TemplateView = ({ devicePath, texturePath }: TemplateView) => {
               fill="rgba(254, 220, 0, 1)"
               cornerRadius={[0, 0, 40, 40]}
             /> */}
-            <Image
-              width={deviceSize.width}
-              height={542}
-              x={243 - deviceSize.width / 2}
-              y={0}
-              image={camera}
-            />
           </>
         )}
+        <Image
+          width={deviceSize.width}
+          height={542}
+          x={243 - deviceSize.width / 2}
+          y={0}
+          image={camera}
+        />
       </Layer>
     </Stage>
   );
