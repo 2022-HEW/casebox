@@ -5,19 +5,14 @@ import { useRecoilState } from "recoil";
 import { modalState } from "../../../atoms/atoms";
 import Image from "next/image";
 
-type Box = {
-  children: ReactNode;
-  pay?: string;
-};
-
-const Box = ({ children, pay }: Box) => {
+const Box = ({ children }: { children: ReactNode }) => {
   // 開きっぱなしのモーダルを閉じる
   const [modal, setModal] = useRecoilState(modalState);
-  const handleTap = () => {
-    const audio = new Audio("/audio/tap.mp3");
-    audio.play();
+  const handleTap=()=>{
+    const audio = new Audio("/audio/tap.mp3")
+    audio.play()
     // audio.currentTime = 50 // 経過時間を50秒にする
-  };
+  }
   useEffect(() => {
     if (modal) {
       setModal(false);
@@ -25,27 +20,67 @@ const Box = ({ children, pay }: Box) => {
   }, []);
 
   return (
+    <>
       <div id={styles.box} onTouchEnd={handleTap}>
         <div id={styles.screen_on}>{children}</div>
         <div id={styles.side}>
-          {pay === "現金" ? (
+          <Image
+            width={180}
+            height={153}
+            alt="sideButton"
+            src="/Box/touch.svg"
+          />
+          <div style={{display:"flex",justifyContent:"center",flexDirection:"column",gap:"10px"}}>
             <Image
-              src={"/Box/Box.gif"}
-              width={100}
-              height={1000}
-              alt={"side"}
+              width={145}
+              height={23}
+              alt="sideButton"
+              src="/Box/price.svg"
             />
-          ) : (
             <Image
-              src={"/Box/side.png"}
-              width={100}
-              height={1000}
-              alt={"side"}
-              objectFit="cover"
+              width={180}
+              height={55}
+              alt="sideButton"
+              src="/Box/paperin.svg"
             />
-          )}
+          </div>
+          <div id={styles.coin}>
+            <Image
+              width={90}
+              height={60}
+              alt="sideButton"
+              src="/Box/coindial.svg"
+            />
+            <Image
+              width={90}
+              height={60}
+              alt="sideButton"
+              src="/Box/coinin.svg"
+            />
+          </div>
+          <div id={styles.coin} className={styles.coin_info}>
+            <Image
+              width={90}
+              height={50}
+              alt="sideButton"
+              src="/Box/dialinfo.svg"
+            />
+            <Image
+              width={90}
+              height={50}
+              alt="sideButton"
+              src="/Box/coininfo.svg"
+            />
+          </div>
+          <Image
+            width={180}
+            height={200}
+            alt="sideButton"
+            src="/Box/productout.svg"
+          />
         </div>
       </div>
+    </>
   );
 };
 
