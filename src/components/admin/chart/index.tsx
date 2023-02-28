@@ -1,5 +1,5 @@
 import { Grid, Tooltip } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { BarChart, CartesianGrid, XAxis, YAxis, Legend, Bar } from "recharts";
 import { SUBTITLE } from "../../../themes/admin/ChartNav";
 import { Buys } from "../../../types/admin/Buys";
@@ -38,6 +38,7 @@ export const ChartBox = ({ xAxis }: ChartBox) => {
   );
 
   return (
+    <Suspense>
     <Grid container gap={0}>
       <GlobalNav />
       <Nav title={"商品売上"} values={SUBTITLE} />
@@ -50,5 +51,6 @@ export const ChartBox = ({ xAxis }: ChartBox) => {
         </Box>
       </Body>
     </Grid>
+    </Suspense>
   );
 };

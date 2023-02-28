@@ -20,6 +20,11 @@ export const SUBTITLE = [
         title: "在庫情報",
         url: "/admin/stock",
       },
+      {
+        title: "機種登録",
+        url: "/admin/stock/type",
+      },
     ],
+    
   },
 ];

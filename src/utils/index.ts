@@ -150,3 +150,19 @@ export const handleSpeech=(text:string)=> {
       }
   )
 }
+export const downloadImage = async (name: string, file: Blob, path: string) => {
+  const formData = new FormData();
+  if (file) {
+    const blob = file.slice(0, file.size, file.type);
+    // ファイル名称変更後のファイルオブジェクト
+    const renamedFile = new File([blob], name, { type: file.type });
+    formData.append("files", renamedFile);
+
+    const post = await fetch(`/api/downloadImage?path=${path}`, {
+      method: "POST",
+      body: formData,
+    });
+
+    console.log(await post.json());
+  }
+};

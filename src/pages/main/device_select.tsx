@@ -62,7 +62,7 @@ const DeviceSelect:NextPage = () => {
 
     if(stock_data){
         setStock(stock_data.data)
-        // console.log(stock);
+        console.log(stock);
     } 
     
     /**
@@ -126,7 +126,6 @@ const DeviceSelect:NextPage = () => {
     const {iPhone_model_names,Android_model_names,iPhone_model_colors,Android_model_colors}= getProduct()   
 
 
-    // console.log(iPhone_model_names);
     // console.log(Android_model_names);
     return(
         <Box>
