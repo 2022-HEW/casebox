@@ -14,12 +14,8 @@ const Site: NextPage = () => {
       <Nav>
         <motion.div className={styles.wrap} {...transition}>
           <div className={styles.Frame}>
-            {/* <Movie /> */}
-            チュートリアル動画
-          </div>
-          <motion.div className={styles.Frame} {...transition}>
             <QR />
-          </motion.div>
+          </div>
         </motion.div>
       </Nav>
     </Box>
