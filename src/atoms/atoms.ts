@@ -6,7 +6,6 @@ type Product=  {
     product_place:string,
     model_id:number
     quant:number
-    m_product_category:string
 }
 //tab色
 export const tabState = atom({
@@ -27,8 +26,7 @@ export const productState= atom<Product>({
         product_name:"",
         product_place:"",
         model_id:0,
-        quant:1,
-        m_product_category:""
+        quant:1
     }
 });
 

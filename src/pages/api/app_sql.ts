@@ -54,7 +54,6 @@ export default async function handler(
     like,
     filter,
     product_situation,
-    email
   } = req.query;
   // const router = useRouter()
   // let sql = router.query
@@ -84,11 +83,11 @@ export default async function handler(
       break;
 
     case "signup_check":
-      sql = `SELECT user_id,user_email from t_users where user_email ="${email}"`;
+      sql = `SELECT user_id,user_email from t_users`;
       break;
 
     case "signup":
-      sql = `INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/app/mypage/icon/default.svg',NOW())`;
+      sql = `INSERT INTO t_users(user_id, user_name, user_email, user_password, user_image, user_created) VALUES ("${user_id}","Noname","${user_email}",'${user_password}','/image/user_icon.svg',NOW())`;
       break;
 
     case "likecount":

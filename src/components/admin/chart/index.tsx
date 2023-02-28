@@ -4,7 +4,7 @@ import { BarChart, CartesianGrid, XAxis, YAxis, Legend, Bar } from "recharts";
 import { SUBTITLE } from "../../../themes/admin/ChartNav";
 import { Buys } from "../../../types/admin/Buys";
 import { getDB } from "../../../utils";
-import useEffectCustom from "../../../Hooks/common/useEffectCustom";
+import useEffectCustom from "../../common/useEffectCustom";
 import { Body } from "../common/body";
 import { Box } from "../common/box";
 import { GlobalNav } from "../common/globalNav";

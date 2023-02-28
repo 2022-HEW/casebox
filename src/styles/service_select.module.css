@@ -25,13 +25,7 @@
   display: flex;
   justify-content: space-evenly;
 }
-.ContainerInside{
-  width: 270px;
-  height: 220px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(3, 3, 3, 0.2);
-}
+
 /* 一個ずつ */
 .cards{
   width: 260px;
@@ -45,8 +39,8 @@
 /* 概要 */
 .content > p{
   color: #777;
-  font-size: 12px;
-  margin: 10px 16px;
+  font-size: 13px;
+  margin: 5px 16px;
   /* margin-bottom: 0.2em; */
   overflow: hidden;
   word-break: break-word;
@@ -55,8 +49,9 @@
 /* 概要のタイトル */
 .content > h3 {
   color: #333;
-  font-size: 15px;
-  margin: 10px 16px;
+  font-size: 17px;
+  margin: 5px 16px;
+  padding-bottom: 5px;
 }
 
 .imgContainer{

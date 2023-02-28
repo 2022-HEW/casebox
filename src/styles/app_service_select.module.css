@@ -1,56 +1,25 @@
-.container {
-  width: 100%;
-  height: 900px;
-  background-color: #f6f6f6;
-  padding: 20px;
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: #f6f6f6;
 }
-.ContainerInside {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+.box div{
+    display:flex;
 }
-.box {
-  margin: 50px 0;
-  overflow-x: scroll;
-  min-width: 200px;
+.event{
+    display: flex;
+    justify-content: space-evenly;    
 }
-.cards {
-  display: flex;
-  width: 500px;
-  overflow-x: scroll;
+.service_card{
+    width: 50%;
+    height: 100px;
+    background-color: #fff;
 }
-.box h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0px;
+.info_card{
+    width: 50%;
+    height: 100px;
+    background-color: #fff;
 }
-.event {
-  display: flex;
-  justify-content: space-evenly;
-}
-.service_card {
-  width: 500px;
-  height: 100px;
-  background-color: #fff;
-  background: #ffffff;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 0 25px 0 0;
-  align-items: center;
-  font-weight: 600;
-  padding: 0 0 0 10px;
-  display: flex;
-}
-.service_card p {
-  width: 120px;
-  margin: 0 17px;
-}
-.footer {
-  position: absolute;
-  left: 20%;
-  bottom: 13vh;
-}
+.footer{
 
-.footer span {
-  margin: 0 10px;
 }

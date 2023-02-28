@@ -11,16 +11,29 @@ import {
   useAnimation,
 } from "framer-motion";
 import { bound, transition } from "../../themes/animation/indicate";
-import questions from "../../themes/common/question.json"
+
 type Question = {
   handleClickQuestion: (index: number) => void;
 };
 type UserChat = {
   chat: string;
 };
-const QUESTION = questions.question
+const QUESTION: string[] = [
+  "CASEBOXについて",
+  "アカウント登録について",
+  "お支払い方法について",
+  "オリジナルケースについて",
+  "公式サイトについて",
+];
 const Help: NextPage = () => {
-  const ANSWER = questions.answer
+  const ANSWER = [
+    "CASEBOXチャットサポートです。どのようなことでお困りですか？",
+    "CASEBOXはスマートフォンのケースが購入できる自販機です。画像をアップロードしたり、イラストを書いたりしてあなただけのケースを作成できます。",
+    "CASEBOXのWebサイトでアカウントの登録ができます。オリジナルケースを作る際アカウントが必要となります。",
+    "現在利用できるお支払い方法は、現金、ID、QuicPay、楽天Edy、交通系電子マネー、クレジットカードのタッチ決済です。",
+    "オリジナルケースはCASEBOXのWebサイトでアカウント登録を済ませた方のみ、ご利用いただけます。Webサイトのマイページから商品のデザインを選択しQRコードを表示できます。",
+    "公式Webサイトでは、販売している商品を閲覧しQRコードを表示することができます。オリジナルのスマホケースをご希望の際、アカウント登録が必要となります。",
+  ];
 
   const [userChat, setUserChat] = useState<string[]>();
   const [staffChat, setStaffChat] = useState([ANSWER[0]]);

@@ -1,17 +1,16 @@
 import { NextPage } from "next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import App_header from "../../components/app/common/App_header";
+import App_header from "../../components/common/App_header";
 import Image from "next/image";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 import { modalState, profileState } from "../../atoms/app_atoms";
 import { type } from "os";
-import { Button } from "../../components/app/common/App_button";
-import useEffectCustom from "../../Hooks/common/useEffectCustom";
-import Modal from "../../components/app/common/App_modal";
-import { App_modal_body } from "../../components/app/common/App_modal_body";
+import { Button } from "../../components/common/App_button";
+import useEffectCustom from "../../components/common/useEffectCustom";
+import Modal from "../../components/common/App_modal";
+import { App_modal_body } from "../../components/common/App_modal_body";
 import icon from "../../icon.json";
 import styles from "../../styles/app_profile_edit.module.css";
-import { useRouter } from "next/router";
 
 type Input = {
   label: string;
@@ -24,97 +23,74 @@ type Input = {
 type Profile = {
   [key: string]: string;
 };
-
-type IconCheck = {
-  setImagePath: Dispatch<SetStateAction<string>>;
+type Register = {
+  name: string;
+  comment: string;
+  imagePath: string;
+  id: string;
+  setProfile: SetterOrUpdater<Profile>;
 };
+type IconCheck={
+  setImagePath:Dispatch<SetStateAction<string>>
+}
 
-const IconCheck = ({ setImagePath }: IconCheck) => {
+const IconCheck = ({setImagePath}:IconCheck) => {
   const icons = icon.icon;
+  console.log(icon);
 
-  const handleClickIcon = (src: string) => {
-    setImagePath(src);
-  };
+  const handleClickIcon=(src:string)=>{
+    setImagePath(src)
+  }
 
   return (
     <div className={styles.modal_picture_box}>
-      {icons.map((value,index) => {
-        return (
-          <div
-            className={styles.modal_picture}
-            onClick={() => {
-              handleClickIcon(value.src);
-            }}
-            key={index}
-          >
-            <Image
-              width={200}
-              height={200}
-              src={value.src}
-              alt={value.name}
-            />
-          </div>
-        );
-      })}
+    {icons.map((value: { id: number; name: string; src: string; }) => {
+      return (
+        <div className={styles.modal_picture} onClick={()=>{handleClickIcon(value.src)}}>
+          <Image
+            width={150}
+            height={150}
+            src={"/icon/avocado.svg"}
+            alt="アイコン"
+          />
+        </div>
+      );
+    })}
     </div>
   );
 };
 
-const app_profile_edit:NextPage = () => {
+const App_profile_edit = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
   return (
-    mounted ? (
+    mounted && (
       <>
-        <App_header label="プロフィール変更" />
+        <App_header label="プロフィール編集" />
         <Profile_edit />
       </>
-    ):<></>
+    )
   );
 };
 
 const Profile_edit = () => {
   const [profile, setProfile] = useRecoilState(profileState);
-  const [name, setName] = useState(profile.user_name);
-  const [comment, setComment] = useState(profile.user_comment);
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
   const [imagePath, setImagePath] = useState(profile.user_image);
   const [error, setError] = useState("");
   const [modal, setModal] = useRecoilState(modalState);
-  const router = useRouter()
 
   const handleClickIcon = () => {
     setModal(true);
   };
 
-  const handleClickSave=()=>{
-    register(
-      name,
-      comment,
-      imagePath,
-      profile.user_id,
-      setProfile,
-      setError
-    )
-    router.push({
-      pathname:"./app_mypage"
-    })
-  }
-
   return (
-    <div className={styles.container}>
+    <div>
       <div className={styles.picture}>
-        <div className={styles.edit}>
-
-      <Image
-              width={30}
-              height={30}
-              src={"/app/mypage/edit.svg"}
-              alt="アイコン"
-              />
-              </div>
         <Image
           src={imagePath}
           width={100}
@@ -124,7 +100,7 @@ const Profile_edit = () => {
       </div>
       <div className={styles.name}>
         <div className={styles.form}>
-          <Input
+        <Input
             label="あだ名"
             placeholder={profile.user_name}
             state={name}
@@ -148,18 +124,26 @@ const Profile_edit = () => {
         </div>
       </div>
       <div className={styles.hozon}>
-        <Button
-          label="保存"
-          onClick={handleClickSave}
-          style={{height:"55px"}}
-        />
+      <Button
+        label="保存"
+        onClick={() =>
+          register(
+            name,
+            comment,
+            imagePath,
+            profile.user_id,
+            setProfile,
+            setError
+          )
+        }
+      />
       </div>
       <div className={styles.modal}>
-        <Modal>
-          <App_modal_body title="プロフィール画像選択">
-            <IconCheck setImagePath={setImagePath} />
-          </App_modal_body>
-        </Modal>
+      <Modal>
+        <App_modal_body title="プロフィール画像選択">
+          <IconCheck setImagePath={setImagePath}/>
+        </App_modal_body>
+      </Modal>
       </div>
     </div>
   );
@@ -169,7 +153,8 @@ const Input = ({ label, placeholder, state, setState, name }: Input) => {
   return (
     <label className={styles.label}>
       {label}
-      <textarea
+      <input
+        type="text"
         placeholder={placeholder}
         value={state}
         onChange={(e) => setState(e.currentTarget.value)}
@@ -200,16 +185,16 @@ const register = async (
         console.log(data);
       });
 
-    setProfile((before) => ({
+    setProfile((before)=>({
       ...before,
-      user_name: name,
-      user_comment: comment,
-      user_image: imagePath,
-    }));
+      user_name:name,
+      user_comment:comment,
+      user_image:imagePath
+    }))
     setError("");
   } else {
     setError("文字を入力してください。");
   }
 };
 
-export default app_profile_edit;
+export default App_profile_edit;

@@ -1,11 +1,8 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/router';
-import React, { useEffect, useRef, useState } from 'react'
-import useSWR from 'swr';
-import { Button } from '../../components/app/common/App_button'
-import App_header from '../../components/app/common/App_header'
+import React, { useState } from 'react'
+import { Button } from '../../components/common/App_button'
+import App_header from '../../components/common/App_header'
 import styles from '../../styles/app_login.module.scss';
-import { fetcher } from '../../utils';
 
 const app_password_reset:NextPage = () => {
 
@@ -31,17 +28,13 @@ const Reset_box = ()=>{
 }
 
 const Form=()=>{
-    const router =useRouter()
-    
+    const[email,setEmail] = useState("")
     const Sendmail=()=>{
-        alert("送信されました");
-        router.push({
-            pathname:"./app_service_select"
-        })
+        console.log("a");
     }
     return(
         <div className={styles.passwordResetContainer}>
-            <input className={styles.passwordReset} type={"text"} placeholder="メールアドレス" />
+            <input className={styles.passwordReset} type={"text"} placeholder="メールアドレス" value={email} onChange={(e)=>setEmail(e.target.value)}/>
             <Button label='送信する' onClick={Sendmail}/>
         </div>
     )

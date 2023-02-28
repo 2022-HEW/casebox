@@ -5,14 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import { Stage, Layer, Group } from "react-konva";
 import { Image } from "react-konva";
 import useImage from "use-image";
-import styles from "../../styles/app_original.module.css";
+import styles from "../../../styles/app_original.module.css";
 import { QRCode } from "react-qrcode";
 import useSWR from "swr";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { originalState, productState } from "../../atoms/app_atoms";
 import { useRouter } from "next/router";
-import useEffectCustom from "../../Hooks/common/useEffectCustom";
+import useEffectCustom from "../common/useEffectCustom";
 import { parse } from "path";
 import { resizeImage } from "../../utils";
 
@@ -44,6 +44,7 @@ function App_image_edit() {
   let lastDist = 0;
   const [images, setImage] = useState<Blob>();
   const [createObjectURL, setCreateObjectURL] = useState("");
+  const [isDelete, setIsDelete] = useState(false);
   const [imagePath, setImagePath] = useState("");
   const [product, setProduct] = useRecoilState(productState);
   const [image] = useImage(product.product_place);
@@ -53,7 +54,6 @@ function App_image_edit() {
   const [cancel] = useImage("/image/delete.svg");
   const [isSave, setIsSave] = useState(false);
   const [original, setOriginal] = useRecoilState(originalState);
-  const [designSize, setDesignSize] = useState({ width: 0, height: 0 });
   const router = useRouter();
 
   const goCheckHandler = () => {
@@ -76,7 +76,7 @@ function App_image_edit() {
       }),
       image: images ? images : null,
     }));
-
+    
     router.push({ pathname: "./app_product_edit" });
   }, [isSave]);
   // console.log(product);
@@ -85,30 +85,31 @@ function App_image_edit() {
     if (event.target.files) {
       // console.log("event.target.files", event.target.files[0]);
       const file = event.target.files[0];
-      // console.log(file);
+      console.log(file);
 
       const reader = new FileReader();
       reader.onload = async () => {
-        const image = new window.Image();
-        image.onload = async () => {
-          // 1MB以上のとき
-          if (file.size >= 1000000) {
-            const resizedImageBlob = await resizeImage(image, 100);
+
+
+        // 1MB以上のとき
+  
+        if (file.size >= 1000000) {
+          const image = new window.Image();
+          image.onload = async () => {
+            const resizedImageBlob = await resizeImage(image,100);
+            console.log(resizedImageBlob);
             setImage(resizedImageBlob);
             setCreateObjectURL(URL.createObjectURL(resizedImageBlob));
-            console.log("a");
             return;
-          }
-          setDesignSize({
-            width: 300,
-            height: (300 * image.height) / image.width,
-          });
-          setImage(file);
-          setCreateObjectURL(URL.createObjectURL(file));
-        };
-        image.src = reader.result as string;
+          };
+          image.src = reader.result as string;
+          // const newImage = resizeImage(reader.result,100);
+        }
       };
       reader.readAsDataURL(file);
+
+      setImage(file);
+      setCreateObjectURL(URL.createObjectURL(file));
     }
   };
 
@@ -181,9 +182,7 @@ function App_image_edit() {
   };
 
   const handleDelete = () => {
-    // setIsDelete(true);
-    setCreateObjectURL("");
-    (document.getElementById("file-input") as HTMLInputElement).value = "";
+    setIsDelete(true);
   };
 
   return (
@@ -193,54 +192,52 @@ function App_image_edit() {
         <Layer id="stuffToShow">
           {/* 土台の画像 */}
           <Image image={image} width={image_width} height={image_height} />
-          <Image image={camera} width={image_width} height={image_height} />
-          <Group draggable={true} x={0} y={0} ref={imageRef}>
-            <Image
-              image={design}
-              width={designSize.width}
-              height={designSize.height}
-              onTouchMove={handleTouch}
-              onTouchEnd={handleTouchEnd}
-              x={10}
-              y={30}
-              strokeEnabled={design && !isSave ? true : false}
-              stroke={"#555"}
-              strokeWidth={10}
-              // ref={imageRef}
-            />
-            {isSave || (
+          {isDelete || (
+            <Group draggable={true} x={0} y={0} ref={imageRef}>
               <Image
-                image={design && cancel}
-                x={-5}
-                y={15}
-                width={25}
-                height={25}
-                onTouchStart={handleDelete}
+                image={design}
+                width={100}
+                height={100}
+                onTouchMove={handleTouch}
+                onTouchEnd={handleTouchEnd}
+                x={10}
+                y={30}
+                strokeEnabled={design && !isSave ? true : false}
+                stroke={"#555"}
+                strokeWidth={10}
+                // ref={imageRef}
               />
-            )}
-          </Group>
+              {isSave || (
+                <Image
+                  image={design && cancel}
+                  x={-5}
+                  y={15}
+                  width={25}
+                  height={25}
+                  onTouchStart={handleDelete}
+                />
+              )}
+            </Group>
+          )}
+          <Image
+            image={camera}
+            width={image_width / 5.5}
+            height={image_height / 17}
+            x={image_width / 10}
+            y={image_height / 22}
+          />
         </Layer>
       </Stage>
-      <label style={{ fontSize: "0px" }}>
-        {createObjectURL || (
-          <img src="/app/original/plus.svg" className={styles.uploadImage} />
-        )}
-        <input
-          id="file-input"
-          className="hidden"
-          type="file"
-          accept="image/*"
-          name="myImage"
-          onChange={uploadToClient}
-          style={{ display: "none" }}
-        />
-      </label>
-      <button
-        onClick={goCheckHandler}
-        disabled={createObjectURL ? false : true}
-        className={styles.next}
-      >
-        次へ
+      <input
+        id="file-input"
+        className="hidden"
+        type="file"
+        accept="image/*"
+        name="myImage"
+        onChange={uploadToClient}
+      />
+      <button onClick={goCheckHandler} disabled={images ? false : true}>
+        保存
       </button>
 
       {/* {save && (

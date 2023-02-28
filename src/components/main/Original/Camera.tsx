@@ -54,6 +54,7 @@ const Camera = () => {
     };
     }
     openCamera();
+    
   }, []);
 
   

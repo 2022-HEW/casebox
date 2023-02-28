@@ -1,28 +1,12 @@
-.app_original {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 93vh;
-  justify-content: center;
+.app_original{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-.next {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 19px;
-    background-color: #fff;
-    border: none;
-    color: #23ABDD;
-    position: absolute;
-    top: 17px;
-    right: 10px;
-}
-.next:disabled{
-    color: #aaa;
-}
-.uploadImage{
-    position: absolute;
-    top: 47vh;
-    left: 41vw;
-    width: 75px;
+.tool_box{
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #aaa;
 }

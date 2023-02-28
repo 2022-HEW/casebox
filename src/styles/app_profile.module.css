@@ -1,77 +1,50 @@
-.container {
-  background: #f6f6f6;
-  width: 100%;
-  height: 100vh;
-  margin: 0 0 100px 0;
+.name{
+    padding-left: 20px;
+    padding-top: 50px;
 }
-.login_box {
-  padding: 10px;
+.loginbutton{
+    text-align: center;
 }
-.name {
-  margin: 10px 0 30px 0;
+.sama{
+    font-size: 16px;
 }
-.loginbutton {
-  text-align: center;
+.guide{
+    font-size: 1rem;
+    padding-top: 25px;
+    padding-left: 15px;
 }
-.sama {
-  font-size: 16px;
+.guidelink{
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    border: 0.5px dotted rgb(219, 218, 218);
+    height: auto;
+    width: 100%;
+    background-color: #F5F5F5;
 }
-.guide {
-  font-size: 1rem;
-  padding-top: 25px;
-  padding-left: 15px;
-  margin: 0 0 10px 0;
+.guidelink .date{
+    font-size: small;
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    padding-right: 10%;
+    padding-left: 10px;
 }
-.guidelink {
-  display: flex;
-  background-color: #ffffff;
-  border: 0.5px solid #eee;
-  height: 80px;
-  align-items: center;
+.guidelink .category{
+    color: red;
+    font-size: small;
+    display: inline-block;
+    vertical-align: top;
+    /* 上に合わせる */
+    width: 70%;
 }
-.guidelink .date {
-  font-size: small;
-  float: left;
-  padding-left: 15px;
+.guidelink .title{
+    width: 100%;
+    padding-left: 10px;
 }
-.guidelink .category {
-  color: red;
-  font-size: small;
-  padding-left: 20px;
-  float: left;
-}
-.guidelink .title {
-  padding-left: 15px;
-  width: 100%;
-}
-.SupportTitle {
-  padding-left: 15px;
-  background-color: #ffffff;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  height: 70px;
-  width: 100vw;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.title span {
-  display: inline-block;
-}
-.notice_detail {
-  width: 300px;
-  display: inline-block;
-}
-.right {
-  position: relative;
-  left: 60px;
-}
-#news{
-  position: relative;
-  bottom: 7px;
-}
-.logoutbutton{
-      text-align: center;
-    margin: 23px 0 0 0;
+.SupportTitle{
+    padding-left: 15px;
+    background-color: #F5F5F5;
+    border-top: 1px dotted #bbb;
+    border-bottom: 1px dotted #bbb;
 }

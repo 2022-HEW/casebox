@@ -294,17 +294,13 @@
   text-align: center;
   background: #aaaaaa;
   border: 2px solid #666666;
-  box-shadow: inset 2px 3px 2px rgb(255 255 255 / 65%),
-            inset -2px -3px 2px rgb(0 0 0 / 25%);
+  box-shadow: inset 2px 5px 2px rgba(255, 255, 255, 0.65),
+    inset -2px -5px 2px rgba(0, 0, 0, 0.25);
   border-radius: 58px;
   font-size: 32px;
-  background-image: url(../../public/common/plusBtn.png);
-  background-repeat:no-repeat;
-  background-size: 18px;
-  background-position: 12px 12px;
 }
 .quantity {
-  border: #CFCFCF solid;
+  border: #999 solid;
   display: inline-block;
   width: 126px;
   height: 65px;
@@ -317,10 +313,10 @@
 }
 
 .quantity_text {
-  font-size: 34px;
+  font-size: 38px;
   position: relative;
-  bottom: 55px;
-  left: 13px;
+  bottom: 58px;
+  left: 15px;
 }
 
 .quantity_text span {
@@ -330,7 +326,6 @@
 
 .go_pay {
   position: relative;
-  left: 135px;
-  top: 34px;
+  left: 120px;
+  top: 40px;
 }
-

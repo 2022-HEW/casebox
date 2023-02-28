@@ -5,7 +5,6 @@ import Nav from '../../components/main/common/Nav'
 import { useRecoilValue } from 'recoil';
 import { productState,stockState } from '../../atoms/atoms';
 import { NextPage } from 'next';
-import { handleSpeech } from '../../utils';
 
 
 
@@ -14,9 +13,6 @@ const Thankyou:NextPage = () => {
     // if(){
 
     // }
-    useEffect(()=>{
-        handleSpeech("ありがとうございました。")
-    },[])
 
     const { m_product_price,product_ID,model_id,quant } = useRecoilValue(productState)
     const stocks = useRecoilValue(stockState)

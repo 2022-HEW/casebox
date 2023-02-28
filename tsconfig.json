@@ -20,7 +20,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/common/SlideShow.jsx",
-    "src/styles/app_select_type.module.css"  
+    "src/components/common/SlideShow.jsx"
   ],
   "exclude": ["node_modules"]
 }

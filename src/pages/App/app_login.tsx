@@ -11,8 +11,8 @@ import React, {
 import { useRecoilState } from "recoil";
 import useSWR from "swr";
 import { profileState } from "../../atoms/app_atoms";
-import { Button } from "../../components/app/common/App_button";
-import App_header from "../../components/app/common/App_header";
+import { Button } from "../../components/common/App_button";
+import App_header from "../../components/common/App_header";
 import styles from "../../styles/app_login.module.scss";
 import { fetcher } from "../../utils";
 

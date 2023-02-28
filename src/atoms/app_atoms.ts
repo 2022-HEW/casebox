@@ -16,7 +16,6 @@ type Product=  {
     model_color?:string
     azure_path?:string
     model_name?:string
-    product_liked:number
 }
 type Profile = {
     [key:string]:string
@@ -53,8 +52,7 @@ export const productState= atom<Product>({
         user_id:"",
         product_situation:1,
         model_color:"",
-        azure_path:"",
-        product_liked:0
+        azure_path:""
     }
 });
 

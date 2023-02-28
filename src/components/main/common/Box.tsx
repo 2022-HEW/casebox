@@ -25,8 +25,7 @@ const Box = ({ children, pay }: Box) => {
   }, []);
 
   return (
-    <>
-      <div id={styles.box} onTouchEnd={handleTap}>
+      <div id={styles.box} onClick={handleTap}>
         <div id={styles.screen_on}>{children}</div>
         <div id={styles.side}>
           {pay === "現金" ? (
@@ -47,7 +46,6 @@ const Box = ({ children, pay }: Box) => {
           )}
         </div>
       </div>
-    </>
   );
 };
 

@@ -1,16 +1,15 @@
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
-import App_header from "../../components/app/common/App_header";
-import { App_product_view } from "../../components/app/common/App_product_view";
+import App_header from "../../components/common/App_header";
+import { App_product_view } from "../../components/common/App_product_view";
 import { RecoilState, useRecoilState, useRecoilValue } from "recoil";
 import { productState, profileState } from "../../atoms/app_atoms";
 import { fetcher } from "../../utils";
 import useSWR from "swr";
-import useEffectCustom from "../../Hooks/common/useEffectCustom";
+import useEffectCustom from "../../components/common/useEffectCustom";
 import { profile } from "console";
-import { Button } from "../../components/app/common/App_button";
+import { Button } from "../../components/common/App_button";
 import { useRouter } from "next/router";
-import styles from "../../styles/app_select_type.module.css";
 interface Device {
   model_name: string;
 }
@@ -52,17 +51,10 @@ const app_select_type = () => {
   const [device, setDevice] = useState<string[]>([]);
   const [color, setColor] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
-  const router = useRouter();
-  const { user_id } = useRecoilValue(profileState);
+  const router = useRouter()
 
   useEffect(() => {
     setMounted(true);
-      if (!user_id) {
-        alert("ログインが必要です");
-        router.push({
-          pathname: "./app_category",
-        });
-      }
   }, []);
 
   const handleChangeSituation = (value: string, index: number) => {
@@ -172,69 +164,64 @@ const app_select_type = () => {
     }
   }, [situation]);
 
-  const handleClickStart = () => {
+  const handleClickStart=()=>{
     setProduct((prevState) => ({
       ...prevState,
-      model_name: prevState.product_place,
+      model_name:prevState.product_place,
       product_ID: 0,
     }));
     router.push({
-      pathname: "./app_original",
-    });
-  };
-
+        pathname:"./app_original"
+    })
+  }
+  
   return (
     mounted && (
-      <div className={styles.container}>
-        <App_header label="オリジナル" />
-        <App_product_view />
-        <div className={styles.selects}>
-          <Select
-            label={"デバイス"}
-            device={MODEL}
-            handleChangeSituation={handleChangeSituation}
-            index={0}
-          />
-          <Select
-            label={"機種"}
-            device={device}
-            handleChangeSituation={handleChangeSituation}
-            index={1}
-          />
-          <Select
-            label={"カラー"}
-            device={color}
-            handleChangeSituation={handleChangeSituation}
-            index={2}
-          />
-          <ProductInfo />
-        </div>
-        <div className={styles.button}>
-          <Button
-            label={"デザインをはじめる"}
-            onClick={handleClickStart}
-            style={{ background: "rgba(35, 171, 221, 1)" }}
-          />
-        </div>
+    <div>
+      <App_header label="オリジナル" />
+      <App_product_view width={100} />
+      <div>
+        <Select
+          label={"デバイス"}
+          device={MODEL}
+          handleChangeSituation={handleChangeSituation}
+          index={0}
+        />
+        <Select
+          label={"機種"}
+          device={device}
+          handleChangeSituation={handleChangeSituation}
+          index={1}
+        />
+        <Select
+          label={"カラー"}
+          device={color}
+          handleChangeSituation={handleChangeSituation}
+          index={2}
+        />
+        <ProductInfo/>
+        <Button label={"デザインをはじめる"} onClick={handleClickStart}/>
       </div>
-    )
-  );
+    </div>
+  ))
 };
 
 const Select = ({ label, device, handleChangeSituation, index }: Select) => {
   return (
-    <div className={styles.select}>
-      <span className={styles.select_name}>{label}</span>
+    <div>
+      {label}{" "}
       <select
         onChange={(e) => {
           handleChangeSituation(e.currentTarget.value, index);
         }}
-        className={styles.select_value}
       >
         {device &&
           device.map((value: string, index) => {
             return (
-              <option key={index} value={value}>
+              <option
+                key={index}
+                value={value}
+              >
                 {value}
               </option>
             );
@@ -245,17 +232,12 @@ const Select = ({ label, device, handleChangeSituation, index }: Select) => {
 };
 
 const ProductInfo = () => {
-  const { user_name } = useRecoilValue(profileState);
-  const { m_product_price } = useRecoilValue(productState);
-  return (
-    <div>
-      <h3 className={styles.case_name}>オリジナルデザインケース</h3>
-      <p>{user_name}</p>
-      <p className={styles.case_price}>
-        &yen;{m_product_price.toLocaleString()}
-        <span>税込</span>
-      </p>
-    </div>
-  );
+    const {user_name} = useRecoilValue(profileState)
+    const {m_product_price} = useRecoilValue(productState)
+  return <div>
+    <h3>オリジナルデザインケース</h3>
+    <p>{user_name}</p>
+    <p>&yen;{m_product_price.toLocaleString()}税込</p>
+  </div>;
 };
 export default app_select_type;

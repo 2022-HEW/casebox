@@ -4,7 +4,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import { NextPage } from "next";
 import useSWR from "swr";
 import { fetcher, InsertDB } from "../../../utils";
-import useEffectCustom from "../../../Hooks/common/useEffectCustom";
+import useEffectCustom from "../../../components/common/useEffectCustom";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { productState } from "../../../atoms/admin_atoms";
@@ -52,8 +52,8 @@ const login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const [isError, setIsError] = useState(false);
-  const [user, setUser] = useRecoilState(productState);
+  const [isError,setIsError] = useState(false)
+  const [user,setUser] = useRecoilState(productState)
 
   const handleClickLogin = () => {
     getUserInfo(email, setUserInfo);
@@ -63,19 +63,20 @@ const login: NextPage = () => {
   useEffectCustom(() => {
     // console.log(userInfo);
 
-    if (userInfo) {
+    if(userInfo){
       if (password === userInfo.password) {
         addLoginUser(userInfo.user_id);
-        setUser({ userID: userInfo.user_id });
+        setUser({userID:userInfo.user_id})
         router.push({ pathname: "/admin/product/" });
-      } else {
-        setIsError(true);
+      }else{
+        setIsError(true)
       }
     } else {
       console.log("error");
-      setIsError(true);
+      setIsError(true)
       // console.log(userInfo.password);
     }
+    
   }, [userInfo]);
 
   return (

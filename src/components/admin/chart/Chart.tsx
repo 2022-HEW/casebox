@@ -4,7 +4,7 @@ import { BarChart, CartesianGrid, XAxis, YAxis, Legend, Bar } from "recharts";
 import { Buys } from "../../../types/admin/Buys";
 import { Stock } from "../../../types/admin/Stock";
 import { getDB } from "../../../utils";
-import useEffectCustom from "../../../Hooks/common/useEffectCustom";
+import useEffectCustom from "../../common/useEffectCustom";
 
 type Chart = {
   data: Buys[];

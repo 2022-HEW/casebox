@@ -27,13 +27,10 @@ const DeviceSelect:NextPage = () => {
     const [product,setProduct] = useRecoilState(productState);
     const [stock,setStock] = useRecoilState(stockState)
     
-    useEffect(()=>{
-        console.log(product);
-
-    },[])
     // タブを移動した際リセット
     useEffect(()=>{
-                // console.log(tab);
+        // console.log(product);
+        // console.log(tab);
         
         if(tab === "手書き"){
             setProduct((before)=>({

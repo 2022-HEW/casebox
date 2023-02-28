@@ -7,8 +7,6 @@ import Nav from '../components/main/common/Nav'
 import Box from '../components/main/common/Box'
 import Link from 'next/link'
 import Movie from '../components/main/index/Movie'
-import React from 'react'
-import { handleSpeech,} from '../utils'
 
 
 
@@ -27,7 +25,7 @@ const Wait=()=>{
     
   return(
       <Link href={"/main/service_select"}>
-          <div className={styles.movie_area}  onClick={()=>{handleSpeech("いらっしゃいませ。")}}>
+          <div className={styles.movie_area}>
             <Movie movieUrl='./movie/top.mov'></Movie>
           </div>
       </Link>

@@ -10,18 +10,18 @@ import {
   originalState,
   profileState,
 } from "../../atoms/app_atoms";
-import { Button } from "../../components/app/common/App_button";
-import App_header from "../../components/app/common/App_header";
-import { IOSSwitch } from "../../themes/app/Switch";
-import { App_product_view } from "../../components/app/common/App_product_view";
-import useEffectCustom from "../../Hooks/common/useEffectCustom";
+import { Button } from "../../components/common/App_button";
+import App_header from "../../components/common/App_header";
+import { IOSSwitch } from "../../components/common/App_iosswitch";
+import { App_product_view } from "../../components/common/App_product_view";
+import useEffectCustom from "../../components/common/useEffectCustom";
 import { fetcher } from "../../utils";
-import styles from "../../styles/app/app_product_edit.module.css";
 
 const app_product_edit: NextPage = () => {
   const router = useRouter();
   const { product_place, product_ID } = useRecoilValue(productState);
   const [modal, setModal] = useRecoilState(modalState);
+  const { image, imagePosition } = useRecoilValue(originalState);
 
   useEffect(() => {
     if (router.isReady) {
@@ -34,7 +34,7 @@ const app_product_edit: NextPage = () => {
     }
   }, []);
   return (
-    <div className={styles.container}>
+    <div>
       <App_header label="商品登録" />
       <ProductEdit />
     </div>
@@ -57,13 +57,11 @@ const ProductDetail = () => {
     product_name,
     model_id,
     model_color,
-    model_name,
     m_product_category,
     product_situation,
-    product_place,
-    m_product_price,
+    product_place
   } = useRecoilValue(productState);
-  const { user_id, user_name } = useRecoilValue(profileState);
+  const { user_id } = useRecoilValue(profileState);
   const [name, setName] = useState("");
   const [situation, setSituation] = useState(product_situation);
   const [productPlace, setProductPlace] = useState("");
@@ -75,9 +73,9 @@ const ProductDetail = () => {
   );
 
   useEffect(() => {
-    if (data) {
+    if(data){
       setProductPlace(user_id + data.length);
-    };
+    }
   }, [data]);
 
   const handleChangeName = (name: string) => {
@@ -101,7 +99,7 @@ const ProductDetail = () => {
     const reader = new FileReader();
     reader.onload = async () => {
       // Azureに入れる
-
+      
       try {
         await fetch(`/api/blob_strage`, {
           method: "POST",
@@ -113,8 +111,8 @@ const ProductDetail = () => {
             image: reader.result,
             situ: "add",
             place: imagePosition,
-            name: productPlace,
-            thumbnail: product_place,
+            name:productPlace,
+            thumbnail:product_place
             // QRcode
             // user_id: user_id,
             // "situ":"create",
@@ -134,23 +132,29 @@ const ProductDetail = () => {
     };
 
     if (file) {
-      // if (file.type === 'image/heif' || file.type === 'image/heic') {
-      //   const outputBlob = await heic2any({
-      //     blob: imageFile,
-      //     toType: 'image/jpeg',
-      //   });
+    // if (file.type === 'image/heif' || file.type === 'image/heic') {
+    //   const outputBlob = await heic2any({
+    //     blob: imageFile,
+    //     toType: 'image/jpeg',
+    //   });
 
       reader.readAsDataURL(file);
     }
   };
 
   const insertProductDB = async () => {
+    console.log(name);
+    console.log(user_id);
+    console.log(productPlace);
+    console.log(situation);
+
     await fetch(
       `/api/app_sql?sql=insert_product&product_name=${name}&user_id=${user_id}&product_place=${productPlace}&product_situation=${situation}`
     )
       .then((res) => {
         console.log(res);
-        return res.json();
+        return res.json(); 
+        
       })
       .then(() => {
         router.push({ pathname: "./app_service_select" });
@@ -158,6 +162,7 @@ const ProductDetail = () => {
   };
 
   const updateProductDB = async () => {
+    
     await fetch(
       `/api/app_sql?sql=update_product&productID=${product_ID}&product_name=${name}&product_situation=${situation}`
     )
@@ -180,42 +185,18 @@ const ProductDetail = () => {
     }
   };
 
-  const ProductInfo = () => {
-    const { model_name, m_product_price } = useRecoilValue(productState);
-    const { user_id, user_name } = useRecoilValue(profileState);
-    const type = model_name?.split("/")[2];
-    const color = model_name?.split("/")[3].split(".")[0];
-
-    return (
-      <div className={styles.product_info}>
-        <ProductRecord label="機種" value={type!} />
-        <ProductRecord label="カラー" value={color!} />
-        <ProductRecord label="カテゴリー" value={user_name} />
-        <ProductRecord
-          label="価格"
-          value={`￥${m_product_price.toLocaleString()} 税込`}
-        />
-      </div>
-    );
-  };
-
-  type ProductRecord = {
-    label: string;
-    value: string;
-  };
-
-  const ProductRecord = ({ label, value }: ProductRecord) => {
-    return (
-      <div className={styles.product_record_box}>
-        <strong>{label}</strong>
-        <span>{value}</span>
-      </div>
-    );
-  };
+  // const ProductInfo = ({ label, value }: ProductInfo) => {
+  //   return (
+  //     <div>
+  //       {label}
+  //       {value}
+  //     </div>
+  //   );
+  // };
 
   return (
-    <div className={styles.product_detail}>
-      <label className={styles.product_name_box}>
+    <div>
+      <label>
         <strong>商品名</strong>
         <input
           type={"text"}
@@ -226,18 +207,16 @@ const ProductDetail = () => {
           }}
         />
       </label>
-      <div className={styles.product_open_box}>
-        <strong>{situation === 0 ? "非公開の商品" : "公開の商品"}</strong>
-        <IOSSwitch
-          value={"on"}
-          checked={situation === 0 ? false : true}
-          onClick={handleClickSituation}
-        />
-      </div>
-      <ProductInfo />
-      <div className={styles.button}>
-        <Button label="デザインを保存する" onClick={handleClickSave} disabled={name===""?true:false} style={{background:"#23ABDD"}}/>
-      </div>
+      <p>{situation === 0 ? "非公開の商品" : "公開の商品"}</p>
+      <IOSSwitch
+        value={"on"}
+        checked={situation === 0 ? false : true}
+        onClick={handleClickSituation}
+      />
+      <Button label="デザインを保存する" onClick={handleClickSave} />
+
+      {/* <ProductInfo label="機種" value={}/> */}
+      {/* <ProductInfo/> */}
     </div>
   );
 };
