@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import App_header from "../../components/app/common/App_header";
-import { App_product_view } from "../../components/app/common/App_product_view";
+// import { App_product_view } from "";
 import { RecoilState, useRecoilState, useRecoilValue } from "recoil";
 import { productState, profileState } from "../../atoms/app_atoms";
 import { fetcher } from "../../utils";
@@ -11,6 +11,9 @@ import { profile } from "console";
 import { Button } from "../../components/app/common/App_button";
 import { useRouter } from "next/router";
 import styles from "../../styles/app_select_type.module.css";
+import dynamic from "next/dynamic";
+
+const App_product_view = dynamic(() => import("../../components/app/common/App_product_view"), { ssr: false });
 interface Device {
   model_name: string;
 }

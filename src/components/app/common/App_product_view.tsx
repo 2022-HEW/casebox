@@ -1,35 +1,45 @@
 import { useRecoilValue } from "recoil";
 import { productState } from "../../../atoms/app_atoms";
-import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { abort } from "process";
+import { Layer, Stage,Image } from "react-konva";
+import useImage from "use-image";
 
-type Props = {
-  width?: number;
-  height?: number;
-};
-
-export const App_product_view = ({ width = 1000, height = 1000 }: Props) => {
+const App_product_view = () => {
   const { product_place } = useRecoilValue(productState);
+  const [camera_image_path] = useImage(product_place.replace(".png", "_camera.png"));
+  const [image] = useImage(product_place);
+  const [imageSize,setImageSize] = useState({width:0,height:0})
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = product_place;
+    img.onload = () => {
+      setImageSize({
+        width: window.innerWidth/2.25,
+        height: window.innerWidth/2.25*img.height/img.width
+      });
+    };
+  }, [product_place]);
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
         padding: "23px 0",
-        background:"#fafafa"
+        background: "#fafafa",
       }}
     >
       {product_place && (
-        <div style={{ width: "85vw" }}>
-          <Image
-            width={width}
-            height={height}
-            src={product_place}
-            alt="商品画像"
-            objectFit="contain"
-          />
-        </div>
+          <Stage width={imageSize.width}height={imageSize.height}  x={-(imageSize.height/2 - imageSize.width / 2)}
+                y={0}>
+            <Layer>
+              <Image image={image} width={imageSize.width}height={imageSize.height}  x={imageSize.height/2 - imageSize.width / 2}/>
+              <Image image={camera_image_path} width={imageSize.width}height={imageSize.height} x={imageSize.height/2 - imageSize.width / 2}/>
+            </Layer>
+          </Stage>
       )}
     </div>
   );
 };
+
+export default App_product_view
