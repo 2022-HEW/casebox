@@ -10,7 +10,7 @@ import ID from "/public/image/ID.svg";
 import QuicPay from "/public/image/QuicPay.svg";
 import Edy from "/public/image/Edy.svg";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { productState, modalState } from "../../atoms/atoms";
+import { productState, modalState, downloadState } from "../../atoms/atoms";
 import { useEffect, useState } from "react";
 import React from "react";
 import Modal from "../../components/main/common/Modal";
@@ -32,6 +32,7 @@ const pay: NextPage = () => {
   const { m_product_price, product_ID } = useRecoilValue(productState);
   const [coins, setCoins] = useState(0);
   const router = useRouter();
+  const [download,setDownload] = useRecoilState(downloadState)
 
   const handlePay = (name: string) => {
     setPay(name);
@@ -41,11 +42,13 @@ const pay: NextPage = () => {
   };
 
   useEffect(() => {
-    if (!product_ID) {
+    if (!m_product_price) {
       router.push({
         pathname: "./service_select",
       });
     }
+    setDownload(false)
+    
   }, []);
 
   useEffect(() => {

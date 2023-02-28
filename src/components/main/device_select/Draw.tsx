@@ -89,6 +89,8 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
       setDownloadPath(uri);
       setModal(true);
     }
+    console.log(download);
+    
     if (download) {
       downloadURI(
         stageRef.current

@@ -10,6 +10,8 @@ import { productState,stepState,tabState,stockState} from '../../atoms/atoms';
 import React from 'react';
 import { NextPage } from 'next';
 import { fetcher } from '../../utils';
+import { modalState } from '../../atoms/atoms';
+import { downloadState } from '../../atoms/atoms';
 
 
 
@@ -26,15 +28,11 @@ const DeviceSelect:NextPage = () => {
     const tab = useRecoilValue(tabState);
     const [product,setProduct] = useRecoilState(productState);
     const [stock,setStock] = useRecoilState(stockState)
+    const [modal,setModal] =useRecoilState(modalState)
+    const [download,setDownload] = useRecoilState(downloadState)
     
-    useEffect(()=>{
-        console.log(product);
-
-    },[])
     // タブを移動した際リセット
     useEffect(()=>{
-                // console.log(tab);
-        
         if(tab === "手書き"){
             setProduct((before)=>({
                 ...before,
@@ -47,6 +45,7 @@ const DeviceSelect:NextPage = () => {
             setType(0)
         }
             setStep(1)
+            setModal(false)
     },[tab])
 
     function getDB (query:string) {

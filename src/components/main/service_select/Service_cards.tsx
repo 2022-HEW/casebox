@@ -40,6 +40,7 @@ const Service_cards = () => {
           {...bound}
           transition={{ ...bound.transition, delay: index / 5 }}
           whileTap={{ scale: 0.6 }}
+          key={index}
         >
           <div className={styles.ContainerInside}>
             <Link key={item.href} href={item.href}>
