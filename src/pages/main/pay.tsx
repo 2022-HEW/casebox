@@ -18,6 +18,7 @@ import Other from "../../components/main/pay/Other";
 import Touch from "../../components/main/pay/Touch";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import { handleSpeech } from "../../utils";
 
 const pay: NextPage = () => {
   // 今までの情報をリセット
@@ -39,13 +40,13 @@ const pay: NextPage = () => {
     }
   };
 
-  useEffect(()=>{
-if(!product_ID){
-router.push({
-    pathname:"./service_select"
-})
-}
-  },[])
+  useEffect(() => {
+    if (!product_ID) {
+      router.push({
+        pathname: "./service_select",
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (!modal) {
@@ -56,24 +57,10 @@ router.push({
   useEffect(() => {
     switch (pay) {
       case "現金":
-        let i = 0;
-        const coin = setInterval(() => {
-          if (i < 3) {
-            const audio = new Audio("/audio/coin.mp3");
-            audio.play();
-            audio.addEventListener("ended", () => {
-              setCoins((prevState) => prevState + 500);
-            });
-          } else {
-            clearInterval(coin);
-            router.push({ pathname: "./thankyou" });
-          }
-          i++;
-        }, 3000);
-        return () => {
-          clearInterval(coin);
-        };
+        handleSpeech("お金を投入してください");
+        break;
       case "クレジットカード":
+        handleSpeech("音がなるまでタッチしてください");
         const creditAudio = new Audio("/audio/credit.mp3");
         const creditTimer = setTimeout(() => {
           creditAudio.play();
@@ -81,12 +68,13 @@ router.push({
             clearTimeout(creditTimer);
             router.push({ pathname: "./thankyou" });
           });
-        }, 3000);
+        }, 5000);
         return () => {
           clearTimeout(creditTimer);
         };
 
       case "交通系電子マネー":
+        handleSpeech("音がなるまでタッチしてください");
         const TransportationAudio = new Audio("/audio/Transportation.mp3");
         const TransportationTimer = setTimeout(() => {
           TransportationAudio.play();
@@ -94,11 +82,12 @@ router.push({
             clearTimeout(TransportationTimer);
             router.push({ pathname: "./thankyou" });
           });
-        }, 3000);
+        }, 5000);
         return () => {
           clearTimeout(TransportationTimer);
         };
       case "QuicPay":
+        handleSpeech("音がなるまでタッチしてください");
         const QuicPayAudio = new Audio("/audio/QUICPay.mp3");
         const QuicPayTimer = setTimeout(() => {
           QuicPayAudio.play();
@@ -106,11 +95,12 @@ router.push({
             clearTimeout(QuicPayTimer);
             router.push({ pathname: "./thankyou" });
           });
-        }, 3000);
+        }, 5000);
         return () => {
           clearTimeout(QuicPayTimer);
         };
       case "ID":
+        handleSpeech("音がなるまでタッチしてください");
         const IDAudio = new Audio("/audio/ID.mp3");
         const IDTimer = setTimeout(() => {
           IDAudio.play();
@@ -118,11 +108,12 @@ router.push({
             clearTimeout(IDTimer);
             router.push({ pathname: "./thankyou" });
           });
-        }, 3000);
+        }, 5000);
         return () => {
           clearTimeout(IDTimer);
         };
       case "Edy":
+        handleSpeech("音がなるまでタッチしてください");
         const EdyAudio = new Audio("/audio/edy.mp3");
         const EdyTimer = setTimeout(() => {
           EdyAudio.play();
@@ -130,7 +121,7 @@ router.push({
             clearTimeout(EdyTimer);
             router.push({ pathname: "./thankyou" });
           });
-        }, 3000);
+        }, 5000);
         return () => {
           clearTimeout(EdyTimer);
         };
