@@ -45,6 +45,8 @@ export default async function handler(
   const model_quant = req.body.model_quant;
   const year = req.query.year;
   const model_name  =req.body.model_name
+  const color_name  =req.body.color_name
+  const color_code  =req.body.color_code
 
   let sql = "";
   switch (situ) {
@@ -84,6 +86,10 @@ export default async function handler(
       case "addType":
         sql = `INSERT INTO t_stocks(model_name,model_stocks,model_stock_limit,model_stock_standard) VALUES ("${model_name}",250,100,300)`;
         break;
+
+        case "addColor":
+          sql = `INSERT INTO t_product_colors(color_name,color_code) VALUES ("${color_name}","${color_code}")`;
+          break;
 
     case "getBuys":
       sql = `SELECT  b.buy_money,b.buy_created,s.model_name, b.quant FROM t_buys b JOIN t_stocks s ON b.model_id = s.model_id WHERE b.buy_created BETWEEN  "${Number(year) - 1}-01-01" AND "${Number(year) + 1}-01-01" ORDER BY b.buy_created`;

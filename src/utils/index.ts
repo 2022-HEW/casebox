@@ -31,7 +31,7 @@ export const fetcher = async (
   return res.json();
 };
 
-export const InsertDB = async (body: Body) => {
+export const InsertDB = async (body: Body,handle?:()=>any) => {
   await fetch(`/api/admin_sql`, {
     method: "POST",
     headers: {
@@ -39,7 +39,7 @@ export const InsertDB = async (body: Body) => {
     },
     // body:JSON.stringify(body)
     body: JSON.stringify(body),
-  });
+  }).then(res=>res.json()).then(data=>{handle&&handle()})
 };
 
 export const InsertAzure = async (body: Body) => {

@@ -98,7 +98,7 @@ export const UploadDetail = ({ handleRegister }: Props) => {
             )
           }
         >
-          商品を登録
+          機種を登録
         </Button>
       </Grid>
     </Grid>

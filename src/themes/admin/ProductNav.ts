@@ -24,6 +24,10 @@ export const SUBTITLE = [
         title: "機種登録",
         url: "/admin/stock/type",
       },
+      {
+        title: "カラー登録",
+        url: "/admin/stock/color",
+      },
     ],
     
   },
