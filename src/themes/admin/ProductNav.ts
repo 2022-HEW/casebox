@@ -28,6 +28,10 @@ export const SUBTITLE = [
         title: "カラー登録",
         url: "/admin/stock/color",
       },
+      {
+        title: "関係登録",
+        url: "/admin/stock/relation",
+      },
     ],
     
   },

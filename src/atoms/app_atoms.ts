@@ -42,7 +42,7 @@ export const modalState = atom({
 export const productState= atom<Product>({
     key: "product_info",
     default:{ 
-        m_product_price:1500,
+        m_product_price:2000,
         product_ID:null,
         product_name:"",
         product_place:"",

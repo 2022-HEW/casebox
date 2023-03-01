@@ -41,12 +41,12 @@ const Product: NextPage = () => {
     
     setError("");
     // error check
-    for (const value of result) {
-      if (typeName === value.model_name) {
-        setError("商品名が既に登録されています");
-        return;
-      }
-    }
+    // for (const value of result) {
+    //   if (typeName === value.model_name) {
+    //     setError("商品名が既に登録されています");
+    //     return;
+    //   }
+    // }
 
     if (!typeName) {
       setError("商品名が入力されていません");
@@ -73,7 +73,7 @@ const Product: NextPage = () => {
     };
 
     // DB登録処理：名前さえ入っていればどっちも取れる
-    // InsertDB(DBBody);
+    InsertDB(DBBody);
     alert("登録されました");
   };
 

@@ -5,12 +5,14 @@ type Box = {
   children: ReactNode;
   width?: string;
   alignContent?: string;
+  alignItems?: string;
 };
 
 export const Box = ({
   children,
   width = "97%",
   alignContent = "center",
+  alignItems=""
 }: Box) => {
   return (
     <Grid
@@ -27,6 +29,7 @@ export const Box = ({
       }}
       justifyContent="center"
       alignContent={alignContent}
+      alignItems={alignItems}
     >
       {children}
     </Grid>
