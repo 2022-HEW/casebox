@@ -61,7 +61,12 @@ const pay: NextPage = () => {
     switch (pay) {
       case "現金":
         handleSpeech("お金を投入してください");
-        break;
+        const timer = setTimeout(() => {
+          router.push({ pathname: "./thankyou" });
+        }, 12000);
+        return () => {
+          clearTimeout(timer);
+        };
       case "クレジットカード":
         handleSpeech("音がなるまでタッチしてください");
         const creditAudio = new Audio("/audio/credit.mp3");

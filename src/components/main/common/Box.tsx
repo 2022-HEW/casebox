@@ -31,11 +31,11 @@ const Box = ({ children, pay }: Box) => {
         <div id={styles.screen_on}>{children}</div>
         <div id={styles.side}>
           {pay === "現金" ? (
-            <Image
-              src={"/Box/Box.gif"}
-              width={100}
+            <video
+              src={"/movie/buy.mp4"}
+              width={268}
               height={1000}
-              alt={"side"}
+              autoPlay
             />
           ) : (
             <Image
