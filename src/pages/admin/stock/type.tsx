@@ -35,18 +35,10 @@ const Product: NextPage = () => {
     os: string,
     color: string
   ) => {
-    console.log(typeName);
-    console.log(os);
-    console.log(color);
     
     setError("");
     // error check
-    // for (const value of result) {
-    //   if (typeName === value.model_name) {
-    //     setError("商品名が既に登録されています");
-    //     return;
-    //   }
-    // }
+    
 
     if (!typeName) {
       setError("商品名が入力されていません");
@@ -72,9 +64,15 @@ const Product: NextPage = () => {
       model_name: typeName,     
     };
 
+    alert("登録されました");
+    for (const value of result) {
+      if (typeName === value.model_name) {
+        // setError("商品名が既に登録されています");
+        return;
+      }
+    }
     // DB登録処理：名前さえ入っていればどっちも取れる
     InsertDB(DBBody);
-    alert("登録されました");
   };
 
   return (
