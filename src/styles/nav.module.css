@@ -115,3 +115,13 @@
     position: relative;
     z-index: 2;
   }
+
+  .pays{
+    display: flex;
+    position:absolute;
+    width: 55%;
+    left: 80px;
+  }
+  .pays div{
+    padding: 0px 15px;
+  }

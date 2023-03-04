@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import { log } from "console";
 import React from "react";
 import { Button } from "./Button";
+import Image from "next/image";
 
 type Props = {
   children: ReactNode;
@@ -139,6 +140,30 @@ const Nav = ({ children }: Props) => {
             />
           </div>
           {/* <div id={styles.back} onClick={back}>もどる</div> */}
+          <div className={styles.pays}>
+            <div>
+              <Image
+                alt="支払い"
+                width={130}
+                height={98}
+                src="/Box/coin_icon.svg"
+              />
+            </div>
+            <div>
+              <Image alt="支払い" width={254} height={98} src="/Box/card.png" />
+            </div>
+            <div>
+              <Image alt="支払い" width={79} height={98} src="/Box/IC.png" />
+            </div>
+            <div>
+              <Image
+                alt="支払い"
+                width={175}
+                height={98}
+                src="/Box/money.png"
+              />
+            </div>
+          </div>
           <Button label="もどる" situ_name={"nav"} onClick={back} />
         </div>
       </div>
