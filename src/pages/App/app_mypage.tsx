@@ -152,14 +152,14 @@ const ProfileButton = ({ select, setSelect }: ProfileButton) => {
         id={"my"}
         style={
           select === "my"
-            ? { width: "36vw", height: "5vh", padding: "0", fontSize: "0.9rem" }
+            ? { width: "36vw", height: "5vh", padding: "0", fontSize: "0.8rem" }
             : {
                 background: "#f1f1f1",
                 color: "#444",
                 width: "36vw",
                 height: "5vh",
                 padding: "0",
-                fontSize: "0.9rem",
+                fontSize: "0.8rem",
               }
         }
       />
@@ -170,14 +170,14 @@ const ProfileButton = ({ select, setSelect }: ProfileButton) => {
         id={"like"}
         style={
           select === "like"
-            ? { width: "36vw", height: "5vh", padding: "0", fontSize: "0.9rem" }
+            ? { width: "36vw", height: "5vh", padding: "0", fontSize: "0.8rem" }
             : {
                 background: "#f1f1f1",
                 color: "#444",
                 width: "36vw",
                 height: "5vh",
                 padding: "0",
-                fontSize: "0.9rem",
+                fontSize: "0.8rem",
               }
         }
       />
