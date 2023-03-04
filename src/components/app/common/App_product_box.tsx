@@ -167,7 +167,13 @@ export const App_productBox = ({
           (user_id === product_user_id || user_id === undefined) && true
         }
       >
-        ❤{newLiked < 0 ? 0 : newLiked}
+
+        <div
+        className={styles.likeImg}>
+          
+        </div>
+        {/* ❤ */}
+        {newLiked < 0 ? 0 : newLiked}
       </button>
       <div className={styles.product} onClick={goDetail}>
         {product_place && (
