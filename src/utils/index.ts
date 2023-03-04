@@ -31,7 +31,7 @@ export const fetcher = async (
   return res.json();
 };
 
-export const InsertDB = async (body: Body) => {
+export const InsertDB = async (body: Body,handle?:()=>any) => {
   await fetch(`/api/admin_sql`, {
     method: "POST",
     headers: {
@@ -39,7 +39,7 @@ export const InsertDB = async (body: Body) => {
     },
     // body:JSON.stringify(body)
     body: JSON.stringify(body),
-  });
+  }).then(res=>res.json()).then(data=>{handle&&handle()})
 };
 
 export const InsertAzure = async (body: Body) => {
@@ -150,3 +150,19 @@ export const handleSpeech=(text:string)=> {
       }
   )
 }
+export const downloadImage = async (name: string, file: Blob, path: string) => {
+  const formData = new FormData();
+  if (file) {
+    const blob = file.slice(0, file.size, file.type);
+    // ファイル名称変更後のファイルオブジェクト
+    const renamedFile = new File([blob], name, { type: file.type });
+    formData.append("files", renamedFile);
+
+    const post = await fetch(`/api/downloadImage?path=${path}`, {
+      method: "POST",
+      body: formData,
+    });
+
+    console.log(await post.json());
+  }
+};

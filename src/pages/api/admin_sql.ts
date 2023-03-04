@@ -44,6 +44,10 @@ export default async function handler(
   const transaction_cost = req.body.transaction_cost;
   const model_quant = req.body.model_quant;
   const year = req.query.year;
+  const model_name  =req.body.model_name
+  const color_name  =req.body.color_name
+  const color_code  =req.body.color_code
+  const color_id  =req.body.color_id
 
   let sql = "";
   switch (situ) {
@@ -80,9 +84,29 @@ export default async function handler(
       sql = `UPDATE t_stocks SET model_stocks = ${model_quant} WHERE model_id = ${model_id}`;
       break;
 
+      case "addType":
+        sql = `INSERT INTO t_stocks(model_name,model_stocks,model_stock_limit,model_stock_standard) VALUES ("${model_name}",250,100,300)`;
+        break;
+
+        case "addColor":
+          sql = `INSERT INTO t_product_colors(color_name,color_code) VALUES ("${color_name}","${color_code}")`;
+          break;
+
+          case "addRelation":
+            sql = `INSERT INTO t_color_relation(color_ID,model_ID) VALUES (${color_id},${model_id})`;
+            break;
+
     case "getBuys":
       sql = `SELECT  b.buy_money,b.buy_created,s.model_name, b.quant FROM t_buys b JOIN t_stocks s ON b.model_id = s.model_id WHERE b.buy_created BETWEEN  "${Number(year) - 1}-01-01" AND "${Number(year) + 1}-01-01" ORDER BY b.buy_created`;
       break;
+    
+      case "getColors":
+        sql ="SELECT color_name,color_code,color_ID FROM t_product_colors "
+        break;
+
+        case "getRelations":
+          sql ="SELECT color_ID,model_ID FROM t_color_relation "
+          break;
     default:
       console.log("error");
   }

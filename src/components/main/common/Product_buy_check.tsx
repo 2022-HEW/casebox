@@ -29,7 +29,7 @@ const Product_buy_check = ({
   const [product, setProduct] = useRecoilState(productState);
 
   const go_pay_select = () => {
-    setProduct((before) => ({ ...before, quant: count }));
+    setProduct((before) => ({ ...before, m_product_price: count*before.m_product_price }));
     router.push({
       pathname: "/main/pay",
     });
@@ -47,11 +47,6 @@ const Product_buy_check = ({
           objectFit="contain"
         />
 
-        {design_path !== "/design/" && (
-          <div className={styles.design}>
-            <Image src={design_path} alt="スマホ" width={250} height={400} />
-          </div>
-        )}
         <div className={styles.product_info}>
           <div className={styles.productDesc}>
             <h2 className={styles.productName}>{type_name}</h2>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ComponentProps } from "react";
+import { ComponentProps, CSSProperties } from "react";
 import styles from "../../../styles/button.module.css";
 
 // type Props = {
@@ -12,7 +12,7 @@ type Props = {
   situ_name:string;
 }&ComponentProps<"button">;
 
-export const Button= ({ label, onClick, situ_name }:Props) => {
+export const Button= ({ label, onClick, situ_name,style}:Props) => {
   return (
     <motion.button
       // sizeが'small'の時: styles.buttonとstyles.smallが適用される
@@ -22,6 +22,7 @@ export const Button= ({ label, onClick, situ_name }:Props) => {
       }`}
       onClick={onClick}
       whileTap={{ scale: 0.9 }}
+      style={style}
     >
       {label}
     </motion.button>

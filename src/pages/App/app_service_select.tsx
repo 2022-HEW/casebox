@@ -34,14 +34,14 @@ const Column = ({ title }: Column) => {
       <h3>{title}</h3>
       <div className={styles.cards}>
         <Card
-          title={"アプリについて"}
+          title={"ヘルプ"}
           src={"/app/service_select/logo.png"}
-          url={"./app_tutorial?app"}
+          url={"./app_help"}
         />
         <Card
-          title={"自販機について"}
+          title={"スキャン"}
           src={"/app/service_select/box.png"}
-          url={"./app_tutorial?box"}
+          url={"./app_tutorial?situ=box_tutorial"}
         />
       </div>
     </div>
