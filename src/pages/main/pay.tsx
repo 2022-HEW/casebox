@@ -11,7 +11,7 @@ import QuicPay from "/public/image/QuicPay.svg";
 import Edy from "/public/image/Edy.svg";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { productState, modalState, downloadState } from "../../atoms/atoms";
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import React from "react";
 import Modal from "../../components/main/common/Modal";
 import Other from "../../components/main/pay/Other";
@@ -34,6 +34,7 @@ const pay: NextPage = () => {
   const [coins, setCoins] = useState(0);
   const router = useRouter();
   const [download, setDownload] = useRecoilState(downloadState);
+  const [loopCount, setLoopCount] = useState(0);
 
   const handlePay = (name: string) => {
     setPay(name);
@@ -41,6 +42,23 @@ const pay: NextPage = () => {
       setModal(true);
     }
   };
+
+  const handleClickPay=()=>{
+    router.push({
+      pathname:"./thankyou"
+    })
+  } 
+
+  const handleEnded = (videoRef:RefObject<HTMLVideoElement>) => {
+    
+    const count = m_product_price/1000 -1
+    setCoins(coins+1000);
+    if (loopCount < count) {
+      videoRef.current?.play();
+      setLoopCount(loopCount + 1);
+    }
+  };
+
 
   useEffect(() => {
     if (!download) {
@@ -58,14 +76,16 @@ const pay: NextPage = () => {
   }, [modal]);
   // 時間経過で遷移
   useEffect(() => {
+    setCoins(0)
+    setLoopCount(0)
     switch (pay) {
       case "現金":
         handleSpeech("お金を投入してください");
-        const timer = setTimeout(() => {
-          router.push({ pathname: "./thankyou" });
-        }, 12000);
+        // const timer = setTimeout(() => {
+        //   router.push({ pathname: "./thankyou" });
+        // }, 12000);
         return () => {
-          clearTimeout(timer);
+          // clearTimeout(timer);
         };
       case "クレジットカード":
         handleSpeech("音がなるまでタッチしてください");
@@ -153,7 +173,7 @@ const pay: NextPage = () => {
   };
 
   return (
-    <Box pay={pay}>
+    <Box pay={pay} handleEnded={handleEnded}>
       <Nav>
         <div id={styles.wrap}>
           <Price_result
@@ -165,7 +185,7 @@ const pay: NextPage = () => {
           <Price_result id={styles.back} write="おつり" price={coins - m_product_price>0?coins - m_product_price:0} />
           <div className={styles.calculate}>
             {coins -m_product_price >=0 &&
-            <Button label="支払確定" situ_name="" style={{width:"200px"}}/>
+            <Button label="支払確定" situ_name="" style={{width:"200px"}} onClick={handleClickPay}/>
             }
           </div>
           <div className={styles.buttons}>

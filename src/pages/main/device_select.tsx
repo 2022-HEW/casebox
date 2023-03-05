@@ -36,7 +36,7 @@ const DeviceSelect:NextPage = () => {
         if(tab === "手書き"){
             setProduct((before)=>({
                 ...before,
-                m_product_price:1500,
+                m_product_price:2000,
                 product_ID:null,
                 product_name:"",
                 product_place:"",
