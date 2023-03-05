@@ -6,14 +6,35 @@ import { useRecoilValue } from "recoil";
 import { productState, stockState } from "../../atoms/atoms";
 import { NextPage } from "next";
 import { handleSpeech } from "../../utils";
+import { useRouter } from "next/router";
 
 const Thankyou: NextPage = () => {
-  // dataを持っていないとき遷移させる
-  // if(){
+  
+  const router = useRouter()
 
-  // }
   useEffect(() => {
-    handleSpeech("ありがとうございました。");
+    // dataを持っていないとき遷移させる
+    if(!model_id){
+      router.push({
+        pathname:"./service_select"
+      })
+      return;
+    }
+
+    handleSpeech("完成までしばらくお待ちください。");
+    const timer =setTimeout(()=>{
+      handleSpeech("ご利用ありがとうございました。またお越しくださいませ。");
+      router.push({
+        pathname:"./service_select"
+      })
+    },8000)
+
+    InsertDB();
+
+    return()=>{
+      clearTimeout(timer)
+    }
+
   }, []);
 
   const { m_product_price, product_ID, model_id, quant } =
@@ -59,9 +80,6 @@ const Thankyou: NextPage = () => {
         console.log(data);
       });
   };
-  useEffect(() => {
-    InsertDB();
-  }, []);
 
   return (
     <Box>
