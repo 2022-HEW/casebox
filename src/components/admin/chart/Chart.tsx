@@ -30,6 +30,9 @@ export const Chart = ({ data, xAxis }: Chart) => {
     if (xAxis === "buy_money") {
       setChartData(SeparateMonth(data));
     } else if (xAxis === "quant") {
+      console.log(data);
+      console.log(result);
+      
       setChartData(SeparateType(data, result));
     }
   }, [data, result]);
@@ -55,7 +58,7 @@ const SeparateType = (data: Buys[], Stocks: Stock[]): Return[] => {
   // 販売数0を追加したデータ
   const returnData = [];
   const types = [];
-  let thisTypeTradeQuants = [data[0].quant];
+  let thisTypeTradeQuants = data[0]? [data[0].quant]:[];
   // console.log(data);
 
   for (let i = 1; i < data.length; i++) {
@@ -114,7 +117,7 @@ const SeparateMonth = (data: Buys[]): Return[] => {
   const returnData = [];
   const STR_MONTHS = [];
   const strMonths = [];
-  let thisMonthTradePrices = [data[0].buy_money];
+  let thisMonthTradePrices =  data[0]? [data[0].buy_money]:[];
   // console.log(data);
 
   for (let i = 1; i < data.length; i++) {

@@ -25,6 +25,8 @@ export const ChartBox = ({ xAxis }: ChartBox) => {
 
   useEffect(() => {
     setBuys(result);
+    console.log(result);
+    
   }, [result]);
 
   if (!buys) return <></>;
