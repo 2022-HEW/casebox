@@ -11,9 +11,7 @@ import { useRouter } from "next/router";
 const scan: NextPage = () => {
   const router = useRouter();
   const handleClickMode = () => {
-    router.push({
-      pathname: "./scan",
-    });
+    router.reload()
   };
   return (
     <Box>

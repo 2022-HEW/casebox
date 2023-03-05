@@ -41,40 +41,6 @@ const Product_box = ({
   const [modal, setModal] = useRecoilState(modalState);
   const [originalPlace, setOriginalPlace] = useState("");
 
-  const getThumbnailAzure = async () => {
-    try {
-      await fetch(`/api/blob_strage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          //  アップロード
-          situ: "thumbnail",
-          place: image_path,
-          // QRcode
-          // user_id: user_id,
-          // "situ":"create",
-        }),
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          //         // Azureからbase64を取ってくる
-          //         setImagePath(data[0]);
-          setOriginalPlace(data[0]);
-        });
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    if (case_category === "user") {
-      getThumbnailAzure();
-    }
-  }, []);
 
   // モーダルを動かして、商品IDを送る
   const Modal_toggle = () => {

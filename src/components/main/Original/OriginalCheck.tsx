@@ -38,6 +38,11 @@ const OriginalCheck = () => {
   const [quant, setQuant] = useState(1);
   const [nextURL, setNextURL] = useState("");
 
+  useEffect(()=>{
+    console.log(designImage);
+  },)
+  
+
   const getProductID = () => {
     const { data, error } = useSWR(
       !query.productID?.includes(".") &&
@@ -93,25 +98,22 @@ const OriginalCheck = () => {
         m_product_category:productInfo[0].m_product_category
       }));
     }
-    console.log(productInfo);
-    console.log(product);
   }, [productID, model, productInfo]);
   // 読み取れたら
-  useEffectCustom(() => {
-    if (router.isReady) {
+  useEffect(() => {
       // console.log(query.productID);
       // console.log(query.json);
       // 公式
-      if (query.productID?.includes(".")) {
-        setDesignImage(`/product_image/${query.productID}`);
-        setNextURL("/main/device_select");
-        // オリジナル
-      } else {
-        getThumbnailAzure(query.productID, setDesignImage);
-        setNextURL("/main/pay");
-      }
-    }
-  }, [query, router]);
+        if (query.productID?.includes(".")) {
+          setDesignImage(`/product_image/${query.productID}`);
+          setNextURL("/main/device_select");
+          // オリジナル
+        } else {
+          getThumbnailAzure(query.productID, setDesignImage);
+          setNextURL("/main/pay");
+        }
+        
+  }, );
 
   useEffect(() => {
     // if (m_product_category === "user") {
