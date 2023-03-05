@@ -149,6 +149,7 @@ const Case_edit = ({
           <Image src={"/image/tryangle.svg"} width={50} height={50} />
         </div>
         <p>機種をお選びください</p>
+        <div className={styles.type_list}>
         {model_names.map((value, index) => {
           return (
             <div key={index} className={styles.list}>
@@ -171,6 +172,7 @@ const Case_edit = ({
             </div>
           );
         })}
+        </div>
         <div className={styles.button}>
           <Button onClick={() => setStep(3)} label="次へ" situ_name="screen" />
         </div>
@@ -194,9 +196,10 @@ const Case_edit = ({
           style={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "space-evenly",
+            padding:"0 11.15%"
           }}
         >
+          
           {Object.keys(model_colors).map((value: any, index) => {
             // console.log(value);
 
@@ -239,10 +242,7 @@ const Case_edit = ({
                       onChange={(e) => setColor(e.target.value)}
                     />
                   </motion.div>
-                  {/* 改行 */}
-                  {index % 2 === 0 && index != 0 && (
-                    <div style={{ width: "100%" }} id={`${index}`}></div>
-                  )}
+                 
                 </div>
               );
             }

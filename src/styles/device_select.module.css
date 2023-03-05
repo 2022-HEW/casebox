@@ -16,9 +16,12 @@
   background-color: #fff;
   border-left: 1px solid #666;
   border-radius: 0 0 10px 0;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
-
+#case_edit::-webkit-scrollbar {
+  display: none; /*Google Chrome、Safari、Microsoft Edge対応のスクロールバー非表示コード*/
+}
 #case_edit h1 {
   background: #666;
   color: #ffffff;
@@ -51,14 +54,13 @@
   bottom: 25px;
   z-index: 2;
 }
-.color_select {
-}
 .color_select label {
   display: inline-block;
   width: 150px;
   height: 90px;
   border: 1px solid #aaaaaa;
   border-radius: 6px;
+  margin: 0px 15px 30px 15px;
 }
 .type {
   display: flex;
@@ -298,9 +300,6 @@
             inset -2px -3px 2px rgb(0 0 0 / 25%);
   border-radius: 58px;
   font-size: 32px;
-  background-repeat:no-repeat;
-  background-size: 18px;
-  background-position: 12px 12px;
 }
 .quantity {
   border: #CFCFCF solid;
