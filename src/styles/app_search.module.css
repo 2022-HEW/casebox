@@ -82,9 +82,11 @@
   margin: 0 ;
 
 }
-.likeImg{
-  background-image: url("../../public/goodBtn/good.png");
+
+.love_image{
+  margin:0 2px
 }
+
 .like {
   background: #ffffff;
   border: 0.1px solid #ccc;
@@ -98,11 +100,12 @@
   z-index: 2;
   width: 70px;
   height: 40px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.likedImg{
-  background-image: url("../../public/goodBtn/goodBef.png");
-}
 .liked {
   background: #e85143;
   border: 0.1px solid #777777;
