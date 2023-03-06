@@ -60,14 +60,14 @@ const pay: NextPage = () => {
   };
 
 
-  useEffect(() => {
-    if (!download) {
-      router.push({
-        pathname: "./service_select",
-      });
-    }
-    setDownload(false);
-  }, []);
+  // useEffect(() => {
+  //   if (!download) {
+  //     router.push({
+  //       pathname: "./service_select",
+  //     });
+  //   }
+  //   setDownload(false);
+  // }, []);
 
   useEffect(() => {
     if (!modal) {
