@@ -119,6 +119,10 @@
   z-index: 2;
   width: 70px;
   height: 40px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .modal {
   z-index: 1000;

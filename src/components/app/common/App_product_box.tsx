@@ -169,8 +169,7 @@ export const App_productBox = ({
       >
         {liked ?
         <div className={styles.love_image}>
-
-          <Image width={14} height={14} src={"/goodBtn/goodBef.png"}/>
+          <Image width={13} height={13} src={"/goodBtn/goodBef.png"}/>
         </div>
         :
         <div className={styles.love_image}>
