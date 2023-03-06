@@ -14,12 +14,23 @@ type Box = {
 const Box = ({ children, pay, handleEnded }: Box) => {
   // 開きっぱなしのモーダルを閉じる
   const [modal, setModal] = useRecoilState(modalState);
-  const [download, setDownload] = useRecoilState(downloadState);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const router = useRouter();
   const handleTap = () => {
     const audio = new Audio("/audio/tap.mp3");
     audio.play();
     // audio.currentTime = 50 // 経過時間を50秒にする
+  };
+
+  const TIMEOUT = 900000; // 5秒後にページを遷移する
+
+  const timeoutRef = useRef<NodeJS.Timeout>();
+
+  const handleResetTimeout = () => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      router.push("/"); // ページを遷移する
+    }, TIMEOUT);
   };
 
   useEffect(() => {
@@ -37,7 +48,23 @@ const Box = ({ children, pay, handleEnded }: Box) => {
     if (modal) {
       setModal(false);
     }
+
+    const eventListener = () => {
+      handleResetTimeout();
+    };
+
+    window.addEventListener("click", eventListener); // ここでは、クリックイベントを監視する例としていますが、他のイベントでも構いません
+
+    // コンポーネントがアンマウントされるときに、イベントリスナーを解除する
+    return () => {
+      window.removeEventListener("click", eventListener);
+      clearTimeout(timeoutRef.current);
+    };
   }, []);
+
+  useEffect(() => {
+    handleResetTimeout();
+  }, []); // このuseEffectはマウント時に実行され、初期化に必要な処理を実行します
 
   return (
     <>
