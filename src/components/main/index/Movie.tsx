@@ -15,6 +15,7 @@ const Movie = ({ movieUrl }: movie) => {
           height: "100%",
           outline: "none",
           border: "none",
+          background:"#fff"
         }}
       />
     </>
