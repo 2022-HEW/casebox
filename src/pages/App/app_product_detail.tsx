@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import { App_product_view } from "../../components/app/common/App_product_view";
 import { QRCode } from "react-qrcode";
 import { CSSProperties } from "react";
-import { margin } from "@mui/system";
 
 type QRButton = {
   // label:string
@@ -270,7 +269,7 @@ const ProductInfo = ({
         ￥{price.toLocaleString()}
         <span>税込</span>
       </p>
-      <p className={styles.favorite}>❤</p>
+      <div className={styles.favorite}><Image src="/goodBtn/goodBefo.png" width={40} height={40}/></div>
       <p className={styles.product_liked}>{product_liked}</p>
     </div>
   );

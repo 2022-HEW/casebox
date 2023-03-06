@@ -11,15 +11,5 @@
   border: none;
 }
 .logout_button {
-  font-size: 1.1rem;
-  background: #E8E8E8;
-  border-radius: 50px;
-  color: #2E9BFF;
-  font-weight: bold;
-  width: 100vw;
-  /* margin: 0 0 0 10%; */
-  padding: 10px 0;
-  height: 52px;
-  max-width: 300px;
-  border: none;
+ 
 }

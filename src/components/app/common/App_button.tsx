@@ -10,10 +10,9 @@ import styles from "../../../styles/app_button.module.css";
 type Props = {
   label: string;
   style?: CSSProperties;
-  id?: string;
 } & ComponentProps<"button">;
 
-export const Button = ({ label, onClick, disabled, style, id }: Props) => {
+export const Button = ({ label, onClick, disabled, style,...props }: Props) => {
   return (
     <button
       // sizeが'small'の時: styles.buttonとstyles.smallが適用される
@@ -22,7 +21,7 @@ export const Button = ({ label, onClick, disabled, style, id }: Props) => {
       onClick={onClick}
       disabled={disabled}
       style={disabled ? {...style,opacity:0.4}:style}
-      id={id}
+      {...props}
     >
       {label}
     </button>
