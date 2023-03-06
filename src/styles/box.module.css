@@ -6,6 +6,8 @@
     top: 0;
     left: 0;
     display: flex;
+    overflow: hidden;
+
 }
 #screen{
     width: 77vw;
@@ -14,7 +16,7 @@
     left: 2vw;
 }
 #screen_on{
-    background-color: #fff;
+    background-color: #F1F1F1;
     width: 986px;
     height: 708px;
     margin: 6px 0px 0 25px;

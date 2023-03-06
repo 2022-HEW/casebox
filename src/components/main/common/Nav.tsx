@@ -1,8 +1,8 @@
 import styles from "../../../styles/nav.module.css";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { ReactNode, useState, useMemo, useRef, Dispatch } from "react";
-import { SetterOrUpdater, useRecoilState, useRecoilValue } from "recoil";
+import { ReactNode } from "react";
+import { SetterOrUpdater, useRecoilState } from "recoil";
 import {
   productState,
   tabState,
@@ -12,7 +12,6 @@ import {
   imageState,
 } from "../../../atoms/atoms";
 import { useEffect } from "react";
-import { log } from "console";
 import React from "react";
 import { Button } from "./Button";
 import Image from "next/image";
@@ -141,28 +140,7 @@ const Nav = ({ children }: Props) => {
           </div>
           {/* <div id={styles.back} onClick={back}>もどる</div> */}
           <div className={styles.pays}>
-            <div>
-              <Image
-                alt="支払い"
-                width={130}
-                height={98}
-                src="/Box/coin_icon.svg"
-              />
-            </div>
-            <div>
-              <Image alt="支払い" width={254} height={98} src="/Box/card.png" />
-            </div>
-            <div>
-              <Image alt="支払い" width={79} height={98} src="/Box/IC.png" />
-            </div>
-            <div>
-              <Image
-                alt="支払い"
-                width={175}
-                height={98}
-                src="/Box/money.png"
-              />
-            </div>
+            <Image width={600} height={100} src={"/Nav/pay3.png"} objectFit="contain"/>
           </div>
           <Button label="もどる" situ_name={"nav"} onClick={back} />
         </div>

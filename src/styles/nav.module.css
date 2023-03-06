@@ -119,9 +119,12 @@
   .pays{
     display: flex;
     position:absolute;
-    width: 55%;
+    width: 65%;
     left: 80px;
+    top: 600px;
+    z-index: 999;
   }
+
   .pays div{
     padding: 0px 15px;
   }
