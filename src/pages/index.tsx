@@ -31,7 +31,6 @@ const Wait=()=>{
             <Movie movieUrl='./movie/top.mov'></Movie>
           </div>
       </Link>
-
   )
 }
 export default Home
