@@ -13,21 +13,24 @@ STAFF に用意されたテンプレートケース、自由に画像を入れ�
 ### 待機画面
 
 https://user-images.githubusercontent.com/105366974/223700304-0aa2f844-f319-4727-8bde-811aea0796a9.mp4
-
+<br>
 <details>
     <summary>詳細はこちらをクリック</summary>
-　　https://user-images.githubusercontent.com/105366974/223700304-0aa2f844-f319-4727-8bde-811aea0796a9.mp4
-    <br>
     タップで音声が出て遷移します。
     他の画面で一定時間操作されないと待機画面へ遷移します。
 </details>
 
 ### テンプレート画面
 
-![IMG1](public/screenshots/02.png)
+https://user-images.githubusercontent.com/105366974/223700304-0aa2f844-f319-4727-8bde-811aea0796a9.mp4
+<br>
+<details>
+    <summary>詳細はこちらをクリック</summary>
+    
 タブまたは左下のカードを押すと遷移できます。
 スタッフが用意したスマホのケースが並んでいます。
-マウスカーソルで前後に操作でき、隣のボタンから色を変えることができます。
+管理者サイトからデザインを追加することができます。
+</details>
 
 ## 主要ライブラリ
 
