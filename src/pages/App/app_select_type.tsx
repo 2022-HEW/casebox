@@ -85,7 +85,6 @@ const app_select_type = () => {
         defaultDevice = allDevice.filter(
           (val: Device) => val.model_name.includes("iPhone") === false
         );
-        console.log(defaultDevice);
         defaultColor = allColor.filter(
           (val: Color) => val.model_name === defaultDevice[0]["model_name"]
         );
