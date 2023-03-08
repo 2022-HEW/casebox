@@ -12,6 +12,8 @@ STAFF に用意されたテンプレートケース、自由に画像を入れ�
 
 ### 待機画面
 
+https://user-images.githubusercontent.com/105366974/223700304-0aa2f844-f319-4727-8bde-811aea0796a9.mp4
+
 <details>
     <summary>詳細はこちらをクリック</summary>
 　　https://user-images.githubusercontent.com/105366974/223700304-0aa2f844-f319-4727-8bde-811aea0796a9.mp4
