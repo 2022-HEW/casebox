@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CASEBOX
 
-## Getting Started
+## HEW2023 　お題「自動販売機」　 IH12A 　 Group6 作品
 
-First, run the development server:
+この自動販売機ではスマホケースを購入することができます。
+STAFF に用意されたテンプレートケース、自由に画像を入れて作るオリジナルケース、ペイントして作る手描きケースの三種類の中から選ぶことができます。
+本リポジトリには、自動販売機本体、web サイト、管理者用サイトの３つが詰められています。
+自動販売機本体は現実を意識し、タップで操作されることを前提としております。
+なお、都合によりデプロイは行っておりません。
 
-```bash
-npm run dev
-# or
-yarn dev
+## 画面詳細
+
+### 待機画面
+
+<details>
+    <summary>詳細はこちらをクリック</summary>
+    ![IMG1](public/screenshots/01.png) 
+    タップで音声が出て遷移します。
+    他の画面で一定時間操作されないと待機画面へ遷移します。
+</details>
+
+### テンプレート画面
+
+![IMG1](public/screenshots/02.png)
+タブまたは左下のカードを押すと遷移できます。
+スタッフが用意したスマホのケースが並んでいます。
+マウスカーソルで前後に操作でき、隣のボタンから色を変えることができます。
+
+## 主要ライブラリ
+
+```
+React three fiber
+React three drei
+TextAlive App API
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## TextAlive App API
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+![TextAlive](https://i.gyazo.com/thumb/1000/5301e6f642d255c5cfff98e049b6d1f3-png.png)
+TextAlive App API は、音楽に合わせてタイミングよく歌詞が動く Web アプリケーション（リリックアプリ）を開発できる JavaScript 用のライブラリです。
+TextAlive App API について詳しくは Web サイト [TextAlive for Developers](https://developer.textalive.jp/) をご覧ください。
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## クレジット
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Miku 3Dmodel : [すず](https://github.com/suzumashi)
+- Google Earth Studio : Google
 
-## Learn More
+## 注意事項
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+画像素材の改変，二次配布は固く禁じます.
