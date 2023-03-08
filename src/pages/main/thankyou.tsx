@@ -40,13 +40,10 @@ const Thankyou: NextPage = () => {
   const { m_product_price, product_ID, model_id, quant } =
     useRecoilValue(productState);
   const stocks = useRecoilValue(stockState);
-  console.log(stocks);
-  console.log(quant);
 
   const stock = () => {
     let new_stock = 0;
     stocks.map((value: any) => {
-      console.log(value);
       if (value.model_id === model_id) {
         // 減った在庫分
         new_stock = value.model_stocks - quant;
@@ -65,9 +62,6 @@ const Thankyou: NextPage = () => {
       .then((res) => {
         return res.json();
       })
-      .then((data) => {
-        console.log(data);
-      });
 
     // 在庫情報を追加
     await fetch(
@@ -76,9 +70,6 @@ const Thankyou: NextPage = () => {
       .then((res) => {
         return res.json();
       })
-      .then((data) => {
-        console.log(data);
-      });
   };
 
   return (

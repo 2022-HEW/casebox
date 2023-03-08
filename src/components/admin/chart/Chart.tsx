@@ -30,16 +30,11 @@ export const Chart = ({ data, xAxis }: Chart) => {
     if (xAxis === "buy_money") {
       setChartData(SeparateMonth(data));
     } else if (xAxis === "quant") {
-      console.log(data);
-      console.log(result);
-      
       setChartData(SeparateType(data, result));
     }
   }, [data, result]);
   if (!data || !result) {
     return <></>;
-  } else {
-    // console.log(data);
   }
   return (
     <BarChart width={730} height={200} data={ChartData}>
@@ -58,8 +53,7 @@ const SeparateType = (data: Buys[], Stocks: Stock[]): Return[] => {
   // 販売数0を追加したデータ
   const returnData = [];
   const types = [];
-  let thisTypeTradeQuants = data[0]? [data[0].quant]:[];
-  // console.log(data);
+  let thisTypeTradeQuants = data[0] ? [data[0].quant] : [];
 
   for (let i = 1; i < data.length; i++) {
     const ThisType = data[i].model_name;
@@ -106,7 +100,6 @@ const SeparateType = (data: Buys[], Stocks: Stock[]): Return[] => {
       if (returnData[i].xAxis === value.xAxis) {
         returnData[i].yAxis += value.yAxis;
       }
-      // console.log(value.yAxis);
     }
   }
 
@@ -117,8 +110,7 @@ const SeparateMonth = (data: Buys[]): Return[] => {
   const returnData = [];
   const STR_MONTHS = [];
   const strMonths = [];
-  let thisMonthTradePrices =  data[0]? [data[0].buy_money]:[];
-  // console.log(data);
+  let thisMonthTradePrices = data[0] ? [data[0].buy_money] : [];
 
   for (let i = 1; i < data.length; i++) {
     const numThisMonth = data[i].buy_created.split("-")[1];
@@ -157,7 +149,6 @@ const SeparateMonth = (data: Buys[]): Return[] => {
     // 同月を一つの配列についか
     thisMonthTradePrices.push(tradePrice);
   }
-  // console.log(returnData);
 
   // データがない付きの選択肢を追加する
   for (let i = 1; i <= 12; i++) {

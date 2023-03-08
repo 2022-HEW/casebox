@@ -38,11 +38,6 @@ const OriginalCheck = () => {
   const [quant, setQuant] = useState(1);
   const [nextURL, setNextURL] = useState("");
 
-  useEffect(()=>{
-    console.log(designImage);
-  },)
-  
-
   const getProductID = () => {
     const { data, error } = useSWR(
       !query.productID?.includes(".") &&

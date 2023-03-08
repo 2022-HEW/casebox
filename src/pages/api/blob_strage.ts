@@ -96,13 +96,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         await streamToText(imgDownloadBlockBlobResponse.readableStreamBody),
         await streamToText(placeDownloadBlockBlobResponse.readableStreamBody),
       ];
-      console.log("\nDownloaded blob content...");
-      console.log(
-        "\t"
-        // console.log(downloadBlockBlobResponse),
-
-        // await  streamToText(downloadBlockBlobResponse.readableStreamBody)
-      );
 
       return DownloadBlockBlobResponses;
     };

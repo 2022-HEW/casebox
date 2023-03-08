@@ -142,7 +142,6 @@ export const handleSpeech=(text:string)=> {
   synthesizer.speakSsmlAsync(
       ssml,
       function (result) {
-          console.log(result);
           synthesizer.close();
       }, function (err) {
           console.log(err);

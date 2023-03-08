@@ -67,8 +67,7 @@ const Product:NextPage = () => {
     }
     if (!thumbnailFile || !designFile) {
       setError("画像が選択されていません");
-      console.log(thumbnailFile);
-      console.log(designFile);
+
       
       return;
     }

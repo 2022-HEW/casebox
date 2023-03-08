@@ -28,9 +28,6 @@ export const UploadDetail = ({ handleRegister }: Props) => {
   const colorRef = useRef<HTMLSelectElement>(null);
   const { result, CatchError } = getDB("Colors");
 
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
   return (
     <Grid container direction={"column"} gap={7} justifyContent="center">
       <Grid item>

@@ -98,7 +98,6 @@ export const App_productBox = ({
   }, [user_like]);
 
   const goDetail = () => {
-    console.log(product_liked);
 
     setProduct((before) => ({
       ...before,

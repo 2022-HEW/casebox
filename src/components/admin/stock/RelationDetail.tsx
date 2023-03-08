@@ -26,10 +26,6 @@ import {
       const {result} = getDB("Stocks")
       const typeRef = useRef<HTMLSelectElement>(null);
   
-      useEffect(()=>{
-        console.log(result);
-        
-      },[result])
     return (
       <Grid container direction={"column"} gap={7} justifyContent="center">
        <Grid item>

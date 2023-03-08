@@ -89,8 +89,7 @@ const Draw = ({ setDownloadPath, image_path }: Props) => {
       setDownloadPath(uri);
       setModal(true);
     }
-    console.log(download);
-    console.log();
+
     
     if (download && stageRef.current.getStage().attrs.width>0) {
       downloadURI(

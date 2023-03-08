@@ -25,8 +25,6 @@ export const ChartBox = ({ xAxis }: ChartBox) => {
 
   useEffect(() => {
     setBuys(result);
-    console.log(result);
-    
   }, [result]);
 
   if (!buys) return <></>;
@@ -41,18 +39,18 @@ export const ChartBox = ({ xAxis }: ChartBox) => {
 
   return (
     <Suspense>
-    <Grid container gap={0}>
-      <GlobalNav />
-      <Nav title={"商品売上"} values={SUBTITLE} />
-      <Body>
-        <Box>
-          <Chart data={thisYear} xAxis={xAxis} />
-        </Box>
-        <Box>
-          <Chart data={lastYear} xAxis={xAxis} />
-        </Box>
-      </Body>
-    </Grid>
+      <Grid container gap={0}>
+        <GlobalNav />
+        <Nav title={"商品売上"} values={SUBTITLE} />
+        <Body>
+          <Box>
+            <Chart data={thisYear} xAxis={xAxis} />
+          </Box>
+          <Box>
+            <Chart data={lastYear} xAxis={xAxis} />
+          </Box>
+        </Body>
+      </Grid>
     </Suspense>
   );
 };

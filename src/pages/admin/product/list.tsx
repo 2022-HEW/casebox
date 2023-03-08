@@ -13,10 +13,6 @@ import { Product } from "../../../types/admin/Product";
 const ProductList = () => {
   const { result } = getDB("Products");
 
-  useEffect(() => {
-    console.log(result);
-  });
-
   return (
     <Grid container gap={0}>
       <GlobalNav />
