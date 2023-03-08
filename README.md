@@ -14,7 +14,7 @@ STAFF に用意されたテンプレートケース、自由に画像を入れ�
 
 <details>
     <summary>詳細はこちらをクリック</summary>
-    ![IMG1](public/screenshots/01.png) 
+https://user-images.githubusercontent.com/105366974/223697298-7f6ad17d-cb06-4562-81a3-a9a2858840e9.mp4
     タップで音声が出て遷移します。
     他の画面で一定時間操作されないと待機画面へ遷移します。
 </details>
