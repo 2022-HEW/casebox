@@ -22,7 +22,7 @@ const Box = ({ children, pay, handleEnded }: Box) => {
     // audio.currentTime = 50 // 経過時間を50秒にする
   };
 
-  const TIMEOUT = 900000; // 5秒後にページを遷移する
+  const TIMEOUT = 60000; // 5秒後にページを遷移する
 
   const timeoutRef = useRef<NodeJS.Timeout>();
 
